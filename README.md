@@ -20,7 +20,7 @@
 
 以下是我的小红书账号，欢迎大家关注我！
 
-![小红书账号](/image/social_media.JPG)
+![小红书账号](/image/social_media)
  
 
 ## draft
