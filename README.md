@@ -1,7 +1,7 @@
-[![GitHub issues](https://img.shields.io/github/issues/jhljx/RL4Rec.svg?style=flat-square)](https://github.com/jhljx/RL4Rec/issues)
-[![GitHub stars](https://img.shields.io/github/stars/jhljx/RL4Rec.svg?style=flat-square)](https://github.com/jhljx/RL4Rec/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/jhljx/RL4Rec.svg?style=flat-square)](https://github.com/jhljx/RL4Rec/network/members)
-![Downloads](https://img.shields.io/github/downloads/jhljx/RL4Rec/total)
+[![GitHub issues](https://img.shields.io/github/issues/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/issues)
+[![GitHub stars](https://img.shields.io/github/stars/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/stargazers)
+[![GitHub forks](https://img.shields.io/github/forks/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/network/members)
+![Downloads](https://img.shields.io/github/downloads/jhljx/RecSys-Industrial-Book/total)
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey" /></a>
 
 # RecSys-Industrial-Book
@@ -10,10 +10,10 @@
 
 🔖 定位：工业级推荐系统硬核专著，主打全链路系统化思维，拒绝碎片化知识点  
 🎯 受众：具备机器学习 / 推荐基础的研究生、算法 / 架构 / 策略工程师、技术研究者  
-❗ 不适合纯零基础小白（建议先学习推荐入门知识）  
-💡 创作理念：随着AI coding的发展，代码门槛已逐步降低，因此本书主要聚焦于系统认知、架构设计、模块协同、工业策略、业务权衡等核心能力  
+❗ 不适合纯零基础小白（建议先学习机器学习与深度学习入门知识）  
+💡 创作理念：随着AI的快速发展，写代码门槛已逐步降低。因此本书主要聚焦于系统认知、架构设计、模块协同、工业策略、业务权衡等方面，帮助大家建立一种系统化、模块化的思维。  
 📦 内容：全书上下册 PDF + 配套可运行代码、实验案例、补充资料（持续更新）  
-📄 授权：个人学习非商用，转载 / 引用请注明出处（沿用你原书稿版权声明） 
+📄 授权：个人学习非商用，转载 / 引用请注明出处
 
 
 ## 社交媒体
@@ -24,7 +24,7 @@
  
 
 ## draft
-目前draft目录是已有写好的草稿章节，与现有的目录结构并不一定完全对应，仅供大家学习参考。
+目前draft目录是已有写好的草稿章节，与现有的目录结构并不一定完全对应，仅供大家学习参考。草稿目前为**推荐系统概述**和**推荐系统模块**的内容，会覆盖正式书籍版本的上册章节内容。后续会按照正式的目录章节持续更新。
 
 
 ## 目录
