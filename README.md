@@ -405,3 +405,5 @@
         - 37.2 核心研究方向
         - 37.3 前沿展望
 
+## Star History
+[![Star History](https://api.star-history.com/svg?repos=jhljx/RecSys-Industrial-Book)](https://star-history.com/#jhljx/RecSys-Industrial-Book&Date)
