@@ -26,6 +26,10 @@
 ## draft
 目前draft目录是已有写好的草稿章节，与现有的目录结构并不一定完全对应，仅供大家学习参考。草稿目前为**推荐系统概述**和**推荐系统模块**的内容，会覆盖正式书籍版本的上册章节内容。后续会按照正式的目录章节持续更新。
 
+## Star趋势
+[![Star History](https://api.star-history.com/svg?repos=jhljx/RecSys-Industrial-Book)](https://star-history.com/#jhljx/RecSys-Industrial-Book&Date)
+
+
 
 ## 目录
 后续整本书籍还是会按照上下两册的目录结构进行持续更新。其中前4部分从第一章截止到第十七章为上册内容，第十八章到第三十七章为下册内容。
@@ -409,6 +413,4 @@
         - 37.1 全书回顾
         - 37.2 核心研究方向
         - 37.3 前沿展望
-
-## Star History
-[![Star History](https://api.star-history.com/svg?repos=jhljx/RecSys-Industrial-Book)](https://star-history.com/#jhljx/RecSys-Industrial-Book&Date)
+ 
