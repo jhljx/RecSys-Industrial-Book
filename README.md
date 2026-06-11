@@ -1,4 +1,4 @@
-[![GitHub issues](https://img.shields.io/github/issues/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/issues)
+[![GitHub issues](https://badgen.net/github/issues/jhljx/RecSys-Industrial-Book)](https://github.com/jhljx/RecSys-Industrial-Book/issues)
 [![GitHub stars](https://img.shields.io/github/stars/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/stargazers)
 [![GitHub forks](https://badgen.net/github/forks/jhljx/RecSys-Industrial-Book)](https://github.com/jhljx/RecSys-Industrial-Book/network/members)
 ![Downloads](https://img.shields.io/github/downloads/jhljx/RecSys-Industrial-Book/total)
