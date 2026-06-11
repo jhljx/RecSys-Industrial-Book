@@ -1,6 +1,6 @@
 [![GitHub issues](https://img.shields.io/github/issues/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/issues)
 [![GitHub stars](https://img.shields.io/github/stars/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/network/members)
+[![GitHub forks](https://badgen.net/github/forks/jhljx/RecSys-Industrial-Book)](https://github.com/jhljx/RecSys-Industrial-Book/network/members)
 ![Downloads](https://img.shields.io/github/downloads/jhljx/RecSys-Industrial-Book/total)
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey" /></a>
 
