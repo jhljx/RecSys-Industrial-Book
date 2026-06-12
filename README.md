@@ -1,6 +1,6 @@
-[![GitHub issues](https://img.shields.io/github/issues/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/issues)
+[![GitHub issues](https://badgen.net/github/issues/jhljx/RecSys-Industrial-Book)](https://github.com/jhljx/RecSys-Industrial-Book/issues)
 [![GitHub stars](https://img.shields.io/github/stars/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/stargazers)
-[![GitHub forks](https://img.shields.io/github/forks/jhljx/RecSys-Industrial-Book.svg?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/network/members)
+[![GitHub forks](https://badgen.net/github/forks/jhljx/RecSys-Industrial-Book)](https://github.com/jhljx/RecSys-Industrial-Book/network/members)
 ![Downloads](https://img.shields.io/github/downloads/jhljx/RecSys-Industrial-Book/total)
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey" /></a>
 
@@ -25,6 +25,10 @@
 
 ## draft
 目前draft目录是已有写好的草稿章节，与现有的目录结构并不一定完全对应，仅供大家学习参考。草稿目前为**推荐系统概述**和**推荐系统模块**的内容，会覆盖正式书籍版本的上册章节内容。后续会按照正式的目录章节持续更新。
+
+## Star趋势
+[![Star History](https://api.star-history.com/svg?repos=jhljx/RecSys-Industrial-Book)](https://star-history.com/#jhljx/RecSys-Industrial-Book&Date)
+
 
 
 ## 目录
@@ -409,6 +413,4 @@
         - 37.1 全书回顾
         - 37.2 核心研究方向
         - 37.3 前沿展望
-
-## Star History
-[![Star History](https://api.star-history.com/svg?repos=jhljx/RecSys-Industrial-Book)](https://star-history.com/#jhljx/RecSys-Industrial-Book&Date)
+ 
