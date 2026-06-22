@@ -35,7 +35,7 @@
 后续整本书籍还是会按照上下两册的目录结构进行持续更新。其中前4部分从第一章截止到第十七章为上册内容，第十八章到第三十七章为下册内容。
 
 - **第一部分 推荐系统基础**  
-    - **第 1 章 推荐系统概览**  
+    - [**第 1 章 推荐系统概览**](https://github.com/jhljx/RecSys-Industrial-Book/blob/main/ch01%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0.pdf)  
         - 1.1 什么是推荐系统  
         - 1.2 推荐系统发展历程
             - 1.2.1 人工推荐时代
@@ -56,7 +56,7 @@
             - 1.5.3 多目标优化挑战
             - 1.5.4 冷启动挑战      
         - 1.6 本章小结  
-    - **第 2 章 推荐系统架构**  
+    - [**第 2 章 推荐系统架构**](https://github.com/jhljx/RecSys-Industrial-Book/blob/main/ch02%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84.pdf)  
         - 2.1 混合推荐系统架构  
         - 2.2 级联式推荐系统  
         - 2.3 推荐系统的离线架构与在线架构  
@@ -71,7 +71,7 @@
             - 2.6.4 大模型驱动的内容理解数据   
         - 2.7 本章小结  
         - 2.8 参考文献  
-    - **第 3 章 推荐系统评价体系**  
+    - [**第 3 章 推荐系统评价体系**](https://github.com/jhljx/RecSys-Industrial-Book/blob/main/ch03%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E8%AF%84%E4%BB%B7%E4%BD%93%E7%B3%BB/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E8%AF%84%E4%BB%B7%E4%BD%93%E7%B3%BB.pdf)  
         - 3.1 离线评价指标  
             - 3.1.1 分类指标  
             - 3.1.2 排序指标  
@@ -85,7 +85,7 @@
         - 3.4 推荐系统监控体系  
         - 3.5 本章小结  
 - **第二部分 推荐系统模块**  
-    - **第 4 章 召回与过滤模块**  
+    - [**第 4 章 召回与过滤模块**](https://github.com/jhljx/RecSys-Industrial-Book/blob/main/ch04%20%E5%8F%AC%E5%9B%9E%E4%B8%8E%E8%BF%87%E6%BB%A4%E6%A8%A1%E5%9D%97/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E4%B8%8E%E8%BF%87%E6%BB%A4%E6%A8%A1%E5%9D%97.pdf)  
         - 4.1 为什么需要召回
         - 4.2 多路召回架构  
         - 4.3 召回技术分类
@@ -103,7 +103,7 @@
             - 4.5.5 过滤模块面临的挑战
         - 4.6 本章小结  
         - 4.7 参考文献  
-    - **第 5 章 粗排模块**  
+    - [**第 5 章 粗排模块**](https://github.com/jhljx/RecSys-Industrial-Book/blob/main/ch05%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9D%97/%E7%AC%AC%E4%BA%94%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9D%97.pdf)  
         - 5.1 为什么需要粗排  
         - 5.2 粗排模型  
         - 5.3 链路一致性模型  
@@ -122,7 +122,7 @@
         - 5.7 粗排候选集集合优化   
         - 5.8 本章小结
         - 5.9 参考文献  
-    - **第 6 章 精排模块**  
+    - [**第 6 章 精排模块**](https://github.com/jhljx/RecSys-Industrial-Book/blob/main/ch06%20%E7%B2%BE%E6%8E%92%E6%A8%A1%E5%9D%97/%E7%AC%AC%E5%85%AD%E7%AB%A0-%E7%B2%BE%E6%8E%92%E6%A8%A1%E5%9D%97.pdf)  
         - 6.1 精排模块架构  
         - 6.2 精排模型与 LTR 模型  
         - 6.3 精排模型常见的预估任务  
@@ -143,7 +143,7 @@
             - 6.5.5 精排保量与强插策略  
         - 6.6 本章小结  
         - 6.7 参考文献  
-    - **第 7 章 重排模块**  
+    - [**第 7 章 重排模块**](https://github.com/jhljx/RecSys-Industrial-Book/blob/main/ch07%20%E9%87%8D%E6%8E%92%E6%A8%A1%E5%9D%97/%E7%AC%AC%E4%B8%83%E7%AB%A0-%E9%87%8D%E6%8E%92%E6%A8%A1%E5%9D%97.pdf)  
         - 7.1 为什么需要重排
         - 7.2 重排模块架构  
         - 7.3 序列生成  
@@ -155,7 +155,7 @@
         - 7.6 重排后处理  
         - 7.7 本章小结  
         - 7.8 参考文献  
-    - **第 8 章 混排模块**
+    - [**第 8 章 混排模块**](https://github.com/jhljx/RecSys-Industrial-Book/blob/main/ch08%20%E6%B7%B7%E6%8E%92%E6%A8%A1%E5%9D%97/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%B7%B7%E6%8E%92%E6%A8%A1%E5%9D%97.pdf)
         - 8.1 多业务混排问题
         - 8.2 混排前处理
             - 8.2.1 分数校准方法
