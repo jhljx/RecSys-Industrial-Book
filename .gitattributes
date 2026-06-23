@@ -1,0 +1,13 @@
+# 仅屏蔽Google Search Console验证用HTML，不计入语言统计
+*.html linguist-documentation
+
+# Markdown文档正常统计
+*.md linguist-language=Markdown
+
+# 图片、参考文献、源码辅助文件标记为文档/静态资源，降低干扰
+*.png linguist-vendored
+*.jpg linguist-vendored
+*.svg linguist-vendored
+*.bib linguist-documentation
+*.tex linguist-documentation
+LICENSE linguist-documentation
