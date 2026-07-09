@@ -27,8 +27,13 @@
 目前draft目录是已有写好的草稿章节，与现有的目录结构并不一定完全对应，仅供大家学习参考。草稿目前为**推荐系统概述**和**推荐系统模块**的内容，会覆盖正式书籍版本的上册章节内容。后续会按照正式的目录章节持续更新。
 
 ## Star趋势
-[![Star History](https://api.star-history.com/svg?repos=jhljx/RecSys-Industrial-Book)](https://star-history.com/#jhljx/RecSys-Industrial-Book&Date)
-
+<a href="https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&theme=dark&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
+ </picture>
+</a>
 
 
 ## 目录
