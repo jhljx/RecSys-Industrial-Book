@@ -26,9 +26,28 @@
 ## draft
 目前draft目录是已有写好的草稿章节，与现有的目录结构并不一定完全对应，仅供大家学习参考。草稿目前为**推荐系统概述**和**推荐系统模块**的内容，会覆盖正式书籍版本的上册章节内容。后续会按照正式的目录章节持续更新。
 
-## Star趋势
-[![Star History](https://api.star-history.com/svg?repos=jhljx/RecSys-Industrial-Book)](https://star-history.com/#jhljx/RecSys-Industrial-Book&Date)
+## 📖 当前写作进度
 
+> 以下进度实时更新，欢迎追更！
+
+| 章节范围 | 涵盖内容 | 当前状态 |
+| :--- | :--- | :---: |
+| **第 1 ~ 9 章** | 推荐系统概览、架构、评价体系、召回与过滤模块、粗排/精排/重排/混排/生成式推荐模块 | ✅ **已完成** |
+| **第 10 章** | 召回模型（协同过滤/图召回/向量召回/双塔等，**约 100 页深度拆解**） | 🚧 **写作中** |
+| **第 11 ~ 16 章** | 上册其余部分（粗排模型、精排模型、重排/混排模型、特征工程、离线/在线服务） | 🚧 **写作中** | — |
+| **第 17 章** | 向量检索系统（基于树结构的ANN、局部敏感哈希、乘积量化、HNSW、向量检索工具） | ✅ **已完成** | — |
+| **第 18 ~ 37 章** | 下册（用户兴趣建模、多目标优化、强化学习推荐、LLM与Agent推荐、生成式推荐进阶等） | 📋 **规划中** | — |
+
+> **总进度**：上册约 60% 完稿，全册约 35% 完稿（已完稿约 340+ 页）。
+
+## Star趋势
+<a href="https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&theme=dark&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
+ </picture>
+</a>
 
 
 ## 目录
@@ -174,22 +193,86 @@
         - 8.8 参考文献  
     - **第 9 章 生成式推荐模块**  
         - 9.1 生成式推荐概述  
-        - 9.2 生成式推荐架构  
-        - 9.3 生成式推荐讨论  
-        - 9.4 本章小结  
-        - 9.5 参考文献  
+        - 9.2 生成式推荐架构
+        - 9.3 语义ID生成
+            - 9.3.1 RQ-VAE算法
+            - 9.3.2 RQ-VAE的工程实践问题
+            - 9.3.3 RQ-KMeans算法
+            - 9.3.4 其他离散Tokenizer方法
+        - 9.4 生成式推荐模型
+            - 9.4.1 Transformer模型
+            - 9.4.2 生成式推荐训练目标
+        - 9.5 物品ID检索   
+        - 9.6 一阶段生成式推荐算法
+            - 9.6.1 DIGER算法
+            - 9.6.2 UniSID算法
+        - 9.7 生成式推荐落地问题
+        - 9.8 生成式推荐讨论   
+        - 9.9 本章小结  
+        - 9.10 参考文献  
 - **第三部分 推荐系统核心算法**  
     - **第 10 章 召回模型**  
-        - 10.1 协同过滤  
-            - 10.1.1 ItemCF  
-            - 10.1.2 UserCF  
-        - 10.2 Swing 召回  
-        - 10.3 GNN 召回  
-        - 10.4 双塔召回  
-        - 10.5 YoutubeDNN 召回  
-        - 10.6 MIND 召回  
-        - 10.7 PDN 召回  
-        - 10.8 本章小结  
+        - 10.1 协同过滤召回    
+            - 10.1.1 ItemCF召回  
+            - 10.1.2 UserCF召回  
+            - 10.1.3 Online CF召回  
+                - 10.1.3.1 整体工程架构  
+                - 10.1.3.2 实时更新流程  
+                - 10.1.3.3 Online CF召回算法分析  
+            - 10.1.4 Swing召回  
+                - 10.1.4.1 Swing相似度计算  
+                - 10.1.4.2 离线Swing召回  
+                - 10.1.4.3 在线Swing召回  
+                - 10.1.4.4 Swing召回模型分析  
+            - 10.1.5 矩阵分解召回  
+                - 10.1.5.1 奇异值分解（SVD）  
+                - 10.1.5.2 矩阵分解（Matrix Decomposition）  
+            - 10.1.6 Neural CF召回  
+                - 10.1.6.1 GMF与MLP模型  
+                - 10.1.6.2 NeuMF模型  
+                - 10.1.6.3 Neural CF模型训练  
+            - 10.1.7 Heterogeneous CF召回    
+        - 10.2 图召回  
+            - 10.2.1 图嵌入召回  
+                - 10.2.1.1 DeepWalk召回  
+                - 10.2.1.2 Node2Vec召回  
+                - 10.2.1.3 EGES召回  
+            - 10.2.2 图网络召回  
+                - 10.2.2.1 GCN召回  
+                - 10.2.2.2 GAT召回  
+                - 10.2.2.3 GraphSAGE召回  
+                - 10.2.2.4 LightGCN召回  
+                - 10.2.2.5 PinSage召回  
+                - 10.2.2.6 HybridGNN召回  
+        - 10.3 向量召回  
+            - 10.3.1 YoutubeDNN召回  
+                - 10.3.1.1 YoutubeDNN召回模型原理  
+                - 10.3.1.2 YouTubeDNN召回模型部署与应用  
+            - 10.3.2 双塔召回  
+                - 10.3.2.1 双塔召回模型原理  
+                - 10.3.2.2 双塔召回负采样偏差处理  
+                - 10.3.2.3 双塔召回模型的发展趋势  
+             - 10.3.3 基于预训练语义模型的向量召回  
+                - 10.3.3.1 FastText模型  
+                - 10.3.3.2 BERT模型  
+                - 10.3.3.3 Sentence-BERT模型  
+                - 10.3.3.4 SimCSE模型  
+                - 10.3.3.5 E5模型  
+                - 10.3.3.6 Sentence Transformers库      
+        - 10.4 序列召回  
+            - 10.4.1 List2Vec召回  
+            - 10.4.2 RNN序列召回  
+            - 10.4.3 SDM召回  
+            - 10.4.4 对比学习序列召回   
+        - 10.5 多兴趣召回  
+            - 10.5.1 MIND召回  
+            - 10.5.2 ComiRec召回     
+        - 10.6 其他召回模型  
+            - 10.6.1 PDN召回  
+            - 10.6.2 TDM召回     
+        - 10.7 召回模型落地讨论    
+        - 10.8 本章小结
+        - 10.9 参考文献  
     - **第 11 章 粗排模型**  
         - 11.1 DSSM 模型  
         - 11.2 多塔模型  
@@ -230,31 +313,45 @@
         - 14.5 实时特征
         - 14.6 用户画像
         - 14.7 本章小结
-    - **第 15 章 向量检索系统**
-        - 15.1 ANN
-        - 15.2 Faiss
-        - 15.3 IVF
-        - 15.4 PQ
-        - 15.5 HNSW
-        - 15.6 ScaNN
+    - **第 15 章 推荐系统离线服务**
+        - 15.1 离线服务架构
+        - 15.2 用户行为日志解析
+        - 15.3 Item 索引更新
+        - 15.4 普通任务样本拼接
+        - 15.5 强化学习样本拼接
+        - 15.6 训练任务
         - 15.7 本章小结
-        - 15.8 参考文献
-    - **第 16 章 推荐系统离线服务**
-        - 16.1 离线服务架构
-        - 16.2 用户行为日志解析
-        - 16.3 Item 索引更新
-        - 16.4 普通任务样本拼接
-        - 16.5 强化学习样本拼接
-        - 16.6 训练任务
+    - **第 16 章 推荐系统在线服务**
+        - 16.1 在线推理架构
+        - 16.2 Embedding Server
+        - 16.3 TensorRT
+        - 16.4 缓存系统
+        - 16.5 双塔模型在线服务优化
+        - 16.6 DNN 模型在线服务优化
         - 16.7 本章小结
-    - **第 17 章 推荐系统在线服务**
-        - 17.1 在线推理架构
-        - 17.2 Embedding Server
-        - 17.3 TensorRT
-        - 17.4 缓存系统
-        - 17.5 双塔模型在线服务优化
-        - 17.6 DNN 模型在线服务优化
-        - 17.7 本章小结
+    - **第 17 章 向量检索系统**
+        - 17.1 ANN概述
+        - 17.2 基于树结构的ANN  
+            - 17.2.1 KD树
+            - 17.2.2 球树
+            - 17.2.3 随机投影树  
+        - 17.3 局部敏感哈希(LSH)
+            - MinHash  
+            - SimHash  
+            - LSH Banding  
+        - 17.4 乘积量化(PQ)
+            - 距离计算: SDC与ADC
+            - IVFADC框架
+            - Faiss中的PQ实现   
+        - 17.5 HNSW
+            - 17.5.1 HNSW构图过程
+            - 17.5.2 HNSW查询过程
+            - 17.5.3 HNSW复杂度与超参数分析
+            - 17.5.4 Faiss中的HNSW实现  
+        - 17.6 向量检索工具
+        - 17.7 向量召回系统架构  
+        - 17.8 本章小结  
+        - 17.9 参考文献  
 - **第五部分 推荐系统进阶**
     - **第 18 章 用户兴趣建模**
         - 18.1 DIN
