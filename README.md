@@ -211,7 +211,7 @@
         - 9.9 本章小结  
         - 9.10 参考文献  
 - **第三部分 推荐系统核心算法**  
-    - **第 10 章 召回模型**  
+    - [**第 10 章 召回模型**](https://jhljx.github.io/RecSys-Industrial-Book/ch10%20%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B.pdf)  
         - 10.1 协同过滤召回    
             - 10.1.1 ItemCF召回  
             - 10.1.2 UserCF召回  
