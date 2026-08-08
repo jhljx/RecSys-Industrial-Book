@@ -43,9 +43,9 @@
 ## Star趋势
 <a href="https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left">
  <picture>
-   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&theme=dark&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
-   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
-   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=3D4d5Oe_Pa59bTBtOym8prI8Xb2TEdPjOu3hsXAS-0rkFyBM4DDOQzW_McIy35Pv6Wf2dKWpRiZ93MyXB5Ybvt_IEzca6-T0f0_vxI7aeEzFbYluDyPCsDh8IqXq5KnHDDG-FRPSqhMrWltbQq6noq6VY-ZjHMN4PAl6dreriT1HzxQ6IwhrWxeePE2N" />
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&theme=dark&legend=top-left&sealed_token=QQ2nabIzoDUPOEalArQIzS-v5IfLPFt1QCHPIOv6cVpQ1_1Jr3aHpqMvn2UzxFgzK7_ffFuYFvOlUWDCFLbBwK3rnBGHKhQGYV2skkO1mpFpdRsGeNaDakGPE8gCDxbp9bWUHa7zFbic3GZgZd6TaDEieKMAQDbD-ye4ECar1or6E0Oxl3kGG75I3qFK" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=QQ2nabIzoDUPOEalArQIzS-v5IfLPFt1QCHPIOv6cVpQ1_1Jr3aHpqMvn2UzxFgzK7_ffFuYFvOlUWDCFLbBwK3rnBGHKhQGYV2skkO1mpFpdRsGeNaDakGPE8gCDxbp9bWUHa7zFbic3GZgZd6TaDEieKMAQDbD-ye4ECar1or6E0Oxl3kGG75I3qFK" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=QQ2nabIzoDUPOEalArQIzS-v5IfLPFt1QCHPIOv6cVpQ1_1Jr3aHpqMvn2UzxFgzK7_ffFuYFvOlUWDCFLbBwK3rnBGHKhQGYV2skkO1mpFpdRsGeNaDakGPE8gCDxbp9bWUHa7zFbic3GZgZd6TaDEieKMAQDbD-ye4ECar1or6E0Oxl3kGG75I3qFK" />
  </picture>
 </a>
 
@@ -211,7 +211,7 @@
         - 9.9 本章小结  
         - 9.10 参考文献  
 - **第三部分 推荐系统核心算法**  
-    - **第 10 章 召回模型**  
+    - [**第 10 章 召回模型**](https://jhljx.github.io/RecSys-Industrial-Book/ch10%20%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B.pdf)  
         - 10.1 协同过滤召回    
             - 10.1.1 ItemCF召回  
             - 10.1.2 UserCF召回  
