@@ -7,7 +7,7 @@
 # RecSys-Industrial-Book
 
 **《推荐系统：工业架构与核心算法》开源书稿**  
-
+For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.  
 🔖 定位：工业级推荐系统硬核专著，主打全链路系统化思维，拒绝碎片化知识点  
 🎯 受众：具备机器学习 / 推荐基础的研究生、算法 / 架构 / 策略工程师、技术研究者  
 ❗ 不适合纯零基础小白（建议先学习机器学习与深度学习入门知识）  
