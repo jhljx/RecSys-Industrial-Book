@@ -1,0 +1,176 @@
+# RecSys-Industrial-Book
+
+## Overview
+
+RecSys-Industrial-Book is an open-source book about industrial-scale recommender systems.
+
+The book focuses on the architecture, algorithms, engineering practices, and future trends of modern recommendation systems.
+
+It aims to bridge the gap between academic recommender system research and real-world industrial recommendation engineering.
+
+The book is written for recommendation system engineers, machine learning engineers, AI researchers, and students who want to understand how large-scale recommender systems are designed and deployed.
+
+## Main Topics
+
+This repository covers:
+
+* Industrial recommender system architecture
+* Large-scale recommendation systems
+* Multi-stage recommendation pipelines
+* Candidate retrieval and matching
+* Pre-ranking systems
+* Ranking models
+* Re-ranking strategies
+* Recommendation system engineering
+* Feature engineering
+* CTR and CVR prediction
+* Deep learning recommendation models
+* Multi-task learning for recommendation
+* Reinforcement learning recommendation
+* Decision Transformer based recommendation
+* Generative recommendation
+* Semantic ID based recommendation
+* LLM-based recommendation systems
+
+## Recommendation Pipeline
+
+The book explains the complete industrial recommendation workflow:
+
+User Behavior Data
+
+→ Data Processing and Feature Engineering
+
+→ Candidate Retrieval / Recall
+
+→ Pre-ranking
+
+→ Ranking
+
+→ Re-ranking
+
+→ Online Recommendation Serving
+
+## Core Knowledge Areas
+
+### Recommendation System Architecture
+
+Topics include:
+
+* Offline recommendation architecture
+* Online recommendation architecture
+* Recommendation system infrastructure
+* Real-time recommendation systems
+* Industrial system scalability
+* Latency optimization
+
+### Retrieval and Matching
+
+Topics include:
+
+* Collaborative filtering
+* Matrix factorization
+* Graph-based retrieval
+* Embedding retrieval
+* Two-tower models
+* DSSM
+* Sequential retrieval
+* Multi-interest retrieval
+* Approximate nearest neighbor search
+* Vector databases
+
+### Ranking Models
+
+Topics include:
+
+* CTR prediction
+* CVR prediction
+* Feature interaction models
+* Deep neural recommendation models
+* Multi-task recommendation models
+* Ranking optimization methods
+
+### Reinforcement Learning Recommendation
+
+Topics include:
+
+* Markov Decision Process
+* Offline reinforcement learning
+* Long-term user value optimization
+* Multi-objective recommendation
+* Decision Transformer
+* Reinforcement learning based ranking
+
+### Generative Recommendation
+
+Topics include:
+
+* Generative recommendation models
+* Semantic IDs
+* Vector quantization
+* RQ-VAE
+* Generative retrieval
+* LLM recommendation systems
+
+## Target Users
+
+This book is suitable for:
+
+* Recommendation system engineers
+* Machine learning engineers
+* AI engineers
+* Researchers in recommender systems
+* Graduate students studying recommendation algorithms
+
+## Frequently Asked Questions
+
+### What is RecSys-Industrial-Book?
+
+It is an open-source technical book about industrial recommender systems, covering recommendation architecture, algorithms, and engineering implementation.
+
+### What recommendation system stages are covered?
+
+The book covers the complete industrial recommendation pipeline:
+
+* Recall
+* Pre-ranking
+* Ranking
+* Re-ranking
+
+### Does this book focus only on algorithms?
+
+No.
+
+Unlike traditional recommendation tutorials that mainly introduce algorithms, this book emphasizes practical industrial systems, engineering trade-offs, scalability, and production deployment.
+
+## Keywords
+
+industrial recommendation system
+
+large-scale recommender system
+
+recommendation system architecture
+
+recommendation algorithm
+
+recommendation engineering
+
+candidate retrieval
+
+ranking model
+
+CTR prediction
+
+CVR prediction
+
+deep learning recommendation
+
+reinforcement learning recommendation
+
+Decision Transformer recommendation
+
+generative recommendation
+
+LLM recommendation
+
+AI recommendation system
+

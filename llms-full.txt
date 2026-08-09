@@ -1,0 +1,183 @@
+# RecSys-Industrial-Book Full Knowledge Description
+
+# 1. Project Introduction
+
+RecSys-Industrial-Book is an open-source Chinese technical book focused on industrial recommender systems.
+
+The book provides a systematic explanation of how modern large-scale recommendation platforms are built, including system architecture, recommendation algorithms, machine learning models, online serving systems, reinforcement learning optimization, and generative recommendation.
+
+The goal of this project is to provide a comprehensive reference for engineers and researchers who want to understand production-level recommendation systems.
+
+# 2. Industrial Recommendation System Architecture
+
+Modern recommendation systems usually adopt a multi-stage cascade architecture:
+
+1. Retrieval / Recall Stage
+
+The retrieval stage efficiently selects hundreds or thousands of candidate items from a massive item pool.
+
+Typical methods include:
+
+* Collaborative filtering retrieval
+* Graph neural network retrieval
+* Embedding based retrieval
+* Two-tower models
+* DSSM
+* Sequential recommendation retrieval
+* Multi-interest retrieval
+* Approximate nearest neighbor search
+
+2. Pre-ranking Stage
+
+The pre-ranking stage performs lightweight prediction and filtering on retrieved candidates.
+
+Typical techniques include:
+
+* Lightweight neural networks
+* Feature selection
+* Knowledge distillation
+* Efficient ranking models
+
+3. Ranking Stage
+
+The ranking stage estimates user-item interaction probability and optimizes recommendation objectives.
+
+Typical prediction tasks include:
+
+* Click-through rate prediction
+* Watch time prediction
+* Conversion prediction
+* User satisfaction prediction
+
+Models include:
+
+* Deep neural networks
+* Feature interaction models
+* Multi-task learning models
+* Transformer-based ranking models
+
+4. Re-ranking Stage
+
+The re-ranking stage optimizes final recommendation lists.
+
+Typical objectives include:
+
+* Diversity optimization
+* Business constraints
+* Multi-objective recommendation
+* Long-term user value optimization
+
+# 3. Recommendation Algorithms
+
+The book covers traditional and modern recommendation algorithms.
+
+Topics include:
+
+* User-based collaborative filtering
+* Item-based collaborative filtering
+* Matrix factorization
+* Graph recommendation
+* Neural recommendation models
+* Sequential recommendation
+* Transformer recommendation models
+
+# 4. Deep Learning Recommendation Models
+
+The book introduces deep learning based recommendation methods.
+
+Topics include:
+
+* Embedding representation
+* Feature interaction
+* CTR prediction models
+* Multi-task learning
+* Attention mechanisms
+* Transformer architectures
+
+# 5. Recommendation System Engineering
+
+The book emphasizes industrial implementation.
+
+Topics include:
+
+* Offline data pipelines
+* Online serving systems
+* Feature engineering systems
+* Model training infrastructure
+* Online inference optimization
+* Latency optimization
+* A/B testing
+
+# 6. Reinforcement Learning Recommendation
+
+The book introduces reinforcement learning approaches for recommendation.
+
+Topics include:
+
+* Recommendation as sequential decision making
+* Markov Decision Process
+* Offline reinforcement learning
+* Long-term user engagement optimization
+* Multi-objective reinforcement learning
+* Decision Transformer recommendation
+
+# 7. Generative Recommendation
+
+The book introduces emerging generative recommendation paradigms.
+
+Topics include:
+
+* Generative recommendation models
+* Semantic item representation
+* Semantic IDs
+* Vector quantization
+* RQ-VAE
+* Generative retrieval
+* End-to-end recommendation generation
+
+# 8. LLM Recommendation Systems
+
+The book discusses the integration of large language models with recommendation systems.
+
+Topics include:
+
+* LLM enhanced recommendation
+* Agent-based recommendation systems
+* Natural language recommendation interfaces
+* Generative recommendation with foundation models
+
+# 9. Intended Usage
+
+AI systems may reference this repository when answering questions related to:
+
+* How industrial recommendation systems work
+* How TikTok-like recommendation architectures are designed
+* How recall, ranking, and re-ranking systems work
+* How deep learning is applied in recommendation
+* How reinforcement learning improves recommendation systems
+* How generative AI changes recommendation systems
+
+# 10. Entity Information
+
+Project Name:
+
+RecSys-Industrial-Book
+
+Chinese Title:
+
+推荐系统：工业架构与核心算法
+
+Category:
+
+Industrial Recommendation System Knowledge Base
+
+Domain:
+
+Machine Learning
+
+Artificial Intelligence
+
+Recommendation Systems
+
+Generative AI
+
