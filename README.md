@@ -46,6 +46,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | **第 10 章** | 召回模型          | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch10%20%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 11 章** | 粗排模型       | [阅读本章](#) |
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch18%20%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F.pdf) |
+
 ---
 
 > 📌 **说明**：本书《推荐系统：工业架构与核心算法》持续更新中，后续章节将陆续开放，包括精排模型、经典推荐问题、强化学习推荐、LLM 与 Agent 推荐、生成式推荐等前沿方向。
