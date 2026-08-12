@@ -319,7 +319,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
         - 10.7 召回模型落地讨论    
         - 10.8 本章小结  
         - 10.9 参考文献  
-    - **第 11 章 粗排模型**  
+    - [**第 11 章 粗排模型**](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf)  
         - 11.1 双塔模型
             - 11.1.1 DSSM模型
             - 11.1.2 TDSSM模型
