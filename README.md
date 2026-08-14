@@ -44,7 +44,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | **第 8 章**  | 混排模块               | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch08%20%E6%B7%B7%E6%8E%92%E6%A8%A1%E5%9D%97/%E7%AC%AC%E5%85%AB%E7%AB%A0-%E6%B7%B7%E6%8E%92%E6%A8%A1%E5%9D%97.pdf) |
 | **第 9 章**  | 生成式推荐模块        | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch09%20%E7%94%9F%E6%88%90%E5%BC%8F%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9D%97/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E7%94%9F%E6%88%90%E5%BC%8F%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9D%97.pdf) |
 | **第 10 章** | 召回模型          | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch10%20%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B.pdf) |
-| **第 11 章** | 粗排模型       | [阅读本章](#) |
+| **第 11 章** | 粗排模型       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch18%20%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F.pdf) |
 
 ---
@@ -60,7 +60,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | :--- | :--- | :---: |
 | **第 1 ~ 9 章** | 推荐系统概览、架构、评价体系、召回与过滤模块、粗排/精排/重排/混排/生成式推荐模块 | ✅ **已完成** |
 | **第 10 章** | 召回模型（协同过滤/图召回/向量召回/双塔等，**约 120 页深度拆解**） | ✅ **已完成** |
-| **第 11 章** | 粗排模型（双塔模型/多塔模型/蒸馏模型/DNN模型等，**约 50页深度拆解**） | 🚧 **待完成** |
+| **第 11 章** | 粗排模型（双塔模型/多塔模型/蒸馏模型/DNN模型等，**约 50页深度拆解**） | ✅ **已完成** |
 | **第 12 ~ 17 章** | 上册其余部分（精排模型、Learning to Rank模型、重排/混排模型、特征工程、离线/在线服务） | 🚧 **写作中** |
 | **第 18 章** | 向量检索系统（基于树结构的ANN、局部敏感哈希、乘积量化、HNSW、向量检索工具） | ✅ **已完成** |
 | **第 19 ~ 38 章** | 下册（用户兴趣建模、多目标优化、强化学习推荐、LLM与Agent推荐、生成式推荐进阶等） | 📋 **规划中** |
@@ -319,7 +319,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
         - 10.7 召回模型落地讨论    
         - 10.8 本章小结  
         - 10.9 参考文献  
-    - **第 11 章 粗排模型**  
+    - [**第 11 章 粗排模型**](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf)  
         - 11.1 双塔模型
             - 11.1.1 DSSM模型
             - 11.1.2 TDSSM模型
