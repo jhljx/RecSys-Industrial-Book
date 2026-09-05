@@ -45,7 +45,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | **第 9 章**  | 生成式推荐模块        | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch09%20%E7%94%9F%E6%88%90%E5%BC%8F%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9D%97/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E7%94%9F%E6%88%90%E5%BC%8F%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9D%97.pdf) |
 | **第 10 章** | 召回模型          | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch10%20%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 11 章** | 粗排模型       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf) |
-| **第 15 章** | 特征工程       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf) |
+| **第 15 章** | 特征工程       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch15%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B.pdf) |
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch18%20%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F.pdf) |
 | **第 23 章** | 时长预估建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch23%20%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1.pdf)
 
@@ -399,7 +399,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
         - 14.3 本章小结
         - 14.4 参考文献
 - **第四部分 推荐系统工程实践**
-    - **第 15 章 特征工程**
+    - [**第 15 章 特征工程**](https://jhljx.github.io/RecSys-Industrial-Book/ch15%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B.pdf)
         - 15.1 特征体系
             - 15.1.1 用户特征
             - 15.1.2 物品特征
