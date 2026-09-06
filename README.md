@@ -309,7 +309,8 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
                 - 10.5.1.1 动态路由机制  
                 - 10.5.1.2 Label-aware Attention机制
                 - 10.5.1.3 MIND召回工程落地  
-            - 10.5.2 ComiRec召回     
+            - 10.5.2 ComiRec召回
+            - 10.5.3 REMI召回  
         - 10.6 其他召回模型  
             - 10.6.1 PDN召回  
                 - 10.6.1.1 PDN召回算法原理  
