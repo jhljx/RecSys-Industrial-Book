@@ -47,6 +47,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | **第 11 章** | 粗排模型       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 15 章** | 特征工程       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch15%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B.pdf) |
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch18%20%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F.pdf) |
+| **第 19 章** | 推荐系统偏差问题 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch19%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98.pdf) |
 | **第 23 章** | 时长预估建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch23%20%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1.pdf)
 
 ---
@@ -66,8 +67,9 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | **第 12 ~ 17 章** | 上册其余部分（精排模型、Learning to Rank模型、重排/混排模型、离线/在线服务） | 🚧 **写作中** |
 | **第 15 章** | 特征工程（特征体系与特征表示、行为统计与用户画像、特征交互建模、特征筛选建模等） | ✅ **已完成** |
 | **第 18 章** | 向量检索系统（基于树结构的ANN、局部敏感哈希、乘积量化、HNSW、向量检索工具） | ✅ **已完成** |
+| **第 19 章** | 推荐系统偏差问题（样本选择偏差、用户群体偏差、混淆偏差、曝光位置偏差、Duration偏差等） | ✅ **已完成** |
 | **第 23 章** | 时长预估建模（基于加权二分类的时长建模、基于离散化分桶的时长建模、经典时长预估建模方法、生成式时长建模） | ✅ **已完成** |
-| **第 19 ~ 38 章** | 下册（用户兴趣建模、多目标优化、强化学习推荐、LLM与Agent推荐、生成式推荐进阶等） | 📋 **规划中** |
+| **第 20 ~ 38 章** | 下册（用户兴趣建模、多目标优化、强化学习推荐、LLM与Agent推荐、生成式推荐进阶等） | 📋 **规划中** |
 
 > **总进度**：上册约 65% 完稿，全册约 50% 完稿（已完稿约 500 页）。
 
@@ -476,15 +478,19 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
         - 18.8 本章小结  
         - 18.9 参考文献  
 - **第五部分 推荐系统进阶**
-    - **第 19 章 推荐系统偏差问题**  
+    - [**第 19 章 推荐系统偏差问题**](https://jhljx.github.io/RecSys-Industrial-Book/ch19%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98.pdf)  
         - 19.1 推荐偏差问题概述  
         - 19.2 样本选择偏差  
-        - 19.3 曝光位置偏差  
-        - 19.4 用户群体偏差  
-        - 19.5 Duration 偏差  
-        - 19.6 流行度偏差  
-        - 19.7 工业实践  
-        - 19.8 本章小结  
+        - 19.3 用户群体偏差  
+        - 19.4 混淆偏差    
+        - 19.5 曝光位置偏差    
+        - 19.6 Duration偏差    
+        - 19.7 流行度偏差  
+        - 19.8 样本拼接偏差  
+        - 19.9 工业实践  
+        - 19.10 推荐偏差综合治理    
+        - 19.11 本章小结  
+        - 19.12 参考文献  
     - **第 20 章 用户兴趣建模**
         - 20.1 DIN
         - 20.2 DIEN
