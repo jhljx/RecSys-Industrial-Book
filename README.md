@@ -49,6 +49,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch18%20%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F.pdf) |
 | **第 19 章** | 推荐系统偏差问题 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch19%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98.pdf) |
 | **第 23 章** | 时长预估建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch23%20%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1.pdf)
+| **第 28 章** | 强化学习推荐场景 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch28%20%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E5%9C%BA%E6%99%AF/%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E5%9C%BA%E6%99%AF.pdf)
 
 ---
 
@@ -573,68 +574,68 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
         - 26.2 长期价值建模方法
         - 26.3 用户留存优化
         - 26.4 本章小结
-    - **第 27 章 探索与利用**
-        - 27.1 Explore-Exploit 问题
-        - 27.2 ε-Greedy
-        - 27.3 UCB
-        - 27.4 Thompson Sampling
-        - 27.5 Contextual Bandit
-        - 27.6 工业界探索策略
-        - 27.7 本章小结
-    - **第 28 章 因果推荐**
-        - 28.1 因果动机
-        - 28.2 推荐偏差与因果
-        - 28.3 因果图
-        - 28.4 IPW
-        - 28.5 Doubly Robust
-        - 28.6 Counterfactual Learning
-        - 28.7 OPE
-        - 28.8 流行度纠偏
-            - 28.8.1 DICE
-            - 28.8.2 MACR
-        - 28.9 Uplift 模型
-        - 28.10 本章小结
+    - **第 27 章 因果推荐**
+        - 27.1 因果动机
+        - 27.2 推荐偏差与因果
+        - 27.3 因果图
+        - 27.4 IPW
+        - 27.5 Doubly Robust
+        - 27.6 Counterfactual Learning
+        - 27.7 OPE
+        - 27.8 流行度纠偏
+            - 27.8.1 DICE
+            - 27.8.2 MACR
+        - 27.9 Uplift 模型
+        - 27.10 本章小结
 - **第六部分 强化学习推荐**
-    - **第 29 章 强化学习推荐场景**
-        - 29.1 流量分配与调控
-        - 29.2 多任务融合
-        - 29.3 层次决策
-        - 29.4 流量降级优化
-        - 29.5 Session 优化
-        - 29.6 重排混排序列生成优化
-        - 29.7 个性化探索
-    - **第 30 章 强化学习流量调控**
-        - 30.1 Load 调控
-        - 30.2 广告流量控制
-        - 30.3 直播流量控制
-        - 30.4 降级流量优化
-        - 30.5 本章小结
-    - **第 31 章 强化学习多目标融合**
-        - 31.1 RL 多目标优化
-        - 31.2 Reward 设计
-        - 31.3 Pareto 优化
-        - 31.4 UNEX-RL
-        - 31.5 xMTF
-        - 31.6 Pantheon
+    - [**第 28 章 强化学习推荐场景**](https://jhljx.github.io/RecSys-Industrial-Book/ch28%20%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E5%9C%BA%E6%99%AF/%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E5%9C%BA%E6%99%AF.pdf)
+        - 28.1 流量分配与调控
+        - 28.2 多任务融合
+        - 28.3 层次决策
+        - 28.4 流量降级优化
+        - 28.5 Session 优化
+        - 28.6 重排混排序列生成优化
+        - 28.7 个性化探索
+    - **第 29 章 强化学习流量调控**
+        - 29.1 Load 调控
+        - 29.2 广告流量控制
+        - 29.3 直播流量控制
+        - 29.4 降级流量优化
+        - 29.5 本章小结
+    - **第 30 章 强化学习多目标融合**
+        - 30.1 RL 多目标优化
+        - 30.2 Reward 设计
+        - 30.3 Pareto 优化
+        - 30.4 UNEX-RL
+        - 30.5 xMTF
+        - 30.6 Pantheon
+        - 30.7 工业实践
+        - 30.8 本章小结
+        - 30.9 参考文献
+    - **第 31 章 Session 推荐与层次决策**
+        - 31.1 Session 推荐
+        - 31.2 Session RL
+        - 31.3 RLUR
+        - 31.4 层次强化学习
+        - 31.5 HRL-Rec
+        - 31.6 HiFI
         - 31.7 工业实践
         - 31.8 本章小结
-        - 31.9 参考文献
-    - **第 32 章 Session 推荐与层次决策**
-        - 32.1 Session 推荐
-        - 32.2 Session RL
-        - 32.3 RLUR
-        - 32.4 层次强化学习
-        - 32.5 HRL-Rec
-        - 32.6 HiFI
-        - 32.7 工业实践
-        - 32.8 本章小结
-    - **第 33 章 重排与混排中的强化学习**
-        - 33.1 DPO、GRPO、DAPO、GSPO
-        - 33.2 RL Re-ranking
-        - 33.3 RL Mixed Ranking
-        - 33.4 序列生成优化
-        - 33.5 多业务混排优化
-        - 33.6 本章小结
+    - **第 32 章 重排与混排中的强化学习**  
+        - 32.1 DPO、GRPO、DAPO、GSPO  
+        - 32.2 RL Re-ranking  
+        - 32.3 RL Mixed Ranking  
+        - 32.4 序列生成优化  
+        - 32.5 多业务混排优化  
+        - 32.6 本章小结
+    - **第 33 章 探索与利用**  
+        - 33.1 Explore-Exploit 问题  
+        - 33.2 ε-Greedy  
+        - 33.3 UCB  
+        - 33.4 Thompson Sampling  
+        - 33.5 Contextual Bandit  
+        - 33.6 工业界探索策略  
+        - 33.7 本章小结  
 - **第七部分 多模态与生成式推荐**
     - **第 34 章 多模态推荐**
         - 34.1 多模态推荐概述
