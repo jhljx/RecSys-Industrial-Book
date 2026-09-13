@@ -589,13 +589,16 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
         - 27.10 本章小结
 - **第六部分 强化学习推荐**
     - [**第 28 章 强化学习推荐场景**](https://jhljx.github.io/RecSys-Industrial-Book/ch28%20%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E5%9C%BA%E6%99%AF/%E7%AC%AC%E4%BA%8C%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%BC%BA%E5%8C%96%E5%AD%A6%E4%B9%A0%E6%8E%A8%E8%8D%90%E5%9C%BA%E6%99%AF.pdf)
-        - 28.1 流量分配与调控
-        - 28.2 多任务融合
-        - 28.3 层次决策
-        - 28.4 流量降级优化
-        - 28.5 Session 优化
-        - 28.6 重排混排序列生成优化
-        - 28.7 个性化探索
+        - 28.1 流量分配与调控  
+        - 28.2 流量降级优化  
+        - 28.3 多任务融合  
+        - 28.4 Session级推荐优化  
+        - 28.5 层次化决策  
+        - 28.6 序列生成优化  
+        - 28.7 个性化探索  
+        - 28.8 强化学习推荐讨论   
+        - 28.9 强化学习推荐的挑战  
+        - 28.10 本章小结   
     - **第 29 章 强化学习流量调控**
         - 29.1 Load 调控
         - 29.2 广告流量控制
