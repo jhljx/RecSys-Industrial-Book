@@ -34,7 +34,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | 章节         | 章节名称                     | 快捷链接      |
 | :--------- | :----------------------- | :-------- |
 | **第 0 章**  | 前言            | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch00%20%E5%89%8D%E8%A8%80/%E7%AC%AC0%E7%AB%A0-%E5%89%8D%E8%A8%80.pdf) |
-| **第 1 章**  | 推荐系统概览                   | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch01%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0.pdf) |
+| **第 1 章**  | 推荐系统概述                   | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch01%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0.pdf) |
 | **第 2 章**  | 推荐系统架构              | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch02%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84/%E7%AC%AC%E4%BA%8C%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%9E%B6%E6%9E%84.pdf) |
 | **第 3 章**  | 推荐系统评价体系            | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch03%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E8%AF%84%E4%BB%B7%E4%BD%93%E7%B3%BB/%E7%AC%AC%E4%B8%89%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E8%AF%84%E4%BB%B7%E4%BD%93%E7%B3%BB.pdf) |
 | **第 4 章**  | 召回与过滤模块           | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch04%20%E5%8F%AC%E5%9B%9E%E4%B8%8E%E8%BF%87%E6%BB%A4%E6%A8%A1%E5%9D%97/%E7%AC%AC%E5%9B%9B%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E4%B8%8E%E8%BF%87%E6%BB%A4%E6%A8%A1%E5%9D%97.pdf) |
@@ -46,6 +46,7 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | **第 10 章** | 召回模型          | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch10%20%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 11 章** | 粗排模型       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 15 章** | 特征工程       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch15%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B.pdf) |
+| **第 16 章** | 推荐系统离线服务      | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch16%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1/%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1.pdf) |
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch18%20%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F.pdf) |
 | **第 19 章** | 推荐系统偏差问题 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch19%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98.pdf) |
 | **第 23 章** | 时长预估建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch23%20%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1.pdf)
@@ -67,19 +68,20 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
 | **第 11 章** | 粗排模型（双塔模型/多塔模型/蒸馏模型/DNN模型等，**约 50页深度拆解**） | ✅ **已完成** |
 | **第 12 ~ 17 章** | 上册其余部分（精排模型、Learning to Rank模型、重排/混排模型、离线/在线服务） | 🚧 **写作中** |
 | **第 15 章** | 特征工程（特征体系与特征表示、行为统计与用户画像、特征交互建模、特征筛选建模等） | ✅ **已完成** |
+| **第 16 章** | 推荐系统离线服务（样本流服务、用户行为序列服务、索引服务、离线训练服务等） | ✅ **已完成** |
 | **第 18 章** | 向量检索系统（基于树结构的ANN、局部敏感哈希、乘积量化、HNSW、向量检索工具） | ✅ **已完成** |
 | **第 19 章** | 推荐系统偏差问题（样本选择偏差、用户群体偏差、混淆偏差、曝光位置偏差、Duration偏差等） | ✅ **已完成** |
 | **第 23 章** | 时长预估建模（基于加权二分类的时长建模、基于离散化分桶的时长建模、经典时长预估建模方法、生成式时长建模） | ✅ **已完成** |
 | **第 20 ~ 38 章** | 下册（用户兴趣建模、多目标优化、强化学习推荐、LLM与Agent推荐、生成式推荐进阶等） | 📋 **规划中** |
 
-> **总进度**：上册约 65% 完稿，全册约 50% 完稿（已完稿约 500 页）。
+> **总进度**：上册约 75% 完稿，全册约 50% 完稿（已完稿约 600 页）。
 
 
 ## 目录
 后续整本书籍还是会按照上下两册的目录结构进行持续更新。其中前4部分从第一章截止到第十七章为上册内容，第十八章到第三十七章为下册内容。
 
 - **第一部分 推荐系统基础**  
-    - [**第 1 章 推荐系统概览**](https://jhljx.github.io/RecSys-Industrial-Book/ch01%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0.pdf)  
+    - [**第 1 章 推荐系统概述**](https://jhljx.github.io/RecSys-Industrial-Book/ch01%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0/%E7%AC%AC%E4%B8%80%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E6%A6%82%E8%BF%B0.pdf)  
         - 1.1 什么是推荐系统  
         - 1.2 推荐系统发展历程
             - 1.2.1 人工推荐时代
@@ -439,14 +441,55 @@ For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.
             - 15.6.7 特征治理   
         - 15.7 本章小结  
         - 15.8 参考文献  
-    - **第 16 章 推荐系统离线服务**
-        - 16.1 离线服务架构
-        - 16.2 用户行为日志解析
-        - 16.3 Item 索引更新
-        - 16.4 普通任务样本拼接
-        - 16.5 强化学习样本拼接
-        - 16.6 训练任务
-        - 16.7 本章小结
+    - [**第 16 章 推荐系统离线服务**](https://jhljx.github.io/RecSys-Industrial-Book/ch16%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1/%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1.pdf)
+        - 16.1 样本流服务  
+            - 16.1.1 普通任务样本流服务  
+                - 16.1.1.1 特征预处理消费者  
+                - 16.1.1.2 Label更新规则  
+                - 16.1.1.3 等待窗口与重复投递   
+                - 16.1.1.4 逐物品拼接、过滤与清理  
+            - 16.1.2 全链路级联样本流服务  
+            - 16.1.3 Session样本流服务
+            - 16.1.4 非实时样本流服务
+        - 16.2 强化学习样本流服务
+            - 16.2.1 基于Redis的RL样本拼接
+                - 16.2.1.1 用户反馈的存储与读取
+                - 16.2.1.2 自适应等待窗口
+                - 16.2.1.3 状态转移拼接
+                - 16.2.1.4 样本的过滤与产出
+            - 16.2.2 基于Flink的RL样本流优化   
+                - 16.2.2.1 从手工状态到框架托管  
+                - 16.2.2.2 Event Time与Watermark
+                - 16.2.2.3 Flink RL样本拼接的实现
+            - 16.2.3 长序列模型的RL数据流扩展  
+        - 16.3 用户行为日志解析服务
+            - 16.3.1 短期兴趣序列服务
+            - 16.3.2 长期兴趣序列服务   
+        - 16.4 统计特征生产服务
+            - 16.4.1 用户侧计数特征产出  
+            - 16.4.2 物品侧计数特征产出
+            - 16.4.3 计数变更触发的索引更近   
+        - 16.5 物品侧内容理解生产服务
+            - 16.5.1 内容向量消费者
+            - 16.5.2 多模态模型推理RPC服务
+        - 16.6 物品索引特征服务  
+            - 16.6.1 离线Runner服务  
+            - 16.6.2 批量正排索引更新服务  
+            - 16.6.3 批量倒排索引更新服务  
+            - 16.6.4 实时索引更新服务  
+        - 16.7 图存储服务  
+            - 16.7.1 图数据构建与在线查询    
+            - 16.7.2 图数据库的技术选型  
+            - 16.7.3 图数据库封装为在线服务   
+        - 16.8 训练任务  
+            - 16.8.1 Kafka样本流与数据处理   
+            - 16.8.2 分布式训练框架与任务执行  
+            - 16.8.3 同步数据并行与梯度通信  
+            - 16.8.4 参数服务器与稀疏参数  
+            - 16.8.5 流式模型保存、评估与线上更新  
+            - 16.8.6 混合精度、异常指标与故障回滚      
+        - 16.9 本章小结  
+        - 16.10 参考文献  
     - **第 17 章 推荐系统在线服务**
         - 17.1 在线推理架构
         - 17.2 Embedding Server
