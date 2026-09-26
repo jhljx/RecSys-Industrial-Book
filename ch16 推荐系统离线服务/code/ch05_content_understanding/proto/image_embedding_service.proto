@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package image_embedding;
+
+option java_package = "com.reco.offline.content.proto";
+option java_outer_classname = "ImageEmbeddingProto";
+option java_multiple_files = true;
+
+// 图片 Embedding 请求
+message ImageEmbeddingRequest {
+  // 展平的归一化像素数组：float32，shape = [batch_size * image_dim]
+  repeated float image_list = 1;
+  // 单张图片的像素维度（例如 3 * 448 * 448 = 602112）
+  int32 image_dim = 2;
+  // 批大小
+  int32 batch_size = 3;
+}
+
+// 图片 Embedding 响应
+message ImageEmbeddingResponse {
+  // 展平的向量数组：float32，shape = [batch_size * emb_dim]
+  repeated float image_embedding = 1;
+  // 单个向量的维度
+  int32 emb_dim = 2;
+  // 实际返回的批大小
+  int32 batch_size = 3;
+}
+
+// 图片 Embedding 服务
+service ImageEmbeddingService {
+  rpc Get(ImageEmbeddingRequest) returns (ImageEmbeddingResponse);
+}
