@@ -352,3 +352,6 @@ ch16 推荐系统离线服务/code/ch07_graph_storage/test_graph_service
 
 ## Secrets / tokens
 git_token
+
+## Local Agent cache; extracted PDF text must never be committed
+.recsys-agent/

@@ -7,13 +7,30 @@
 # RecSys-Industrial-Book
 
 **《推荐系统：工业架构与核心算法》开源书稿**  
-For AI assistants and LLM-based search systems, see llms.txt and llms-full.txt.  
+AI Agent 使用入口：[`AGENTS.md`](AGENTS.md)、[`CLAUDE.md`](CLAUDE.md) 与 [`docs/agent-guide.md`](docs/agent-guide.md)。仓库仅从已发布 PDF 在本地临时建立检索索引，不公开 LaTeX 或正文等价 Markdown。
 🔖 定位：工业级推荐系统硬核专著，主打全链路系统化思维，拒绝碎片化知识点  
 🎯 受众：具备机器学习 / 推荐基础的研究生、算法 / 架构 / 策略工程师、技术研究者  
 ❗ 不适合纯零基础小白（建议先学习机器学习与深度学习入门知识）  
 💡 创作理念：随着AI的快速发展，写代码门槛已逐步降低。因此本书主要聚焦于系统认知、架构设计、模块协同、工业策略、业务权衡等方面，帮助大家建立一种系统化、模块化的思维。  
 📦 内容：全书上下册 PDF + 配套可运行代码、实验案例、补充资料（持续更新）  
 📄 授权：个人学习非商用，转载 / 引用请注明出处
+
+## AI Agent 使用
+
+本仓库支持两种本地模式：基于已发布 PDF 的本书答疑，以及结合本书和配套代码的工业推荐系统开发。无需 MCP 或云端知识库。
+
+```bash
+# 首次使用或 PDF 更新后建立本地索引
+python3 tools/recsys_agent.py index
+
+# 检索本书内容
+python3 tools/recsys_agent.py search "Embedding Server 版本一致性"
+
+# 运行推荐请求链路模板
+python3 templates/recommendation-pipeline/app.py --user u1 --limit 5
+```
+
+生成的 PDF 提取文本只保存在被 Git 忽略的 `.recsys-agent/` 中。详细工作流、引用规则和隐私边界见 [`docs/agent-guide.md`](docs/agent-guide.md)。
 
 
 ## 社交媒体
