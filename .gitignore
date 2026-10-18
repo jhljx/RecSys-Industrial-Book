@@ -1,3 +1,7 @@
+# Local Agent indexes and personal learning state
+.recsys-agent/
+.recsys-workspace/
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -355,3 +359,4 @@ git_token
 
 ## Local Agent cache; extracted PDF text must never be committed
 .recsys-agent/
+.recsys-workspace/

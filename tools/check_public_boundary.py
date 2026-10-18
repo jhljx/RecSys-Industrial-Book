@@ -11,14 +11,27 @@ from pathlib import Path
 DENIED_SUFFIXES = {".tex", ".aux", ".xdv", ".synctex", ".synctex.gz"}
 DENIED_PARTS = {".recsys-agent", "__pycache__", ".pytest_cache", "target"}
 DENIED_NAMES = {"book.md"}
-ALLOWED_MARKDOWN = {"README.md", "AGENTS.md", "CLAUDE.md", "docs/agent-guide.md"}
+ALLOWED_MARKDOWN = {
+    "README.md",
+    "AGENTS.md",
+    "CLAUDE.md",
+    "CHANGELOG.md",
+    "docs/agent-guide.md",
+    "docs/ai-native-validation-report.md",
+    "docs/learning-agent-guide.md",
+}
 
 
 def markdown_allowed(relative: Path) -> bool:
     path = relative.as_posix()
     return (
         path in ALLOWED_MARKDOWN
-        or (path.startswith(".claude/skills/") and path.endswith("/SKILL.md"))
+        or (path.startswith(".claude/skills/") and path.endswith(".md"))
+        or (path.startswith(".agents/skills/") and path.endswith(".md"))
+        or (path.startswith("knowledge/") and path.endswith(".md"))
+        or (path.startswith("learning-paths/") and path.endswith(".md"))
+        or (path.startswith("cases/") and path.endswith(".md"))
+        or (path.startswith("evals/") and path.endswith(".md"))
         or (path.startswith("templates/") and path.endswith("/README.md"))
         or ("/code/" in path and path.endswith("/README.md"))
     )

@@ -4,7 +4,7 @@
 
 This public repository is both the reader distribution for *推荐系统：工业架构与核心算法* and a local Agent toolkit for recommendation-system Q&A and engineering.
 
-The released PDFs are the authoritative book content. This repository intentionally does not publish LaTeX, a prose-equivalent Markdown transcription, or extracted PDF text.
+The released PDFs are the authoritative book content. This repository intentionally does not publish LaTeX, prose-equivalent Markdown, or extracted PDF text. Curated concept cards, decision guides, learning paths, experiment instructions, and case summaries are allowed when independently written, concise, source-cited, and non-substitutive for the PDFs.
 
 ## Select a mode
 
@@ -33,16 +33,20 @@ The released PDFs are the authoritative book content. This repository intentiona
 Allowed committed artifacts:
 
 - released PDFs;
-- curated navigation and independently written metadata;
+- independently written concept cards, decision guides, glossaries, learning paths, experiment instructions, and case summaries with PDF citations;
+- curated navigation and metadata;
 - source code, tests, dependency manifests, and runnable templates;
-- Agent instructions and Skills.
+- Agent instructions and standards-compliant Skills.
 
 Forbidden committed artifacts:
 
 - `.tex` or authoring sources;
-- Markdown/plain-text transcriptions of book prose;
-- PDF extraction output or `.recsys-agent/`;
-- private drafts, editing notes, source maps, or authoring history.
+- prose-equivalent chapter Markdown or systematic paragraph-by-paragraph summaries;
+- copied passages, bulk PDF extraction output, or `.recsys-agent/`;
+- private drafts, editing notes, LaTeX source maps, or authoring history;
+- knowledge pages without released-PDF citations or with book material mislabeled as external guidance.
+
+Knowledge pages MUST keep `本书依据` and `扩展说明` separate. PDF filename and PDF page are the only public source coordinates; private LaTeX paths and line numbers MUST NOT be published.
 
 ## Response contract
 

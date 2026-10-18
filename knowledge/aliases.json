@@ -1,0 +1,23 @@
+{
+  "粗排": ["pre-ranking", "pre-ranking 模型", "pre-rank", "粗排模型"],
+  "精排": ["ranking", "精排模型"],
+  "过滤": ["filtering", "候选过滤", "过滤限流模块"],
+  "重排": ["re-ranking", "rerank", "重排模型"],
+  "双塔": ["two-tower", "dual encoder", "双塔召回"],
+  "多路召回": ["多个召回通道", "多通道召回", "multi-recall"],
+  "向量检索": ["向量召回索引", "ANN", "approximate nearest neighbor", "近似最近邻"],
+  "冷启动": ["cold start", "新用户", "新物品"],
+  "离在线一致性": ["training-serving consistency", "链路一致性"],
+  "特征时效性": ["feature freshness", "特征新鲜度"],
+  "样本穿越": ["data leakage", "label leakage", "特征穿越"],
+  "在线服务": ["online serving", "serving"],
+  "降级": ["degradation", "fallback", "兜底"],
+  "熔断": ["circuit breaker"],
+  "限流": ["rate limiting", "overload"],
+  "嵌入服务": ["Embedding Server", "embedding service", "向量参数服务"],
+  "多目标": ["multi-objective", "多任务"],
+  "多样性": ["diversity", "MMR"],
+  "时长预估": ["时长建模", "watch time prediction", "duration modeling"],
+  "偏差": ["bias", "推荐偏差"],
+  "强化学习": ["reinforcement learning", "RL"]
+}

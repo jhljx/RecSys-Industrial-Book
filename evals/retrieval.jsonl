@@ -1,0 +1,72 @@
+{"query": "推荐系统漏斗如何分层", "expected_chapters": [2]}
+{"query": "召回粗排精排重排链路", "expected_chapters": [2, 17]}
+{"query": "多路召回架构", "expected_chapters": [4]}
+{"query": "多个召回通道如何设计", "expected_chapters": [4]}
+{"query": "召回结果融合", "expected_chapters": [4]}
+{"query": "多路召回去重和配额", "expected_chapters": [4]}
+{"query": "过滤模块", "expected_chapters": [4]}
+{"query": "推荐候选过滤", "expected_chapters": [4]}
+{"query": "粗排模型", "expected_chapters": [5, 11]}
+{"query": "pre-ranking 模型", "expected_chapters": [5, 11]}
+{"query": "精排模块架构", "expected_chapters": [6]}
+{"query": "精排多目标排序", "expected_chapters": [6]}
+{"query": "为什么需要重排", "expected_chapters": [7]}
+{"query": "reranking 列表调整", "expected_chapters": [7]}
+{"query": "多业务混排", "expected_chapters": [8]}
+{"query": "混排模块", "expected_chapters": [8]}
+{"query": "生成式推荐", "expected_chapters": [9]}
+{"query": "一阶段生成式推荐", "expected_chapters": [9]}
+{"query": "双塔向量召回", "expected_chapters": [10]}
+{"query": "two-tower 召回模型", "expected_chapters": [10]}
+{"query": "召回负采样", "expected_chapters": [10]}
+{"query": "negative sampling 推荐", "expected_chapters": [10]}
+{"query": "困难负样本", "expected_chapters": [10]}
+{"query": "hard negative 召回", "expected_chapters": [10]}
+{"query": "多目标融合", "expected_chapters": [6]}
+{"query": "multi-objective 精排", "expected_chapters": [6]}
+{"query": "推荐特征工程", "expected_chapters": [15]}
+{"query": "用户物品上下文特征", "expected_chapters": [15]}
+{"query": "实时特征时效性", "expected_chapters": [15]}
+{"query": "feature freshness", "expected_chapters": [15]}
+{"query": "样本穿越", "expected_chapters": [15, 16]}
+{"query": "data leakage 特征", "expected_chapters": [15, 16]}
+{"query": "推荐系统离线服务", "expected_chapters": [16]}
+{"query": "离线训练任务", "expected_chapters": [16]}
+{"query": "推荐在线服务架构", "expected_chapters": [17]}
+{"query": "online serving 推荐", "expected_chapters": [17]}
+{"query": "在线超时预算分配", "expected_chapters": [17]}
+{"query": "P99 延迟预算", "expected_chapters": [17]}
+{"query": "限流熔断过载", "expected_chapters": [17]}
+{"query": "circuit breaker 推荐服务", "expected_chapters": [17]}
+{"query": "降级推荐系统", "expected_chapters": [2, 17]}
+{"query": "热门候选兜底", "expected_chapters": [2, 17]}
+{"query": "Embedding Server", "expected_chapters": [17]}
+{"query": "嵌入服务模型在线服务", "expected_chapters": [17]}
+{"query": "模型版本一致性", "expected_chapters": [16, 17, 22]}
+{"query": "训练服务链路一致性", "expected_chapters": [5, 22]}
+{"query": "ANN 向量检索", "expected_chapters": [18]}
+{"query": "approximate nearest neighbor", "expected_chapters": [18]}
+{"query": "向量召回索引", "expected_chapters": [18]}
+{"query": "ANN 索引选型", "expected_chapters": [18]}
+{"query": "HNSW", "expected_chapters": [18]}
+{"query": "分层可导航小世界图", "expected_chapters": [18]}
+{"query": "向量量化压缩", "expected_chapters": [18]}
+{"query": "PQ 乘积量化", "expected_chapters": [18]}
+{"query": "推荐曝光偏差", "expected_chapters": [19]}
+{"query": "exposure bias", "expected_chapters": [19]}
+{"query": "位置偏差", "expected_chapters": [19]}
+{"query": "position bias 推荐", "expected_chapters": [19]}
+{"query": "链路一致性建模", "expected_chapters": [5, 22]}
+{"query": "粗排精排一致性", "expected_chapters": [5, 11, 22]}
+{"query": "时长预估建模", "expected_chapters": [23]}
+{"query": "watch time prediction", "expected_chapters": [23]}
+{"query": "推荐冷启动", "expected_chapters": [1, 4, 28]}
+{"query": "新物品冷启动", "expected_chapters": [1, 4, 28]}
+{"query": "多样性打散", "expected_chapters": [7]}
+{"query": "MMR 多样性", "expected_chapters": [7]}
+{"query": "探索与利用", "expected_chapters": [28]}
+{"query": "个性化探索", "expected_chapters": [28]}
+{"query": "强化学习推荐", "expected_chapters": [28]}
+{"query": "RL 推荐场景", "expected_chapters": [28]}
+{"query": "推荐在线监控", "expected_chapters": [3, 17]}
+{"query": "服务可观测性", "expected_chapters": [3, 17]}

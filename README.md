@@ -7,7 +7,7 @@
 # RecSys-Industrial-Book
 
 **《推荐系统：工业架构与核心算法》开源书稿**  
-AI Agent 使用入口：[`AGENTS.md`](AGENTS.md)、[`CLAUDE.md`](CLAUDE.md) 与 [`docs/agent-guide.md`](docs/agent-guide.md)。仓库仅从已发布 PDF 在本地临时建立检索索引，不公开 LaTeX 或正文等价 Markdown。
+AI Agent 使用入口:[`AGENTS.md`](AGENTS.md)、[`CLAUDE.md`](CLAUDE.md)、[`docs/agent-guide.md`](docs/agent-guide.md)；按学习反馈运行 12 周课程见 [`docs/learning-agent-guide.md`](docs/learning-agent-guide.md)。仓库仅从已发布 PDF 在本地临时建立检索索引,不公开 LaTeX 或正文等价 Markdown。
 
 🔖 定位：工业级推荐系统硬核专著，主打全链路系统化思维，拒绝碎片化知识点  
 🎯 受众：具备机器学习 / 推荐基础的研究生、算法 / 架构 / 策略工程师、技术研究者  
@@ -16,22 +16,56 @@ AI Agent 使用入口：[`AGENTS.md`](AGENTS.md)、[`CLAUDE.md`](CLAUDE.md) 与 
 📦 内容：全书上下册 PDF + 配套可运行代码、实验案例、补充资料（持续更新）  
 📄 授权：个人学习非商用，转载 / 引用请注明出处
 
-## AI Agent 使用
+## AI Agent：把电子书变成可执行的推荐系统知识库
 
-本仓库支持两种本地模式：基于已发布 PDF 的本书答疑，以及结合本书和配套代码的工业推荐系统开发。无需 MCP 或云端知识库。
+发布 PDF 是唯一权威正文；`knowledge/` 提供独立撰写的章节地图、概念卡和前置图谱；`learning-paths/` 提供证据化课程；`.agents/skills/` 可安装到 Claude Code 等兼容客户端；`templates/` 提供可运行的工业推荐系统练习。无需 MCP 或云端知识库，索引和个人进度都只保存在本机且被 Git 忽略。
+
+### 你可以直接做什么
+
+| 能力 | 读者获得什么 | 入口 |
+|---|---|---|
+| 查书与可靠引用 | 混合检索 19 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
+| 12 周学习课程 | 新人全链路或研究生可信实验路线，按反馈和时间预算生成今日任务 | `course start/today/feedback/status` |
+| 证据化掌握 | 用提交物、实际命令输出、主路径、失败路径和测验分数验收；不接受口头“学会了” | `course submit`、`complete` |
+| 自适应复习 | 前置满足后推荐下一主题，低分补救，七天后安排回忆、纠错和迁移 | `next`、`course review` |
+| 知识图谱与自测 | 输出课程 Mermaid 依赖图，检查检索、引用、学习和复习状态 | `graph`、`self-eval` |
+| 工程工作台 | 生成设计契约，评审推荐代码，按证据树排查故障 | `design`、`review`、`debug` |
+| 可运行项目 | 演练多路召回、双塔 ANN、特征时序一致性、过载与降级 | `templates/` |
+| 多客户端 Skills | 安装标准 Agent Skills 到 Claude Code 或其他兼容 Agent | `tools/install_skills.py` |
+
+### 五分钟开始
 
 ```bash
-# 首次使用或 PDF 更新后建立本地索引
+# 首次使用或 PDF 更新后
 python3 tools/recsys_agent.py index
-
-# 检索本书内容
+python3 tools/recsys_agent.py doctor
 python3 tools/recsys_agent.py search "Embedding Server 版本一致性"
 
-# 运行推荐请求链路模板
-python3 templates/recommendation-pipeline/app.py --user u1 --limit 5
+# 启动一条会根据时间与反馈调整的完整课程
+python3 tools/recsys_agent.py course list
+python3 tools/recsys_agent.py course start new-engineer  # 或 graduate
+python3 tools/recsys_agent.py course today --minutes 90
+python3 tools/recsys_agent.py course feedback --message "负采样校正仍不清楚，本周只有 45 分钟"
+
+# 自由主题学习、知识图谱和本地自测
+python3 tools/recsys_agent.py learn "双塔召回" --level beginner --minutes 45
+python3 tools/recsys_agent.py graph --course new-engineer --output /tmp/recsys-course.mmd
+python3 tools/recsys_agent.py self-eval
+
+# 设计、评审与故障诊断
+python3 tools/recsys_agent.py design "在线推荐服务" objective=watch_time qps=10000 p99=200ms items=1e8 freshness=5m availability=99.99% cost=bounded
+python3 tools/recsys_agent.py review templates/recommendation-pipeline/app.py
+python3 tools/recsys_agent.py debug "精排 CTR 突降"
+
+# 安装 canonical Skills（也支持 --client agents|all --target <repo>）
+python3 tools/install_skills.py --client claude
 ```
 
-生成的 PDF 提取文本只保存在被 Git 忽略的 `.recsys-agent/` 中。详细工作流、引用规则和隐私边界见 [`docs/agent-guide.md`](docs/agent-guide.md)。
+项目入口：[`knowledge/chapters/`](knowledge/chapters/README.md) 的章节阅读地图、[`knowledge/`](knowledge/README.md) 的概念卡与前置图谱、[`learning-paths/new-engineer.md`](learning-paths/new-engineer.md) 的新人课程、[`learning-paths/graduate.md`](learning-paths/graduate.md) 的研究生课程，以及 [`templates/`](templates/) 的四个可运行项目。完整命令和引用规则见 [`docs/agent-guide.md`](docs/agent-guide.md)；课程提示词、证据模板、反馈与隐私边界见 [`docs/learning-agent-guide.md`](docs/learning-agent-guide.md)；评测协议见 [`evals/usability.md`](evals/usability.md)。
+
+### 内容更新不会漏掉课程
+
+新章节在私有写作仓库完成 LaTeX 和审阅 PDF 后，发布工作流要求同时提交章节地图、1–3 张概念卡以及新人/研究生两条课程的单元更新。发布器会拒绝缺失课程更新、未知 concept、未覆盖新章节或仍有待定 PDF 页码的发布，再确定性重建知识目录与图谱。因此 `knowledge/`、`concepts` 和 `learning-paths/courses.json` 与新章节一同演进，而不是靠事后手工补齐。
 
 
 ## 社交媒体
