@@ -65,6 +65,7 @@ python3 templates/recommendation-pipeline/app.py --user u1 --limit 5
 | **第 11 章** | 粗排模型       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 15 章** | 特征工程       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch15%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B.pdf) |
 | **第 16 章** | 推荐系统离线服务      | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch16%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1/%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1.pdf) |
+| **第 17 章** | 推荐系统在线服务      | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch17%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%BA%BF%E6%9C%8D%E5%8A%A1/%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%BA%BF%E6%9C%8D%E5%8A%A1.pdf) |
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch18%20%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F.pdf) |
 | **第 19 章** | 推荐系统偏差问题 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch19%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98/%E7%AC%AC%E5%8D%81%E4%B9%9D%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%81%8F%E5%B7%AE%E9%97%AE%E9%A2%98.pdf) |
 | **第 23 章** | 时长预估建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch23%20%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1/%E7%AC%AC%E4%BA%8C%E5%8D%81%E4%B8%89%E7%AB%A0-%E6%97%B6%E9%95%BF%E9%A2%84%E4%BC%B0%E5%BB%BA%E6%A8%A1.pdf)
@@ -84,15 +85,13 @@ python3 templates/recommendation-pipeline/app.py --user u1 --limit 5
 | **第 1 ~ 9 章** | 推荐系统概览、架构、评价体系、召回与过滤模块、粗排/精排/重排/混排/生成式推荐模块 | ✅ **已完成** |
 | **第 10 章** | 召回模型（协同过滤/图召回/向量召回/双塔等，**约 120 页深度拆解**） | ✅ **已完成** |
 | **第 11 章** | 粗排模型（双塔模型/多塔模型/蒸馏模型/DNN模型等，**约 50页深度拆解**） | ✅ **已完成** |
-| **第 12 ~ 17 章** | 上册其余部分（精排模型、Learning to Rank模型、重排/混排模型、离线/在线服务） | 🚧 **写作中** |
-| **第 15 章** | 特征工程（特征体系与特征表示、行为统计与用户画像、特征交互建模、特征筛选建模等） | ✅ **已完成** |
-| **第 16 章** | 推荐系统离线服务（样本流服务、用户行为序列服务、索引服务、离线训练服务等） | ✅ **已完成** |
-| **第 18 章** | 向量检索系统（基于树结构的ANN、局部敏感哈希、乘积量化、HNSW、向量检索工具） | ✅ **已完成** |
+| **第 12 ~ 14 章** | 精排模型、Learning to Rank模型、重排/混排模型 | 🚧 **写作中** |
+| **第 15 ~ 18 章** | 上册其余部分（特征工程、推荐系统离线服务、推荐系统在线服务、向量检索系统） | ✅ **已完成** |
 | **第 19 章** | 推荐系统偏差问题（样本选择偏差、用户群体偏差、混淆偏差、曝光位置偏差、Duration偏差等） | ✅ **已完成** |
 | **第 23 章** | 时长预估建模（基于加权二分类的时长建模、基于离散化分桶的时长建模、经典时长预估建模方法、生成式时长建模） | ✅ **已完成** |
 | **第 20 ~ 38 章** | 下册（用户兴趣建模、多目标优化、强化学习推荐、LLM与Agent推荐、生成式推荐进阶等） | 📋 **规划中** |
 
-> **总进度**：上册约 75% 完稿，全册约 50% 完稿（已完稿约 600 页）。
+> **总进度**：上册约 80% 完稿，全册约 50% 完稿（已完稿约 650 页）。
 
 
 ## 目录
@@ -508,14 +507,42 @@ python3 templates/recommendation-pipeline/app.py --user u1 --limit 5
             - 16.8.6 混合精度、异常指标与故障回滚      
         - 16.9 本章小结  
         - 16.10 参考文献  
-    - **第 17 章 推荐系统在线服务**
+    - [**第 17 章 推荐系统在线服务**](https://jhljx.github.io/RecSys-Industrial-Book/ch17%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%BA%BF%E6%9C%8D%E5%8A%A1/%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%BA%BF%E6%9C%8D%E5%8A%A1.pdf)
         - 17.1 在线推理架构
-        - 17.2 Embedding Server
-        - 17.3 TensorRT
-        - 17.4 缓存系统
-        - 17.5 双塔模型在线服务优化
-        - 17.6 DNN 模型在线服务优化
-        - 17.7 本章小结
+            - 17.1.1 全链路请求处理流程
+            - 17.1.2 RPC调用、限流、熔断与兜底链路
+            - 17.1.3 超时预算分配
+            - 17.1.4 服务版本管理与灰度发布
+            - 17.1.5 性能与容量规划 
+        - 17.2 服务监控与稳定性治理  
+        - 17.3 用户侧服务  
+            - 17.3.1 User Info服务
+            - 17.3.2 用户长期兴趣在线服务
+            - 17.3.3 近线服务   
+        - 17.4 推荐缓存服务 
+            - 17.4.1 推荐结果缓存服务  
+            - 17.4.2 Preload缓存服务
+            - 17.4.3 Browse Set缓存服务
+            - 17.4.4 缓存失效处理   
+        - 17.5 索引在线服务
+            - 17.5.1 正排索引在线服务
+            - 17.5.2 倒排索引在线服务
+        - 17.6 模型在线服务
+            - 17.6.1 Embedding Server服务
+                - 17.6.1.1 模型权重与Embedding版本对齐
+                - 17.6.1.2 冷启ID的兜底处理
+                - 17.6.1.3 批量查询优化与热更新
+            - 17.6.2 特征抽取服务
+            - 17.6.3 TensorRT在线推理服务
+            - 17.6.4 通用推理优化技术
+                - 17.6.4.1 Dynamic Batching
+                - 17.6.4.2 算子融合、图优化与FlashAttention
+                - 17.6.4.3 量化与知识蒸馏
+                - 17.6.4.4 多模型混部
+            - 17.6.5 双塔模型的在线-离线整体框架
+            - 17.6.6 DNN精排模型的在线-离线整体框架
+            - 17.6.7 训练与在线服务一致性   
+        - 17.7 本章小结  
     - [**第 18 章 向量检索系统**](https://jhljx.github.io/RecSys-Industrial-Book/ch18%20%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F/%E7%AC%AC%E5%8D%81%E5%85%AB%E7%AB%A0-%E5%90%91%E9%87%8F%E6%A3%80%E7%B4%A2%E7%B3%BB%E7%BB%9F.pdf)
         - 18.1 ANN概述
         - 18.2 基于树结构的ANN  
