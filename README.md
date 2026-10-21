@@ -16,7 +16,19 @@ AI Agent 使用入口:[`AGENTS.md`](AGENTS.md)、[`CLAUDE.md`](CLAUDE.md)、[`do
 📦 内容：全书上下册 PDF + 配套可运行代码、实验案例、补充资料（持续更新）  
 📄 授权：个人学习非商用，转载 / 引用请注明出处
 
-## AI Agent：把电子书变成可执行的推荐系统知识库
+## 社交媒体
+
+以下是我的小红书账号，欢迎大家关注我！
+
+![小红书账号](/image/social_media.JPG)
+
+
+## Star趋势
+
+[![Star History Chart](https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=QQ2nabIzoDUPOEalArQIzS-v5IfLPFt1QCHPIOv6cVpQ1_1Jr3aHpqMvn2UzxFgzK7_ffFuYFvOlUWDCFLbBwK3rnBGHKhQGYV2skkO1mpFpdRsGeNaDakGPE8gCDxbp9bWUHa7zFbic3GZgZd6TaDEieKMAQDbD-ye4ECar1or6E0Oxl3kGG75I3qFK)](https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left)
+
+
+## AI Agent：把电子书变成可执行的工业级推荐系统知识库
 
 发布 PDF 是唯一权威正文；`knowledge/` 提供独立撰写的章节地图、概念卡和前置图谱；`learning-paths/` 提供证据化课程；`.agents/skills/` 可安装到 Claude Code 等兼容客户端；`templates/` 提供可运行的工业推荐系统练习。无需 MCP 或云端知识库，索引和个人进度都只保存在本机且被 Git 忽略。
 
@@ -66,18 +78,6 @@ python3 tools/install_skills.py --client claude
 ### 内容更新不会漏掉课程
 
 新章节在私有写作仓库完成 LaTeX 和审阅 PDF 后，发布工作流要求同时提交章节地图、1–3 张概念卡以及新人/研究生两条课程的单元更新。发布器会拒绝缺失课程更新、未知 concept、未覆盖新章节或仍有待定 PDF 页码的发布，再确定性重建知识目录与图谱。因此 `knowledge/`、`concepts` 和 `learning-paths/courses.json` 与新章节一同演进，而不是靠事后手工补齐。
-
-
-## 社交媒体
-
-以下是我的小红书账号，欢迎大家关注我！
-
-![小红书账号](/image/social_media.JPG)
-
-
-## Star趋势
-
-[![Star History Chart](https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=QQ2nabIzoDUPOEalArQIzS-v5IfLPFt1QCHPIOv6cVpQ1_1Jr3aHpqMvn2UzxFgzK7_ffFuYFvOlUWDCFLbBwK3rnBGHKhQGYV2skkO1mpFpdRsGeNaDakGPE8gCDxbp9bWUHa7zFbic3GZgZd6TaDEieKMAQDbD-ye4ECar1or6E0Oxl3kGG75I3qFK)](https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left)
 
 
 ## 📚 已完成章节阅读入口
