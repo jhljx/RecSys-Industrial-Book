@@ -36,7 +36,7 @@ AI Agent 使用入口:[`AGENTS.md`](AGENTS.md)、[`CLAUDE.md`](CLAUDE.md)、[`do
 
 | 能力 | 读者获得什么 | 入口 |
 |---|---|---|
-| 查书与可靠引用 | 混合检索 19 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
+| 查书与可靠引用 | 混合检索 20 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
 | 12 周学习课程 | 新人全链路或研究生可信实验路线，按反馈和时间预算生成今日任务 | `course start/today/feedback/status` |
 | 证据化掌握 | 用提交物、实际命令输出、主路径、失败路径和测验分数验收；不接受口头“学会了” | `course submit`、`complete` |
 | 自适应复习 | 前置满足后推荐下一主题，低分补救，七天后安排回忆、纠错和迁移 | `next`、`course review` |
@@ -97,6 +97,7 @@ python3 tools/install_skills.py --client claude
 | **第 9 章**  | 生成式推荐模块        | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch09%20%E7%94%9F%E6%88%90%E5%BC%8F%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9D%97/%E7%AC%AC%E4%B9%9D%E7%AB%A0-%E7%94%9F%E6%88%90%E5%BC%8F%E6%8E%A8%E8%8D%90%E6%A8%A1%E5%9D%97.pdf) |
 | **第 10 章** | 召回模型          | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch10%20%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E7%AB%A0-%E5%8F%AC%E5%9B%9E%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 11 章** | 粗排模型       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch11%20%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%B8%80%E7%AB%A0-%E7%B2%97%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf) |
+| **第 12 章** | 精排模型 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch12%20%E7%B2%BE%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E7%B2%BE%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf) |
 | **第 15 章** | 特征工程       | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch15%20%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B/%E7%AC%AC%E5%8D%81%E4%BA%94%E7%AB%A0-%E7%89%B9%E5%BE%81%E5%B7%A5%E7%A8%8B.pdf) |
 | **第 16 章** | 推荐系统离线服务      | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch16%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1/%E7%AC%AC%E5%8D%81%E5%85%AD%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E7%A6%BB%E7%BA%BF%E6%9C%8D%E5%8A%A1.pdf) |
 | **第 17 章** | 推荐系统在线服务      | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/ch17%20%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%BA%BF%E6%9C%8D%E5%8A%A1/%E7%AC%AC%E5%8D%81%E4%B8%83%E7%AB%A0-%E6%8E%A8%E8%8D%90%E7%B3%BB%E7%BB%9F%E5%9C%A8%E7%BA%BF%E6%9C%8D%E5%8A%A1.pdf) |
@@ -107,7 +108,7 @@ python3 tools/install_skills.py --client claude
 
 ---
 
-> 📌 **说明**：本书《推荐系统：工业架构与核心算法》持续更新中，后续章节将陆续开放，包括精排模型、经典推荐问题、强化学习推荐、LLM 与 Agent 推荐、生成式推荐等前沿方向。
+> 📌 **说明**：本书《推荐系统：工业架构与核心算法》持续更新中，后续章节将陆续开放，包括经典推荐问题、强化学习推荐、LLM 与 Agent 推荐、生成式推荐等前沿方向。
 
 
 ## ✍️ 当前写作进度
@@ -119,7 +120,8 @@ python3 tools/install_skills.py --client claude
 | **第 1 ~ 9 章** | 推荐系统概览、架构、评价体系、召回与过滤模块、粗排/精排/重排/混排/生成式推荐模块 | ✅ **已完成** |
 | **第 10 章** | 召回模型（协同过滤/图召回/向量召回/双塔等，**约 120 页深度拆解**） | ✅ **已完成** |
 | **第 11 章** | 粗排模型（双塔模型/多塔模型/蒸馏模型/DNN模型等，**约 50页深度拆解**） | ✅ **已完成** |
-| **第 12 ~ 14 章** | 精排模型、Learning to Rank模型、重排/混排模型 | 🚧 **写作中** |
+| **第 12 章** | 精排模型（传统模型、深度架构、损失函数与实践） | ✅ **已完成** |
+| **第 13 ~ 14 章** | Learning to Rank模型、重排/混排模型 | 🚧 **写作中** |
 | **第 15 ~ 18 章** | 上册其余部分（特征工程、推荐系统离线服务、推荐系统在线服务、向量检索系统） | ✅ **已完成** |
 | **第 19 章** | 推荐系统偏差问题（样本选择偏差、用户群体偏差、混淆偏差、曝光位置偏差、Duration偏差等） | ✅ **已完成** |
 | **第 23 章** | 时长预估建模（基于加权二分类的时长建模、基于离散化分桶的时长建模、经典时长预估建模方法、生成式时长建模） | ✅ **已完成** |
@@ -423,23 +425,56 @@ python3 tools/install_skills.py --client claude
         - 11.6 粗排模型实践案例
         - 11.7 粗排模型实践讨论       
         - 11.8 本章小结  
-    - **第 12 章 精排模型**  
-        - 12.1 传统模型
-            - 12.1.1 逻辑斯特回归
-            - 12.1.2 因子分解机
-            - 12.1.3 FFM
-        - 12.2 共享底层模型
-            - 12.2.1 Wide&Deep
-            - 12.2.2 DeepFM
-        - 12.3 特征交叉建模
-            - 12.3.1 DCN
-            - 12.3.2 AutoInt
-        - 12.4 多专家模型
-            - 12.4.1 MoE
-            - 12.4.2 PLE
-        - 12.5 常见的 loss 函数
-        - 12.6 精排模型网络结构
-        - 12.7 本章小结
+    - [**第 12 章 精排模型**](https://jhljx.github.io/RecSys-Industrial-Book/ch12%20%E7%B2%BE%E6%8E%92%E6%A8%A1%E5%9E%8B/%E7%AC%AC%E5%8D%81%E4%BA%8C%E7%AB%A0-%E7%B2%BE%E6%8E%92%E6%A8%A1%E5%9E%8B.pdf)
+        - 12.1 精排模型的发展历程
+            - 12.1.1 机器学习时代
+            - 12.1.2 深度学习时代
+            - 12.1.3 多任务与多目标优化时代
+            - 12.1.4 推荐大模型时代
+        - 12.2 精排模型需要解决的核心技术问题
+            - 12.2.1 特征选择与表示
+            - 12.2.2 模型结构设计
+            - 12.2.3 训练与优化
+        - 12.3 传统精排模型
+            - 12.3.1 逻辑回归（LR）
+            - 12.3.2 梯度提升树（GBDT）
+            - 12.3.3 因子分解机（FM）
+            - 12.3.4 场感知因子分解机（FFM）
+        - 12.4 深度精排模型的基础架构
+            - 12.4.1 显式特征交互与深层表征融合的模型架构
+                - 12.4.1.1 Wide & Deep模型
+                - 12.4.1.2 PNN模型
+                - 12.4.1.3 DeepFM模型
+                - 12.4.1.4 xDeepFM模型
+                - 12.4.1.5 DLRM模型
+                - 12.4.1.6 DeepMCP模型
+                - 12.4.1.7 DFN模型
+            - 12.4.2 多任务学习的模型架构
+                - 12.4.2.1 MMoE模型
+                - 12.4.2.2 CGC模型与PLE模型
+                - 12.4.2.3 多任务学习模型架构的总结与讨论
+                    - 12.4.2.3.1 门控网络的训练问题与专家退化
+                    - 12.4.2.3.2 MMoE门控改造方案
+                    - 12.4.2.3.3 MMoE的后续改进方案
+            - 12.4.3 基于 Transformer 的统一模型架构
+                - 12.4.3.1 Transformer模型的基本结构
+                - 12.4.3.2 Self-Attention、多头注意力与目标注意力
+                - 12.4.3.3 Masked Self-Attention、Transformer Encoder 与 Decoder
+                - 12.4.3.4 位置编码与 RoPE
+                - 12.4.3.5 Attention 的改进：稀疏注意力与 FlashAttention
+                - 12.4.3.6 Transformer 在推荐精排特征交互中的应用
+                - 12.4.3.7 Transformer与MoE的结合
+                - 12.4.3.8 DeepSeekMoE：细粒度专家划分与共享专家
+                - 12.4.3.9 基于 Transformer 的统一精排架构设计与讨论
+        - 12.5 精排模型的预测目标与损失函数
+            - 12.5.1 Pointwise Loss
+            - 12.5.2 Pairwise Loss
+            - 12.5.3 Listwise Loss
+            - 12.5.4 不同损失函数的组合与实践对比
+        - 12.6 精排模型实践案例
+        - 12.7 精排模型实践讨论
+        - 12.8 本章小结
+        - 12.9 参考文献
     - **第 13 章 Learning to Rank模型**  
         - 13.1 LTR模型概述
             - 13.1.1 LTR模型的定义

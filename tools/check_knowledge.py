@@ -86,6 +86,16 @@ def main() -> None:
         unknown = concepts - set(cards)
         if unknown:
             failures.append(f"{courses_path}: {course_id} references unknown concepts {sorted(unknown)}")
+        if course_id in {"new-engineer", "graduate"}:
+            graduation_id = "ne-12" if course_id == "new-engineer" else "gr-12"
+            graduation = [unit for unit in units if unit.get("id") == graduation_id]
+            if len(graduation) != 1:
+                failures.append(f"{courses_path}: {course_id} needs exactly one graduation unit {graduation_id}")
+            else:
+                taught = {chapter for unit in units if unit.get("id") != graduation_id for chapter in unit.get("chapters", [])}
+                missing_from_graduation = taught - set(graduation[0].get("chapters", []))
+                if missing_from_graduation:
+                    failures.append(f"{courses_path}: {course_id}/{graduation_id} missing taught chapters {sorted(missing_from_graduation)}")
         for unit in units:
             for field in ("id", "title", "reading", "deliverable", "acceptance", "questions"):
                 if not unit.get(field):

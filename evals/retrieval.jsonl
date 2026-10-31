@@ -70,3 +70,8 @@
 {"query": "RL 推荐场景", "expected_chapters": [28]}
 {"query": "推荐在线监控", "expected_chapters": [3, 17]}
 {"query": "服务可观测性", "expected_chapters": [3, 17]}
+{"query": "DeepFM xDeepFM DLRM 特征交互", "expected_chapters": [12]}
+{"query": "精排特征交叉与深层表征融合 DLRM", "expected_chapters": [12]}
+{"query": "MMoE PLE 专家任务冲突", "expected_chapters": [12]}
+{"query": "ListNet Listwise Loss 请求内列表排序", "expected_chapters": [12]}
+{"query": "精排 Pointwise Pairwise Listwise 概率校准", "expected_chapters": [12]}

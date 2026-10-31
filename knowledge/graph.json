@@ -27,6 +27,9 @@
     "negative-sampling",
     "two-tower",
     "model-distillation",
+    "feature-crossing-deep-ranking",
+    "listwise-ranking-loss",
+    "multi-task-experts",
     "data-leakage",
     "feature-engineering",
     "feature-freshness",
@@ -151,6 +154,18 @@
     [
       "pre-ranking",
       "model-distillation"
+    ],
+    [
+      "ranking",
+      "feature-crossing-deep-ranking"
+    ],
+    [
+      "ranking",
+      "listwise-ranking-loss"
+    ],
+    [
+      "multi-objective",
+      "multi-task-experts"
     ],
     [
       "feature-engineering",

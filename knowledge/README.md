@@ -30,6 +30,9 @@
 | negative-sampling | 负采样 | 10 | two-tower |
 | two-tower | 双塔召回 | 10 | multi-recall |
 | model-distillation | 粗排模型蒸馏 | 11 | pre-ranking |
+| feature-crossing-deep-ranking | 精排特征交叉与深层表征融合 | 12 | ranking |
+| listwise-ranking-loss | Listwise 排序损失 | 12 | ranking |
+| multi-task-experts | 多任务专家模型 | 12 | multi-objective |
 | data-leakage | 样本穿越 | 15 | feature-engineering |
 | feature-engineering | 特征工程 | 15 | recsys-funnel |
 | feature-freshness | 特征时效性 | 15 | feature-engineering |
