@@ -2,6 +2,8 @@
 
 本仓库把发布 PDF 作为权威正文，把 `knowledge/` 作为导航层，把命令行工具和 Skills 作为工作流层。无需 MCP、数据库或云端知识库。
 
+本地也可直接打开 [`../knowledge-map/index.html`](../knowledge-map/index.html) 浏览全书知识蓝图、概念前置关系与课程路径；它与 GitHub Pages 使用同一份公开导航数据，不含 PDF 全文或个人进度。知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建页面数据。
+
 ## 1. 五分钟开始
 
 环境：Python 3.10+；索引需要系统命令 `pdftotext`。在仓库根目录执行：
@@ -13,7 +15,7 @@ python3 tools/recsys_agent.py search "双塔召回的负采样偏差"
 python3 tools/recsys_agent.py page --chapter 10 --page 60
 ```
 
-`doctor` 应显示 `index=ready`。索引写入被忽略的 `.recsys-agent/`；PDF 更新后重新执行 `index`。所有命令可通过以下入口发现：
+`doctor` 应显示 `index=ready`。索引写入被忽略的 `.recsys-agent/`；PDF 更新后重新执行 `index`。检索、讲解、学习计划、工程报告和自测会拒绝过期或来源模式不匹配的索引。所有命令可通过以下入口发现：
 
 ```bash
 python3 tools/recsys_agent.py --help
@@ -83,7 +85,7 @@ python3 tools/recsys_agent.py course feedback --message "本周只有 45 分钟�
 python3 tools/recsys_agent.py course status
 ```
 
-两门 12 周课程覆盖全部 19 个已发布章节：
+两门 12 周课程覆盖全部 20 个已发布章节：
 
 - [`learning-paths/new-engineer.md`](../learning-paths/new-engineer.md)：全链路工程、可靠性、故障与毕业项目；
 - [`learning-paths/graduate.md`](../learning-paths/graduate.md)：可信实验、强基线、偏差、复现与迁移。
@@ -98,7 +100,7 @@ python3 tools/recsys_agent.py course review
 python3 tools/recsys_agent.py self-eval
 ```
 
-证据不全或分数低于 0.8 时只记为 `assessed`，不会进入 `completed`。七天后 `course review` 安排回忆、纠错、参数预测和迁移任务。课程外补缺可运行：
+证据不全或分数低于 0.8 时只记为 `assessed`，不会进入 `completed`。CLI 会检查提交物结构和可复核记录，但不能证实命令真的运行或答案正确，仍需 Agent 按 `acceptance` 评分。七天后 `course review` 安排回忆、纠错、参数预测和迁移任务；核查四节答案后，可用 `course review --course new-engineer --unit ne-01 --evidence /tmp/ne-01-review.md --score 0.85` 提交复习，通过后不再重复提醒。课程外补缺可运行：
 
 ```bash
 python3 tools/recsys_agent.py learn "HNSW" --level graduate --minutes 120
@@ -182,8 +184,8 @@ python3 tools/check_skills.py
 python3 tools/check_public_boundary.py
 ```
 
-- `eval`：72 条固定查询的 Hit@1、Recall@5、引用有效率；
-- `check_knowledge.py`：19 章知识地图覆盖、PDF 文件和页码边界；
+- `eval`：77 条固定查询的 Hit@1、Recall@5、引用有效率；
+- `check_knowledge.py`：20 章知识地图覆盖、PDF 文件和页码边界；
 - `check_skills.py`：Skill 元数据和 canonical 目录；
 - `check_public_boundary.py`：阻止 LaTeX、提取缓存和正文等价 Markdown 进入公开仓库。
 

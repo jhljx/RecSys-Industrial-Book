@@ -211,6 +211,20 @@ def load(root: Path) -> list[Chunk]:
         return [Chunk(**json.loads(line)) for line in handle if line.strip()]
 
 
+def require_fresh_index(root: Path, mode: str) -> None:
+    if not sources(root, mode):
+        raise SystemExit(f"{mode} 模式没有可用知识源；请检查 --mode 和仓库路径。")
+    try:
+        manifest = json.loads((root / MANIFEST_FILE).read_text(encoding="utf-8"))
+        reasons = stale_reasons(root, mode)
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        raise SystemExit(f"索引元数据不可用：{error}；请重新执行 index。") from error
+    if manifest.get("mode") != mode:
+        reasons.append(f"mode {manifest.get('mode')} != {mode}")
+    if reasons:
+        raise SystemExit("索引已过期或模式不匹配，请执行 `python3 tools/recsys_agent.py index`。\n" + "\n".join(reasons[:5]))
+
+
 def stale_reasons(root: Path, mode: str) -> list[str]:
     if not (root / MANIFEST_FILE).is_file() or not (root / INDEX_FILE).is_file():
         return ["index missing"]
@@ -243,6 +257,11 @@ def rank(root: Path, query: str, chapter: int | None = None) -> list[tuple[float
     chunks = [chunk for chunk in load(root) if chapter is None or chunk.chapter == chapter]
     expanded = expand_query(root, query)
     chapter_hints = concept_chapter_hints(root, expanded)
+    matched_concept = concept_id(root, query)
+    if matched_concept:
+        hint = concept_metadata(root, matched_concept).get("chapter")
+        if isinstance(hint, int):
+            chapter_hints.add(hint)
     if len(chapter_hints) != 1:
         chapter_hints.clear()
     query_tokens = terms(expanded)
@@ -336,13 +355,36 @@ def graph(root: Path) -> dict[str, object]:
     return json.loads((root / "knowledge/graph.json").read_text(encoding="utf-8"))
 
 def concept_id(root: Path, topic: str) -> str | None:
-    normalized = re.sub(r"[-_\s]+", " ", expand_query(root, topic).casefold())
+    normalized = re.sub(r"[-_\s]+", " ", topic.casefold()).strip()
+    cards = list((root / "knowledge/concepts").glob("*.md"))
+    for path in cards:
+        text = path.read_text(encoding="utf-8")
+        title = re.search(r"^title:\s*(.+)$", text, re.MULTILINE)
+        if normalized in {path.stem.replace("-", " "), title.group(1).casefold() if title else ""}:
+            return path.stem
+    model_aliases = {
+        "multi-task-experts": ("mmoe", "ple", "cgc", "多任务专家"),
+        "feature-crossing-deep-ranking": ("deepfm", "dlrm", "wide & deep", "特征交叉"),
+        "listwise-ranking-loss": ("listwise", "listnet", "列表损失"),
+    }
+    for identifier, aliases in model_aliases.items():
+        if (root / "knowledge/concepts" / f"{identifier}.md").is_file() and any(alias_in_query(alias, topic) for alias in aliases):
+            return identifier
     matches: list[tuple[int, str]] = []
-    for path in (root / "knowledge/concepts").glob("*.md"):
+    for path in cards:
         text = path.read_text(encoding="utf-8")
         title = re.search(r"^title:\s*(.+)$", text, re.MULTILINE)
         names = (path.stem.replace("-", " "), title.group(1).casefold() if title else "")
-        score = max((len(name) for name in names if name and name in normalized), default=0)
+        score = max((len(name) for name in names if name and (name in normalized or (len(normalized) >= 2 and normalized in name))), default=0)
+        if score:
+            matches.append((score, path.stem))
+    if matches:
+        return max(matches)[1]
+    expanded = re.sub(r"[-_\s]+", " ", expand_query(root, topic).casefold())
+    for path in cards:
+        title = re.search(r"^title:\s*(.+)$", path.read_text(encoding="utf-8"), re.MULTILINE)
+        names = (path.stem.replace("-", " "), title.group(1).casefold() if title else "")
+        score = max((len(name) for name in names if name and name in expanded), default=0)
         if score:
             matches.append((score, path.stem))
     return max(matches)[1] if matches else None
@@ -387,6 +429,24 @@ def effort_profile(identifier: str | None, level: str, metadata: dict[str, objec
     if identifier in {"industrial-recsys-scope", "feedback-loop", "hybrid-architecture"}:
         return (35, 25, 20, 20)
     return (20, 30, 30, 20) if research else (25, 30, 30, 15)
+
+
+def evidence_gaps(evidence: Path | None) -> list[str]:
+    if evidence is None or not evidence.is_file():
+        return ["非空 evidence 文件"]
+    text = evidence.read_text(encoding="utf-8").strip()
+    if not text:
+        return ["非空 evidence 文件"]
+    sections = {name: body for name, body in re.findall(r"(?ms)^##\s+([^\n]+)\n(.*?)(?=^##\s+|\Z)", text)}
+    required = ("本书依据", "我的解释", "实践", "问题答案")
+    missing = [f"提交物章节：{name}" for name in required if not sections.get(name, "").strip()]
+    if sections.get("本书依据") and not re.search(r"PDF\s*第\s*\d+\s*页", sections["本书依据"]):
+        missing.append("PDF 第 N 页引用")
+    practice = sections.get("实践", "")
+    for label in ("主路径命令", "主路径退出码", "主路径输出", "失败路径命令", "失败路径退出码", "失败路径输出", "失败原因", "恢复条件"):
+        if not re.search(rf"(?m)^[-*]?\s*{label}\s*[：:]\s*\S+", practice):
+            missing.append(label)
+    return missing
 
 
 def append_progress(root: Path, row: dict[str, object]) -> None:
@@ -446,14 +506,12 @@ def learning_plan(root: Path, topic: str, level: str, minutes: int) -> None:
 
 def complete_topic(root: Path, topic: str, evidence: Path | None, practice_passed: bool, failure_path: bool, score: float | None) -> None:
     identifier = concept_id(root, topic) or topic
-    missing: list[str] = []
-    if evidence is None or not evidence.is_file() or not evidence.read_text(encoding="utf-8").strip():
-        missing.append("non-empty --evidence file")
+    missing = evidence_gaps(evidence)
     if not practice_passed:
         missing.append("--practice-passed")
     if not failure_path:
         missing.append("--failure-path")
-    if score is None or score < 0.8 or score > 1.0:
+    if score is None or not math.isfinite(score) or score < 0.8 or score > 1.0:
         missing.append("--score between 0.8 and 1.0")
     if missing:
         row = {"topic": topic, "concept_id": identifier, "status": "assessed", "evidence": str(evidence) if evidence else None, "practice_passed": practice_passed, "failure_path": failure_path, "score": score, "missing": missing}
@@ -495,7 +553,7 @@ def course_command(root: Path, action: str, course_id: str | None, minutes: int 
         append_progress(root, {"record_type": "course", "action": "start", "course_id": selected, "status": "started"})
         print(json.dumps({"course_id": selected, "title": course["title"], "status": "started", "next": "course today"}, ensure_ascii=False, indent=2))
         return
-    states = latest_by([row for row in rows if row.get("course_id") == selected and row.get("unit_id")], "unit_id")
+    states = latest_by([row for row in rows if row.get("course_id") == selected and row.get("unit_id") and row.get("action") != "review_submit"], "unit_id")
     completed_units = {key for key, row in states.items() if row.get("status") == "completed"}
     units = course["units"]
     current = next((unit for unit in units if unit["id"] not in completed_units), None)
@@ -527,11 +585,10 @@ def course_submit(root: Path, course_id: str, unit_id: str, evidence: Path, scor
     unit = next((item for item in courses[course_id]["units"] if item["id"] == unit_id), None)
     if unit is None:
         raise SystemExit("未知课程单元。")
-    missing = []
-    if not evidence.is_file() or not evidence.read_text(encoding="utf-8").strip(): missing.append("非空 evidence 文件")
+    missing = evidence_gaps(evidence)
     if not practice_passed: missing.append("practice-passed")
     if not failure_path: missing.append("failure-path")
-    if not 0 <= score <= 1: missing.append("0..1 score")
+    if not math.isfinite(score) or not 0 <= score <= 1: missing.append("0..1 score")
     passed = not missing and score >= 0.8
     status = "completed" if passed else "assessed"
     remedial = [] if passed else ["重读本单元 reading 指定页并逐题作答", "重新运行实践和失败路径", "按 acceptance 自评后再次提交"]
@@ -542,14 +599,44 @@ def course_submit(root: Path, course_id: str, unit_id: str, evidence: Path, scor
         raise SystemExit(2)
 
 
-def course_review(root: Path, course_id: str | None) -> None:
+def due_reviews(root: Path, course_id: str | None = None) -> list[dict[str, object]]:
+    rows = progress_rows(root)
+    latest = latest_by([row for row in rows if row.get("action") == "review_submit"], "review_key")
     today = datetime.now(timezone.utc).date()
     due = []
-    for row in progress_rows(root):
-        if row.get("status") != "completed" or not row.get("review_due") or (course_id and row.get("course_id") != course_id):
+    seen: set[str] = set()
+    for row in rows:
+        if row.get("action") == "review_submit" or row.get("status") != "completed" or not row.get("review_due") or (course_id and row.get("course_id") != course_id):
+            continue
+        key = f"{row.get('course_id') or 'topic'}:{row.get('unit_id') or row.get('concept_id')}:{row['review_due']}"
+        if key in seen or latest.get(key, {}).get("status") == "completed":
             continue
         if datetime.fromisoformat(str(row["review_due"])).date() <= today:
-            due.append({"course_id": row.get("course_id"), "unit_id": row.get("unit_id"), "concept_id": row.get("concept_id"), "review_due": row["review_due"], "tasks": ["不看资料解释核心机制", "找出一个错误设计", "修改参数并预测后果", "迁移到新场景说明取舍"]})
+            due.append({"review_key": key, "course_id": row.get("course_id"), "unit_id": row.get("unit_id"), "concept_id": row.get("concept_id"), "review_due": row["review_due"], "tasks": ["不看资料解释核心机制", "找出一个错误设计", "修改参数并预测后果", "迁移到新场景说明取舍"]})
+            seen.add(key)
+    return due
+
+
+def course_review(root: Path, course_id: str | None, unit_id: str | None = None, evidence: Path | None = None, score: float | None = None) -> None:
+    due = due_reviews(root, course_id)
+    if unit_id is not None:
+        if course_id not in load_courses(root) or not any(unit["id"] == unit_id for unit in load_courses(root)[course_id]["units"]):
+            raise SystemExit("未知课程或单元。")
+        matches = [item for item in due if item["unit_id"] == unit_id and item["course_id"] == course_id]
+        if len(matches) != 1:
+            raise SystemExit("没有该课程单元的到期复习任务。")
+        item = matches[0]
+        content = evidence.read_text(encoding="utf-8") if evidence and evidence.is_file() else ""
+        missing = [name for name in ("机制回忆", "错误设计", "参数预测", "迁移取舍") if not re.search(rf"(?m)^##\s*{name}\s*\n\S", content)]
+        if score is None or not math.isfinite(score) or not 0 <= score <= 1:
+            missing.append("0..1 score")
+        passed = not missing and score is not None and score >= 0.8
+        result = {"record_type": "course", "action": "review_submit", "review_key": item["review_key"], "course_id": course_id, "unit_id": unit_id, "status": "completed" if passed else "assessed", "score": score, "evidence": str(evidence) if evidence else None, "missing": missing}
+        append_progress(root, result)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
+        if not passed:
+            raise SystemExit(2)
+        return
     print(json.dumps({"due_reviews": due, "count": len(due)}, ensure_ascii=False, indent=2))
 
 
@@ -586,7 +673,7 @@ def self_evaluate(root: Path, output: Path) -> None:
         citations += bool(results and all(chunk.page_start and chunk.source.endswith(".pdf") for _, chunk in results))
     rows = progress_rows(root)
     completed = [row for row in rows if row.get("status") == "completed"]
-    report = {"generated_at": datetime.now(timezone.utc).isoformat(), "retrieval": {"cases": len(retrieval_cases), "recall_at_5": hits / len(retrieval_cases), "citation_valid": citations / len(retrieval_cases)}, "learning": {"completed_records": len(completed), "due_reviews": sum(bool(row.get("review_due") and datetime.fromisoformat(str(row["review_due"])).date() <= datetime.now(timezone.utc).date()) for row in completed)}, "next_actions": ["完成当前 course today 单元", "补做 assessed 单元", "按期运行 course review"]}
+    report = {"generated_at": datetime.now(timezone.utc).isoformat(), "retrieval": {"cases": len(retrieval_cases), "recall_at_5": hits / len(retrieval_cases), "citation_valid": citations / len(retrieval_cases)}, "learning": {"completed_records": len([row for row in completed if row.get("action") != "review_submit"]), "due_reviews": len(due_reviews(root))}, "next_actions": ["完成当前 course today 单元", "补做 assessed 单元", "按期运行 course review"]}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"status": "complete", "report": str(output), **report}, ensure_ascii=False, indent=2))
@@ -802,8 +889,11 @@ def main() -> None:
     course_submit_parser.add_argument("--score", required=True, type=float)
     course_submit_parser.add_argument("--practice-passed", action="store_true")
     course_submit_parser.add_argument("--failure-path", action="store_true")
-    course_review_parser = course_commands.add_parser("review", help="列出到期的延迟复习任务")
+    course_review_parser = course_commands.add_parser("review", help="列出到期复习，或提交指定单元的复习结果")
     course_review_parser.add_argument("--course", choices=("new-engineer", "graduate"))
+    course_review_parser.add_argument("--unit", help="提交复习的课程单元 ID")
+    course_review_parser.add_argument("--evidence", type=Path, help="含四项复习答案的文件")
+    course_review_parser.add_argument("--score", type=float, help="复习得分，0..1")
     graph_parser = commands.add_parser("graph", help="输出 Mermaid 知识图谱")
     graph_parser.add_argument("--course", choices=("new-engineer", "graduate"))
     graph_parser.add_argument("--output", type=Path)
@@ -819,6 +909,8 @@ def main() -> None:
     args = parser.parse_args()
     root = args.root.resolve()
     mode = detect_mode(root) if args.mode == "auto" else args.mode
+    if args.command in {"search", "page", "eval", "learn", "explain", "design", "review", "debug", "self-eval"}:
+        require_fresh_index(root, mode)
     if args.command == "index":
         build(root, mode)
     elif args.command == "search":
@@ -839,7 +931,11 @@ def main() -> None:
         if args.course_action == "submit":
             course_submit(root, args.course, args.unit, args.evidence, args.score, args.practice_passed, args.failure_path)
         elif args.course_action == "review":
-            course_review(root, args.course)
+            if args.unit and (not args.course or not args.evidence or args.score is None):
+                raise SystemExit("提交复习需要 --course、--unit、--evidence 和 --score。")
+            if not args.unit and (args.evidence or args.score is not None):
+                raise SystemExit("--evidence 和 --score 仅用于提交指定 --unit 的复习。")
+            course_review(root, args.course, args.unit, args.evidence, args.score)
         else:
             course_command(root, args.course_action, getattr(args, "course_id", None) or getattr(args, "course", None), getattr(args, "minutes", None), getattr(args, "message", None))
     elif args.command == "graph":

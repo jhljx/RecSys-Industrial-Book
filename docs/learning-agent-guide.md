@@ -62,13 +62,19 @@ python3 tools/recsys_agent.py course today --minutes 90
 ```markdown
 # 单元 ID
 ## 本书依据
-- PDF 文件、PDF 页码、支持的结论
+- PDF 文件、PDF 第 N 页、支持的结论
 ## 我的解释
 - 核心机制、目标、取舍和适用边界
 ## 实践
 - 环境与版本
-- 主路径命令、退出码、关键输出
-- 失败路径命令、退出码、原因、恢复条件
+- 主路径命令：`python3 ...`
+- 主路径退出码：0
+- 主路径输出：关键输出
+- 失败路径命令：`python3 ... --inject-failure`
+- 失败路径退出码：2
+- 失败路径输出：关键拒绝或降级输出
+- 失败原因：实际观察到的故障机制
+- 恢复条件：重新满足的契约
 ## 问题答案
 - 逐题回答
 ## 仍不确定
@@ -83,6 +89,8 @@ python3 tools/recsys_agent.py course submit \
   --evidence /tmp/ne-01.md --score 0.85 \
   --practice-passed --failure-path
 ```
+
+`submit` 和 `complete` 会检查上述章节、PDF 页码及主/失败路径的命令、退出码、输出、原因和恢复条件；缺项仅记 `assessed`。这只是结构门禁，无法证明输出真实或答案正确，仍需 Agent 阅读提交物并按单元验收条件评分。`--score`、`--practice-passed`、`--failure-path` 均为学习者声明。
 
 状态语义：
 
@@ -138,7 +146,16 @@ python3 tools/recsys_agent.py course review
 3. 修改一个参数并预测结果；
 4. 迁移到新业务场景并说明取舍。
 
-这用于区分短期记忆与真正掌握。复习失败时，把反馈写入 `course feedback`，重做对应单元证据。
+这用于区分短期记忆与真正掌握。复习提交物需分别写出 `## 机制回忆`、`## 错误设计`、`## 参数预测`、`## 迁移取舍` 四节。Agent 核查内容后提交评分：
+
+```bash
+python3 tools/recsys_agent.py course review --course new-engineer \
+  --unit ne-01 --evidence /tmp/ne-01-review.md --score 0.85
+```
+
+通过后该次到期任务不再重复出现；低分或缺项仍保留待复习。CLI 只能检查四节结构，不能自动判定理解正确。
+
+
 
 ## 7. 生成自己的可复核报告
 

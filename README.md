@@ -14,7 +14,7 @@
 
 **English:** An industrial recommender-systems e-book paired with a local-first AI Agent learning toolkit for PDF-grounded Q&A, cited retrieval, adaptive courses, review, and hands-on engineering practice.
 
-📖 [在线阅读与已发布章节 PDF](https://jhljx.github.io/RecSys-Industrial-Book/) · 🤖 [Agent 五分钟开始](docs/agent-guide.md#1-五分钟开始) · 🎓 [12 周课程](learning-paths/new-engineer.md) · 🧭 [章节地图](knowledge/chapters/README.md) · 🧪 [可运行项目](templates/)
+📖 [站内 PDF 阅读器](knowledge-map/reader.html) · 🗺️ [全书知识地图](knowledge-map/) · 🤖 [Agent 五分钟开始](docs/agent-guide.md#1-五分钟开始) · 🎓 [12 周课程](learning-paths/new-engineer.md) · 🧭 [章节地图](knowledge/chapters/README.md) · 🧪 [可运行项目](templates/)
 
 **书稿**：持续更新的上下册电子书稿，聚焦工业推荐系统的全链路架构、算法、工程实践与业务权衡；只发布已审阅的章节 PDF，不公开 LaTeX 或正文等价 Markdown。
 
@@ -69,6 +69,14 @@ python3 tools/install_skills.py --client claude
 ```
 
 项目入口：[`knowledge/chapters/`](knowledge/chapters/README.md) 的章节阅读地图、[`knowledge/`](knowledge/README.md) 的概念卡与前置图谱、[`learning-paths/new-engineer.md`](learning-paths/new-engineer.md) 的新人课程、[`learning-paths/graduate.md`](learning-paths/graduate.md) 的研究生课程，以及 [`templates/`](templates/) 的四个可运行项目。完整命令和引用规则见 [`docs/agent-guide.md`](docs/agent-guide.md)；课程提示词、证据模板、反馈与隐私边界见 [`docs/learning-agent-guide.md`](docs/learning-agent-guide.md)；评测协议见 [`evals/usability.md`](evals/usability.md)。
+
+### 可视化知识地图
+
+[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 20 章、56 张概念卡及前置依赖，并连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
+
+[`knowledge-map/reader.html`](knowledge-map/reader.html) 是无需构建工具的站内章节 PDF 阅读器，可本地以 `file://` 打开，也可通过 [GitHub Pages](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html) 使用；左侧选择已发布章节、上一章/下一章和 PDF 页码跳转均保持在阅读器内。链接如 `reader.html#ch10&page=60` 可直达第 10 章 PDF 第 60 页。PDF 在浏览器内嵌显示，若浏览器禁用内嵌 PDF 或本地文件预览，可使用页面底部的直接打开/下载链接；PDF 页码片段的具体展示由浏览器 PDF 查看器决定。
+
+知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建 `knowledge-map/data.js`，再运行 `python3 -m unittest discover -s tools/tests -v` 检查章节、概念、依赖、课程及 PDF 链接。网页没有服务端、账号或在线 Agent；全文检索和个人进度仍通过本地 CLI。
 
 ## Star 趋势
 

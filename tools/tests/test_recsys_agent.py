@@ -33,6 +33,11 @@ class RecSysAgentTest(unittest.TestCase):
             "kind": "prose",
         }
         (index_dir / "index.jsonl").write_text(json.dumps(chunk, ensure_ascii=False) + "\n", encoding="utf-8")
+        source = self.root / chunk["source"]
+        source.parent.mkdir(parents=True)
+        source.write_bytes(b"%PDF-1.4 test fixture")
+        manifest = {"format": recsys_agent.FORMAT_VERSION, "mode": "public", "sources": recsys_agent.source_records(self.root, "public")}
+        (index_dir / "manifest.json").write_text(json.dumps(manifest), encoding="utf-8")
 
     def tearDown(self) -> None:
         self.temporary.cleanup()
@@ -122,7 +127,51 @@ class RecSysAgentTest(unittest.TestCase):
         )
         report = self.capture_json(recsys_agent.review_surface, self.root, target)
         self.assertEqual(["pass", "pass"], [item["severity"] for item in report["findings"]])
+    def test_stale_index_and_wrong_mode_are_rejected(self) -> None:
+        recsys_agent.require_fresh_index(self.root, "public")
+        with self.assertRaisesRegex(SystemExit, "没有可用知识源"):
+            recsys_agent.require_fresh_index(self.root, "private")
+        (self.root / "ch01 推荐系统概述/ch01.pdf").write_bytes(b"changed")
+        with self.assertRaisesRegex(SystemExit, "索引已过期"):
+            recsys_agent.require_fresh_index(self.root, "public")
 
+    def test_specific_model_concept_wins_over_generic_alias(self) -> None:
+        concepts = self.root / "knowledge/concepts"
+        concepts.mkdir(parents=True)
+        for identifier, title in (("multi-objective", "多目标建模"), ("multi-task-experts", "多任务专家模型")):
+            (concepts / f"{identifier}.md").write_text(f"title: {title}\n", encoding="utf-8")
+        (self.root / "knowledge/aliases.json").write_text('{"多目标": ["多任务"]}', encoding="utf-8")
+        self.assertEqual("multi-task-experts", recsys_agent.concept_id(self.root, "PLE 多任务专家"))
+        self.assertEqual("multi-objective", recsys_agent.concept_id(self.root, "多目标"))
 
-if __name__ == "__main__":
-    unittest.main()
+    def test_evidence_rejects_nonempty_stub_and_accepts_structured_log(self) -> None:
+        evidence = self.root / "evidence.md"
+        evidence.write_text("学完了", encoding="utf-8")
+        self.assertTrue(recsys_agent.evidence_gaps(evidence))
+        evidence.write_text(
+            "## 本书依据\n第十二章 PDF 第 34 页：共享与专属专家。\n"
+            "## 我的解释\n共享和专属路径分离。\n"
+            "## 实践\n主路径命令：python app.py\n主路径退出码：0\n主路径输出：ok\n"
+            "失败路径命令：python app.py --fail\n失败路径退出码：2\n失败路径输出：rejected\n"
+            "失败原因：版本不匹配\n恢复条件：版本一致\n"
+            "## 问题答案\n共享收益需要同预算消融。\n", encoding="utf-8"
+        )
+        self.assertEqual([], recsys_agent.evidence_gaps(evidence))
+
+    def test_review_submission_closes_due_task_and_self_eval_count(self) -> None:
+        courses = self.root / "learning-paths"
+        courses.mkdir()
+        (courses / "courses.json").write_text(json.dumps({"courses": {"new-engineer": {"title": "测试课程", "units": [{"id": "ne-01", "title": "第一单元"}, {"id": "ne-02", "title": "第二单元"}]}}}), encoding="utf-8")
+        recsys_agent.append_progress(self.root, {"record_type": "course", "action": "submit", "course_id": "new-engineer", "unit_id": "ne-01", "status": "completed", "review_due": "2020-01-01"})
+        self.assertEqual(1, len(recsys_agent.due_reviews(self.root)))
+        evidence = self.root / "review.md"
+        evidence.write_text("## 机制回忆\n机制。\n## 错误设计\n错误。\n## 参数预测\n结果。\n## 迁移取舍\n取舍。\n", encoding="utf-8")
+        result = self.capture_json(recsys_agent.course_review, self.root, "new-engineer", "ne-01", evidence, 0.9)
+        self.assertEqual("completed", result["status"])
+        self.assertEqual([], recsys_agent.due_reviews(self.root))
+        status = self.capture_json(recsys_agent.course_command, self.root, "status", "new-engineer", None, None)
+        self.assertEqual(1, status["completed_units"])
+        with self.assertRaises(SystemExit):
+            self.capture_json(recsys_agent.course_submit, self.root, "new-engineer", "ne-02", self.root / "missing.md", float("nan"), True, True)
+        status = self.capture_json(recsys_agent.course_command, self.root, "status", "new-engineer", None, None)
+        self.assertEqual(1, status["completed_units"])

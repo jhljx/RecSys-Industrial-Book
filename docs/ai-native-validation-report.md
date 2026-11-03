@@ -1,4 +1,7 @@
-# AI-native 改造验证报告
+# AI-native 改造验证报告（历史快照）
+
+> 本报告记录 2026-10-18 的 19 章、72 查询工作区验证，不代表当前 HEAD。当前结果请运行 `python3 tools/recsys_agent.py doctor`、`eval`、`python3 tools/check_knowledge.py` 等命令获取。
+
 
 ## 1. 结论
 

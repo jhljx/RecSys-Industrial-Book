@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="推荐系统：工业架构与核心算法——已发布章节、核心概念、前置依赖与课程学习路径。">
+  <title>全书知识地图 · 推荐系统：工业架构与核心算法</title>
+  <link rel="stylesheet" href="./style.css">
+  <script src="./data.js" defer></script>
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <header class="site-header">
+    <a class="brand" href="../">RECSYS <span>／ 知识地图</span></a>
+    <nav aria-label="页面导航"><a href="./reader.html">阅读 PDF</a><a href="#blueprint">知识蓝图</a><a href="#graph">关系图谱</a><a href="#catalog">章节目录</a><a href="#courses">学习路径</a><a href="../docs/agent-guide.md">本地 Agent</a></nav>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="title">
+      <div class="eyebrow">READER'S ATLAS <span>·</span> 公开章节导航</div>
+      <h1 id="title">读懂全书，<br><em>从一张地图开始。</em></h1>
+      <p>把推荐系统从目标、反馈与评价，接到召回、排序、特征、服务和探索。沿主线认识系统，也可以按概念前置关系找到下一步。</p>
+      <div class="hero-actions"><a class="button primary" href="./reader.html">阅读已发布 PDF <span aria-hidden="true">↗</span></a><a class="button secondary" href="#blueprint">探索知识蓝图</a><a class="button secondary" href="#courses">选择学习路径</a></div>
+      <div class="stats" id="stats" aria-label="知识地图规模"></div>
+    </section>
+    <section class="overview" id="blueprint" aria-labelledby="blueprint-title">
+      <div class="section-heading"><div><span class="overline">01 / STRUCTURE</span><h2 id="blueprint-title">全书知识蓝图</h2><p>按照系统职责组织，而不是按章节编号堆叠。点击板块聚焦相关章节与概念。</p></div><span class="aside-note">章节从 PDF 读取<br>概念从知识卡延伸</span></div>
+      <div class="flow-caption">决策主线 <span aria-hidden="true">→</span> 从系统目标到候选，再到排序与反馈</div>
+      <div class="blueprint-grid" id="blueprint-groups"></div>
+      <p class="legend">蓝图是独立编排的导航层，不是书稿正文。板块间为阅读顺序；概念之间的连线才表示前置依赖。</p>
+    </section>
+    <section class="graph-section" id="graph" aria-labelledby="graph-title">
+      <div class="section-heading"><div><span class="overline">02 / CONNECTIONS</span><h2 id="graph-title">章节聚焦 · 概念关系图谱</h2><p>一次只看一章：本章概念及与它们直接相连的跨章前置、后续概念。箭头表示「前置 → 后续」，不是章节阅读顺序。</p></div></div>
+      <div class="graph-toolbar"><label for="graph-chapter">聚焦章节 <select id="graph-chapter"></select></label><p id="graph-count" role="status" aria-live="polite"></p></div>
+      <div class="graph-key" aria-hidden="true"><span class="graph-key-local">本章概念</span><span class="graph-key-external">跨章概念</span><span>前置 → 后续</span></div>
+      <div id="graph-view" class="graph-view" role="group" aria-label="章节概念关系图"></div>
+      <div id="graph-relations" class="graph-relations" aria-label="当前章节的有向关系"></div>
+      <p class="graph-note">点击或用 Tab 聚焦概念，再按 Enter / 空格打开下方详情。孤立概念仍会展示；图仅显示直接关系，不推断额外依赖。</p>
+    </section>
+    <section class="explorer" id="catalog" aria-labelledby="catalog-title">
+      <div class="section-heading"><div><span class="overline">03 / EXPLORE</span><h2 id="catalog-title">从章节进入，从概念深入</h2><p>筛选章节与概念，打开 PDF、阅读地图和前置知识。</p></div></div>
+      <div class="toolbar"><label class="search-label" for="search">搜索知识体系 <input id="search" type="search" placeholder="例如：精排、MMoE、时长预估…" autocomplete="off"></label><div class="tabs" role="group" aria-label="内容类型"><button class="tab active" type="button" data-kind="chapters" aria-pressed="true">章节</button><button class="tab" type="button" data-kind="concepts" aria-pressed="false">概念</button></div></div>
+      <div class="filter-row" id="filters" role="group" aria-label="知识板块"></div>
+      <p class="result-count" id="result-count" role="status"></p>
+      <div class="explore-layout"><div class="item-grid" id="items"></div><aside class="detail" id="detail" tabindex="-1" aria-live="polite"><div class="detail-empty"><span class="overline">DETAIL</span><h3>选择一张卡片</h3><p>查看它的位置、知识依赖，以及对应的阅读入口。</p></div></aside></div>
+    </section>
+    <section class="courses" id="courses" aria-labelledby="courses-title"><div class="section-heading"><div><span class="overline">04 / LEARNING PATHS</span><h2 id="courses-title">两条路径，同一张地图</h2><p>课程是有前置、有实践、有验收的学习安排；公开页面不读取个人进度。</p></div></div><div id="course-tabs" class="tabs course-tabs" role="group" aria-label="选择课程"></div><div class="course-list" id="course-list"></div></section>
+    <section class="boundary"><span class="overline">SOURCE & BOUNDARY</span><h2>地图负责指路，PDF 才是正文。</h2><p>所有章节阅读以已发布 PDF 为准；概念卡是独立撰写的导航与工程检查，不代替原书。全文检索、个人进度与学习证据仅在本地 Agent 工作流中使用，不上传到这个公开页面。</p><div class="hero-actions"><a class="button primary" href="../docs/agent-guide.md">打开 Agent 使用指南</a><a class="button secondary" href="../knowledge/README.md">查看概念目录</a></div></section>
+  </main>
+  <footer><span>推荐系统：工业架构与核心算法 · 知识地图</span><a href="../">返回书籍首页 ↑</a></footer>
+</body>
+</html>

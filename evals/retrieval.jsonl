@@ -75,3 +75,14 @@
 {"query": "MMoE PLE 专家任务冲突", "expected_chapters": [12]}
 {"query": "ListNet Listwise Loss 请求内列表排序", "expected_chapters": [12]}
 {"query": "精排 Pointwise Pairwise Listwise 概率校准", "expected_chapters": [12]}
+{"query": "ItemCF 协同过滤召回稀疏交互与热门偏置", "expected_chapters": [10]}
+{"query": "图结构召回建图新鲜度与结构消融", "expected_chapters": [10]}
+{"query": "序列召回短期意图与行为顺序", "expected_chapters": [10]}
+{"query": "多兴趣召回兴趣折叠与重复候选", "expected_chapters": [10]}
+{"query": "粗排双塔独立编码与交互损失", "expected_chapters": [11]}
+{"query": "粗排多塔模型延迟反馈与交叉特征", "expected_chapters": [11]}
+{"query": "精排 Target Attention 与 Self Attention 行为依赖取舍", "expected_chapters": [12]}
+{"query": "精排 Pointwise Pairwise Listwise 损失和概率校准", "expected_chapters": [12]}
+{"query": "时长阈值标签绝对时长与完播比例", "expected_chapters": [23]}
+{"query": "时长分桶边界漂移分位点和校准", "expected_chapters": [23]}
+{"query": "混排 Load 流量控制 PID 积分限幅与调节震荡", "expected_chapters": [8]}

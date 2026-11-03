@@ -51,3 +51,9 @@ Knowledge pages MUST keep `本书依据` and `扩展说明` separate. PDF filena
 ## Response contract
 
 For book answers, distinguish `本书依据` and `扩展说明`. For engineering work, distinguish `本书依据`, `工程实现`, `验证`, and `待业务确认`. Never claim that a teaching example is production-ready without the missing integrations and operational controls.
+
+## Public knowledge map
+
+- `knowledge-map/index.html` is a dependency-free reader page for both local `file://` browsing and GitHub Pages under `/RecSys-Industrial-Book/knowledge-map/`.
+- `knowledge-map/data.js` is generated from released chapter maps, concept cards, `knowledge/graph.json`, and `learning-paths/courses.json` by `python3 tools/build_knowledge_map.py`; never edit it by hand or include PDF extraction or private learning state.
+- After changing published knowledge or courses, regenerate the dataset and run `python3 -m unittest discover -s tools/tests -v` plus `python3 tools/check_public_boundary.py`. Keep URLs relative so the same page works locally and under the repository Pages subpath.

@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="在站内阅读《推荐系统：工业架构与核心算法》已发布章节 PDF。">
+  <title>章节 PDF 阅读器 · 推荐系统：工业架构与核心算法</title>
+  <link rel="stylesheet" href="./reader.css">
+  <script src="./data.js" defer></script>
+  <script src="./reader.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#reader">跳到 PDF 阅读区</a>
+  <header class="site-header">
+    <a class="brand" href="./index.html">RECSYS <span>／ PDF 阅读器</span></a>
+    <nav aria-label="页面导航"><a href="./index.html">知识地图</a><a href="../">书籍首页</a></nav>
+  </header>
+  <main id="reader" class="reader-layout" tabindex="-1">
+    <aside class="sidebar" aria-labelledby="chapters-heading">
+      <h1 id="chapters-heading">已发布章节</h1>
+      <p id="chapter-count">正在读取章节目录…</p>
+      <nav aria-label="章节目录"><ol id="chapter-list"></ol></nav>
+    </aside>
+    <section class="reading" aria-labelledby="chapter-title">
+      <div class="reading-heading"><span class="overline">RELEASED PDF / 原书正文</span><h2 id="chapter-title">正在读取章节…</h2><p id="reader-status" role="status" aria-live="polite"></p></div>
+      <div class="controls" aria-label="阅读控制">
+        <div class="chapter-controls"><a id="previous" href="#">← 上一章</a><a id="next" href="#">下一章 →</a></div>
+        <form id="page-form"><label for="page-number">PDF 页码</label><input id="page-number" type="number" min="1" step="1" inputmode="numeric" required aria-describedby="page-help"><button type="submit">跳转</button></form>
+      </div>
+      <p class="hint" id="page-help">页码以 PDF 文件实际页数为准，不是书内印刷页码；章节切换将从第 1 页开始。</p>
+      <div class="pdf-area"><iframe id="pdf-frame" title="章节 PDF" loading="eager"></iframe></div>
+      <div class="fallback"><p>若浏览器不支持在此嵌入 PDF，或本地文件无法预览，可直接打开/下载原始文件。</p><a id="direct-pdf" href="#">直接打开本章 PDF ↗</a><a id="chapter-map" href="#">查看章节阅读地图 ↗</a></div>
+    </section>
+  </main>
+  <footer><span>书籍正文以已发布章节 PDF 为准 · 不采集阅读进度</span><a href="./index.html">返回知识地图 ↑</a></footer>
+</body>
+</html>

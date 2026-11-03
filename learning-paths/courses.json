@@ -42,7 +42,11 @@
             "recsys-funnel",
             "hybrid-architecture",
             "offline-online-evaluation",
-            "ab-experiment"
+            "ab-experiment",
+            "creator-side-recommendation",
+            "offline-online-architecture",
+            "recommendation-log-contract",
+            "ranking-evaluation-metrics"
           ],
           "reading": "ch02 PDF 1-19；ch03 PDF 1-8",
           "deliverable": "请求流、数据流与指标护栏表",
@@ -69,7 +73,13 @@
             "recall-fusion",
             "two-tower",
             "negative-sampling",
-            "hard-negative"
+            "hard-negative",
+            "collaborative-filtering-recall",
+            "graph-recall",
+            "multi-interest-recall",
+            "sequential-recall",
+            "recall-concurrency-isolation",
+            "recall-route-selection"
           ],
           "reading": "ch04 PDF 3-12；ch10 PDF 2-23、54-80",
           "deliverable": "三路召回设计与负采样说明",
@@ -105,7 +115,18 @@
             "model-distillation",
             "feature-crossing-deep-ranking",
             "multi-task-experts",
-            "listwise-ranking-loss"
+            "listwise-ranking-loss",
+            "multi-tower-pre-ranking",
+            "pre-ranking-two-tower",
+            "ranking-loss-selection",
+            "target-attention-ranking",
+            "pre-ranking-chain-consistency",
+            "pre-ranking-objective-fusion",
+            "pre-ranking-set-optimization",
+            "ranking-ltr-choice",
+            "ranking-traffic-control",
+            "lightweight-dnn-pre-ranking",
+            "multi-interest-pre-ranking"
           ],
           "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）",
           "deliverable": "效果-成本 Pareto 表、特征交叉消融、多任务结构与排序损失方案",
@@ -132,7 +153,14 @@
             "diversity",
             "diversity-reranking",
             "mixed-ranking",
-            "score-calibration"
+            "score-calibration",
+            "load-pid-control",
+            "reranking-postprocessing",
+            "reranking-sequence-evaluation",
+            "reranking-sequence-generation",
+            "mixed-sequence-generation",
+            "mixed-sequence-ranking",
+            "mixed-value-evaluation"
           ],
           "reading": "ch07 PDF 3-19；ch08 PDF 2-23",
           "deliverable": "列表约束、校准与流量控制设计",
@@ -158,7 +186,10 @@
           ],
           "concepts": [
             "generative-recsys",
-            "semantic-id"
+            "semantic-id",
+            "generated-item-lookup",
+            "generative-token-objective",
+            "one-stage-generative-alignment"
           ],
           "reading": "ch09 PDF 1-26",
           "deliverable": "生成式方案与双塔 ANN 同预算选型表",
@@ -186,7 +217,10 @@
             "data-leakage",
             "point-in-time-join",
             "offline-pipeline",
-            "model-release"
+            "model-release",
+            "feature-pruning",
+            "forward-inverted-index-update",
+            "late-feedback-labels"
           ],
           "reading": "ch15 PDF 1-38；ch16 PDF 1-20、46-75",
           "deliverable": "特征契约、样本时间线与发布 manifest",
@@ -245,7 +279,9 @@
             "vector-retrieval",
             "ann-index",
             "hnsw",
-            "quantization"
+            "quantization",
+            "ann-index-lifecycle",
+            "lsh-retrieval"
           ],
           "reading": "ch18 PDF 3-46",
           "deliverable": "ANN 选型与容量评估",
@@ -268,7 +304,9 @@
           "concepts": [
             "exposure-bias",
             "position-bias",
-            "position-debiasing"
+            "position-debiasing",
+            "sample-selection-bias",
+            "user-group-bias"
           ],
           "reading": "ch19 PDF 1-13",
           "deliverable": "数据生成机制与偏差诊断表",
@@ -295,7 +333,10 @@
             "duration-distribution",
             "exploration",
             "safe-exploration",
-            "rl-recsys"
+            "rl-recsys",
+            "duration-bucket-modeling",
+            "duration-threshold-labels",
+            "weighted-lr-duration"
           ],
           "reading": "ch23 PDF 2-46；ch28 PDF 3-18",
           "deliverable": "时长标签方案与安全探索决策表",
@@ -370,7 +411,10 @@
             "feedback-loop",
             "recsys-funnel",
             "hybrid-architecture",
-            "cold-start"
+            "cold-start",
+            "creator-side-recommendation",
+            "offline-online-architecture",
+            "recommendation-log-contract"
           ],
           "reading": "ch00 PDF 1-3；ch01 PDF 5-10、28；ch02 PDF 1-19",
           "deliverable": "可证伪 problem statement 与系统边界图",
@@ -396,7 +440,10 @@
             "ab-experiment",
             "exposure-bias",
             "position-bias",
-            "position-debiasing"
+            "position-debiasing",
+            "ranking-evaluation-metrics",
+            "sample-selection-bias",
+            "user-group-bias"
           ],
           "reading": "ch03 PDF 1-8；ch19 PDF 1-13",
           "deliverable": "指标映射、随机化与偏差诊断方案",
@@ -422,7 +469,14 @@
             "recall-fusion",
             "two-tower",
             "negative-sampling",
-            "hard-negative"
+            "hard-negative",
+            "collaborative-filtering-recall",
+            "graph-recall",
+            "multi-interest-recall",
+            "sequential-recall",
+            "filtering",
+            "recall-concurrency-isolation",
+            "recall-route-selection"
           ],
           "reading": "ch04 PDF 3-12；ch10 PDF 2-108",
           "deliverable": "强基线、采样校正和 ANN 接口实验",
@@ -456,7 +510,19 @@
             "model-distillation",
             "feature-crossing-deep-ranking",
             "multi-task-experts",
-            "listwise-ranking-loss"
+            "listwise-ranking-loss",
+            "multi-tower-pre-ranking",
+            "pre-ranking-two-tower",
+            "ranking-loss-selection",
+            "target-attention-ranking",
+            "pre-ranking-chain-consistency",
+            "pre-ranking-objective-fusion",
+            "pre-ranking-set-optimization",
+            "quota-truncation",
+            "ranking-ltr-choice",
+            "ranking-traffic-control",
+            "lightweight-dnn-pre-ranking",
+            "multi-interest-pre-ranking"
           ],
           "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）",
           "deliverable": "固定预算的特征交叉、教师-学生、多专家和 Listwise 消融",
@@ -482,7 +548,15 @@
             "reranking",
             "diversity-reranking",
             "mixed-ranking",
-            "score-calibration"
+            "score-calibration",
+            "load-pid-control",
+            "diversity",
+            "reranking-postprocessing",
+            "reranking-sequence-evaluation",
+            "reranking-sequence-generation",
+            "mixed-sequence-generation",
+            "mixed-sequence-ranking",
+            "mixed-value-evaluation"
           ],
           "reading": "ch07 PDF 1-19；ch08 PDF 1-23",
           "deliverable": "列表级目标、约束和校准实验",
@@ -504,7 +578,10 @@
           ],
           "concepts": [
             "generative-recsys",
-            "semantic-id"
+            "semantic-id",
+            "generated-item-lookup",
+            "generative-token-objective",
+            "one-stage-generative-alignment"
           ],
           "reading": "ch09 PDF 1-26",
           "deliverable": "生成式方案与传统级联的同预算实验",
@@ -528,7 +605,8 @@
             "feature-engineering",
             "feature-freshness",
             "feature-governance",
-            "data-leakage"
+            "data-leakage",
+            "feature-pruning"
           ],
           "reading": "ch15 PDF 1-38",
           "deliverable": "point-in-time 数据卡与交互结构消融",
@@ -554,7 +632,9 @@
           "concepts": [
             "offline-pipeline",
             "point-in-time-join",
-            "model-release"
+            "model-release",
+            "forward-inverted-index-update",
+            "late-feedback-labels"
           ],
           "reading": "ch16 PDF 1-75",
           "deliverable": "数据快照、训练、评估、发布与回滚契约",
@@ -581,7 +661,14 @@
             "latency-budget",
             "vector-retrieval",
             "hnsw",
-            "quantization"
+            "quantization",
+            "embedding-server",
+            "fallback",
+            "observability",
+            "overload-control",
+            "ann-index-lifecycle",
+            "ann-index",
+            "lsh-retrieval"
           ],
           "reading": "ch17 PDF 1-26；ch18 PDF 3-46",
           "deliverable": "模型服务预算与 ANN 效果-成本曲线",
@@ -607,7 +694,10 @@
           "concepts": [
             "consistency-modeling",
             "duration-modeling",
-            "duration-distribution"
+            "duration-distribution",
+            "duration-bucket-modeling",
+            "duration-threshold-labels",
+            "weighted-lr-duration"
           ],
           "reading": "ch23 PDF 2-46",
           "deliverable": "阈值、加权、分桶或分布建模对比",

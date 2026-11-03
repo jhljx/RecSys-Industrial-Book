@@ -4,36 +4,70 @@
     "industrial-recsys-scope",
     "cold-start",
     "feedback-loop",
+    "creator-side-recommendation",
     "hybrid-architecture",
+    "offline-online-architecture",
+    "recommendation-log-contract",
     "recsys-funnel",
     "ab-experiment",
     "offline-online-evaluation",
+    "ranking-evaluation-metrics",
     "filtering",
     "multi-recall",
+    "recall-concurrency-isolation",
     "recall-fusion",
+    "recall-route-selection",
     "pre-ranking",
+    "pre-ranking-chain-consistency",
+    "pre-ranking-objective-fusion",
+    "pre-ranking-set-optimization",
     "quota-truncation",
     "multi-objective",
     "ranking",
     "ranking-formula",
+    "ranking-ltr-choice",
+    "ranking-traffic-control",
     "diversity",
     "diversity-reranking",
     "reranking",
+    "reranking-postprocessing",
+    "reranking-sequence-evaluation",
+    "reranking-sequence-generation",
+    "load-pid-control",
     "mixed-ranking",
+    "mixed-sequence-generation",
+    "mixed-sequence-ranking",
+    "mixed-value-evaluation",
     "score-calibration",
+    "generated-item-lookup",
     "generative-recsys",
+    "generative-token-objective",
+    "one-stage-generative-alignment",
     "semantic-id",
+    "collaborative-filtering-recall",
+    "graph-recall",
     "hard-negative",
+    "multi-interest-recall",
     "negative-sampling",
+    "sequential-recall",
     "two-tower",
+    "lightweight-dnn-pre-ranking",
     "model-distillation",
+    "multi-interest-pre-ranking",
+    "multi-tower-pre-ranking",
+    "pre-ranking-two-tower",
     "feature-crossing-deep-ranking",
     "listwise-ranking-loss",
     "multi-task-experts",
+    "ranking-loss-selection",
+    "target-attention-ranking",
     "data-leakage",
     "feature-engineering",
     "feature-freshness",
     "feature-governance",
+    "feature-pruning",
+    "forward-inverted-index-update",
+    "late-feedback-labels",
     "model-release",
     "offline-pipeline",
     "point-in-time-join",
@@ -45,15 +79,22 @@
     "overload-control",
     "version-consistency",
     "ann-index",
+    "ann-index-lifecycle",
     "hnsw",
+    "lsh-retrieval",
     "quantization",
     "vector-retrieval",
     "exposure-bias",
     "position-bias",
     "position-debiasing",
+    "sample-selection-bias",
+    "user-group-bias",
     "consistency-modeling",
+    "duration-bucket-modeling",
     "duration-distribution",
     "duration-modeling",
+    "duration-threshold-labels",
+    "weighted-lr-duration",
     "exploration",
     "rl-recsys",
     "safe-exploration"
@@ -68,8 +109,20 @@
       "feedback-loop"
     ],
     [
+      "hybrid-architecture",
+      "creator-side-recommendation"
+    ],
+    [
       "recsys-funnel",
       "hybrid-architecture"
+    ],
+    [
+      "recsys-funnel",
+      "offline-online-architecture"
+    ],
+    [
+      "offline-online-architecture",
+      "recommendation-log-contract"
     ],
     [
       "offline-online-evaluation",
@@ -78,6 +131,10 @@
     [
       "feedback-loop",
       "offline-online-evaluation"
+    ],
+    [
+      "offline-online-evaluation",
+      "ranking-evaluation-metrics"
     ],
     [
       "multi-recall",
@@ -89,11 +146,35 @@
     ],
     [
       "multi-recall",
+      "recall-concurrency-isolation"
+    ],
+    [
+      "multi-recall",
       "recall-fusion"
+    ],
+    [
+      "multi-recall",
+      "recall-route-selection"
     ],
     [
       "recsys-funnel",
       "pre-ranking"
+    ],
+    [
+      "pre-ranking",
+      "pre-ranking-chain-consistency"
+    ],
+    [
+      "pre-ranking",
+      "pre-ranking-objective-fusion"
+    ],
+    [
+      "pre-ranking",
+      "pre-ranking-set-optimization"
+    ],
+    [
+      "quota-truncation",
+      "pre-ranking-set-optimization"
     ],
     [
       "pre-ranking",
@@ -112,11 +193,19 @@
       "ranking-formula"
     ],
     [
+      "ranking",
+      "ranking-ltr-choice"
+    ],
+    [
+      "ranking-formula",
+      "ranking-traffic-control"
+    ],
+    [
       "reranking",
       "diversity"
     ],
     [
-      "reranking",
+      "diversity",
       "diversity-reranking"
     ],
     [
@@ -125,11 +214,55 @@
     ],
     [
       "reranking",
+      "reranking-postprocessing"
+    ],
+    [
+      "reranking-sequence-generation",
+      "reranking-sequence-evaluation"
+    ],
+    [
+      "reranking",
+      "reranking-sequence-generation"
+    ],
+    [
+      "mixed-ranking",
+      "load-pid-control"
+    ],
+    [
+      "score-calibration",
+      "load-pid-control"
+    ],
+    [
+      "reranking",
       "mixed-ranking"
     ],
     [
       "mixed-ranking",
+      "mixed-sequence-generation"
+    ],
+    [
+      "score-calibration",
+      "mixed-sequence-generation"
+    ],
+    [
+      "mixed-sequence-generation",
+      "mixed-sequence-ranking"
+    ],
+    [
+      "mixed-sequence-ranking",
+      "mixed-value-evaluation"
+    ],
+    [
+      "mixed-ranking",
       "score-calibration"
+    ],
+    [
+      "semantic-id",
+      "generated-item-lookup"
+    ],
+    [
+      "generative-token-objective",
+      "generated-item-lookup"
     ],
     [
       "ranking",
@@ -137,23 +270,75 @@
     ],
     [
       "generative-recsys",
+      "generative-token-objective"
+    ],
+    [
+      "semantic-id",
+      "generative-token-objective"
+    ],
+    [
+      "semantic-id",
+      "one-stage-generative-alignment"
+    ],
+    [
+      "generative-token-objective",
+      "one-stage-generative-alignment"
+    ],
+    [
+      "generative-recsys",
       "semantic-id"
+    ],
+    [
+      "multi-recall",
+      "collaborative-filtering-recall"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "graph-recall"
     ],
     [
       "negative-sampling",
       "hard-negative"
     ],
     [
+      "sequential-recall",
+      "multi-interest-recall"
+    ],
+    [
       "two-tower",
       "negative-sampling"
+    ],
+    [
+      "two-tower",
+      "sequential-recall"
     ],
     [
       "multi-recall",
       "two-tower"
     ],
     [
+      "pre-ranking-two-tower",
+      "lightweight-dnn-pre-ranking"
+    ],
+    [
       "pre-ranking",
       "model-distillation"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "multi-interest-pre-ranking"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "multi-tower-pre-ranking"
+    ],
+    [
+      "pre-ranking",
+      "pre-ranking-two-tower"
+    ],
+    [
+      "two-tower",
+      "pre-ranking-two-tower"
     ],
     [
       "ranking",
@@ -166,6 +351,22 @@
     [
       "multi-objective",
       "multi-task-experts"
+    ],
+    [
+      "ranking",
+      "ranking-loss-selection"
+    ],
+    [
+      "listwise-ranking-loss",
+      "ranking-loss-selection"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "target-attention-ranking"
+    ],
+    [
+      "sequential-recall",
+      "target-attention-ranking"
     ],
     [
       "feature-engineering",
@@ -182,6 +383,18 @@
     [
       "feature-engineering",
       "feature-governance"
+    ],
+    [
+      "feature-engineering",
+      "feature-pruning"
+    ],
+    [
+      "offline-pipeline",
+      "forward-inverted-index-update"
+    ],
+    [
+      "offline-pipeline",
+      "late-feedback-labels"
     ],
     [
       "offline-pipeline",
@@ -229,7 +442,15 @@
     ],
     [
       "ann-index",
+      "ann-index-lifecycle"
+    ],
+    [
+      "ann-index",
       "hnsw"
+    ],
+    [
+      "ann-index",
+      "lsh-retrieval"
     ],
     [
       "ann-index",
@@ -252,8 +473,20 @@
       "position-debiasing"
     ],
     [
+      "exposure-bias",
+      "sample-selection-bias"
+    ],
+    [
+      "exposure-bias",
+      "user-group-bias"
+    ],
+    [
       "version-consistency",
       "consistency-modeling"
+    ],
+    [
+      "duration-modeling",
+      "duration-bucket-modeling"
     ],
     [
       "duration-modeling",
@@ -262,6 +495,14 @@
     [
       "multi-objective",
       "duration-modeling"
+    ],
+    [
+      "duration-modeling",
+      "duration-threshold-labels"
+    ],
+    [
+      "duration-modeling",
+      "weighted-lr-duration"
     ],
     [
       "cold-start",
