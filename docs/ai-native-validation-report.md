@@ -133,7 +133,7 @@ python3 templates/serving-reliability/app.py --requests 100 --capacity 80 --depe
 | L2 | `learn "时长建模" --level graduate --minutes 300` | `graduate` 映射为 `advanced`；`concept_id=duration-modeling`；步骤覆盖强基线、偏差、消融和复现条件，分钟数 `75+105+75+45=300` |
 | D1 | `design` 输入 objective、QPS、P99、items、freshness、availability、cost | `status=complete`；请求链路、分阶段 P99、`minimum_inflight_at_p99=2000`、容量公式、版本、降级、监控、灰度和回滚均结构化输出；未实测的单副本容量仍列为 unresolved |
 | G1 | `debug "召回 P99 上升且空结果率增加"` | `status=complete`；输出假设、所需证据、未确认结论、修复和恢复验证，不臆断根因 |
-| R1 | `review templates/feature-consistency/app.py` | `status=complete`；定位 point-in-time 条件和拒绝门禁，给出风险、修复与可杀死错误的验证要求 |
+| R1 | `review templates/feature-consistency/app.py` | `status=complete`；定位 point-in-time 条件和拒绝门禁，给出风险、修复与可杀死错误的验证要求。静态检查仅识别 Python AST 中的明确表达式，不替代运行测试 |
 | 检索 | `python3 tools/recsys_agent.py eval` | 固定题目未改；Hit@1、Recall@5、引用有效率均为 100% |
 
 ## 6. 盲评工作流复验

@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import ast
 import hashlib
 import json
 import math
@@ -595,27 +596,82 @@ def source_rows(root: Path, query: str, limit: int = 3) -> list[dict[str, object
     return [{"chapter": chunk.chapter, "source": chunk.source, "page": chunk.page_start, "section": chunk.section} for _, chunk in rank(root, query)[:limit]]
 
 
-def parse_quantity(value: str) -> float | None:
-    match = re.fullmatch(r"\s*([0-9]+(?:\.[0-9]+)?)\s*([kKmM]?)\s*(?:ms|items?)?\s*", value)
+def explain(root: Path, topic: str, audience: str) -> None:
+    audience_guidance = {
+        "graduate": ["定义问题与目标", "解释建模假设和关键机制", "比较强基线、评价方法与研究边界"],
+        "new-engineer": ["说明模块解决的问题及其在推荐链路中的位置", "讲清输入、输出和关键工程取舍", "补充常见失败模式与验证方法"],
+        "interview": ["用简洁定义说明核心概念", "解释关键机制和适用条件", "总结一项主要取舍与常见追问"],
+    }
+    results = rank(root, topic)[:5]
+    evidence = [
+        {
+            "source": chunk.source,
+            "chapter": chunk.chapter,
+            "page": chunk.page_start,
+            "section": chunk.section,
+            "excerpt": normalize(chunk.text)[:500],
+        }
+        for _, chunk in results
+    ]
+    report = {
+        "status": "ready" if evidence else "needs_source",
+        "topic": topic,
+        "audience": audience,
+        "explanation_outline": audience_guidance[audience],
+        "evidence": evidence,
+        "instruction": "仅将 evidence 支持的内容表述为本书结论；其他知识标记为扩展说明。此命令提供证据和讲解提纲，不生成模型撰写的答案。",
+    }
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+
+
+def parse_quantity(value: str, expected_unit: str | None = None) -> float | None:
+    match = re.fullmatch(r"\s*([0-9]+(?:\.[0-9]+)?(?:[eE][+-]?[0-9]+)?)\s*([kKmM]?)\s*(ms|items?)?\s*", value, re.I)
     if not match:
         return None
+    unit = (match.group(3) or "").lower()
+    if unit and unit != expected_unit and not (expected_unit == "items" and unit == "item"):
+        return None
     scale = {"": 1.0, "k": 1_000.0, "m": 1_000_000.0}[match.group(2).lower()]
-    return float(match.group(1)) * scale
+    try:
+        return float(match.group(1)) * scale
+    except OverflowError:
+        return math.inf
 
 
 def design(root: Path, topic: str, constraints: list[str]) -> None:
     required = ["objective", "qps", "p99", "items", "freshness", "availability", "cost"]
     parsed = dict(item.split("=", 1) for item in constraints if "=" in item)
-    missing = [key for key in required if key not in parsed]
-    p99_ms = parse_quantity(parsed.get("p99", ""))
+    missing = [key for key in required if not parsed.get(key, "").strip()]
+    p99_ms = parse_quantity(parsed.get("p99", ""), "ms")
     qps = parse_quantity(parsed.get("qps", ""))
+    items = parse_quantity(parsed.get("items", ""), "items")
+    invalid: list[str] = []
+    for key, value in (("qps", qps), ("p99", p99_ms), ("items", items)):
+        if key not in missing and (value is None or not math.isfinite(value) or value <= 0):
+            invalid.append(key)
+    availability = parsed.get("availability", "").strip()
+    if "availability" not in missing:
+        match = re.fullmatch(r"([0-9]+(?:\.[0-9]+)?)%?", availability)
+        if not match or not 0 < float(match.group(1)) <= 100:
+            invalid.append("availability")
     budget_names = ("gateway", "feature", "recall", "ranking", "reranking", "reserve")
-    budgets = allocate_minutes(round(p99_ms), (5, 15, 30, 30, 5, 15)) if p99_ms and p99_ms >= len(budget_names) else []
+    if p99_ms and p99_ms > 0:
+        raw_budgets = [p99_ms * weight / 100 for weight in (5, 15, 30, 30, 5, 15)]
+        budgets = raw_budgets[:-1] + [p99_ms - sum(raw_budgets[:-1])]
+    else:
+        budgets = []
+    minimum_inflight = None
+    if qps and p99_ms and "qps" not in invalid and "p99" not in invalid:
+        inflight = qps * (p99_ms / 1000)
+        if math.isfinite(inflight):
+            minimum_inflight = math.ceil(inflight)
+        else:
+            invalid.append("qps*p99")
     report = {
-        "status": "needs_input" if missing else "complete", "system": topic, "constraints": parsed, "missing": missing,
+        "status": "needs_input" if missing or invalid else "complete", "system": topic, "constraints": parsed, "missing": missing, "invalid": invalid,
         "request_flow": ["gateway", "feature snapshot", "parallel multi-recall", "merge/filter", "pre-rank", "rank", "rerank", "response"],
         "latency_budget": [{"stage": name, "p99_ms": value} for name, value in zip(budget_names, budgets)],
-        "capacity": {"offered_qps": qps, "minimum_inflight_at_p99": math.ceil(qps * p99_ms / 1000) if qps and p99_ms else None, "replica_formula": "ceil(peak_qps / measured_safe_qps_per_replica * headroom)", "headroom": "1.3-2.0; confirm with peak shape and failure-domain target", "unresolved": ["measured safe QPS/replica", "peak-to-average ratio", "candidate count per stage"]},
+        "capacity": {"offered_qps": qps, "items": items, "minimum_inflight_at_p99": minimum_inflight, "replica_formula": "ceil(peak_qps / measured_safe_qps_per_replica * headroom)", "headroom": "1.3-2.0; confirm with peak shape and failure-domain target", "unresolved": ["measured safe QPS/replica", "peak-to-average ratio", "candidate count per stage"]},
         "version_contract": "One release manifest binds model, feature schema, Embedding and ANN index; cache/request keys carry release_id; incompatible releases fail closed.",
         "overload_and_fallback": ["Bound queues and concurrency per dependency", "Apply stage deadlines within the end-to-end budget", "Drop optional recall routes before core routes", "Return version-compatible popular/fresh candidates when personalization cannot finish"],
         "observability": ["stage P50/P95/P99", "queue depth and timeout rate", "candidate counts and empty-result rate", "fallback reason", "release_id and feature freshness", "objective guardrails"],
@@ -630,21 +686,44 @@ def design(root: Path, topic: str, constraints: list[str]) -> None:
 def review_surface(root: Path, path: Path) -> None:
     if not path.exists() or not path.is_file():
         raise SystemExit(f"评审目标不是可读文件：{path}")
-    lines = path.read_text(encoding="utf-8").splitlines()
+    text = path.read_text(encoding="utf-8")
     findings: list[dict[str, object]] = []
-    for number, line in enumerate(lines, 1):
-        if "feature.timestamp <= label.timestamp" in line:
-            findings.append({"severity": "pass", "line": number, "finding": "Point-in-time join excludes future features.", "invariant": "feature_time <= label_time"})
-        if 'row["feature_time"] > row["label_time"]' in line:
-            findings.append({"severity": "pass", "line": number, "finding": "A second validation gate rejects leaked rows.", "verification": "Run with --inject-leakage and require exit code 2."})
+    parse_error = None
+    try:
+        tree = ast.parse(text, filename=str(path))
+    except SyntaxError as error:
+        tree = None
+        parse_error = f"{error.msg} at line {error.lineno}"
+
+    def attribute_name(node: ast.expr) -> tuple[str, str] | None:
+        if isinstance(node, ast.Attribute) and isinstance(node.value, ast.Name):
+            return node.value.id, node.attr
+        return None
+
+    def subscript_name(node: ast.expr) -> tuple[str, str] | None:
+        if isinstance(node, ast.Subscript) and isinstance(node.value, ast.Name) and isinstance(node.slice, ast.Constant) and isinstance(node.slice.value, str):
+            return node.value.id, node.slice.value
+        return None
+
+    if tree:
+        for node in ast.walk(tree):
+            if not isinstance(node, ast.Compare) or len(node.ops) != 1 or len(node.comparators) != 1:
+                continue
+            left, right = node.left, node.comparators[0]
+            if isinstance(node.ops[0], ast.LtE) and attribute_name(left) == ("feature", "timestamp") and attribute_name(right) == ("label", "timestamp"):
+                findings.append({"severity": "pass", "line": node.lineno, "finding": "Point-in-time join excludes future features.", "invariant": "feature_time <= label_time"})
+            if isinstance(node.ops[0], ast.Gt) and subscript_name(left) == ("row", "feature_time") and subscript_name(right) == ("row", "label_time"):
+                findings.append({"severity": "pass", "line": node.lineno, "finding": "A second validation gate rejects leaked rows.", "verification": "Run with --inject-leakage and require exit code 2."})
     report = {
         "status": "complete", "target": str(path),
         "findings": findings or [{"severity": "needs_manual_review", "finding": "No supported domain invariant was recognized; no clean bill of health is asserted."}],
         "risk": "critical if either point-in-time predicate or rejection gate is removed" if findings else "undetermined",
         "required_verification": ["normal path succeeds", "future-feature injection is rejected", "boundary timestamps remain eligible"],
         "sources": source_rows(root, "样本穿越 point in time join 特征时效性"),
-        "limitations": ["Static inspection recognizes explicit repository patterns; execute tests and inspect data contracts before production approval."],
+        "limitations": ["Static AST inspection recognizes only explicit Python patterns; a recognized expression is not proof of correct runtime behavior. Execute tests and inspect data contracts before production approval."],
     }
+    if parse_error:
+        report["parse_error"] = parse_error
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
