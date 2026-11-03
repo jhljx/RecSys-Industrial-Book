@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{ page.title | default: site.title | escape }}</title>
+  <link rel="stylesheet" href="{{ '/knowledge-map/style.css' | relative_url }}">
+  <link rel="stylesheet" href="{{ '/knowledge-map/document.css' | relative_url }}">
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <header class="site-header"><a class="brand" href="{{ '/knowledge-map/' | relative_url }}">RECSYS <span>／ 阅读与实践</span></a><nav aria-label="页面导航"><a href="{{ '/knowledge-map/' | relative_url }}">知识地图</a><a href="{{ '/knowledge-map/reader.html' | relative_url }}">阅读 PDF</a><a href="{{ '/knowledge-map/agent.html' | relative_url }}">本地 Agent</a><a href="{{ '/knowledge-map/#courses' | relative_url }}">学习路径</a></nav></header>
+  <main id="main" class="document">{{ content }}</main>
+  <footer><span>推荐系统：工业架构与核心算法 · 文档</span><a href="{{ '/knowledge-map/' | relative_url }}">返回知识地图 ↑</a></footer>
+</body>
+</html>

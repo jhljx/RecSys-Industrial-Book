@@ -1,0 +1,9 @@
+title: 推荐系统：工业架构与核心算法
+url: https://jhljx.github.io
+baseurl: /RecSys-Industrial-Book
+# Apply the shared theme to Markdown documents without duplicating their sources.
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: default

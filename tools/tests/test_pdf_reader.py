@@ -38,6 +38,21 @@ class PdfReaderTest(unittest.TestCase):
         self.assertIn('reader.html', (READER / "index.html").read_text(encoding="utf-8"))
         self.assertIn('reader.html#ch${c.number}', (READER / "app.js").read_text(encoding="utf-8"))
 
+    def test_public_entrypoints_share_the_knowledge_map_theme(self) -> None:
+        root = (ROOT / "index.html").read_text(encoding="utf-8")
+        self.assertIn("./knowledge-map/", root)
+        map_page = (READER / "index.html").read_text(encoding="utf-8")
+        self.assertIn('href="./agent.html"', map_page)
+        agent_page = (READER / "agent.html").read_text(encoding="utf-8")
+        self.assertIn("./style.css", agent_page)
+        self.assertIn("./agent.css", agent_page)
+        self.assertTrue((READER / "agent.css").is_file())
+
+    def test_reader_layout_can_use_full_viewport_width(self) -> None:
+        css = (READER / "reader.css").read_text(encoding="utf-8")
+        self.assertIn(".reader-layout{max-width:none;width:100%", css)
+        self.assertIn(".reader-layout .reading{min-width:0;max-width:none;padding:0}", css)
+
 
 if __name__ == "__main__":
     unittest.main()
