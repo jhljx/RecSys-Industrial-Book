@@ -51,7 +51,7 @@ class PdfReaderTest(unittest.TestCase):
     def test_reader_layout_can_use_full_viewport_width(self) -> None:
         css = (READER / "reader.css").read_text(encoding="utf-8")
         self.assertIn(".reader-layout{max-width:none;width:100%", css)
-        self.assertIn(".reader-layout .reading{min-width:0;max-width:none;padding:0}", css)
+        self.assertIn(".reader-layout .reading{min-width:0;width:100%;max-width:none;padding:0}", css)
 
 
 if __name__ == "__main__":
