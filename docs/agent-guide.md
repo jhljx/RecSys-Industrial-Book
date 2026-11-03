@@ -26,7 +26,7 @@ python3 tools/recsys_agent.py search --help
 |---|---|---|
 | `index` | 构建或刷新本地 PDF 索引 | 分块数与 manifest |
 | `doctor` | 检查依赖、知识源和索引新鲜度 | `index=ready/stale` |
-| `search` | 混合检索 PDF | 文件、PDF 页、节、摘录 |
+| `search` | BM25 词项评分与特征哈希相似度检索 PDF | 文件、PDF 页、节、摘录 |
 | `page` | 阅读一个命中页 | 该 PDF 页的本地提取文本 |
 | `eval` | 运行检索与引用基准 | Hit@1、Recall@5、引用有效率 |
 | `learn` | 生成自由主题限时学习计划 | 前置、阅读页、主题化时间预算、实践与验收 |
@@ -35,7 +35,7 @@ python3 tools/recsys_agent.py search --help
 | `next` | 按前置与掌握状态推荐下一主题 | 概念 ID 列表 |
 | `graph` | 输出全局或课程 Mermaid 知识图谱 | 节点与依赖边 |
 | `self-eval` | 生成读者本地自测报告 | 检索、引用、学习与复习状态 |
-| `explain` | 按受众组织解释 | 解释结构与 PDF 证据 |
+| `explain` | 按受众组织讲解提纲和 PDF 证据 | 受众提纲、引用页码、证据摘录 |
 | `design` | 生成可机读系统设计报告 | 链路、P99 预算、容量、稳定性、版本与发布契约 |
 | `review` | 生成带位置的领域评审报告 | 发现、风险、修复与验证要求 |
 | `debug` | 生成证据优先诊断报告 | 假设、证据、结论、修复与恢复验证 |
@@ -51,6 +51,9 @@ python3 tools/recsys_agent.py search "HNSW efSearch 如何影响召回和延迟"
 # 限定章节和返回数量
 python3 tools/recsys_agent.py search "负采样" --chapter 10 --limit 3
 
+# 生成面向不同读者的讲解提纲和证据包
+python3 tools/recsys_agent.py explain "双塔召回" --audience new-engineer
+
 # 供脚本消费
 python3 tools/recsys_agent.py search "Embedding 版本" --json
 
@@ -63,6 +66,8 @@ python3 tools/recsys_agent.py page --chapter 17 --page 17
 - `本书依据`：只陈述发布 PDF 支持的内容并标注文件和 PDF 页；
 - `扩展说明`：工程经验、外部资料或推导；
 - 找不到时明确说发布章节未覆盖，不补造书中结论。
+
+`explain` 只生成受众化讲解提纲和证据包，不会自行调用语言模型生成答案。CLI 的相似度特征基于词项哈希，不是 embedding 或真正的语义检索；跨措辞检索效果应以固定评测集为准。
 
 章节级学习入口是 [`knowledge/chapters/README.md`](../knowledge/chapters/README.md)；概念入口是 [`knowledge/README.md`](../knowledge/README.md)。章节地图不是正文替代品。
 
@@ -116,6 +121,8 @@ python3 tools/recsys_agent.py design "在线推荐服务" \
 
 输出 JSON 包含请求链路、数值 P99 预算、最小并发量、容量公式、版本契约、过载/降级、观测、灰度、回滚、来源和仍待确认约束。给出 `qps` 与 `p99` 时会计算 `minimum_inflight_at_p99 = ceil(qps × p99_seconds)`；单副本安全 QPS 等实测参数不会臆造。
 
+`qps`、`p99`、`items` 必须是正数（支持 `k`/`m` 后缀和科学计数法；P99 可带 `ms`）；`availability` 必须在 0 到 100 之间。无效输入会列入 `invalid` 并将状态设为 `needs_input`。
+
 ### 评审
 
 ```bash
@@ -123,6 +130,8 @@ python3 tools/recsys_agent.py review templates/recommendation-pipeline/app.py
 ```
 
 输出 JSON 包含精确文件位置、风险、建议修复、可杀死变异的验证要求和 PDF 来源。静态检查只识别仓库内显式模式，不能替代运行验证。
+
+当前 PIT 检查只通过 Python AST 识别少数明确比较表达式；识别到表达式不代表运行时行为正确。未识别代码或语法错误时不会出具通过结论。
 
 ### 排障
 
