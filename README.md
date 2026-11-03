@@ -70,6 +70,10 @@ python3 tools/install_skills.py --client claude
 
 项目入口：[`knowledge/chapters/`](knowledge/chapters/README.md) 的章节阅读地图、[`knowledge/`](knowledge/README.md) 的概念卡与前置图谱、[`learning-paths/new-engineer.md`](learning-paths/new-engineer.md) 的新人课程、[`learning-paths/graduate.md`](learning-paths/graduate.md) 的研究生课程，以及 [`templates/`](templates/) 的四个可运行项目。完整命令和引用规则见 [`docs/agent-guide.md`](docs/agent-guide.md)；课程提示词、证据模板、反馈与隐私边界见 [`docs/learning-agent-guide.md`](docs/learning-agent-guide.md)；评测协议见 [`evals/usability.md`](evals/usability.md)。
 
+## Star 趋势
+
+[![Star History Chart](https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left)](https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left)
+
 ### 内容更新不会漏掉课程
 
 新章节在私有写作仓库完成 LaTeX 和审阅 PDF 后，发布工作流要求同时提交章节地图、1–3 张概念卡以及新人/研究生两条课程的单元更新。发布器会拒绝缺失课程更新、未知 concept、未覆盖新章节或仍有待定 PDF 页码的发布，再确定性重建知识目录与图谱。因此 `knowledge/`、`concepts` 和 `learning-paths/courses.json` 与新章节一同演进，而不是靠事后手工补齐。
@@ -836,13 +840,7 @@ python3 tools/install_skills.py --client claude
         - 38.2 核心研究方向
         - 38.3 前沿展望
 
-## 其他入口
-
-### Star 趋势
-
-[![Star History Chart](https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left)](https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left)
-
-### 社交媒体
+## 作者与联系
 
 欢迎关注小红书账号：
 
