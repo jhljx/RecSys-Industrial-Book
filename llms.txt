@@ -2,13 +2,24 @@
 
 ## Overview
 
-RecSys-Industrial-Book is an open-source book about industrial-scale recommender systems.
+RecSys-Industrial-Book pairs an open-source Chinese e-book on industrial recommender systems with a local-first, AI-native learning toolkit.
 
-The book focuses on the architecture, algorithms, engineering practices, and future trends of modern recommendation systems.
+Released chapter PDFs are the authoritative book content. The Agent indexes those PDFs locally to support grounded Q&A with PDF-page citations, adaptive learning paths, review, self-evaluation, and runnable recommender-system engineering exercises.
 
-It aims to bridge the gap between academic recommender system research and real-world industrial recommendation engineering.
+The repository does not publish LaTeX sources or a prose-equivalent Markdown edition. Curated knowledge maps and learning paths are navigation and practice aids, not substitutes for the book.
 
-The book is written for recommendation system engineers, machine learning engineers, AI researchers, and students who want to understand how large-scale recommender systems are designed and deployed.
+The primary audience is graduate students, recommender-system and machine-learning engineers, architects, and researchers with basic ML/recommendation knowledge. The book and learning materials are primarily in Chinese.
+
+## AI-native learning toolkit
+
+The local CLI and compatible Agent Skills turn the book into an interactive learning workflow:
+
+* Search released PDFs and cite the source chapter and PDF page.
+* Follow 12-week engineering or graduate learning paths with feedback, evidence-based completion, and delayed review.
+* Explore chapter maps and concept prerequisites, then generate self-evaluations.
+* Practice industrial recommendation design, code review, debugging, and runnable templates.
+
+Start with [docs/agent-guide.md](docs/agent-guide.md), [AGENTS.md](AGENTS.md), or run `python3 tools/recsys_agent.py --help`. The PDF index and personal progress stay local in the ignored `.recsys-agent/` directory; no MCP or hosted knowledge base is required.
 
 ## Main Topics
 
@@ -173,4 +184,3 @@ generative recommendation
 LLM recommendation
 
 AI recommendation system
-

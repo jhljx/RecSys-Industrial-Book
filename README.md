@@ -6,31 +6,26 @@
 
 # RecSys-Industrial-Book
 
-**《推荐系统：工业架构与核心算法》开源书稿**  
-AI Agent 使用入口:[`AGENTS.md`](AGENTS.md)、[`CLAUDE.md`](CLAUDE.md)、[`docs/agent-guide.md`](docs/agent-guide.md)；按学习反馈运行 12 周课程见 [`docs/learning-agent-guide.md`](docs/learning-agent-guide.md)。仓库仅从已发布 PDF 在本地临时建立检索索引,不公开 LaTeX 或正文等价 Markdown。
+**《推荐系统：工业架构与核心算法》开源书稿 + AI-native 学习工作台**
 
-🔖 定位：工业级推荐系统硬核专著，主打全链路系统化思维，拒绝碎片化知识点  
-🎯 受众：具备机器学习 / 推荐基础的研究生、算法 / 架构 / 策略工程师、技术研究者  
-❗ 不适合纯零基础小白（建议先学习机器学习与深度学习入门知识）  
-💡 创作理念：随着AI的快速发展，写代码门槛已逐步降低。因此本书主要聚焦于系统认知、架构设计、模块协同、工业策略、业务权衡等方面，帮助大家建立一种系统化、模块化的思维。  
-📦 内容：全书上下册 PDF + 配套可运行代码、实验案例、补充资料（持续更新）  
-📄 授权：个人学习非商用，转载 / 引用请注明出处
+把已发布章节 PDF 作为权威知识源，通过本地优先的 AI Agent 将书稿连接到检索引用、课程学习、复习评估和可运行的推荐系统实践。知识地图帮助定位内容，Agent 帮助读者把内容学会、用起来。
 
-## 社交媒体
+> 面向具备机器学习或推荐基础的研究生、推荐/算法工程师、架构师和技术研究者。零基础读者建议先补机器学习与深度学习基础。书稿和主要学习资料以中文为主。
 
-以下是我的小红书账号，欢迎大家关注我！
+**English:** An industrial recommender-systems e-book paired with a local-first AI Agent learning toolkit for PDF-grounded Q&A, cited retrieval, adaptive courses, review, and hands-on engineering practice.
 
-![小红书账号](/image/social_media.JPG)
+📖 [在线阅读与已发布章节 PDF](https://jhljx.github.io/RecSys-Industrial-Book/) · 🤖 [Agent 五分钟开始](docs/agent-guide.md#1-五分钟开始) · 🎓 [12 周课程](learning-paths/new-engineer.md) · 🧭 [章节地图](knowledge/chapters/README.md) · 🧪 [可运行项目](templates/)
 
+**书稿**：持续更新的上下册电子书稿，聚焦工业推荐系统的全链路架构、算法、工程实践与业务权衡；只发布已审阅的章节 PDF，不公开 LaTeX 或正文等价 Markdown。
 
-## Star趋势
+**AI Agent**：直接基于发布 PDF 建立本地检索索引，提供页码引用、学习路径、练习与工程工作流；无需 MCP 或云端知识库，索引和个人进度保存在本机。
 
-[![Star History Chart](https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left&sealed_token=QQ2nabIzoDUPOEalArQIzS-v5IfLPFt1QCHPIOv6cVpQ1_1Jr3aHpqMvn2UzxFgzK7_ffFuYFvOlUWDCFLbBwK3rnBGHKhQGYV2skkO1mpFpdRsGeNaDakGPE8gCDxbp9bWUHa7zFbic3GZgZd6TaDEieKMAQDbD-ye4ECar1or6E0Oxl3kGG75I3qFK)](https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left)
+**授权**：个人学习非商用；转载或引用请注明出处。
 
 
-## AI Agent：把电子书变成可执行的工业级推荐系统知识库
+## AI Agent 学习工作台：让电子书可检索、可学习、可实践
 
-发布 PDF 是唯一权威正文；`knowledge/` 提供独立撰写的章节地图、概念卡和前置图谱；`learning-paths/` 提供证据化课程；`.agents/skills/` 可安装到 Claude Code 等兼容客户端；`templates/` 提供可运行的工业推荐系统练习。无需 MCP 或云端知识库，索引和个人进度都只保存在本机且被 Git 忽略。
+发布 PDF 是唯一权威正文。Agent 从本地 PDF 索引检索并引用页码；`knowledge/` 提供独立撰写的章节地图、概念卡和前置图谱；`learning-paths/` 提供按证据和反馈运行的课程；`.agents/skills/` 可安装到 Claude Code 等兼容客户端；`templates/` 提供可运行的工业推荐系统练习。无需 MCP 或云端知识库，索引和个人进度都保存在本机且被 Git 忽略。
 
 ### 你可以直接做什么
 
@@ -840,4 +835,15 @@ python3 tools/install_skills.py --client claude
         - 38.1 全书回顾
         - 38.2 核心研究方向
         - 38.3 前沿展望
- 
+
+## 其他入口
+
+### Star 趋势
+
+[![Star History Chart](https://api.star-history.com/chart?repos=jhljx/RecSys-Industrial-Book&type=date&legend=top-left)](https://www.star-history.com/?repos=jhljx%2FRecSys-Industrial-Book&type=date&legend=top-left)
+
+### 社交媒体
+
+欢迎关注小红书账号：
+
+![小红书账号](/image/social_media.JPG)
