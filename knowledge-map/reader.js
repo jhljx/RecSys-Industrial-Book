@@ -21,7 +21,7 @@
   };
   document.querySelectorAll('a[href="../"]').forEach(anchor => { anchor.href = siteHref('../'); });
   // A PDF fragment is interpreted by the browser's built-in PDF viewer, not fetched via GitHub raw.
-  const pdfHref = (chapter, page) => `${chapter.pdf}#page=${page}&view=Fit`;
+  const pdfHref = (chapter, page) => `${chapter.pdf}#page=${page}&view=FitH`;
   let activeNumber;
   let activePage;
 

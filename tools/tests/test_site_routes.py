@@ -23,7 +23,7 @@ class SiteRoutesTest(unittest.TestCase):
 
     def test_reader_requests_fit_view(self) -> None:
         script = (ROOT / "knowledge-map" / "reader.js").read_text(encoding="utf-8")
-        self.assertIn("#page=${page}&view=Fit", script)
+        self.assertIn("#page=${page}&view=FitH", script)
 
     def test_local_html_targets_exist(self) -> None:
         for path in (ROOT / "knowledge-map").glob("*.html"):
