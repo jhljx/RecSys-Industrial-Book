@@ -48,7 +48,55 @@ class RecSysAgentTest(unittest.TestCase):
             function(*args)
         return json.loads(output.getvalue())
 
-    def test_explain_cli_returns_audience_guidance_and_pdf_evidence(self) -> None:
+    def test_eval_enforces_top1_threshold_and_reports_misses(self) -> None:
+        dataset = self.root / "eval.jsonl"
+        dataset.write_text(json.dumps({"query": "推荐系统", "expected_chapters": [2]}, ensure_ascii=False) + "\n", encoding="utf-8")
+        output = io.StringIO()
+        with contextlib.redirect_stdout(output), self.assertRaises(SystemExit) as error:
+            recsys_agent.evaluate(self.root, dataset)
+        self.assertEqual(1, error.exception.code)
+        report = json.loads(output.getvalue())
+        self.assertEqual(0.0, report["hit_at_1"])
+        self.assertEqual(1.0, report["min_hit_at_1"])
+        self.assertEqual([{"query": "推荐系统", "expected": [2], "actual": 1}], report["top1_misses"])
+        self.assertEqual(1, len(report["failures"]))
+        with self.assertRaisesRegex(SystemExit, "有限数值"):
+            recsys_agent.evaluate(self.root, dataset, float("nan"))
+        dataset.write_text("", encoding="utf-8")
+        with self.assertRaisesRegex(SystemExit, "评测集为空"):
+            recsys_agent.evaluate(self.root, dataset)
+
+    def test_eval_allows_configured_top1_misses_but_not_recall_failures(self) -> None:
+        from unittest.mock import patch
+
+        dataset = self.root / "eval.jsonl"
+        cases = [{"query": "first", "expected_chapters": [1]}, {"query": "second", "expected_chapters": [2]}]
+        dataset.write_text("\n".join(json.dumps(row) for row in cases) + "\n", encoding="utf-8")
+        original = recsys_agent.Chunk("first", "ch01/a.pdf", "PDF page 1", "title", "text", 1, "section", 1, 1)
+        other = recsys_agent.Chunk("second", "ch02/b.pdf", "PDF page 2", "title", "text", 2, "section", 2, 2)
+        with patch.object(recsys_agent, "rank", side_effect=[[(1.0, original)], [(2.0, original), (1.0, other)]]):
+            report = self.capture_json(recsys_agent.evaluate, self.root, dataset, 0.5)
+        self.assertEqual(0.5, report["hit_at_1"])
+        self.assertEqual(1.0, report["recall_at_5"])
+        self.assertEqual([], report["failures"])
+        self.assertEqual(1, len(report["top1_misses"]))
+        with patch.object(recsys_agent, "rank", side_effect=[[(1.0, original)], [(2.0, original), (1.0, other)]]):
+            with contextlib.redirect_stdout(io.StringIO()), self.assertRaises(SystemExit):
+                recsys_agent.evaluate(self.root, dataset, 0.75)
+
+    def test_specific_concept_title_beats_generic_alias_chapter_hint(self) -> None:
+        from unittest.mock import patch
+
+        cards = self.root / "knowledge/concepts"
+        cards.mkdir(parents=True)
+        (cards / "collaborative-filtering-recall.md").write_text("title: 协同过滤召回\nchapter: 10\n", encoding="utf-8")
+        (cards / "filtering.md").write_text("title: 过滤\nchapter: 4\n", encoding="utf-8")
+        (self.root / "knowledge/aliases.json").write_text('{"过滤": ["filtering"]}', encoding="utf-8")
+        chunks = [recsys_agent.Chunk(str(ch), f"ch{ch}/book.pdf", "PDF page 1", "title", "过滤 协同过滤召回", ch, "section", 1, 1) for ch in (4, 10)]
+        with patch.object(recsys_agent, "load", return_value=chunks):
+            ranked = recsys_agent.rank(self.root, "ItemCF 协同过滤召回稀疏交互")
+        self.assertEqual(10, ranked[0][1].chapter)
+
         script = TOOLS / "recsys_agent.py"
         result = subprocess.run(
             [sys.executable, str(script), "--root", str(self.root), "explain", "推荐系统", "--audience", "new-engineer"],

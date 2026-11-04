@@ -30,6 +30,15 @@ class KnowledgeMapTest(unittest.TestCase):
         unpublished = [c for c in data["concepts"] if c["chapter"] not in {x["number"] for x in data["chapters"]}]
         self.assertEqual(["consistency-modeling"], [c["id"] for c in unpublished])
 
+    def test_reader_facing_counts_match_catalogs(self) -> None:
+        data = build_knowledge_map.build()
+        homepage = (ROOT / "README.md").read_text(encoding="utf-8")
+        retrieval_guide = (ROOT / "evals/README.md").read_text(encoding="utf-8")
+        queries = [line for line in (ROOT / "evals/retrieval.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+        self.assertIn(f'{len(data["chapters"])} 章、{len(data["concepts"])} 张概念卡、{len(data["edges"])} 条前置依赖', homepage)
+        self.assertIn(f'{len(data["papers"])} 个代表论文方法', homepage)
+        self.assertIn(f'当前含 {len(queries)} 条中英文高频查询', retrieval_guide)
+
     def test_papers_have_verified_book_coordinates(self) -> None:
         data = build_knowledge_map.build()
         chapter12 = [paper for paper in data["papers"] if paper["chapter"] == 12]

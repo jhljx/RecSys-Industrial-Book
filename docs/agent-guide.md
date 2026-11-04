@@ -184,7 +184,7 @@ python3 tools/check_skills.py
 python3 tools/check_public_boundary.py
 ```
 
-- `eval`：77 条固定查询的 Hit@1、Recall@5、引用有效率；
+- `eval`：当前 88 条固定查询的 Hit@1、Recall@5、引用有效率；默认要求 Hit@1 = 100%，可用 `--min-hit-at-1` 显式调整；
 - `check_knowledge.py`：20 章知识地图覆盖、PDF 文件和页码边界；
 - `check_skills.py`：Skill 元数据和 canonical 目录；
 - `check_public_boundary.py`：阻止 LaTeX、提取缓存和正文等价 Markdown 进入公开仓库。

@@ -1,0 +1,47 @@
+name: Public knowledge and Agent checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install PDF extraction tool
+        run: sudo apt-get update && sudo apt-get install -y poppler-utils
+      - name: Check published metadata, boundaries, and Skills
+        run: |
+          python3 tools/check_knowledge.py
+          python3 tools/check_public_boundary.py
+          python3 tools/check_skills.py
+      - name: Check committed knowledge-map data
+        run: |
+          python3 tools/build_knowledge_map.py
+          git diff --exit-code -- knowledge-map/data.js
+      - name: Run repository tests
+        run: python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
+      - name: Check JavaScript syntax
+        run: |
+          node --check knowledge-map/app.js
+          node --check knowledge-map/paper-map.js
+          node --check knowledge-map/reader.js
+          node --check knowledge-map/document.js
+      - name: Build local PDF index and enforce retrieval quality
+        run: |
+          python3 tools/recsys_agent.py index
+          python3 tools/recsys_agent.py doctor
+          python3 tools/recsys_agent.py eval --min-hit-at-1 1.0
+      - name: Test runnable recommendation pipeline
+        run: python3 -m unittest discover -s templates/recommendation-pipeline/tests -p 'test_*.py' -v

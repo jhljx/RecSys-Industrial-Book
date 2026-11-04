@@ -75,7 +75,7 @@ python3 tools/check_public_boundary.py
 记录：
 
 - 检索：Hit@1、Recall@5、有效 PDF 引用率；
-- 导航：发布 19 章覆盖率、引用页码合法率；
+- 导航：当前已发布章节覆盖率、引用页码合法率（目前为 20 章）；
 - Skills：canonical Skill 数和 lint；
 - 安全：公开边界通过/失败；
 - 工程：四个 template 的正常路径与指定故障路径是否实际成功。

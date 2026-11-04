@@ -15,6 +15,7 @@
   "熔断": ["circuit breaker"],
   "限流": ["rate limiting", "overload"],
   "嵌入服务": ["Embedding Server", "embedding service", "向量参数服务"],
+  "模型与数据版本一致性": ["模型版本一致性", "模型索引版本一致性"],
   "多目标": ["multi-objective", "多任务"],
   "多样性": ["diversity", "MMR"],
   "时长预估": ["时长建模", "watch time prediction", "duration modeling"],

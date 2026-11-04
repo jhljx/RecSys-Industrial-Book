@@ -257,11 +257,19 @@ def rank(root: Path, query: str, chapter: int | None = None) -> list[tuple[float
     chunks = [chunk for chunk in load(root) if chapter is None or chunk.chapter == chapter]
     expanded = expand_query(root, query)
     chapter_hints = concept_chapter_hints(root, expanded)
-    matched_concept = concept_id(root, query)
-    if matched_concept:
-        hint = concept_metadata(root, matched_concept).get("chapter")
-        if isinstance(hint, int):
-            chapter_hints.add(hint)
+    if len(chapter_hints) > 1:
+        # Resolve generic aliases only when a specific concept title occurs in the original query.
+        named = []
+        for path in (root / "knowledge/concepts").glob("*.md"):
+            text = path.read_text(encoding="utf-8")
+            title_match = re.search(r"^title:\s*(.+)$", text, re.MULTILINE)
+            chapter_match = re.search(r"^chapter:\s*(\d+)\s*$", text, re.MULTILINE)
+            title = title_match.group(1).strip() if title_match else ""
+            if len(title) >= 4 and title in query and chapter_match:
+                named.append((len(title), int(chapter_match.group(1))))
+        if named:
+            longest = max(length for length, _ in named)
+            chapter_hints = {number for length, number in named if length == longest}
     if len(chapter_hints) != 1:
         chapter_hints.clear()
     query_tokens = terms(expanded)
@@ -315,23 +323,33 @@ def page(root: Path, chapter: int, page_number: int) -> None:
     print("\n\n".join(chunk.text for chunk in matches))
 
 
-def evaluate(root: Path, dataset: Path) -> None:
+def evaluate(root: Path, dataset: Path, min_hit_at_1: float = 1.0) -> None:
+    if not math.isfinite(min_hit_at_1) or not 0 <= min_hit_at_1 <= 1:
+        raise SystemExit("--min-hit-at-1 必须是 0 到 1 之间的有限数值。")
     cases = [json.loads(line) for line in dataset.read_text(encoding="utf-8").splitlines() if line.strip()]
+    if not cases:
+        raise SystemExit(f"评测集为空：{dataset}")
     hits_at_1 = hits_at_5 = citation_valid = 0
     failures: list[dict[str, object]] = []
+    top1_misses: list[dict[str, object]] = []
     for case in cases:
         results = rank(root, case["query"])[:5]
         expected = set(case["expected_chapters"])
         chapters = [chunk.chapter for _, chunk in results]
-        hits_at_1 += bool(chapters and chapters[0] in expected)
+        first_hit = bool(chapters and chapters[0] in expected)
+        hits_at_1 += first_hit
         hits_at_5 += bool(expected.intersection(chapters))
         citation_valid += bool(results and all(chunk.page_start and chunk.source.endswith(".pdf") for _, chunk in results))
+        if not first_hit:
+            top1_misses.append({"query": case["query"], "expected": sorted(expected), "actual": chapters[0] if chapters else None})
         if not expected.intersection(chapters):
             failures.append({"query": case["query"], "expected": sorted(expected), "actual": chapters})
     total = len(cases)
-    report = {"cases": total, "hit_at_1": hits_at_1 / total, "recall_at_5": hits_at_5 / total, "citation_valid": citation_valid / total, "failures": failures}
+    report = {"cases": total, "hit_at_1": hits_at_1 / total, "min_hit_at_1": min_hit_at_1,
+              "recall_at_5": hits_at_5 / total, "citation_valid": citation_valid / total,
+              "top1_misses": top1_misses, "failures": failures}
     print(json.dumps(report, ensure_ascii=False, indent=2))
-    if failures or citation_valid != total:
+    if hits_at_1 / total < min_hit_at_1 or failures or citation_valid != total:
         raise SystemExit(1)
 
 
@@ -854,6 +872,7 @@ def main() -> None:
     page_parser.add_argument("--page", type=int, required=True, help="PDF 页码，不是印刷页码")
     eval_parser = commands.add_parser("eval", help="运行检索与引用基准")
     eval_parser.add_argument("--dataset", type=Path, default=Path("evals/retrieval.jsonl"), help="JSONL 评测集")
+    eval_parser.add_argument("--min-hit-at-1", type=float, default=1.0, help="Hit@1 最低通过率，0..1（默认 1.0）")
     commands.add_parser("doctor", help="检查依赖、索引新鲜度和知识源")
     learn_parser = commands.add_parser("learn", help="生成带阅读页和实践的学习计划")
     learn_parser.add_argument("topic", help="学习主题")
@@ -918,7 +937,7 @@ def main() -> None:
     elif args.command == "page":
         page(root, args.chapter, args.page)
     elif args.command == "eval":
-        evaluate(root, root / args.dataset)
+        evaluate(root, root / args.dataset, args.min_hit_at_1)
     elif args.command == "learn":
         learning_plan(root, args.topic, args.level, args.minutes)
     elif args.command == "complete":
