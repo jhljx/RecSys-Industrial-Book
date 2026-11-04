@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import argparse
+import re
 import shutil
 import subprocess
 from pathlib import Path
@@ -11,6 +12,8 @@ from pathlib import Path
 DENIED_SUFFIXES = {".tex", ".aux", ".xdv", ".synctex", ".synctex.gz"}
 DENIED_PARTS = {".recsys-agent", "__pycache__", ".pytest_cache", "target"}
 DENIED_NAMES = {"book.md"}
+# Code and documentation copied from Draft must not expose authoring-source coordinates.
+PRIVATE_SOURCE_REF = re.compile(r"(?<![\w/])(?:chapters/)?ch\d+\.tex\b", re.IGNORECASE)
 ALLOWED_MARKDOWN = {
     "README.md",
     "AGENTS.md",
@@ -63,6 +66,11 @@ def main() -> None:
         denied_markdown = path.suffix.lower() == ".md" and not markdown_allowed(relative)
         if suffix in DENIED_SUFFIXES or path.name in DENIED_NAMES or DENIED_PARTS.intersection(relative.parts) or denied_markdown:
             violations.append(relative.as_posix())
+            continue
+        if path.suffix.lower() in {".md", ".py"} and path.is_file():
+            # Exclude this checker itself; the detection regex is intentionally shown here.
+            if relative.as_posix() != "tools/check_public_boundary.py" and PRIVATE_SOURCE_REF.search(path.read_text(encoding="utf-8")):
+                violations.append(f"{relative.as_posix()}: private source reference")
     if violations:
         print("privacy check failed:")
         for violation in sorted(violations):

@@ -189,3 +189,23 @@ python3 tools/recsys_agent.py complete hnsw \
 ## 9. Agent 的边界
 
 Agent 可以检索、拆任务、检查结构化验收条件、运行仓库模板和记录反馈；它不能仅凭一份文件可靠判断你是否真正理解，也不能替代生产数据、线上实验、隐私审查和容量压测。对生产工程问题，必须补齐目标、QPS、P99、规模、新鲜度、一致性、运行时、部署、可用性、隐私和成本约束。
+
+## 10. 用 coach 做基于证据的针对性追问
+
+在仓库根目录先运行 `python3 tools/recsys_agent.py index`。开始课程后，先完成当前单元自己的解释和实践，再让陪练针对提交物提出追问：
+
+```bash
+python3 tools/recsys_agent.py course start new-engineer
+python3 tools/recsys_agent.py course today --minutes 45
+python3 tools/recsys_agent.py coach --course new-engineer --evidence /tmp/ne-01.md \
+  --feedback "我不确定反馈闭环如何影响训练数据"
+# 若本机默认 Claude 模型不可用，添加 --model <可用模型ID>；不调用模型则添加 --no-model。
+```
+
+提交物可按四节组织：`本书依据`（PDF 文件和页码）、`我的解释`、`实践`（主路径与失败路径的命令、退出码、输出、失败原因与恢复条件）、`问题答案`。`coach` 会结合课程问题和本地已发布 PDF 候选页，指出最多两处需核对的概念或推理缺口，先给追问而非直接揭晓答案；下次调用同课程当前单元时读取上一轮任务，继续调整。只有反馈而无提交物也可用，但会明确要求补交证据。若反馈明确命中已编目的其他单元概念而不属于当前单元，返回 `topic_mismatch`，不运行语义诊断、不写入陪练状态；可用 `ask` / `navigate` 自由学习，或先完成当前单元。未被概念目录识别的跨主题反馈仍需学习者自行判断。
+
+不希望模型看到提交物时使用 `--no-model`，只进行本地结构检查。模型反馈是待核对的学习提示，不会自动评分、运行提交物中的命令、证明输出真实或宣告掌握。正式课程完成仍须人工/可信 Agent 核对，再用 `course submit` 显式提交；七天后用 `course review` 做延迟回忆和迁移。
+
+陪练状态追加到 Git 忽略的 `.recsys-workspace/coach.jsonl`；只包含状态、反馈和 evidence 文件路径，不保存 PDF 摘录或答案正文。`ask --session` 的主题也仅存于本机忽略目录。勿在提交物或反馈中放凭据和内部数据；模型调用会使用本机配置的服务，可能产生费用。
+
+底层函数 `recsys_coach.coach(root, course_id, evidence=None, feedback="", semantic=False, model=None)` 可供其他客户端调用。无模型时仍会返回 `diagnosis`、`follow_up`、`next_tasks`、课程验收条件与 PDF 阅读导航，但结构完整不等于答案正确。

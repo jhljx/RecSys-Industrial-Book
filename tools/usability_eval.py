@@ -5,6 +5,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import math
 import subprocess
 import shutil
 import tempfile
@@ -89,11 +90,12 @@ def load_reviews(path: Path) -> list[dict[str, object]]:
         seen.add(identity)
         for field in SCORE_FIELDS:
             value = row.get(field)
-            if not isinstance(value, int) or not 0 <= value <= 2:
+            # bool is an int subclass, but it is not a valid human score.
+            if isinstance(value, bool) or not isinstance(value, int) or not 0 <= value <= 2:
                 raise SystemExit(f"{row['task_id']}/{row['label']} 的 {field} 必须是 0..2 整数")
         elapsed = row.get("first_success_seconds")
-        if not isinstance(elapsed, (int, float)) or elapsed < 0:
-            raise SystemExit(f"{row['task_id']}/{row['label']} 缺少非负 first_success_seconds")
+        if isinstance(elapsed, bool) or not isinstance(elapsed, (int, float)) or not math.isfinite(elapsed) or elapsed < 0:
+            raise SystemExit(f"{row['task_id']}/{row['label']} 缺少有限非负 first_success_seconds")
     return rows
 
 
@@ -119,15 +121,39 @@ def summarize(args: argparse.Namespace) -> None:
                 missing.append(f"{task}/{label}: 至少需要两名独立评审")
                 continue
             first_two = reviews[:2]
+            resolved_scores: dict[str, int] = {}
             for field in SCORE_FIELDS:
                 delta = abs(int(first_two[0][field]) - int(first_two[1][field]))
                 comparisons += 1
                 agreements += delta <= 1
-                if delta > 1 and len(distinct) < 3:
-                    adjudication.append(f"{task}/{label}/{field}")
+                if delta > 1:
+                    # A third independent rating alone is not a verdict. Require
+                    # one explicit, reasoned decision identifying both originals.
+                    decisions = []
+                    original_reviewers = {str(row["reviewer"]) for row in first_two}
+                    for reviewer in reviews[2:]:
+                        decisions_by_field = reviewer.get("adjudications", {})
+                        decision = decisions_by_field.get(field) if isinstance(decisions_by_field, dict) else None
+                        if not isinstance(decision, dict):
+                            continue
+                        reviewed = decision.get("reviewers")
+                        score = decision.get("score")
+                        reason = decision.get("reason")
+                        if (isinstance(reviewed, list) and len(reviewed) == 2
+                                and all(isinstance(name, str) for name in reviewed)
+                                and set(reviewed) == original_reviewers
+                                and type(score) is int and 0 <= score <= 2
+                                and score == reviewer[field]
+                                and isinstance(reason, str) and reason.strip()):
+                            decisions.append(score)
+                    if len(decisions) == 1:
+                        resolved_scores[field] = decisions[0]
+                    else:
+                        adjudication.append(f"{task}/{label}/{field}")
             report[system] = {
                 "blind_label": label,
-                "median_score": statistics.median(sum(int(row[field]) for field in SCORE_FIELDS) for row in reviews),
+                "median_score": statistics.median(sum(resolved_scores.get(field, int(row[field])) for field in SCORE_FIELDS) for row in reviews),
+                "adjudicated_scores": resolved_scores,
                 "median_first_success_seconds": statistics.median(float(row["first_success_seconds"]) for row in reviews),
                 "reviewers": sorted(distinct),
             }

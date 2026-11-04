@@ -15,7 +15,7 @@ prerequisites: [embedding-server]
 维护 release manifest，加载前校验兼容性，灰度和回滚以 release 为单位。
 
 ## 本书依据
-《第十七章-推荐系统在线服务.pdf》，PDF 第17页起；《第二十二章-链路一致性建模.pdf》，PDF 第1页起。
+《第十七章-推荐系统在线服务.pdf》，PDF 第 16–24 页（17.6 模型服务与版本兼容）。
 
 ## 扩展说明
 跨地域发布需处理最终一致窗口。

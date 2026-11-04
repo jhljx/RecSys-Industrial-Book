@@ -6,6 +6,13 @@
   if (!data) { $('items').textContent = '知识地图数据缺失，请重新运行 python3 tools/build_knowledge_map.py。'; return; }
   const chapters = new Map(data.chapters.map(row => [row.number, row]));
   const concepts = new Map(data.concepts.map(row => [row.id, row]));
+  const codeByChapter = new Map();
+  for (const row of window.CHAPTER_CODE || []) {
+    if (!codeByChapter.has(row.chapter)) codeByChapter.set(row.chapter, []);
+    codeByChapter.get(row.chapter).push(row);
+  }
+  const codeForConcept = concept => (codeByChapter.get(concept.chapter) || [])
+    .filter(row => row.concept_ids?.includes(concept.id)).slice(0, 8);
   const groups = new Map(data.groups.map(row => [row.id, row]));
   const state = { kind: 'chapters', group: 'all', query: '', selected: null, course: data.paths[0].id, graphChapter: chapters.has(4) ? 4 : data.chapters[0].number };
   const el = (tag, className, text) => {
@@ -181,6 +188,7 @@
       if (!c) return;
       appendHeading(panel, `CHAPTER ${String(c.number).padStart(2, '0')} / ${groups.get(c.group).title}`, c.title);
       const actions = el('div', 'detail-links'); add(actions, link('站内阅读 PDF ↗', `./reader.html#ch${c.number}`), link('直接打开 PDF ↗', c.pdf), link('章节阅读地图 ↗', c.map));
+      if (codeByChapter.has(c.number)) add(actions, link(`本章代码示例（${codeByChapter.get(c.number).length}）↗`, `./code.html#ch${c.number}`));
       const graphAction = el('button', 'graph-jump', '查看本章关系图 →'); graphAction.type = 'button';
       graphAction.addEventListener('click', () => { state.graphChapter = c.number; renderGraph(); $('graph').scrollIntoView({ behavior: 'smooth' }); graphChapter.focus({ preventScroll: true }); });
       add(actions, graphAction); add(panel, actions);
@@ -195,8 +203,16 @@
       appendHeading(panel, `CONCEPT / ${chapterLabel(c.chapter)}`, c.title);
       add(panel, el('h4', '', '定义'), el('p', 'concept-definition', c.definition || '暂无定义'), el('h4', '', '核心判断'), el('p', '', c.summary));
       const actions = el('div', 'detail-links'); add(actions, link('阅读概念卡 ↗', c.url));
-      if (chapters.has(c.chapter)) add(actions, link('站内阅读章节 PDF ↗', `./reader.html#ch${c.chapter}`)); add(panel, actions);
-      add(panel, el('h4', '', '前置概念'));
+      const citationChapter = data.chapters.filter(chapter => c.source.includes(decodeURIComponent(chapter.pdf).split('/').at(-1)))
+        .sort((a, b) => c.source.indexOf(decodeURIComponent(a.pdf).split('/').at(-1)) - c.source.indexOf(decodeURIComponent(b.pdf).split('/').at(-1)))[0];
+      if (citationChapter) add(actions, link('站内阅读所引 PDF ↗', `./reader.html#ch${citationChapter.number}`)); add(panel, actions);
+      add(panel, el('h4', '', '相关代码讲解'));
+      const examples = codeForConcept(c);
+      if (examples.length) {
+        const list = el('ul'); examples.forEach(row => add(list, add(el('li'), link(`${row.path.split('/').at(-1)} ↗`, row.url)))); add(panel, list);
+      } else add(panel, el('p', '', '暂无确认的逐概念代码关联；可从本章代码目录按方法或文件名查找。'));
+      if (codeByChapter.has(c.chapter)) add(panel, link('浏览本章所有代码 →', `./code.html#ch${c.chapter}`));
+      add(panel, el('p', '', '代码讲解来自章节 README 与源码结构；本书论断以 PDF 原页为准。'));
       const prerequisites = data.edges.filter(edge => edge[1] === c.id).map(edge => concepts.get(edge[0]));
       const next = data.edges.filter(edge => edge[0] === c.id).map(edge => concepts.get(edge[1]));
       addRelations(panel, prerequisites, '无前置要求'); add(panel, el('h4', '', '由此继续')); addRelations(panel, next, '暂无后续依赖');

@@ -14,7 +14,7 @@
 
 **English:** An industrial recommender-systems e-book paired with a local-first AI Agent learning toolkit for PDF-grounded Q&A, cited retrieval, adaptive courses, review, and hands-on engineering practice.
 
-📖 [站内 PDF 阅读器](knowledge-map/reader.html) · 🗺️ [全书知识地图](knowledge-map/) · 🤖 [Agent 五分钟开始](knowledge-map/agent.html#start) · 🎓 [12 周课程](learning-paths/new-engineer.md) · 🧭 [章节地图](knowledge/chapters/README.md) · 🧪 [可运行项目](templates/)
+📖 [站内 PDF 阅读器](knowledge-map/reader.html) · 🗺️ [全书知识地图](knowledge-map/) · 💻 [章节代码讲解](knowledge-map/code.html) · 🤖 [Agent 五分钟开始](knowledge-map/agent.html#start) · 🎓 [12 周课程](learning-paths/new-engineer.md) · 🧭 [章节地图](knowledge/chapters/README.md) · 🧪 [可运行项目](templates/)
 
 **书稿**：持续更新的上下册电子书稿，聚焦工业推荐系统的全链路架构、算法、工程实践与业务权衡；只发布已审阅的章节 PDF，不公开 LaTeX 或正文等价 Markdown。
 
@@ -31,12 +31,15 @@
 
 | 能力 | 读者获得什么 | 入口 |
 |---|---|---|
+| 直接问书与继续追问 | 针对发布 PDF 生成简明回答、页码依据和适用边界；会话保存在本机 | `ask --session`、`navigate` |
+| 学习陪练 | 对单元提交物给出具体追问、实践建议与下一步任务，不冒充自动评分 | `coach` |
 | 查书与可靠引用 | 检索 20 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
 | 12 周学习课程 | 新人全链路或研究生可信实验路线，按反馈和时间预算生成今日任务 | `course start/today/feedback/status` |
 | 证据化掌握 | 用提交物、实际命令输出、主路径、失败路径和测验分数验收；不接受口头“学会了” | `course submit`、`complete` |
 | 自适应复习 | 前置满足后推荐下一主题，低分补救，七天后安排回忆、纠错和迁移 | `next`、`course review` |
 | 知识图谱与自测 | 输出课程 Mermaid 依赖图，检查检索、引用、学习和复习状态 | `graph`、`self-eval` |
 | 工程工作台 | 生成设计契约，评审推荐代码，按证据树排查故障 | `design`、`review`、`debug` |
+| 章节代码知识库 | 从各章 `code/README.md` 和真实源码定位方法示例，用于概念讲解或新代码参考；不把代码当 PDF 证据 | `code`、`navigate` |
 | 可运行项目 | 演练多路召回、双塔 ANN、特征时序一致性、过载与降级 | `templates/` |
 | 多客户端 Skills | 安装标准 Agent Skills 到 Claude Code 或其他兼容 Agent | `tools/install_skills.py` |
 
@@ -47,6 +50,15 @@
 python3 tools/recsys_agent.py index
 python3 tools/recsys_agent.py doctor
 python3 tools/recsys_agent.py search "Embedding Server 版本一致性"
+
+# 直接问书，续问同一主题，并查看相关概念、代码和代表论文
+python3 tools/recsys_agent.py ask "双塔召回的负采样为什么有偏差，书中如何修正？" --session two-tower
+python3 tools/recsys_agent.py ask "这种修正有什么适用边界？" --session two-tower
+python3 tools/recsys_agent.py navigate --session two-tower
+# 定位任意已发布章节 code/ 的示例，供 Agent 读取、讲解或作为新代码参考
+python3 tools/recsys_agent.py code "负采样偏差" --chapter 10
+python3 tools/recsys_agent.py code "HNSW"
+# 若本机 Claude CLI 默认模型不可用，ask 可加 --model <可用模型ID>
 
 # 启动一条会根据时间与反馈调整的完整课程
 python3 tools/recsys_agent.py course list
@@ -78,7 +90,11 @@ python3 tools/install_skills.py --client claude
 
 网页中的概念目录可直接使用[知识地图的概念筛选](knowledge-map/#catalog)，完整[本地 Agent 指南](docs/agent-guide.md)在 Pages 上采用与知识地图一致的文档页样式；目录型 README 在 Pages 上使用目录 URL（例如 `/knowledge/`），不要链接不存在的 `README.html`。
 
-知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建 `knowledge-map/data.js`，再运行 `python3 -m unittest discover -s tools/tests -v` 检查章节、概念、依赖、课程及 PDF 链接。网页没有服务端、账号或在线 Agent；全文检索和个人进度仍通过本地 CLI。
+知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建 `knowledge-map/data.js`；新增或修改章节 `code/` 后运行 `python3 tools/build_code_pages.py`，重建 `knowledge-map/code-data.js` 和共用模板渲染的源码 HTML。两者都要运行 `python3 -m unittest discover -s tools/tests -v`，并检查公开边界。网页没有服务端、账号或在线 Agent；全文检索和个人进度仍通过本地 CLI。
+
+## 章节源码也是 Agent 的知识来源（但不是正文证据）
+
+四个 `templates/` 提供跨章节端到端项目；已发布章节的 `code/` 提供算法、策略和工程细节的独立示例。Agent 可用 `python3 tools/recsys_agent.py code "<主题>" [--chapter N]` 找到章节 README 与实际源码，再结合 `navigate` 的概念卡和 PDF 页做教学或参考实现；结果的 `page` 是[站内代码讲解页](knowledge-map/code.html)相对地址，页面包括章节说明、源码结构入口和完整源码。`explain` 和 `learn` 也返回相关代码候选。匹配不到时会返回 `not_found`，不会臆造示例。检索仅定位文件、不运行脚本；先检查 README 的依赖与成本，再读实际代码。代码演示、书中 PDF 论断和工程扩展应分别标注。完整流程见 [章节代码 Agent 用法](docs/agent-guide.md#6-让章节-code-成为-agent-的教学与代码参考)。
 
 ## Star 趋势
 

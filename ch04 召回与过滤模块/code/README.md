@@ -185,6 +185,6 @@ find . -name "*.py" | sort | while read f; do echo "=== $f ==="; python3 "$f" >/
 - **固定种子**：所有 `__main__` 块固定 `random.seed(42)`，用到 NumPy / PyTorch 的脚本同时 `np.random.seed(42)` / `torch.manual_seed(42)`，并设 `torch.set_num_threads(1)` 保证单核可复现且更快。
 - **不依赖外部服务**：ANN 索引（IVF / HNSW）、布隆过滤器、滑动窗与令牌桶限流器、Skip-gram 负采样均从零实现，不装第三方检索/限流库；Redis、用户画像、倒排/正排/向量索引、RPC 超时、上游风控系统等全部是进程内 [MOCK] 组件并在 docstring 中标注。
 - **输出优先给数值表**：统一中文表头 + 等宽对齐，每个脚本末尾打印「结论（正文 §X.Y 的工程含义）」，而不是刷 loss 日志。
-- **以正文为准**：实现一律对齐 `chapters/ch04.tex`，包括 §4.5.2 策略表的 7 行规则与各自的随机过滤比例、§4.5.3 的四类处罚动作、§4.5.4 的两阶段风控叙事。
+- **以已发布 PDF 为准**：实现对齐第 4 章发布 PDF 的对应小节，包括 §4.5.2 策略表的 7 行规则与各自的随机过滤比例、§4.5.3 的四类处罚动作、§4.5.4 的两阶段风控叙事。
 - **玩具规模的诚实注记**：凡是合成数据规模会让结论失真的地方，脚本输出里直接写明，不做夸大。已标注的三处：(1) `embedding_retrieval.py` 只有 4000 个物品、暴力检索是 NumPy 矩阵乘，ANN 的墙上耗时反而更慢，真实收益看「平均扫描向量数」；(2) `retrieval_path_patterns.py` 与 `collaborative_filtering_retrieval.py` 的 U2I 用「哈希桶计数向量」占位，不代表真实双塔/多兴趣召回效果（完整模型见第 10 章）；(3) `content_and_rule_retrieval.py` 的基尼系数在 ratio=0.1/0.3 处非单调，属合成数据噪声。
 - **本章定位**：召回与过滤的**链路与策略**，模型细节交给第 10 章（召回模型）与第 11 章（粗排模型）。`collaborative_filtering_retrieval.py` 输出末尾给出了交叉引用：相似度算法的完整推导与变体见 `ch10 召回模型/code/ch01_collaborative_filtering/`。

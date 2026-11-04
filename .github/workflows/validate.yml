@@ -30,18 +30,34 @@ jobs:
         run: |
           python3 tools/build_knowledge_map.py
           git diff --exit-code -- knowledge-map/data.js
-      - name: Run repository tests
+      - name: Check committed code reading pages
+        run: |
+          python3 tools/build_code_pages.py
+          git diff --exit-code -- knowledge-map/code-data.js knowledge-map/code/
+          test -z "$(git ls-files --others --exclude-standard knowledge-map/code-data.js knowledge-map/code/)"
+      - name: Set up Chrome
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: '131.0.6778.85'
+      - name: Run repository tests (templates, chapter smoke, routes, browser)
+        env:
+          RECSYS_TEST_CHROME: ${{ steps.chrome.outputs.chrome-path }}
+          RECSYS_REQUIRE_BROWSER: '1'
         run: python3 -m unittest discover -s tools/tests -p 'test_*.py' -v
       - name: Check JavaScript syntax
         run: |
           node --check knowledge-map/app.js
           node --check knowledge-map/paper-map.js
           node --check knowledge-map/reader.js
+          node --check knowledge-map/code.js
           node --check knowledge-map/document.js
       - name: Build local PDF index and enforce retrieval quality
         run: |
           python3 tools/recsys_agent.py index
           python3 tools/recsys_agent.py doctor
           python3 tools/recsys_agent.py eval --min-hit-at-1 1.0
-      - name: Test runnable recommendation pipeline
+          python3 tools/recsys_agent.py eval --dataset evals/page-evidence.jsonl
+          python3 tools/recsys_agent.py eval --dataset evals/unanswerable.jsonl
+      - name: Test pipeline internals (including deadline degradation)
         run: python3 -m unittest discover -s templates/recommendation-pipeline/tests -p 'test_*.py' -v

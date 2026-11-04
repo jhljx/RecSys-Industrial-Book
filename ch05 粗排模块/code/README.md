@@ -148,6 +148,6 @@ find . -name "*.py" | sort | while read f; do echo "=== $f ==="; python3 "$f" >/
 - **可复现**：`__main__` 块固定 `random.seed(42)`，用到 NumPy / PyTorch 时同步固定 `np.random.seed(42)` / `torch.manual_seed(42)`。
 - **离线无依赖**：只用 Python 3.12 标准库、NumPy 与 PyTorch，不联网下载数据或权重、不读取本地数据集、不弹绘图窗口（可视化一律改成数值表）。
 - **小规模**：候选规模典型为 N=300~5000、训练 ≤400 step，CPU 上单文件运行最慢的 `bayesian_optimization_auto_fusion.py` 约 9 秒，其余均在数秒内结束。
-- **以正文为准**：公式符号、参数取值、算例数字一律照抄 `chapters/ch05.tex`。两处需要说明的处理：
+- **以已发布 PDF 为准**：公式符号、参数取值与算例数字以第 5 章发布 PDF 对应小节为准。两处需要说明的处理：
   1. §5.4.2 正文把指数衰减写作 $$2\sinh(kt)$$ 形式，脚本按 docstring 说明取负后展示，以保持「名次越靠前增益越大」的方向一致；
   2. §5.6.1 正文只给出固定配额与动态配额的概念式 $$Quota_i=f(User,Context,BusinessGoal)$$，脚本在此基础上补了一个最小 PI 闭环控制律作为 $$\pi(s)\to Quota$$ 的可运行形态，属正文概念的工程化具体化，非正文原文算法。

@@ -4,7 +4,7 @@ description: Design an industrial recommendation system or subsystem with explic
 ---
 # Recommendation system design
 1. Resolve objective, QPS, P99, corpus and feature scale, freshness, consistency, runtime, deployment, availability, privacy, and cost. Ask only when alternatives materially differ.
-2. Run `python3 tools/recsys_agent.py design "<system>" key=value ...` and close all relevant missing constraints.
+2. Run `python3 tools/recsys_agent.py design "<system>" key=value ...` and close all relevant missing constraints; `status=draft` / `verification=not_run` denotes an unverified proposal, not successful deployment or validation.
 3. Search the released PDFs and read the cited pages.
 4. Reuse a runnable template; `[MOCK]` dependencies are teaching substitutes.
 5. Produce request/data flows, interfaces, capacity and latency budgets, version contract, overload/degradation, metrics, rollout, rollback, and validation.

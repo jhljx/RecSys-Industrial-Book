@@ -19,7 +19,8 @@ from pathlib import Path
 INDEX_DIR = Path(".recsys-agent")
 INDEX_FILE = INDEX_DIR / "index.jsonl"
 MANIFEST_FILE = INDEX_DIR / "manifest.json"
-FORMAT_VERSION = 2
+FORMAT_VERSION = 3
+EVIDENCE_SCORE_FLOOR = 8.0  # Conservative heuristic; a score alone does not prove relevance.
 CHINESE = re.compile(r"[\u3400-\u9fff]+")
 LATIN = re.compile(r"[a-z0-9][a-z0-9_+.#/-]*", re.I)
 HEADING = re.compile(r"^(?:第[一二三四五六七八九十百零0-9]+[章节]|\d+(?:\.\d+){0,3})\s*[^。！？]{1,80}$")
@@ -78,32 +79,69 @@ def load_aliases(root: Path) -> dict[str, list[str]]:
     return {str(key).lower(): [str(item) for item in value] for key, value in data.items()}
 
 
-def alias_in_query(alias: str, query: str) -> bool:
+def alias_spans(alias: str, query: str) -> list[tuple[int, int]]:
+    """Find literal term occurrences; Latin abbreviations must have token boundaries."""
     lowered = alias.casefold()
+    pattern = re.escape(lowered)
     if re.fullmatch(r"[a-z0-9_+.#/-]+", lowered):
-        return bool(re.search(rf"(?<![a-z0-9_/-]){re.escape(lowered)}(?![a-z0-9_/-])", query.casefold()))
-    return lowered in query.casefold()
+        pattern = rf"(?<![a-z0-9_/-]){pattern}(?![a-z0-9_/-])"
+    return [match.span() for match in re.finditer(pattern, query.casefold())]
+
+
+def matched_terms(families: list[tuple[str, str, list[str]]], query: str) -> list[tuple[str, str]]:
+    """Recognize longest non-overlapping occurrences across alias and concept families."""
+    candidates = [(start, end, kind, family)
+                  for kind, family, terms_in_family in families
+                  for term in terms_in_family
+                  for start, end in alias_spans(term, query)]
+    occupied: list[tuple[int, int]] = []
+    matched: set[tuple[str, str]] = set()
+    for start, end, kind, family in sorted(candidates, key=lambda row: (-(row[1] - row[0]), row[0], row[2] != "concept", row[3])):
+        if any(start < right and left < end for left, right in occupied):
+            continue
+        occupied.append((start, end))
+        matched.add((kind, family))
+    return [(kind, family) for kind, family, _ in families if (kind, family) in matched]
+
+
+def matched_alias_families(aliases: dict[str, list[str]], query: str) -> list[str]:
+    """Longest non-overlapping aliases win; separate occurrences express both intents."""
+    return [family for _, family in matched_terms(
+        [("alias", family, [family, *values]) for family, values in aliases.items()], query)]
+
+
+def alias_in_query(alias: str, query: str) -> bool:
+    return bool(alias_spans(alias, query))
 
 
 def expand_query(root: Path, query: str) -> str:
-    additions: list[str] = []
-    for key, values in load_aliases(root).items():
-        family = [key, *values]
-        if any(alias_in_query(item, query) for item in family):
-            additions.extend(family)
+    aliases = load_aliases(root)
+    additions = [term for family in matched_alias_families(aliases, query)
+                 for term in [family, *aliases[family]]]
     return " ".join(dict.fromkeys([query, *additions]))
 
-def concept_chapter_hints(root: Path, expanded_query: str) -> set[int]:
-    normalized = re.sub(r"[-_\s]+", " ", expanded_query.casefold())
-    hints: set[int] = set()
+def concept_chapter_hints(root: Path, query: str) -> set[int]:
+    aliases = load_aliases(root)
+    families = [("alias", family, [family, *values]) for family, values in aliases.items()]
+    chapters: dict[str, int] = {}
     for path in (root / "knowledge/concepts").glob("*.md"):
         text = path.read_text(encoding="utf-8")
         title = re.search(r"^title:\s*(.+)$", text, re.MULTILINE)
         chapter = re.search(r"^chapter:\s*(\d+)\s*$", text, re.MULTILINE)
-        names = (path.stem.replace("-", " "), title.group(1).casefold() if title else "")
-        if chapter and any(len(name) >= 4 and name in normalized for name in names):
-            hints.add(int(chapter.group(1)))
-    return hints
+        if not title or not chapter:
+            continue
+        families.append(("concept", path.stem, [title.group(1).strip(), path.stem.replace("-", " ")]))
+        chapters[path.stem] = int(chapter.group(1))
+    recognized = matched_terms(families, query)
+    named = {chapters[family] for kind, family in recognized if kind == "concept"}
+    if named:
+        return named
+    canonical: dict[str, list[str]] = {}
+    for kind, family, terms_in_family in families:
+        if kind == "concept":
+            canonical.setdefault(terms_in_family[0], []).append(family)
+    return {chapters[canonical[family][0]] for kind, family in recognized
+            if kind == "alias" and len(canonical.get(family, [])) == 1}
 
 
 def split_blocks(text: str, target: int = 1500) -> list[str]:
@@ -188,7 +226,8 @@ def build(root: Path, mode: str) -> None:
     if not chunks:
         raise SystemExit(f"未发现可索引的 {'LaTeX' if mode == 'private' else 'PDF'} 内容。")
     (root / INDEX_DIR).mkdir(parents=True, exist_ok=True)
-    with (root / INDEX_FILE).open("w", encoding="utf-8") as handle:
+    index_path = root / INDEX_FILE
+    with index_path.open("w", encoding="utf-8") as handle:
         for chunk in chunks:
             handle.write(json.dumps(asdict(chunk), ensure_ascii=False) + "\n")
     manifest = {
@@ -196,6 +235,7 @@ def build(root: Path, mode: str) -> None:
         "mode": mode,
         "created_at": datetime.now(timezone.utc).isoformat(),
         "chunks": len(chunks),
+        "index_sha256": sha256(index_path),
         "sources": source_records(root, mode),
         "content_policy": "private-source" if mode == "private" else "local-pdf-extraction-not-for-commit",
     }
@@ -211,16 +251,25 @@ def load(root: Path) -> list[Chunk]:
         return [Chunk(**json.loads(line)) for line in handle if line.strip()]
 
 
+def index_health_reasons(root: Path, mode: str) -> list[str]:
+    reasons = []
+    if not sources(root, mode):
+        reasons.append(f"{mode} 模式没有可用知识源")
+    reasons.extend(stale_reasons(root, mode))
+    if (root / MANIFEST_FILE).is_file():
+        manifest = json.loads((root / MANIFEST_FILE).read_text(encoding="utf-8"))
+        if manifest.get("mode") != mode:
+            reasons.append(f"mode {manifest.get('mode')} != {mode}")
+    return reasons
+
+
 def require_fresh_index(root: Path, mode: str) -> None:
     if not sources(root, mode):
         raise SystemExit(f"{mode} 模式没有可用知识源；请检查 --mode 和仓库路径。")
     try:
-        manifest = json.loads((root / MANIFEST_FILE).read_text(encoding="utf-8"))
-        reasons = stale_reasons(root, mode)
+        reasons = index_health_reasons(root, mode)
     except (OSError, ValueError, KeyError, TypeError) as error:
         raise SystemExit(f"索引元数据不可用：{error}；请重新执行 index。") from error
-    if manifest.get("mode") != mode:
-        reasons.append(f"mode {manifest.get('mode')} != {mode}")
     if reasons:
         raise SystemExit("索引已过期或模式不匹配，请执行 `python3 tools/recsys_agent.py index`。\n" + "\n".join(reasons[:5]))
 
@@ -231,6 +280,17 @@ def stale_reasons(root: Path, mode: str) -> list[str]:
     manifest = json.loads((root / MANIFEST_FILE).read_text(encoding="utf-8"))
     if manifest.get("format") != FORMAT_VERSION:
         return [f"format {manifest.get('format')} != {FORMAT_VERSION}"]
+    if not isinstance(manifest.get("index_sha256"), str) or sha256(root / INDEX_FILE) != manifest["index_sha256"]:
+        return ["index content changed; rebuild index"]
+    if not isinstance(manifest.get("chunks"), int) or manifest["chunks"] <= 0:
+        return ["index chunk count invalid"]
+    with (root / INDEX_FILE).open(encoding="utf-8") as handle:
+        try:
+            indexed = [Chunk(**json.loads(line)) for line in handle if line.strip()]
+        except (json.JSONDecodeError, TypeError, KeyError) as error:
+            return [f"index content malformed: {error}"]
+    if len(indexed) != manifest["chunks"]:
+        return ["index chunk count changed; rebuild index"]
     previous = {row["path"]: row["sha256"] for row in manifest.get("sources", [])}
     current = {row["path"]: row["sha256"] for row in source_records(root, mode)}
     reasons = [f"added: {path}" for path in current.keys() - previous.keys()]
@@ -256,20 +316,7 @@ def cosine(left: Counter[int], right: Counter[int]) -> float:
 def rank(root: Path, query: str, chapter: int | None = None) -> list[tuple[float, Chunk]]:
     chunks = [chunk for chunk in load(root) if chapter is None or chunk.chapter == chapter]
     expanded = expand_query(root, query)
-    chapter_hints = concept_chapter_hints(root, expanded)
-    if len(chapter_hints) > 1:
-        # Resolve generic aliases only when a specific concept title occurs in the original query.
-        named = []
-        for path in (root / "knowledge/concepts").glob("*.md"):
-            text = path.read_text(encoding="utf-8")
-            title_match = re.search(r"^title:\s*(.+)$", text, re.MULTILINE)
-            chapter_match = re.search(r"^chapter:\s*(\d+)\s*$", text, re.MULTILINE)
-            title = title_match.group(1).strip() if title_match else ""
-            if len(title) >= 4 and title in query and chapter_match:
-                named.append((len(title), int(chapter_match.group(1))))
-        if named:
-            longest = max(length for length, _ in named)
-            chapter_hints = {number for length, number in named if length == longest}
+    chapter_hints = concept_chapter_hints(root, query)
     if len(chapter_hints) != 1:
         chapter_hints.clear()
     query_tokens = terms(expanded)
@@ -329,32 +376,59 @@ def evaluate(root: Path, dataset: Path, min_hit_at_1: float = 1.0) -> None:
     cases = [json.loads(line) for line in dataset.read_text(encoding="utf-8").splitlines() if line.strip()]
     if not cases:
         raise SystemExit(f"评测集为空：{dataset}")
-    hits_at_1 = hits_at_5 = citation_valid = 0
+    hits_at_1 = hits_at_5 = citation_valid = page_hits = page_total = 0
     failures: list[dict[str, object]] = []
+    page_misses: list[dict[str, object]] = []
     top1_misses: list[dict[str, object]] = []
+    negative_total = negative_hits = 0
     for case in cases:
         results = rank(root, case["query"])[:5]
         expected = set(case["expected_chapters"])
+        if not expected:
+            negative_total += 1
+            if not results or results[0][0] < EVIDENCE_SCORE_FLOOR:
+                negative_hits += 1
+            else:
+                failures.append({"query": case["query"], "expected": [], "actual": results[0][1].chapter})
+            continue
         chapters = [chunk.chapter for _, chunk in results]
         first_hit = bool(chapters and chapters[0] in expected)
         hits_at_1 += first_hit
         hits_at_5 += bool(expected.intersection(chapters))
         citation_valid += bool(results and all(chunk.page_start and chunk.source.endswith(".pdf") for _, chunk in results))
+        if "expected_pages" in case:
+            page_total += 1
+            expected_pages = case["expected_pages"]
+            page_hit = bool(results and any(
+                chunk.chapter == int(chapter) and int(start) <= chunk.page_start <= int(end)
+                for chapter, ranges in expected_pages.items()
+                for start, end in ranges
+                for _, chunk in results[:1]
+            ))
+            page_hits += page_hit
+            if not page_hit:
+                page_misses.append({"query": case["query"], "expected_pages": expected_pages,
+                                    "actual": [results[0][1].chapter, results[0][1].page_start] if results else None})
         if not first_hit:
             top1_misses.append({"query": case["query"], "expected": sorted(expected), "actual": chapters[0] if chapters else None})
         if not expected.intersection(chapters):
             failures.append({"query": case["query"], "expected": sorted(expected), "actual": chapters})
-    total = len(cases)
-    report = {"cases": total, "hit_at_1": hits_at_1 / total, "min_hit_at_1": min_hit_at_1,
-              "recall_at_5": hits_at_5 / total, "citation_valid": citation_valid / total,
-              "top1_misses": top1_misses, "failures": failures}
+    total = len(cases) - negative_total
+    report = {"cases": len(cases), "negative_cases": negative_total, "negative_rejection_rate": negative_hits / negative_total if negative_total else None, "hit_at_1": hits_at_1 / total if total else None, "min_hit_at_1": min_hit_at_1,
+              "recall_at_5": hits_at_5 / total if total else None, "citation_valid": citation_valid / total if total else None,
+              "top1_misses": top1_misses, "failures": failures,
+              "page_cases": page_total, "page_hit_at_1": page_hits / page_total if page_total else None,
+              "page_misses": page_misses}
     print(json.dumps(report, ensure_ascii=False, indent=2))
-    if hits_at_1 / total < min_hit_at_1 or failures or citation_valid != total:
+    if (total and hits_at_1 / total < min_hit_at_1) or failures or citation_valid != total or page_misses:
         raise SystemExit(1)
 
 
 def doctor(root: Path, mode: str) -> None:
-    reasons = stale_reasons(root, mode)
+    try:
+        reasons = index_health_reasons(root, mode)
+    except (OSError, ValueError, KeyError, TypeError) as error:
+        reasons = [f"索引元数据不可用：{error}"]
     print(f"mode={mode}")
     print(f"root={root}")
     print(f"pdftotext={shutil.which('pdftotext') or 'missing'}")
@@ -508,13 +582,18 @@ def learning_plan(root: Path, topic: str, level: str, minutes: int) -> None:
     tasks = [
         "阅读知识卡、前置概念与命中的 PDF 页面，记录问题假设和适用边界" if research else "阅读知识卡、前置概念与命中的 PDF 页面",
         "推导目标、数据生成机制、强基线与评价设计" if research else "用自己的话回答核心机制、目标和取舍",
-        "运行基线和失败路径，保存命令、配置、版本与输出" if research else "运行相关模板或画出可检查的数据流，并记录输出",
+        "运行相关章节 code/ 示例或模板的基线和失败路径，保存命令、配置、版本与输出" if research else "选读相关章节 code/ 示例或运行模板，记录输入、输出与失败条件",
         "形成结论、失败模式、迁移问题和下一步实验" if research else "完成检索题和应用题，记录不确定点",
     ]
+    import recsys_code
+
+    code_examples = recsys_code.search(root, topic, limit=3)
     plan = {
         "topic": topic, "concept_id": matched, "level": level, "minutes": minutes, "status": "started",
         "prerequisites": prerequisites, "effort_profile": {"reading": profile[0], "reasoning": profile[1], "practice": profile[2], "assessment": profile[3]},
         "sources": [{"chapter": chunk.chapter, "source": chunk.source, "page": chunk.page_start, "section": chunk.section} for _, chunk in results],
+        "code_examples": code_examples,
+        "code_note": "代码是可选的教学参考，不是 PDF 依据；运行前先检查对应 README 的依赖和耗时。",
         "steps": [{"minutes": budget, "task": task} for budget, task in zip(budgets, tasks)],
         "acceptance": ["步骤分钟数之和等于总预算", "提交物和实践输出存在", "至少一个失败路径被实际运行", "结论可追溯到 PDF、配置或输出"],
     }
@@ -543,7 +622,7 @@ def complete_topic(root: Path, topic: str, evidence: Path | None, practice_passe
 
 def adaptive_next(root: Path) -> None:
     rows = progress_rows(root)
-    completed = {str(row.get("concept_id") or row.get("topic")) for row in rows if row.get("status") == "completed"}
+    completed = {str(row.get("concept_id") or row.get("topic")) for row in rows if row.get("status") == "completed" and (row.get("concept_id") or row.get("topic"))}
     scores = {str(row.get("concept_id")): float(row["score"]) for row in rows if row.get("concept_id") and isinstance(row.get("score"), (int, float))}
     data = graph(root)
     available = [node for node in data["nodes"] if node not in completed and all(left in completed for left, right in data["edges"] if right == node)]
@@ -571,12 +650,12 @@ def course_command(root: Path, action: str, course_id: str | None, minutes: int 
         append_progress(root, {"record_type": "course", "action": "start", "course_id": selected, "status": "started"})
         print(json.dumps({"course_id": selected, "title": course["title"], "status": "started", "next": "course today"}, ensure_ascii=False, indent=2))
         return
-    states = latest_by([row for row in rows if row.get("course_id") == selected and row.get("unit_id") and row.get("action") != "review_submit"], "unit_id")
-    completed_units = {key for key, row in states.items() if row.get("status") == "completed"}
+    states = latest_by([row for row in rows if row.get("course_id") == selected and row.get("unit_id") and row.get("action") == "submit"], "unit_id")
+    completed_units = {str(row["unit_id"]) for row in rows if row.get("course_id") == selected and row.get("action") == "submit" and row.get("status") == "completed" and row.get("unit_id")}
     units = course["units"]
     current = next((unit for unit in units if unit["id"] not in completed_units), None)
     if action == "status":
-        print(json.dumps({"course_id": selected, "title": course["title"], "completed_units": len(completed_units), "total_units": len(units), "current_unit": current["id"] if current else None, "units": [{"id": unit["id"], "title": unit["title"], "status": states.get(unit["id"], {}).get("status", "pending"), "score": states.get(unit["id"], {}).get("score")} for unit in units]}, ensure_ascii=False, indent=2))
+        print(json.dumps({"course_id": selected, "title": course["title"], "completed_units": len(completed_units), "total_units": len(units), "current_unit": current["id"] if current else None, "units": [{"id": unit["id"], "title": unit["title"], "status": "completed" if unit["id"] in completed_units else states.get(unit["id"], {}).get("status", "pending"), "score": states.get(unit["id"], {}).get("score")} for unit in units]}, ensure_ascii=False, indent=2))
         return
     if current is None:
         print(json.dumps({"course_id": selected, "status": "completed", "recommended_next": "一周后运行 course review"}, ensure_ascii=False, indent=2))
@@ -586,7 +665,19 @@ def course_command(root: Path, action: str, course_id: str | None, minutes: int 
         practice = bool(current.get("practice"))
         profile = (20, 20, 40, 20) if practice else (30, 30, 20, 20)
         budgets = allocate_minutes(total, profile)
-        output = {"course_id": selected, "unit": current, "minutes": total, "steps": [{"minutes": value, "kind": kind} for kind, value in zip(("read", "reason", "practice", "assess"), budgets)], "feedback_context": states.get(current["id"], {}).get("feedback"), "submit": f"course submit --course {selected} --unit {current['id']} --evidence <path> --score <0..1> --practice-passed --failure-path"}
+        import recsys_code
+
+        code_examples = []
+        for chapter in current.get("chapters", []):
+            for concept in current.get("concepts", []):
+                card = root / "knowledge/concepts" / f"{concept}.md"
+                if not card.is_file():
+                    continue
+                title = re.search(r"(?m)^title:\s*(.+)$", card.read_text(encoding="utf-8"))
+                if title:
+                    code_examples.extend(recsys_code.search(root, title.group(1), chapter=int(chapter), limit=2))
+        code_examples = list({item["path"]: item for item in code_examples}.values())[:6]
+        output = {"course_id": selected, "unit": current, "minutes": total, "steps": [{"minutes": value, "kind": kind} for kind, value in zip(("read", "reason", "practice", "assess"), budgets)], "code_examples": code_examples, "code_note": "章节代码仅为可选参考；需先读 README 和源码，运行前检查依赖及耗时，不能充当 PDF 依据。", "feedback_context": states.get(current["id"], {}).get("feedback"), "submit": f"course submit --course {selected} --unit {current['id']} --evidence <path> --score <0..1> --practice-passed --failure-path"}
         print(json.dumps(output, ensure_ascii=False, indent=2))
         return
     if action == "feedback":
@@ -603,6 +694,10 @@ def course_submit(root: Path, course_id: str, unit_id: str, evidence: Path, scor
     unit = next((item for item in courses[course_id]["units"] if item["id"] == unit_id), None)
     if unit is None:
         raise SystemExit("未知课程单元。")
+    completed_units = {str(row["unit_id"]) for row in progress_rows(root) if row.get("course_id") == course_id and row.get("action") == "submit" and row.get("status") == "completed" and row.get("unit_id")}
+    current = next((item for item in courses[course_id]["units"] if item["id"] not in completed_units), None)
+    if current is None or current["id"] != unit_id:
+        raise SystemExit(f"仅可提交当前课程单元：{current['id'] if current else '课程已完成'}。")
     missing = evidence_gaps(evidence)
     if not practice_passed: missing.append("practice-passed")
     if not failure_path: missing.append("failure-path")
@@ -683,6 +778,8 @@ def knowledge_graph_view(root: Path, course_id: str | None, output: Path | None)
 
 def self_evaluate(root: Path, output: Path) -> None:
     retrieval_cases = [json.loads(line) for line in (root / "evals/retrieval.jsonl").read_text(encoding="utf-8").splitlines() if line.strip()]
+    if not retrieval_cases:
+        raise SystemExit("评测集为空，无法生成自测报告。")
     hits = 0
     citations = 0
     for case in retrieval_cases:
@@ -690,8 +787,9 @@ def self_evaluate(root: Path, output: Path) -> None:
         hits += bool(set(case["expected_chapters"]).intersection(chunk.chapter for _, chunk in results))
         citations += bool(results and all(chunk.page_start and chunk.source.endswith(".pdf") for _, chunk in results))
     rows = progress_rows(root)
-    completed = [row for row in rows if row.get("status") == "completed"]
-    report = {"generated_at": datetime.now(timezone.utc).isoformat(), "retrieval": {"cases": len(retrieval_cases), "recall_at_5": hits / len(retrieval_cases), "citation_valid": citations / len(retrieval_cases)}, "learning": {"completed_records": len([row for row in completed if row.get("action") != "review_submit"]), "due_reviews": len(due_reviews(root))}, "next_actions": ["完成当前 course today 单元", "补做 assessed 单元", "按期运行 course review"]}
+    completed = [row for row in rows if row.get("status") == "completed" and row.get("action") != "review_submit"]
+    completed_ids = {(row.get("course_id"), row.get("unit_id")) if row.get("unit_id") else ("topic", row.get("concept_id") or row.get("topic")) for row in completed if row.get("unit_id") or row.get("concept_id") or row.get("topic")}
+    report = {"generated_at": datetime.now(timezone.utc).isoformat(), "retrieval": {"cases": len(retrieval_cases), "recall_at_5": hits / len(retrieval_cases), "citation_valid": citations / len(retrieval_cases)}, "learning": {"completed_records": len(completed_ids), "due_reviews": len(due_reviews(root))}, "next_actions": ["完成当前 course today 单元", "补做 assessed 单元", "按期运行 course review"]}
     output.parent.mkdir(parents=True, exist_ok=True)
     output.write_text(json.dumps(report, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(json.dumps({"status": "complete", "report": str(output), **report}, ensure_ascii=False, indent=2))
@@ -708,6 +806,8 @@ def explain(root: Path, topic: str, audience: str) -> None:
         "interview": ["用简洁定义说明核心概念", "解释关键机制和适用条件", "总结一项主要取舍与常见追问"],
     }
     results = rank(root, topic)[:5]
+    if not results or results[0][0] < EVIDENCE_SCORE_FLOOR:
+        results = []
     evidence = [
         {
             "source": chunk.source,
@@ -718,14 +818,109 @@ def explain(root: Path, topic: str, audience: str) -> None:
         }
         for _, chunk in results
     ]
+    import recsys_code
+
+    code_examples = recsys_code.search(root, topic, limit=3) if topic.strip() else []
     report = {
         "status": "ready" if evidence else "needs_source",
         "topic": topic,
         "audience": audience,
         "explanation_outline": audience_guidance[audience],
         "evidence": evidence,
-        "instruction": "仅将 evidence 支持的内容表述为本书结论；其他知识标记为扩展说明。此命令提供证据和讲解提纲，不生成模型撰写的答案。",
+        "code_examples": code_examples,
+        "instruction": "仅将 evidence 支持的内容表述为本书结论；其他知识标记为扩展说明。code_examples 只是章节源码候选，讲解前须阅读 README 和实际代码，不是 PDF 依据，也不会自动执行。ready 仅表示检索到候选证据，不保证与问题相关，须阅读 PDF 页确认；needs_source 表示没有足够可信的候选。此命令提供证据和讲解提纲，不生成模型撰写的答案。",
     }
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+
+
+def reader_session_path(root: Path, name: str) -> Path:
+    if not re.fullmatch(r"[A-Za-z0-9_-]{1,48}", name):
+        raise SystemExit("--session 只能使用 1–48 位字母、数字、下划线或连字符。")
+    return workspace(root) / "reader-sessions" / f"{name}.json"
+
+
+def reader_session(root: Path, name: str | None) -> dict[str, object]:
+    if not name:
+        return {}
+    path = reader_session_path(root, name)
+    if not path.is_file():
+        return {}
+    content = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(content, dict):
+        raise SystemExit("读者会话记录损坏，请检查本地文件。")
+    return content
+
+
+def save_reader_session(root: Path, name: str | None, topic: str, question: str, answer: dict[str, object], concept_id: str | None = None) -> None:
+    if not name:
+        return
+    path = reader_session_path(root, name)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    # Do not save PDF extracts or model raw output; this is local ignored state.
+    path.write_text(json.dumps({"topic": topic, "concept_id": concept_id, "last_question": question,
+                                "last_status": answer["status"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+
+
+def reader_ask(root: Path, question: str, session: str | None, agent: str, timeout: int, as_json: bool, model: str | None = None) -> None:
+    import recsys_qa
+
+    if not question.strip() or timeout <= 0:
+        raise SystemExit("问题不能为空，且 --timeout 必须为正数。")
+    state = reader_session(root, session)
+    prior_topic = str(state.get("topic", "")) if session else ""
+    try:
+        rendered, answer, pages = recsys_qa.answer_question(root, question, prior_topic=prior_topic,
+                                                              cli=agent, model=model, timeout=timeout)
+    except (RuntimeError, subprocess.CalledProcessError, subprocess.TimeoutExpired, ValueError) as error:
+        raise SystemExit(f"问答未完成：{error}") from error
+    topic = prior_topic or question
+    concept = None
+    if answer["status"] == "answered":
+        concept = concept_id(root, question)
+        if not concept and prior_topic:
+            concept = str(state.get("concept_id") or "") or concept_id(root, prior_topic)
+    save_reader_session(root, session, topic, question, answer, concept)
+    if as_json:
+        print(json.dumps({"question": question, "session": session, "answer": answer,
+                          "citations": [{key: page[key] for key in ("id", "chapter", "source", "page")} for page in pages]},
+                         ensure_ascii=False, indent=2))
+    else:
+        print(rendered)
+
+
+def reader_navigate(root: Path, topic: str, session: str | None) -> None:
+    import recsys_navigation
+
+    state = reader_session(root, session)
+    subject = topic.strip() or str(state.get("topic", ""))
+    if not subject:
+        raise SystemExit("需要主题，或已有主题的 --session。")
+    report = recsys_navigation.resolve(subject, previous={"context": {"concept_id": state.get("concept_id")}} if state.get("concept_id") else None, root=root)
+    if not report["matches"]:
+        report["status"] = "not_found"
+        report["suggestion"] = "未命中已发布概念或论文；可换用概念名、方法名或先运行 search。"
+    else:
+        report["status"] = "ready"
+    print(json.dumps(report, ensure_ascii=False, indent=2))
+
+
+def reader_code(root: Path, query: str, chapter: int | None, limit: int) -> None:
+    import recsys_code
+
+    try:
+        result = recsys_code.report(root, query, chapter=chapter, limit=limit)
+    except ValueError as error:
+        raise SystemExit(str(error)) from error
+    print(json.dumps(result, ensure_ascii=False, indent=2))
+
+
+def reader_coach(root: Path, course_id: str, evidence: Path | None, feedback: str, model: str | None = None, semantic: bool = True) -> None:
+    import recsys_coach
+
+    try:
+        report = recsys_coach.coach(root, course_id, evidence, feedback, semantic=semantic, model=model)
+    except (OSError, ValueError, subprocess.TimeoutExpired) as error:
+        raise SystemExit(f"陪练未完成：{error}") from error
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
@@ -773,17 +968,18 @@ def design(root: Path, topic: str, constraints: list[str]) -> None:
         else:
             invalid.append("qps*p99")
     report = {
-        "status": "needs_input" if missing or invalid else "complete", "system": topic, "constraints": parsed, "missing": missing, "invalid": invalid,
+        "status": "needs_input" if missing or invalid else "draft", "system": topic, "constraints": parsed, "missing": missing, "invalid": invalid,
+        "verification": "not_run",
         "request_flow": ["gateway", "feature snapshot", "parallel multi-recall", "merge/filter", "pre-rank", "rank", "rerank", "response"],
         "latency_budget": [{"stage": name, "p99_ms": value} for name, value in zip(budget_names, budgets)],
-        "capacity": {"offered_qps": qps, "items": items, "minimum_inflight_at_p99": minimum_inflight, "replica_formula": "ceil(peak_qps / measured_safe_qps_per_replica * headroom)", "headroom": "1.3-2.0; confirm with peak shape and failure-domain target", "unresolved": ["measured safe QPS/replica", "peak-to-average ratio", "candidate count per stage"]},
+        "capacity": {"offered_qps": qps, "items": items, "minimum_inflight_at_p99": minimum_inflight, "inflight_note": "P99-based conservative planning estimate, not a mathematical minimum; mean concurrency requires mean latency.", "replica_formula": "ceil(peak_qps / measured_safe_qps_per_replica * headroom)", "headroom": "1.3-2.0; confirm with peak shape and failure-domain target", "unresolved": ["measured safe QPS/replica", "peak-to-average ratio", "candidate count per stage"]},
         "version_contract": "One release manifest binds model, feature schema, Embedding and ANN index; cache/request keys carry release_id; incompatible releases fail closed.",
         "overload_and_fallback": ["Bound queues and concurrency per dependency", "Apply stage deadlines within the end-to-end budget", "Drop optional recall routes before core routes", "Return version-compatible popular/fresh candidates when personalization cannot finish"],
         "observability": ["stage P50/P95/P99", "queue depth and timeout rate", "candidate counts and empty-result rate", "fallback reason", "release_id and feature freshness", "objective guardrails"],
         "rollout": ["manifest compatibility gate", "shadow validation", "small canary with objective and reliability guardrails", "atomic promotion", "whole-release rollback"],
         "sources": source_rows(root, "在线服务 延迟预算 限流 降级 版本一致性"),
         "assumptions": ["Latency allocation is an initial budget, not measured capacity.", "All external calls propagate a request deadline."],
-        "pending_business_confirmation": [key for key in ("runtime", "deployment", "privacy") if key not in parsed],
+        "pending_business_confirmation": [key for key in ("feature_scale", "consistency", "runtime", "deployment", "privacy") if not parsed.get(key)],
     }
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
@@ -816,11 +1012,11 @@ def review_surface(root: Path, path: Path) -> None:
                 continue
             left, right = node.left, node.comparators[0]
             if isinstance(node.ops[0], ast.LtE) and attribute_name(left) == ("feature", "timestamp") and attribute_name(right) == ("label", "timestamp"):
-                findings.append({"severity": "pass", "line": node.lineno, "finding": "Point-in-time join excludes future features.", "invariant": "feature_time <= label_time"})
+                findings.append({"severity": "static_candidate", "line": node.lineno, "finding": "Point-in-time predicate found; verify the branch executes and filters future features.", "invariant": "feature_time <= label_time"})
             if isinstance(node.ops[0], ast.Gt) and subscript_name(left) == ("row", "feature_time") and subscript_name(right) == ("row", "label_time"):
-                findings.append({"severity": "pass", "line": node.lineno, "finding": "A second validation gate rejects leaked rows.", "verification": "Run with --inject-leakage and require exit code 2."})
+                findings.append({"severity": "static_candidate", "line": node.lineno, "finding": "Possible leakage-rejection predicate found; verify it rejects rows at runtime.", "verification": "Run with --inject-leakage and require exit code 2."})
     report = {
-        "status": "complete", "target": str(path),
+        "status": "needs_runtime_verification" if findings else "needs_manual_review", "target": str(path),
         "findings": findings or [{"severity": "needs_manual_review", "finding": "No supported domain invariant was recognized; no clean bill of health is asserted."}],
         "risk": "critical if either point-in-time predicate or rejection gate is removed" if findings else "undetermined",
         "required_verification": ["normal path succeeds", "future-feature injection is rejected", "boundary timestamps remain eligible"],
@@ -832,20 +1028,22 @@ def review_surface(root: Path, path: Path) -> None:
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
-def debug_scenario(root: Path, symptom: str) -> None:
+def debug_scenario(root: Path, symptom: str, fixture: bool = False) -> None:
     branches = [
-        {"priority": 1, "hypothesis": "slow or saturated recall dependency consumes the deadline", "evidence": ["per-route P99", "timeout rate", "queue depth", "inflight", "deadline-exceeded count"]},
+        {"priority": 1, "hypothesis": "traffic or experiment/configuration changed", "evidence": ["traffic by bucket", "configuration diff", "experiment assignment", "first bad time"]},
         {"priority": 2, "hypothesis": "candidate supply or filtering changed", "evidence": ["per-route candidate count", "merge count", "filter reason", "empty-result rate"]},
-        {"priority": 3, "hypothesis": "release artifacts are semantically mismatched", "evidence": ["model/Embedding/index release_id", "cache-key version", "rollout event"]},
-        {"priority": 4, "hypothesis": "traffic, experiment or feature freshness changed", "evidence": ["traffic by bucket", "configuration diff", "feature age and missing rate"]},
+        {"priority": 3, "hypothesis": "feature freshness or missingness changed", "evidence": ["feature age", "missing rate", "online/offline parity"]},
+        {"priority": 4, "hypothesis": "release artifacts are semantically mismatched", "evidence": ["model/Embedding/index release_id", "cache-key version", "rollout event"]},
+        {"priority": 5, "hypothesis": "calibration or logging changed", "evidence": ["score distribution", "calibration drift", "logging coverage"]},
+        {"priority": 6, "hypothesis": "serving dependency is slow or saturated", "evidence": ["per-route P99", "timeout rate", "queue depth", "inflight", "deadline-exceeded count"]},
     ]
-    matched_fixture = "cases/multi-recall-tail-latency.md" if "召回" in symptom and ("P99" in symptom.upper() or "延迟" in symptom) else None
+    matched_fixture = "cases/multi-recall-tail-latency.md" if fixture else None
     report = {
-        "status": "complete", "symptom": symptom,
+        "status": "needs_evidence", "symptom": symptom,
         "immediate_action": ["Preserve request and release identifiers", "Compare affected vs healthy buckets before changing configuration", "Keep non-empty fallback enabled while collecting evidence"],
         "diagnostic_tree": branches,
-        "fixture_evidence": {"path": matched_fixture, "observations": ["one recall RPC has a long tail", "child calls lack shorter deadlines", "the batch waits after timeout", "fallback supply is sufficient"]} if matched_fixture else None,
-        "conclusion": "For the matched fixture, a slow recall dependency consumes the total budget and candidate assembly waits too long; this explains both higher tail latency and empty/insufficient results. For a live incident, confirm the listed evidence before accepting this root cause." if matched_fixture else "No repository fixture uniquely identifies a root cause; follow the evidence order.",
+        "fixture_evidence": {"path": matched_fixture, "scope": "repository teaching case, not live telemetry", "observations": ["one recall RPC has a long tail", "child calls lack shorter deadlines", "the batch waits after timeout", "fallback supply is sufficient"]} if matched_fixture else None,
+        "conclusion": "Teaching-case explanation only: slow recall consumes the budget; confirm live telemetry before diagnosing a real incident." if matched_fixture else "No live telemetry supplied; collect the listed evidence before concluding root cause.",
         "remediation": ["Set per-route deadlines below the end-to-end deadline", "Bound per-route concurrency and queueing", "Continue with healthy routes after a child timeout", "Serve non-empty fallback candidates"],
         "recovery_verification": ["fault-injected end-to-end P99 meets the budget", "candidate count and non-empty rate meet SLO", "timeout and fallback reason are observable", "removing the fault restores the normal route"],
         "sources": source_rows(root, "召回 延迟预算 timeout 过载 降级"),
@@ -873,6 +1071,26 @@ def main() -> None:
     eval_parser = commands.add_parser("eval", help="运行检索与引用基准")
     eval_parser.add_argument("--dataset", type=Path, default=Path("evals/retrieval.jsonl"), help="JSONL 评测集")
     eval_parser.add_argument("--min-hit-at-1", type=float, default=1.0, help="Hit@1 最低通过率，0..1（默认 1.0）")
+    ask_parser = commands.add_parser("ask", help="用已发布 PDF 证据生成可追溯回答并支持追问")
+    ask_parser.add_argument("question", help="自然语言问题或追问")
+    ask_parser.add_argument("--session", help="本地对话名；续问时复用，保存在忽略的个人工作区")
+    ask_parser.add_argument("--agent", default="claude", help="非交互模型 CLI（默认 claude）")
+    ask_parser.add_argument("--model", help="可用模型 ID；若本机默认模型不可用请显式指定")
+    ask_parser.add_argument("--timeout", type=int, default=120, help="模型超时秒数")
+    ask_parser.add_argument("--json", action="store_true", help="输出结构化回答")
+    navigate_parser = commands.add_parser("navigate", help="从主题跳到概念、已发布 PDF、代码和代表论文")
+    navigate_parser.add_argument("topic", nargs="?", default="", help="书中主题或概念；有 --session 时可省略")
+    navigate_parser.add_argument("--session", help="沿用本地问答会话上下文")
+    code_parser = commands.add_parser("code", help="检索各章节 code/ 的真实源码示例及其章节说明")
+    code_parser.add_argument("query", nargs="?", default="", help="算法名、主题或方法；配合 --chapter 可省略")
+    code_parser.add_argument("--chapter", type=int, help="限定已发布章节号；省略主题时列出本章部分源码")
+    code_parser.add_argument("--limit", type=int, default=8, help="最多返回源码数（默认 8）")
+    coach_parser = commands.add_parser("coach", help="针对学习提交物生成个性化追问与下一步任务")
+    coach_parser.add_argument("--course", required=True, choices=("new-engineer", "graduate"))
+    coach_parser.add_argument("--evidence", type=Path, help="学习提交物；也可仅提供 --feedback")
+    coach_parser.add_argument("--feedback", default="", help="学习者当前困惑或时间约束")
+    coach_parser.add_argument("--model", help="可用模型 ID；本机默认不可用时指定")
+    coach_parser.add_argument("--no-model", action="store_true", help="仅做离线结构检查，不调用模型")
     commands.add_parser("doctor", help="检查依赖、索引新鲜度和知识源")
     learn_parser = commands.add_parser("learn", help="生成带阅读页和实践的学习计划")
     learn_parser.add_argument("topic", help="学习主题")
@@ -925,10 +1143,11 @@ def main() -> None:
     review_parser.add_argument("path", type=Path, help="待评审文件")
     debug_parser = commands.add_parser("debug", help="生成证据树、结论、修复和恢复验证报告")
     debug_parser.add_argument("symptom", help="故障现象")
+    debug_parser.add_argument("--fixture", choices=("multi-recall-tail-latency",), help="显式加载教学案例；并非现场遥测")
     args = parser.parse_args()
     root = args.root.resolve()
     mode = detect_mode(root) if args.mode == "auto" else args.mode
-    if args.command in {"search", "page", "eval", "learn", "explain", "design", "review", "debug", "self-eval"}:
+    if args.command in {"search", "page", "eval", "learn", "explain", "design", "review", "debug", "self-eval", "ask", "navigate", "coach"}:
         require_fresh_index(root, mode)
     if args.command == "index":
         build(root, mode)
@@ -938,6 +1157,14 @@ def main() -> None:
         page(root, args.chapter, args.page)
     elif args.command == "eval":
         evaluate(root, root / args.dataset, args.min_hit_at_1)
+    elif args.command == "ask":
+        reader_ask(root, args.question, args.session, args.agent, args.timeout, args.json, args.model)
+    elif args.command == "navigate":
+        reader_navigate(root, args.topic, args.session)
+    elif args.command == "code":
+        reader_code(root, args.query, args.chapter, args.limit)
+    elif args.command == "coach":
+        reader_coach(root, args.course, args.evidence, args.feedback, args.model, not args.no_model)
     elif args.command == "learn":
         learning_plan(root, args.topic, args.level, args.minutes)
     elif args.command == "complete":
@@ -966,7 +1193,7 @@ def main() -> None:
     elif args.command == "review":
         review_surface(root, args.path)
     elif args.command == "debug":
-        debug_scenario(root, args.symptom)
+        debug_scenario(root, args.symptom, bool(args.fixture))
     else:
         doctor(root, mode)
 

@@ -19,7 +19,7 @@
             "feedback-loop",
             "cold-start"
           ],
-          "reading": "ch00 PDF 1-3；ch01 PDF 5-10、28",
+          "reading": "ch00 PDF 1-3；ch01 PDF 5-10",
           "deliverable": "系统闭环图与冷启动方案",
           "acceptance": [
             "标出目标、数据、召回、排序、服务和反馈",
@@ -416,7 +416,7 @@
             "offline-online-architecture",
             "recommendation-log-contract"
           ],
-          "reading": "ch00 PDF 1-3；ch01 PDF 5-10、28；ch02 PDF 1-19",
+          "reading": "ch00 PDF 1-3；ch01 PDF 5-10；ch02 PDF 1-19",
           "deliverable": "可证伪 problem statement 与系统边界图",
           "acceptance": [
             "定义总体、观测、决策、目标、约束和强基线",

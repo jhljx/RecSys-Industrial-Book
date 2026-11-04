@@ -21,6 +21,10 @@ class SiteRoutesTest(unittest.TestCase):
         layout = (ROOT / "_layouts" / "default.html").read_text(encoding="utf-8")
         self.assertIn("knowledge-map/document.css", layout)
 
+    def test_unpublished_concept_layout_does_not_link_missing_pdf(self) -> None:
+        layout = (ROOT / "_layouts" / "default.html").read_text(encoding="utf-8")
+        self.assertNotIn("#ch{{ page.chapter }}", layout)
+
     def test_reader_requests_fit_view(self) -> None:
         script = (ROOT / "knowledge-map" / "reader.js").read_text(encoding="utf-8")
         self.assertIn("#page=${page}&view=FitH", script)

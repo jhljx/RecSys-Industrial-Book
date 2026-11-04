@@ -1,0 +1,3 @@
+{"query":"双塔召回负采样偏差","expected_chapters":[10],"expected_pages":{"10":[[59,60]]}}
+{"query":"Embedding Server 版本一致性","expected_chapters":[17],"expected_pages":{"17":[[17,18]]}}
+{"query":"协同过滤召回 ItemCF 稀疏交互与热门偏置","expected_chapters":[10],"expected_pages":{"10":[[2,6]]}}

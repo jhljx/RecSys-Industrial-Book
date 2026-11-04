@@ -165,7 +165,7 @@ python3 ch05_feature_selection/feature_governance.py
 - **自包含**：`ch01`–`ch03` 的脚本之间不互相 import（共享的合成数据放在 `common.py`）；`ch04` 的模型脚本只 import 同目录的 `_train_utils.py`，`ch05` 只 import `_lr_utils.py`。每个文件都能单独运行。
 - **可复现**：所有脚本固定随机种子（`random.Random(42)` / `np.random.default_rng` / `torch.manual_seed(0)`），输出可复现。DCN/CAN 等入门的 torch 脚本里额外给 Embedding 表 `torch.manual_seed(0)`，避免模型间初始化差异掩盖结构差异。
 - **[MOCK] 标注**：多模态编码器（随机投影模拟）、特征成本单价、告警阈值、注册表与使用方数量都在 docstring 或注释里标了 `[MOCK]`。
-- **以正文为准**：公式与流程按 `chapters/ch15.tex`——DCN 的 `x0x_lᵀw + b + x_l`、DCN-V2 的低秩 `UVᵀ`、AutoInt 的缩放点积注意力、FiBiNet 的 squeeze/excitation 与三种 Bilinear、AFN 的 `exp(Σ w ln e)` 与阶数定义、FED 的 DRM/Field-wise/Element-wise、CAN 的 Induction/Feed 角色与 `Concat(h_1..h_L)`、FINT 的 Field 级权重与残差、GDCN 的门控交叉公式、IPA 的三组件与四种聚合方式的参数量（0 / L / LM / LMK）、§15.6 的 ΔM、四次成本分解、Coverage 定义、PSI 与 `F(t) ⊆ I_{≤t}`。
+- **以已发布 PDF 为准**：公式与流程以第 15 章发布 PDF 的相应小节为准——DCN 的 `x0x_lᵀw + b + x_l`、DCN-V2 的低秩 `UVᵀ`、AutoInt 的缩放点积注意力、FiBiNet 的 squeeze/excitation 与三种 Bilinear、AFN 的 `exp(Σ w ln e)` 与阶数定义、FED 的 DRM/Field-wise/Element-wise、CAN 的 Induction/Feed 角色与 `Concat(h_1..h_L)`、FINT 的 Field 级权重与残差、GDCN 的门控交叉公式、IPA 的三组件与四种聚合方式的参数量（0 / L / LM / LMK）、§15.6 的 ΔM、四次成本分解、Coverage 定义、PSI 与 `F(t) ⊆ I_{≤t}`。
 - **数值只用于横向对照**：§15.5 的实验是 4 万样本、Embedding 4 维、隐层 32 维的快速实验，AUC 差异只有千分之几，目的是让不同结构在同一份数据上可比较，不代表线上收益。
 - **运行开销**（单机 CPU，串行）：
   - §15.1–§15.3：每个脚本 0.05–2.3s，全部 < 3s；
