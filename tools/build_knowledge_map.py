@@ -5,7 +5,9 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, unquote, urlparse
+
+from check_knowledge import pdf_page_count
 
 ROOT = Path(__file__).resolve().parents[1]
 OUTPUT = ROOT / "knowledge-map/data.js"
@@ -31,9 +33,58 @@ def section(text: str, heading: str) -> str:
     return match.group(1).strip() if match else ""
 
 
+def load_papers(root: Path, chapters: list[dict], concept_ids: set[str]) -> list[dict]:
+    """Validate small editorial paper pointers against released PDFs, never PDF text."""
+    catalog = json.loads((root / "knowledge/paper-map.json").read_text(encoding="utf-8"))
+    if not isinstance(catalog, dict) or catalog.get("version") != 1 or not isinstance(catalog.get("papers"), list):
+        raise ValueError("invalid paper-map schema")
+    chapter_by_number = {chapter["number"]: chapter for chapter in chapters}
+    seen: set[str] = set()
+    pages_by_chapter: dict[int, int] = {}
+    papers = []
+    required = {"id", "method", "title", "chapter", "pages", "concepts"}
+    for paper in catalog["papers"]:
+        if not isinstance(paper, dict) or set(paper) - (required | {"url"}) or required - set(paper):
+            raise ValueError("invalid paper entry fields")
+        paper_id = paper["id"]
+        if not isinstance(paper_id, str) or not re.fullmatch(r"[a-z0-9]+(?:-[a-z0-9]+)*", paper_id) or paper_id in seen:
+            raise ValueError(f"invalid or duplicate paper id: {paper_id}")
+        seen.add(paper_id)
+        if any(not isinstance(paper[key], str) or not paper[key].strip() for key in ("method", "title")):
+            raise ValueError(f"invalid paper metadata: {paper_id}")
+        chapter = paper["chapter"]
+        if type(chapter) is not int or chapter not in chapter_by_number:
+            raise ValueError(f"unknown paper chapter: {paper_id}: {chapter}")
+        pages = paper["pages"]
+        if (not isinstance(pages, list) or len(pages) != 2 or
+                any(type(page) is not int for page in pages) or pages[0] < 1 or pages[1] < pages[0]):
+            raise ValueError(f"invalid paper pages: {paper_id}")
+        if chapter not in pages_by_chapter:
+            pdf = root / unquote(chapter_by_number[chapter]["pdf"].removeprefix("../"))
+            pages_by_chapter[chapter] = pdf_page_count(pdf)
+        if pages[1] > pages_by_chapter[chapter]:
+            raise ValueError(f"paper pages exceed PDF bounds: {paper_id}")
+        references = paper["concepts"]
+        if (not isinstance(references, list) or not references or
+                any(not isinstance(item, str) or item not in concept_ids for item in references) or
+                len(set(references)) != len(references)):
+            raise ValueError(f"unknown or duplicate paper concepts: {paper_id}")
+        if "url" in paper:
+            url = paper["url"]
+            if not isinstance(url, str) or urlparse(url).scheme != "https" or not urlparse(url).netloc:
+                raise ValueError(f"invalid paper URL: {paper_id}")
+        papers.append(paper)
+    return papers
+
+
 def build(root: Path = ROOT) -> dict:
-    groups = [{"id": key, "title": title, "description": description, "chapters": chapters} for key, title, description, chapters in GROUPS]
+    groups = [{"id": key, "title": title, "description": description, "chapters": list(chapters)} for key, title, description, chapters in GROUPS]
     chapter_files = sorted((root / "knowledge/chapters").glob("ch[0-9][0-9].md"))
+    # Newly released chapters remain visible before an editor assigns a permanent taxonomy.
+    published = {int(frontmatter(path.read_text(encoding="utf-8"))["chapter"]) for path in chapter_files}
+    ungrouped = sorted(published - {n for group in groups for n in group["chapters"]})
+    if ungrouped:
+        groups.append({"id": "additional", "title": "新增章节", "description": "待纳入专题分组的已发布章节", "chapters": ungrouped})
     chapters = []
     for path in chapter_files:
         text = path.read_text(encoding="utf-8")
@@ -89,8 +140,9 @@ def build(root: Path = ROOT) -> dict:
         raise ValueError("unpublished concept lacks released-PDF citation")
     if any(set(u["chapters"]) - chapter_ids or set(u["concepts"]) - concept_ids for p in paths for u in p["units"]):
         raise ValueError("course reference mismatch")
+    papers = load_papers(root, chapters, concept_ids)
     return {"version": 1, "groups": groups, "chapters": chapters, "concepts": concepts,
-            "edges": graph["edges"], "paths": paths}
+            "edges": graph["edges"], "paths": paths, "papers": papers}
 
 
 

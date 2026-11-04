@@ -1,0 +1,1190 @@
+{
+  "version": 1,
+  "papers": [
+    {
+      "id": "wide-and-deep",
+      "method": "Wide & Deep",
+      "title": "Wide & Deep Learning for Recommender Systems",
+      "chapter": 12,
+      "pages": [
+        9,
+        10
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "deepfm",
+      "method": "DeepFM",
+      "title": "DeepFM: A Factorization-Machine based Neural Network for CTR Prediction",
+      "chapter": 12,
+      "pages": [
+        14,
+        16
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "xdeepfm",
+      "method": "xDeepFM",
+      "title": "xDeepFM: Combining Explicit and Implicit Feature Interactions for Recommender Systems",
+      "chapter": 12,
+      "pages": [
+        16,
+        19
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "mmoe",
+      "method": "MMoE",
+      "title": "Modeling Task Relationships in Multi-task Learning with Multi-gate Mixture-of-Experts",
+      "chapter": 12,
+      "pages": [
+        30,
+        33
+      ],
+      "concepts": [
+        "multi-task-experts"
+      ]
+    },
+    {
+      "id": "ple",
+      "method": "PLE",
+      "title": "Progressive Layered Extraction (PLE): A Novel Multi-Task Learning (MTL) Model for Personalized Recommendations",
+      "chapter": 12,
+      "pages": [
+        33,
+        36
+      ],
+      "concepts": [
+        "multi-task-experts"
+      ]
+    },
+    {
+      "id": "pnn",
+      "method": "PNN",
+      "title": "Product-based Neural Networks for User Response Prediction",
+      "chapter": 12,
+      "pages": [
+        10,
+        14
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "dlrm",
+      "method": "DLRM",
+      "title": "Deep Learning Recommendation Model for Personalization and Recommendation Systems",
+      "chapter": 12,
+      "pages": [
+        19,
+        22
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "deepmcp",
+      "method": "DeepMCP",
+      "title": "Representation Learning-Assisted Click-Through Rate Prediction",
+      "chapter": 12,
+      "pages": [
+        22,
+        25
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "dfn",
+      "method": "DFN",
+      "title": "Deep Feedback Network for Recommendation",
+      "chapter": 12,
+      "pages": [
+        25,
+        29
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "transformer",
+      "method": "Transformer",
+      "title": "Attention Is All You Need",
+      "chapter": 12,
+      "pages": [
+        41,
+        48
+      ],
+      "concepts": [
+        "target-attention-ranking"
+      ]
+    },
+    {
+      "id": "rope",
+      "method": "RoPE",
+      "title": "RoFormer: Enhanced Transformer with Rotary Position Embedding",
+      "chapter": 12,
+      "pages": [
+        48,
+        50
+      ],
+      "concepts": [
+        "target-attention-ranking"
+      ]
+    },
+    {
+      "id": "flashattention",
+      "method": "FlashAttention",
+      "title": "FlashAttention: Fast and Memory-Efficient Exact Attention with IO-Awareness",
+      "chapter": 12,
+      "pages": [
+        50,
+        51
+      ],
+      "concepts": [
+        "target-attention-ranking"
+      ]
+    },
+    {
+      "id": "deepseekmoe",
+      "method": "DeepSeekMoE",
+      "title": "DeepSeekMoE: Towards Ultimate Expert Specialization in Mixture-of-Experts Language Models",
+      "chapter": 12,
+      "pages": [
+        53,
+        55
+      ],
+      "concepts": [
+        "multi-task-experts"
+      ]
+    },
+    {
+      "id": "mmr",
+      "method": "MMR",
+      "title": "The Use of MMR, Diversity-Based Reranking for Reordering Documents and Producing Summaries",
+      "chapter": 7,
+      "pages": [
+        10,
+        12
+      ],
+      "concepts": [
+        "diversity-reranking",
+        "diversity"
+      ]
+    },
+    {
+      "id": "dpp",
+      "method": "DPP",
+      "title": "Determinantal Point Processes for Machine Learning",
+      "chapter": 7,
+      "pages": [
+        12,
+        17
+      ],
+      "concepts": [
+        "diversity-reranking",
+        "diversity"
+      ]
+    },
+    {
+      "id": "ssd",
+      "method": "SSD",
+      "title": "Sliding Spectrum Decomposition for Diversified Recommendation",
+      "chapter": 7,
+      "pages": [
+        17,
+        19
+      ],
+      "concepts": [
+        "diversity-reranking",
+        "diversity"
+      ]
+    },
+    {
+      "id": "rq-vae",
+      "method": "RQ-VAE",
+      "title": "Autoregressive Image Generation using Residual Quantization",
+      "chapter": 9,
+      "pages": [
+        4,
+        6
+      ],
+      "concepts": [
+        "semantic-id"
+      ]
+    },
+    {
+      "id": "diger",
+      "method": "DIGER",
+      "title": "Differentiable Semantic ID for Generative Recommendation",
+      "chapter": 9,
+      "pages": [
+        14,
+        16
+      ],
+      "concepts": [
+        "one-stage-generative-alignment",
+        "semantic-id"
+      ]
+    },
+    {
+      "id": "etegrec",
+      "method": "ETEGRec",
+      "title": "Generative Recommender with End-to-End Learnable Item Tokenization",
+      "chapter": 9,
+      "pages": [
+        17,
+        20
+      ],
+      "concepts": [
+        "one-stage-generative-alignment",
+        "semantic-id"
+      ]
+    },
+    {
+      "id": "unisid",
+      "method": "UniSID",
+      "title": "End-to-End Semantic ID Generation for Generative Advertisement Recommendation",
+      "chapter": 9,
+      "pages": [
+        20,
+        22
+      ],
+      "concepts": [
+        "one-stage-generative-alignment",
+        "semantic-id"
+      ]
+    },
+    {
+      "id": "itemcf",
+      "method": "ItemCF",
+      "title": "Item-based Collaborative Filtering",
+      "chapter": 10,
+      "pages": [
+        2,
+        4
+      ],
+      "concepts": [
+        "collaborative-filtering-recall"
+      ]
+    },
+    {
+      "id": "usercf",
+      "method": "UserCF",
+      "title": "User-based Collaborative Filtering",
+      "chapter": 10,
+      "pages": [
+        4,
+        5
+      ],
+      "concepts": [
+        "collaborative-filtering-recall"
+      ]
+    },
+    {
+      "id": "online-cf",
+      "method": "Online CF",
+      "title": "Online Collaborative Filtering",
+      "chapter": 10,
+      "pages": [
+        6,
+        9
+      ],
+      "concepts": [
+        "collaborative-filtering-recall"
+      ]
+    },
+    {
+      "id": "swing",
+      "method": "Swing",
+      "title": "Swing Recall",
+      "chapter": 10,
+      "pages": [
+        9,
+        15
+      ],
+      "concepts": [
+        "collaborative-filtering-recall"
+      ]
+    },
+    {
+      "id": "matrix-factorization-recall",
+      "method": "Matrix Factorization",
+      "title": "Matrix Factorization Techniques for Recommender Systems",
+      "chapter": 10,
+      "pages": [
+        16,
+        18
+      ],
+      "concepts": [
+        "collaborative-filtering-recall"
+      ]
+    },
+    {
+      "id": "neural-cf",
+      "method": "Neural CF / NeuMF",
+      "title": "Neural Collaborative Filtering",
+      "chapter": 10,
+      "pages": [
+        18,
+        21
+      ],
+      "concepts": [
+        "collaborative-filtering-recall"
+      ]
+    },
+    {
+      "id": "heterogeneous-cf",
+      "method": "Heterogeneous CF",
+      "title": "Efficient Heterogeneous Collaborative Filtering without Negative Sampling for Recommendation",
+      "chapter": 10,
+      "pages": [
+        22,
+        23
+      ],
+      "concepts": [
+        "collaborative-filtering-recall"
+      ]
+    },
+    {
+      "id": "deepwalk",
+      "method": "DeepWalk",
+      "title": "DeepWalk: Online Learning of Social Representations",
+      "chapter": 10,
+      "pages": [
+        25,
+        27
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "node2vec",
+      "method": "Node2Vec",
+      "title": "node2vec: Scalable Feature Learning for Networks",
+      "chapter": 10,
+      "pages": [
+        27,
+        29
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "eges",
+      "method": "EGES",
+      "title": "Billion-Scale Commodity Embedding for E-Commerce Recommendation in Alibaba",
+      "chapter": 10,
+      "pages": [
+        30,
+        36
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "gcn",
+      "method": "GCN",
+      "title": "Semi-Supervised Classification with Graph Convolutional Networks",
+      "chapter": 10,
+      "pages": [
+        37,
+        39
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "gat",
+      "method": "GAT",
+      "title": "Graph Attention Networks",
+      "chapter": 10,
+      "pages": [
+        40,
+        41
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "graphsage",
+      "method": "GraphSAGE",
+      "title": "Inductive Representation Learning on Large Graphs",
+      "chapter": 10,
+      "pages": [
+        41,
+        43
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "lightgcn",
+      "method": "LightGCN",
+      "title": "LightGCN: Simplifying and Powering Graph Convolution Network for Recommendation",
+      "chapter": 10,
+      "pages": [
+        44,
+        46
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "pinsage",
+      "method": "PinSage",
+      "title": "Graph Convolutional Neural Networks for Web-Scale Recommender Systems",
+      "chapter": 10,
+      "pages": [
+        46,
+        49
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "hybridgnn",
+      "method": "HybridGNN",
+      "title": "HybridGNN: Learning Hybrid Representation in Multiplex Heterogeneous Networks",
+      "chapter": 10,
+      "pages": [
+        50,
+        52
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "youtube-dnn",
+      "method": "YoutubeDNN",
+      "title": "Deep Neural Networks for YouTube Recommendations",
+      "chapter": 10,
+      "pages": [
+        54,
+        55
+      ],
+      "concepts": [
+        "two-tower"
+      ]
+    },
+    {
+      "id": "two-tower-recall",
+      "method": "Two-Tower Recall",
+      "title": "Two-Tower Vector Recall",
+      "chapter": 10,
+      "pages": [
+        56,
+        61
+      ],
+      "concepts": [
+        "two-tower",
+        "negative-sampling"
+      ]
+    },
+    {
+      "id": "fasttext",
+      "method": "FastText",
+      "title": "Enriching Word Vectors with Subword Information",
+      "chapter": 10,
+      "pages": [
+        62,
+        66
+      ],
+      "concepts": [
+        "two-tower"
+      ]
+    },
+    {
+      "id": "bert",
+      "method": "BERT",
+      "title": "BERT: Pre-training of Deep Bidirectional Transformers for Language Understanding",
+      "chapter": 10,
+      "pages": [
+        67,
+        71
+      ],
+      "concepts": [
+        "two-tower"
+      ]
+    },
+    {
+      "id": "sentence-bert",
+      "method": "Sentence-BERT",
+      "title": "Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+      "chapter": 10,
+      "pages": [
+        72,
+        75
+      ],
+      "concepts": [
+        "two-tower"
+      ]
+    },
+    {
+      "id": "simcse",
+      "method": "SimCSE",
+      "title": "SimCSE: Simple Contrastive Learning of Sentence Embeddings",
+      "chapter": 10,
+      "pages": [
+        76,
+        78
+      ],
+      "concepts": [
+        "two-tower"
+      ]
+    },
+    {
+      "id": "e5",
+      "method": "E5",
+      "title": "Text Embeddings by Weakly-Supervised Contrastive Pre-training",
+      "chapter": 10,
+      "pages": [
+        78,
+        79
+      ],
+      "concepts": [
+        "two-tower"
+      ]
+    },
+    {
+      "id": "item2vec",
+      "method": "Item2Vec",
+      "title": "Item2vec: Neural Item Embedding for Collaborative Filtering",
+      "chapter": 10,
+      "pages": [
+        82,
+        83
+      ],
+      "concepts": [
+        "sequential-recall"
+      ]
+    },
+    {
+      "id": "list2vec",
+      "method": "List2Vec",
+      "title": "List2Vec Recall",
+      "chapter": 10,
+      "pages": [
+        83,
+        85
+      ],
+      "concepts": [
+        "sequential-recall"
+      ]
+    },
+    {
+      "id": "gru4rec",
+      "method": "GRU4Rec",
+      "title": "Session-based Recommendations with Recurrent Neural Networks",
+      "chapter": 10,
+      "pages": [
+        86,
+        87
+      ],
+      "concepts": [
+        "sequential-recall"
+      ]
+    },
+    {
+      "id": "sasrec",
+      "method": "SASRec",
+      "title": "Self-Attentive Sequential Recommendation",
+      "chapter": 10,
+      "pages": [
+        89,
+        90
+      ],
+      "concepts": [
+        "sequential-recall"
+      ]
+    },
+    {
+      "id": "bert4rec",
+      "method": "BERT4Rec",
+      "title": "BERT4Rec: Sequential Recommendation with Bidirectional Encoder Representations from Transformer",
+      "chapter": 10,
+      "pages": [
+        90,
+        92
+      ],
+      "concepts": [
+        "sequential-recall"
+      ]
+    },
+    {
+      "id": "sdm",
+      "method": "SDM",
+      "title": "SDM: Sequential Deep Matching Model for Online Large-Scale Recommender System",
+      "chapter": 10,
+      "pages": [
+        93,
+        95
+      ],
+      "concepts": [
+        "sequential-recall"
+      ]
+    },
+    {
+      "id": "cl4srec",
+      "method": "CL4SRec",
+      "title": "Contrastive Learning for Sequential Recommendation",
+      "chapter": 10,
+      "pages": [
+        96,
+        97
+      ],
+      "concepts": [
+        "sequential-recall"
+      ]
+    },
+    {
+      "id": "icsrec",
+      "method": "ICSRec",
+      "title": "Intent Contrastive Learning with Cross Subsequences for Sequential Recommendation",
+      "chapter": 10,
+      "pages": [
+        97,
+        99
+      ],
+      "concepts": [
+        "sequential-recall"
+      ]
+    },
+    {
+      "id": "mind",
+      "method": "MIND",
+      "title": "Multi-Interest Network with Dynamic Routing for Recommendation at Tmall",
+      "chapter": 10,
+      "pages": [
+        100,
+        105
+      ],
+      "concepts": [
+        "multi-interest-recall"
+      ]
+    },
+    {
+      "id": "comirec",
+      "method": "ComiRec",
+      "title": "Controllable Multi-Interest Framework for Recommendation",
+      "chapter": 10,
+      "pages": [
+        105,
+        106
+      ],
+      "concepts": [
+        "multi-interest-recall"
+      ]
+    },
+    {
+      "id": "remi",
+      "method": "REMI",
+      "title": "Rethinking Multi-Interest Learning for Candidate Matching in Recommender Systems",
+      "chapter": 10,
+      "pages": [
+        107,
+        108
+      ],
+      "concepts": [
+        "multi-interest-recall"
+      ]
+    },
+    {
+      "id": "pdn",
+      "method": "PDN",
+      "title": "Path-based Deep Network for Candidate Item Matching in Recommenders",
+      "chapter": 10,
+      "pages": [
+        109,
+        113
+      ],
+      "concepts": [
+        "graph-recall"
+      ]
+    },
+    {
+      "id": "tdm",
+      "method": "TDM",
+      "title": "Learning Tree-based Deep Model for Recommender Systems",
+      "chapter": 10,
+      "pages": [
+        113,
+        118
+      ],
+      "concepts": [
+        "two-tower"
+      ]
+    },
+    {
+      "id": "dssm",
+      "method": "DSSM",
+      "title": "Learning Deep Structured Semantic Models for Web Search using Clickthrough Data",
+      "chapter": 11,
+      "pages": [
+        2,
+        3
+      ],
+      "concepts": [
+        "pre-ranking-two-tower"
+      ]
+    },
+    {
+      "id": "tdssm",
+      "method": "TDSSM",
+      "title": "Multi-Rate Deep Learning for Temporal Recommendation",
+      "chapter": 11,
+      "pages": [
+        3,
+        5
+      ],
+      "concepts": [
+        "pre-ranking-two-tower"
+      ]
+    },
+    {
+      "id": "dssm-transformer",
+      "method": "DSSM + Transformer",
+      "title": "DSSM with Transformer-based User Sequence Encoding",
+      "chapter": 11,
+      "pages": [
+        5,
+        7
+      ],
+      "concepts": [
+        "pre-ranking-two-tower"
+      ]
+    },
+    {
+      "id": "dat",
+      "method": "DAT",
+      "title": "A Dual Augmented Two-Tower Model for Online Large-Scale Recommendation",
+      "chapter": 11,
+      "pages": [
+        7,
+        9
+      ],
+      "concepts": [
+        "pre-ranking-two-tower"
+      ]
+    },
+    {
+      "id": "mv-dssm",
+      "method": "MV-DSSM",
+      "title": "A Multi-View Deep Learning Approach for Cross Domain User Modeling in Recommendation Systems",
+      "chapter": 11,
+      "pages": [
+        10,
+        12
+      ],
+      "concepts": [
+        "multi-tower-pre-ranking"
+      ]
+    },
+    {
+      "id": "dssm-fm",
+      "method": "DSSM + FM",
+      "title": "DSSM with Factorization-Machine Feature Interactions",
+      "chapter": 11,
+      "pages": [
+        12,
+        14
+      ],
+      "concepts": [
+        "multi-tower-pre-ranking"
+      ]
+    },
+    {
+      "id": "delayed-feedback-multi-tower",
+      "method": "Delayed-Feedback Multi-Tower",
+      "title": "Delayed-Feedback Multi-Tower Pre-Ranking",
+      "chapter": 11,
+      "pages": [
+        14,
+        19
+      ],
+      "concepts": [
+        "multi-tower-pre-ranking",
+        "late-feedback-labels"
+      ]
+    },
+    {
+      "id": "cross-feature-multi-tower",
+      "method": "Cross-Feature Multi-Tower",
+      "title": "Multi-Tower Model with Cross Features",
+      "chapter": 11,
+      "pages": [
+        20,
+        22
+      ],
+      "concepts": [
+        "multi-tower-pre-ranking"
+      ]
+    },
+    {
+      "id": "teacher-student",
+      "method": "Teacher-Student Distillation",
+      "title": "Distilling the Knowledge in a Neural Network",
+      "chapter": 11,
+      "pages": [
+        23,
+        25
+      ],
+      "concepts": [
+        "model-distillation"
+      ]
+    },
+    {
+      "id": "rocket-launching",
+      "method": "Rocket Launching",
+      "title": "Rocket Launching: A Universal and Efficient Framework for Training Well-Performing Light Net",
+      "chapter": 11,
+      "pages": [
+        25,
+        27
+      ],
+      "concepts": [
+        "model-distillation"
+      ]
+    },
+    {
+      "id": "pfd",
+      "method": "PFD",
+      "title": "Privileged Features Distillation at Taobao Recommendations",
+      "chapter": 11,
+      "pages": [
+        27,
+        28
+      ],
+      "concepts": [
+        "model-distillation"
+      ]
+    },
+    {
+      "id": "cold",
+      "method": "COLD",
+      "title": "COLD: Towards the Next Generation of Pre-Ranking System",
+      "chapter": 11,
+      "pages": [
+        32,
+        33
+      ],
+      "concepts": [
+        "lightweight-dnn-pre-ranking"
+      ]
+    },
+    {
+      "id": "fscd",
+      "method": "FSCD",
+      "title": "Towards a Better Tradeoff between Effectiveness and Efficiency in Pre-Ranking: A Learnable Feature Selection based Approach",
+      "chapter": 11,
+      "pages": [
+        33,
+        35
+      ],
+      "concepts": [
+        "lightweight-dnn-pre-ranking",
+        "feature-pruning"
+      ]
+    },
+    {
+      "id": "inttower",
+      "method": "IntTower",
+      "title": "IntTower: The Next Generation of Two-Tower Model for Pre-Ranking System",
+      "chapter": 11,
+      "pages": [
+        35,
+        38
+      ],
+      "concepts": [
+        "pre-ranking-two-tower",
+        "lightweight-dnn-pre-ranking"
+      ]
+    },
+    {
+      "id": "mvke",
+      "method": "MVKE",
+      "title": "Mixture of Virtual-Kernel Experts for Multi-Objective User Profile Modeling",
+      "chapter": 11,
+      "pages": [
+        39,
+        42
+      ],
+      "concepts": [
+        "multi-interest-pre-ranking"
+      ]
+    },
+    {
+      "id": "hit",
+      "method": "HIT",
+      "title": "HIT Model: A Hierarchical Interaction-Enhanced Two-Tower Model for Pre-Ranking Systems",
+      "chapter": 11,
+      "pages": [
+        42,
+        44
+      ],
+      "concepts": [
+        "multi-interest-pre-ranking",
+        "pre-ranking-two-tower"
+      ]
+    },
+    {
+      "id": "dcn",
+      "method": "DCN",
+      "title": "Deep & Cross Network for Ad Click Predictions",
+      "chapter": 15,
+      "pages": [
+        13,
+        14
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "dcn-v2",
+      "method": "DCN-V2",
+      "title": "DCN V2: Improved Deep & Cross Network and Practical Lessons for Web-Scale Learning to Rank Systems",
+      "chapter": 15,
+      "pages": [
+        14,
+        15
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "autoint",
+      "method": "AutoInt",
+      "title": "AutoInt: Automatic Feature Interaction Learning via Self-Attentive Neural Networks",
+      "chapter": 15,
+      "pages": [
+        15,
+        16
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "fibinet",
+      "method": "FiBiNet",
+      "title": "FiBiNET: Combining Feature Importance and Bilinear Feature Interaction for Click-Through Rate Prediction",
+      "chapter": 15,
+      "pages": [
+        16,
+        18
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "afn",
+      "method": "AFN",
+      "title": "Adaptive Factorization Network: Learning Adaptive-Order Feature Interactions",
+      "chapter": 15,
+      "pages": [
+        18,
+        20
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "fed",
+      "method": "FED",
+      "title": "Dimension Relation Modeling for Click-Through Rate Prediction",
+      "chapter": 15,
+      "pages": [
+        20,
+        22
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "can",
+      "method": "CAN",
+      "title": "CAN: Feature Co-Action for Click-Through Rate Prediction",
+      "chapter": 15,
+      "pages": [
+        22,
+        25
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "fint",
+      "method": "FINT",
+      "title": "FINT: Field-Aware Interaction Neural Network for CTR Prediction",
+      "chapter": 15,
+      "pages": [
+        25,
+        26
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "gdcn",
+      "method": "GDCN",
+      "title": "Towards Deeper, Lighter and Interpretable Cross Network for CTR Prediction",
+      "chapter": 15,
+      "pages": [
+        26,
+        28
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "ipa",
+      "method": "IPA",
+      "title": "Towards Unifying Feature Interaction Models for Click-Through Rate Prediction",
+      "chapter": 15,
+      "pages": [
+        28,
+        29
+      ],
+      "concepts": [
+        "feature-crossing-deep-ranking"
+      ]
+    },
+    {
+      "id": "d2q",
+      "method": "D2Q",
+      "title": "Deconfounding Duration Bias in Watch-Time Prediction for Video Recommendation",
+      "chapter": 23,
+      "pages": [
+        22,
+        25
+      ],
+      "concepts": [
+        "duration-distribution",
+        "duration-modeling"
+      ]
+    },
+    {
+      "id": "dvr",
+      "method": "DVR",
+      "title": "DVR: Micro-Video Recommendation Optimizing Watch-Time-Gain under Duration Bias",
+      "chapter": 23,
+      "pages": [
+        25,
+        26
+      ],
+      "concepts": [
+        "duration-modeling"
+      ]
+    },
+    {
+      "id": "d2co",
+      "method": "D2Co",
+      "title": "Uncovering User Interest from Biased and Noised Watch Time in Video Recommendation",
+      "chapter": 23,
+      "pages": [
+        26,
+        29
+      ],
+      "concepts": [
+        "duration-modeling"
+      ]
+    },
+    {
+      "id": "cread",
+      "method": "CREAD",
+      "title": "CREAD: A Classification-Restoration Framework with Error Adaptive Discretization for Watch Time Prediction in Video Recommender Systems",
+      "chapter": 23,
+      "pages": [
+        30,
+        32
+      ],
+      "concepts": [
+        "duration-bucket-modeling",
+        "duration-distribution"
+      ]
+    },
+    {
+      "id": "tpm",
+      "method": "TPM",
+      "title": "Tree based Progressive Regression Model for Watch-Time Prediction in Short-Video Recommendation",
+      "chapter": 23,
+      "pages": [
+        32,
+        35
+      ],
+      "concepts": [
+        "duration-bucket-modeling",
+        "duration-modeling"
+      ]
+    },
+    {
+      "id": "egmn",
+      "method": "EGMN",
+      "title": "Multi-Granularity Distribution Modeling for Video Watch Time Prediction via Exponential-Gaussian Mixture Network",
+      "chapter": 23,
+      "pages": [
+        35,
+        36
+      ],
+      "concepts": [
+        "duration-distribution"
+      ]
+    },
+    {
+      "id": "generative-regression-duration",
+      "method": "GR",
+      "title": "Generative Regression Based Watch Time Prediction for Short-Video Recommendation",
+      "chapter": 23,
+      "pages": [
+        38,
+        41
+      ],
+      "concepts": [
+        "duration-distribution",
+        "duration-modeling"
+      ]
+    },
+    {
+      "id": "flowtime",
+      "method": "FlowTime",
+      "title": "FlowTime: Towards Continuous Generative Watch Time Prediction via Flow-based Personalized Priors",
+      "chapter": 23,
+      "pages": [
+        41,
+        43
+      ],
+      "concepts": [
+        "duration-distribution"
+      ]
+    }
+  ]
+}

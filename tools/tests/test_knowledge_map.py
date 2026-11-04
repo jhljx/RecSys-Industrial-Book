@@ -3,7 +3,9 @@ from __future__ import annotations
 import json
 import subprocess
 import sys
+import tempfile
 import unittest
+from unittest.mock import patch
 from pathlib import Path
 from urllib.parse import unquote
 
@@ -23,10 +25,61 @@ class KnowledgeMapTest(unittest.TestCase):
         for chapter in data["chapters"]:
             self.assertTrue((ROOT / unquote(chapter["pdf"].removeprefix("../"))).is_file())
             self.assertTrue((ROOT / chapter["map"].removeprefix("../")).is_file())
-        self.assertEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 15, 16, 17, 18, 19, 23, 28],
+        self.assertEqual(sorted(int(path.stem[2:]) for path in (ROOT / "knowledge/chapters").glob("ch[0-9][0-9].md")),
                          [chapter["number"] for chapter in data["chapters"]])
         unpublished = [c for c in data["concepts"] if c["chapter"] not in {x["number"] for x in data["chapters"]}]
         self.assertEqual(["consistency-modeling"], [c["id"] for c in unpublished])
+
+    def test_papers_have_verified_book_coordinates(self) -> None:
+        data = build_knowledge_map.build()
+        chapter12 = [paper for paper in data["papers"] if paper["chapter"] == 12]
+        self.assertTrue({"wide-and-deep", "pnn", "deepfm", "xdeepfm", "mmoe", "ple", "deepseekmoe"}
+                        <= {paper["id"] for paper in chapter12})
+        self.assertEqual({7, 9, 10, 11, 12, 15, 23}, {paper["chapter"] for paper in data["papers"]})
+        self.assertEqual(len(data["papers"]), len({paper["id"] for paper in data["papers"]}))
+        self.assertTrue(all(paper["pages"][0] >= 1 for paper in data["papers"]))
+        self.assertTrue(all(set(paper["concepts"]) <= {concept["id"] for concept in data["concepts"]}
+                            for paper in data["papers"]))
+
+    def test_paper_schema_rejects_invalid_metadata(self) -> None:
+        data = build_knowledge_map.build()
+        original = json.loads((ROOT / "knowledge/paper-map.json").read_text(encoding="utf-8"))
+        changes = [
+            ({"chapter": 24}, "unknown paper chapter"),
+            ({"pages": [1, 70]}, "paper pages exceed PDF bounds"),
+            ({"pages": [10, 9]}, "invalid paper pages"),
+            ({"concepts": ["not-a-concept"]}, "paper concepts"),
+            ({"url": "javascript:alert(1)"}, "invalid paper URL"),
+            ({"id": "Bad ID"}, "invalid or duplicate paper id"),
+        ]
+        for changed, error in changes:
+            with self.subTest(changed=changed):
+                catalog = json.loads(json.dumps(original))
+                catalog["papers"][0].update(changed)
+                with tempfile.TemporaryDirectory() as tmp:
+                    path = Path(tmp) / "paper-map.json"
+                    path.write_text(json.dumps(catalog), encoding="utf-8")
+                    original_read = Path.read_text
+                    with patch.object(build_knowledge_map.Path, "read_text", autospec=True) as read:
+                        def content(file, *args, **kwargs):
+                            if file == ROOT / "knowledge/paper-map.json":
+                                return original_read(path, *args, **kwargs)
+                            return original_read(file, *args, **kwargs)
+
+                        read.side_effect = content
+                        with self.assertRaisesRegex(ValueError, error):
+                            build_knowledge_map.load_papers(ROOT, data["chapters"],
+                                                            {concept["id"] for concept in data["concepts"]})
+
+    def test_unclassified_released_chapter_is_grouped(self) -> None:
+        with patch.object(build_knowledge_map, "GROUPS", [
+            (key, title, description, [number for number in numbers if number != 23])
+            for key, title, description, numbers in build_knowledge_map.GROUPS
+        ]):
+            data = build_knowledge_map.build()
+            self.assertEqual([23], data["groups"][-1]["chapters"])
+            self.assertEqual("additional", next(row["group"] for row in data["chapters"] if row["number"] == 23))
+            self.assertEqual([19, 28], data["groups"][-2]["chapters"])
 
     def test_committed_data_matches_generator(self) -> None:
         result = subprocess.run([sys.executable, str(ROOT / "tools/build_knowledge_map.py")], capture_output=True, text=True, check=True)

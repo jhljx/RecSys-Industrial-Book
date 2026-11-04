@@ -31,7 +31,7 @@
   data.groups.forEach((g, index) => {
     const button = el('button', 'group-card'); button.type = 'button';
     const tags = el('div', 'chapter-tags'); g.chapters.forEach(n => add(tags, el('span', '', `CH ${String(n).padStart(2, '0')}`)));
-    add(button, el('span', 'index', String(index + 1).padStart(2, '0') + ' / 05'), el('strong', '', g.title), el('small', '', g.description), tags);
+    add(button, el('span', 'index', String(index + 1).padStart(2, '0') + ' / ' + String(data.groups.length).padStart(2, '0')), el('strong', '', g.title), el('small', '', g.description), tags);
     button.addEventListener('click', () => { state.group = g.id; state.kind = 'chapters'; state.query = ''; $('search').value = ''; render(); $('catalog').scrollIntoView({ behavior: 'smooth' }); });
     add($('blueprint-groups'), button);
   });
