@@ -1,0 +1,50 @@
+name: Release chapter PDFs
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "ch*/*.pdf"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: release-pdfs
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build assets
+        run: |
+          pip install -q pypdf
+          mkdir -p dist
+          python3 - <<'EOF'
+          import glob, os, re, shutil
+          from pypdf import PdfWriter
+          w = PdfWriter()
+          notes = []
+          for f in sorted(glob.glob("ch*/*.pdf")):
+              n = re.match(r"ch(\d+)", f).group(1)
+              shutil.copy(f, f"dist/ch{n}.pdf")
+              title = os.path.basename(f)[:-4]
+              w.append(f, outline_item=title)
+              notes.append(f"- `ch{n}.pdf`：{title}")
+          w.write("dist/RecSys-Industrial-Book-all-chapters.pdf")
+          with open("dist/notes.md", "w") as fh:
+              fh.write("已发布章节 PDF 汇总（不含 draft）。\n\n- `RecSys-Industrial-Book-all-chapters.pdf`：全部章节合订本\n" + "\n".join(notes) + "\n")
+          EOF
+
+      - name: Publish release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          tag="pdfs-$(date -u +%Y%m%d-%H%M%S)"
+          # 保留旧 Release 以累计下载次数
+          gh release create "$tag" dist/*.pdf \
+            --title "已发布章节 PDF ($(date -u +%F))" \
+            --notes-file dist/notes.md --latest

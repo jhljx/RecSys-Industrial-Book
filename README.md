@@ -1,7 +1,8 @@
 [![GitHub issues](https://badgen.net/github/issues/jhljx/RecSys-Industrial-Book)](https://github.com/jhljx/RecSys-Industrial-Book/issues)
 [![GitHub stars](https://img.shields.io/github/stars/jhljx/RecSys-Industrial-Book?style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/stargazers)
 [![GitHub forks](https://badgen.net/github/forks/jhljx/RecSys-Industrial-Book)](https://github.com/jhljx/RecSys-Industrial-Book/network/members)
-[![PDF downloads](https://img.shields.io/badge/PDF-downloads-blue)](https://jhljx.github.io/RecSys-Industrial-Book/)
+[![Clones](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fjhljx%2FRecSys-Industrial-Book%2Ftraffic-stats%2Fclones-badge.json&style=flat-square)](https://github.com/jhljx/RecSys-Industrial-Book/actions/workflows/traffic-stats.yml)
+[![PDF downloads](https://img.shields.io/github/downloads/jhljx/RecSys-Industrial-Book/total?style=flat-square&label=PDF%20downloads)](https://github.com/jhljx/RecSys-Industrial-Book/releases)
 <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey" /></a>
 
 # RecSys-Industrial-Book
