@@ -41,10 +41,15 @@ class CodePageTests(unittest.TestCase):
             root = Path(temporary)
             directory = root / "ch24 示例/code"
             directory.mkdir(parents=True)
+            output = root / "knowledge-map/code"
+            output.mkdir(parents=True)
+            stale_page = output / "stale.html"
+            stale_page.write_text("stale", encoding="utf-8")
             (directory / "README.md").write_text("├── demo.py  安全演示\n", encoding="utf-8")
             (directory / "demo.py").write_text('"""<script>alert(1)</script>"""\nvalue = "<img src=x>"\n', encoding="utf-8")
             entries = build_code_pages.build(root)
             self.assertEqual(1, len(entries))
+            self.assertFalse(stale_page.exists())
             page = (root / "knowledge-map" / entries[0]["url"]).read_text(encoding="utf-8")
             self.assertIn('&lt;script&gt;alert(1)&lt;/script&gt;', page)
             self.assertNotIn('<script>alert(1)</script>', page)
