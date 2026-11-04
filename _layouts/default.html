@@ -10,7 +10,14 @@
 <body>
   <a class="skip" href="#main">跳到主要内容</a>
   <header class="site-header"><a class="brand" href="{{ '/knowledge-map/' | relative_url }}">RECSYS <span>／ 阅读与实践</span></a><nav aria-label="页面导航"><a href="{{ '/knowledge-map/' | relative_url }}">知识地图</a><a href="{{ '/knowledge-map/reader.html' | relative_url }}">阅读 PDF</a><a href="{{ '/knowledge-map/agent.html' | relative_url }}">本地 Agent</a><a href="{{ '/knowledge-map/#courses' | relative_url }}">学习路径</a></nav></header>
-  <main id="main" class="document">{{ content }}</main>
+  <main id="main" class="document">{% if page.path contains 'knowledge/concepts/' %}
+    <header class="concept-hero">
+      <p class="concept-eyebrow">核心概念 <span aria-hidden="true">／</span> 第 {{ page.chapter }} 章</p>
+      <h1>{{ page.title | escape }}</h1>
+      <p class="concept-id">{{ page.id | escape }}</p>
+      <div class="concept-actions"><a href="{{ '/knowledge-map/' | relative_url }}#catalog">浏览概念目录</a><a href="{{ '/knowledge-map/reader.html' | relative_url }}#ch{{ page.chapter }}">阅读对应章节 PDF</a></div>
+    </header>{% endif %}
+    {{ content }}</main>
   <footer><span>推荐系统：工业架构与核心算法 · 文档</span><a href="{{ '/knowledge-map/' | relative_url }}">返回知识地图 ↑</a></footer>
   <script src="{{ '/knowledge-map/document.js' | relative_url }}" defer></script>
 </body>

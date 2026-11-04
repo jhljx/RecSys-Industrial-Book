@@ -51,7 +51,7 @@ def main() -> None:
         if not card_id or not prerequisites or card_id.group(1) != path.stem:
             failures.append(f"{path}: invalid id or prerequisites frontmatter")
             continue
-        for section in ("核心判断", "工程检查", "本书依据", "扩展说明"):
+        for section in ("定义", "核心判断", "工程检查", "本书依据", "扩展说明"):
             if f"## {section}" not in text:
                 failures.append(f"{path}: missing section {section}")
         if not re.search(r"PDF 第\s*\d+", text):

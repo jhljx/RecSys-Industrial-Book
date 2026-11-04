@@ -5,6 +5,9 @@ chapter: 9
 prerequisites: [semantic-id, generative-token-objective]
 ---
 
+## 定义
+生成语义 ID 到可服务物品检索，是将生成模型输出的离散标识解析并映射为实际库存物品的环节。
+
 ## 核心判断
 生成 token 序列不是最终可展示物品；必须将有效语义 ID 映射回在库物品，并处理多对一重复与查不到物品等异常，才能与传统召回比较。
 

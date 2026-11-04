@@ -5,6 +5,9 @@ chapter: 9
 prerequisites: [generative-recsys, semantic-id]
 ---
 
+## 定义
+生成式推荐序列目标是根据已有用户行为和离散物品表示，训练模型预测后续 token 的目标函数。
+
 ## 核心判断
 将用户行为和语义 ID 组织为模型输入后，自回归模型学习下一个 token 的条件分布；训练 token 预测能力不等同于生成合法物品及获得业务收益。
 

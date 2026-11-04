@@ -5,6 +5,9 @@ chapter: 12
 prerequisites: [feature-crossing-deep-ranking, sequential-recall]
 ---
 
+## 定义
+精排目标注意力是让当前待排序物品参与计算用户历史行为权重，并聚合与该物品相关的兴趣表示的机制。
+
 ## 核心判断
 目标注意力按当前候选从用户行为中提取相关兴趣，而自注意力刻画行为间依赖；两者解决的问题不同，不能只以模型层数比较。
 

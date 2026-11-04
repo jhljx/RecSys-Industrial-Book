@@ -5,6 +5,9 @@ chapter: 17
 prerequisites: [two-tower]
 ---
 
+## 定义
+Embedding Server 是为推荐模型提供实体向量或稀疏参数读取的独立服务，使向量存储与使用它们的模型计算分离。
+
 ## 核心判断
 Embedding Server 将大规模稀疏参数或向量从模型计算中解耦，服务设计重点是版本、缓存和批量访问。
 

@@ -5,6 +5,9 @@ chapter: 9
 prerequisites: [generative-recsys]
 ---
 
+## 定义
+语义 ID 是由物品表征离散化得到的 token 组合，用离散序列标识物品以供生成模型处理。
+
 ## 核心判断
 语义 ID 将物品表示为离散 Token 序列，使生成模型能够直接生成候选物品标识，同时把量化误差和 ID 合法性带入链路。
 

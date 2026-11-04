@@ -119,7 +119,7 @@ def build(root: Path = ROOT) -> dict:
         if not source or not re.search(r"PDF\s*第\s*\d+", source):
             raise ValueError(f"missing citation: {path}")
         concepts.append({"id": metadata["id"], "title": metadata["title"], "chapter": number,
-                         "summary": section(text, "核心判断"), "check": section(text, "工程检查"),
+                         "definition": section(text, "定义"), "summary": section(text, "核心判断"), "check": section(text, "工程检查"),
                          "source": source, "url": "../knowledge/concepts/" + path.name})
     courses = json.loads((root / "learning-paths/courses.json").read_text(encoding="utf-8"))["courses"]
     paths = [{"id": key, "title": course["title"], "audience": course["audience"],

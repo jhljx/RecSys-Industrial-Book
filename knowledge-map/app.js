@@ -193,7 +193,7 @@
     } else {
       const c = concepts.get(state.selected.slice(2)); if (!c) return;
       appendHeading(panel, `CONCEPT / ${chapterLabel(c.chapter)}`, c.title);
-      add(panel, el('p', '', c.summary));
+      add(panel, el('h4', '', '定义'), el('p', 'concept-definition', c.definition || '暂无定义'), el('h4', '', '核心判断'), el('p', '', c.summary));
       const actions = el('div', 'detail-links'); add(actions, link('阅读概念卡 ↗', c.url));
       if (chapters.has(c.chapter)) add(actions, link('站内阅读章节 PDF ↗', `./reader.html#ch${c.chapter}`)); add(panel, actions);
       add(panel, el('h4', '', '前置概念'));

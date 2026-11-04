@@ -5,6 +5,9 @@ chapter: 12
 prerequisites: [ranking, listwise-ranking-loss]
 ---
 
+## 定义
+精排损失与概率校准涉及选择单样本、成对或整列表的训练目标，以及检验输出分数与实际事件频率的对应关系。
+
 ## 核心判断
 Pointwise 直接学习目标概率，Pairwise 优化同请求候选顺序，Listwise 面向整个列表；需要概率可解释性时不能只追求排序指标。
 
