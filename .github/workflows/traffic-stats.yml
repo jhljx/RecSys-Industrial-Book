@@ -1,0 +1,58 @@
+name: Traffic stats
+
+on:
+  schedule:
+    - cron: "17 3 * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: traffic-stats
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Prepare stats branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          git clone --depth 1 --branch traffic-stats "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" stats 2>/dev/null || {
+            mkdir stats && cd stats && git init -q -b traffic-stats
+            git remote add origin "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git"
+          }
+
+      - name: Accumulate clone counts
+        env:
+          # PAT (or fine-grained token) with repo push/Administration read access;
+          # GITHUB_TOKEN cannot read the Traffic API.
+          TRAFFIC_TOKEN: ${{ secrets.TRAFFIC_TOKEN }}
+        run: |
+          python3 - <<'EOF'
+          import json, os, urllib.request
+          req = urllib.request.Request(
+              f"https://api.github.com/repos/{os.environ['GITHUB_REPOSITORY']}/traffic/clones?per=day",
+              headers={"Authorization": f"Bearer {os.environ['TRAFFIC_TOKEN']}",
+                       "Accept": "application/vnd.github+json"})
+          data = json.load(urllib.request.urlopen(req))
+          path = "stats/clones.json"
+          state = json.load(open(path)) if os.path.exists(path) else {"days": {}}
+          for d in data["clones"]:
+              state["days"][d["timestamp"][:10]] = {"count": d["count"], "uniques": d["uniques"]}
+          total = sum(v["count"] for v in state["days"].values())
+          uniq = sum(v["uniques"] for v in state["days"].values())
+          state["total"], state["uniques_sum"] = total, uniq
+          json.dump(state, open(path, "w"), indent=1, sort_keys=True)
+          json.dump({"schemaVersion": 1, "label": "clones", "message": f"{total:,}",
+                     "color": "blue"}, open("stats/clones-badge.json", "w"))
+          EOF
+
+      - name: Commit stats
+        run: |
+          cd stats
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git diff --cached --quiet || { git commit -qm "Update clone stats"; git push -u origin traffic-stats; }
