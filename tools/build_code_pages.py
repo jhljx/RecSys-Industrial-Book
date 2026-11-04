@@ -86,6 +86,10 @@ def build(root: Path = ROOT) -> list[dict[str, object]]:
 <section class="code-intro"><h2>如何用于学习或编写新代码</h2><ol><li>先看章节 README 的依赖和运行成本，定位这个例子的输入、输出及关键函数。</li><li>在原书 PDF 中找到对应概念的具体页；代码演示与书中论断分开标注。</li><li>只在依赖和耗时可控时运行单个示例，修改一个参数并记录真实输出与失败情形。</li><li>参考实现新代码时说明复用、改动、测试与尚未完成的生产依赖；教学示例并非生产系统。</li></ol></section>
 </main><footer><span>公开代码示例 · 与全书知识地图一致的阅读体验</span><a href="{relative}code.html#ch{chapter}">返回本章代码 ↑</a></footer></body></html>
 ''', encoding="utf-8")
+    generated_pages = {page_name(str(entry["path"])) for entry in entries}
+    for stale_page in output.glob("*.html"):
+        if stale_page.name not in generated_pages:
+            stale_page.unlink()
     # Reuse the Agent's candidate mapping so a concept leads to the same public
     # source pages in both interfaces. Templates are intentionally not code pages.
     if (root / "knowledge/graph.json").is_file():
