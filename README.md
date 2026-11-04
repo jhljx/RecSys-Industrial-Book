@@ -74,7 +74,9 @@ python3 tools/install_skills.py --client claude
 
 [`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 20 章、56 张概念卡及前置依赖，并连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
 
-[`knowledge-map/reader.html`](knowledge-map/reader.html) 是无需构建工具的站内章节 PDF 阅读器，可本地以 `file://` 打开，也可通过 [GitHub Pages](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html) 使用；左侧选择已发布章节、上一章/下一章和 PDF 页码跳转均保持在阅读器内。链接如 `reader.html#ch10&page=60` 可直达第 10 章 PDF 第 60 页。PDF 在浏览器内嵌显示，若浏览器禁用内嵌 PDF 或本地文件预览，可使用页面底部的直接打开/下载链接；PDF 页码片段的具体展示由浏览器 PDF 查看器决定。
+[`knowledge-map/reader.html`](knowledge-map/reader.html) 是无需构建工具的站内章节 PDF 阅读器，可本地以 `file://` 打开，也可通过 [GitHub Pages](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html) 使用；左侧选择已发布章节、上一章/下一章和 PDF 页码跳转均保持在阅读器内。链接如 `reader.html#ch10&page=60` 可直达第 10 章 PDF 第 60 页。阅读器会向浏览器 PDF 查看器请求默认“适应高度”（`view=Fit`），并让阅读区域铺满可用列；查看器是否采纳缩放参数取决于浏览器。若浏览器禁用内嵌 PDF 或本地文件预览，可使用页面底部的直接打开/下载链接。
+
+网页中的概念目录可直接使用[知识地图的概念筛选](knowledge-map/#catalog)，完整[本地 Agent 指南](docs/agent-guide.md)在 Pages 上采用与知识地图一致的文档页样式；目录型 README 在 Pages 上使用目录 URL（例如 `/knowledge/`），不要链接不存在的 `README.html`。
 
 知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建 `knowledge-map/data.js`，再运行 `python3 -m unittest discover -s tools/tests -v` 检查章节、概念、依赖、课程及 PDF 链接。网页没有服务端、账号或在线 Agent；全文检索和个人进度仍通过本地 CLI。
 

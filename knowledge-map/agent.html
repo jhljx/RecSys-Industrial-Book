@@ -19,7 +19,7 @@
       <span class="overline">LOCAL WORKFLOW / 不上传个人数据</span>
       <h1 id="title">把地图带进<br><em>你的工作流。</em></h1>
       <p>PDF 是权威正文，概念卡负责导航；本地 CLI 提供检索、引用、课程、自测与工程任务。公开网页不读取你的索引或学习进度。</p>
-      <div class="hero-actions"><a class="button primary" href="#start">五分钟开始 ↗</a><a class="button secondary" href="https://github.com/jhljx/RecSys-Industrial-Book/blob/main/docs/agent-guide.md">完整命令参考</a></div>
+      <div class="hero-actions"><a class="button primary" href="#start">五分钟开始 ↗</a><a class="button secondary" href="../docs/agent-guide.html">完整命令参考</a></div>
     </section>
     <section class="agent-section" id="start" aria-labelledby="start-title">
       <div class="section-heading"><div><span class="overline">01 / GET STARTED</span><h2 id="start-title">五分钟开始</h2><p>在仓库根目录执行；需要 Python 3.10+ 与系统命令 <code>pdftotext</code>。</p></div></div>
@@ -34,7 +34,7 @@ python3 tools/recsys_agent.py page --chapter 10 --page 60</code></pre>
       <div class="agent-grid">
         <article><span class="overline">查书与引用</span><h3>检索 · 阅读 · 讲解</h3><p><code>search</code> 返回章节与 PDF 页；<code>page</code> 核对完整页，<code>explain</code> 生成提纲与证据包。回答要区分「本书依据」与「扩展说明」。</p><a href="./reader.html">打开站内 PDF →</a></article>
         <article><span class="overline">学习闭环</span><h3>课程 · 练习 · 复习</h3><p><code>course list</code>、<code>course start new-engineer</code>、<code>course today</code> 开始课程；提交证据后使用 <code>course review</code> 延迟复习。</p><a href="./#courses">查看两条课程 →</a></article>
-        <article><span class="overline">工程任务</span><h3>设计 · 评审 · 排障</h3><p><code>design</code> 输出约束和容量预算，<code>review</code> 指出代码风险，<code>debug</code> 按证据排序假设；没有遥测不臆断根因。</p><a href="https://github.com/jhljx/RecSys-Industrial-Book/blob/main/docs/agent-guide.md#5-工程工作流">查看命令示例 →</a></article>
+        <article><span class="overline">工程任务</span><h3>设计 · 评审 · 排障</h3><p><code>design</code> 输出约束和容量预算，<code>review</code> 指出代码风险，<code>debug</code> 按证据排序假设；没有遥测不臆断根因。</p><a href="../docs/agent-guide.html#5-工程工作流">查看命令示例 →</a></article>
       </div>
     </section>
     <section class="agent-section" aria-labelledby="install-title">
@@ -42,7 +42,7 @@ python3 tools/recsys_agent.py page --chapter 10 --page 60</code></pre>
       <pre><code>python3 tools/install_skills.py --client claude --target /path/to/project
 python3 tools/install_skills.py --client agents --target /path/to/project</code></pre>
       <p>Skills 不会复制 PDF 或个人索引；课程状态仅写入本地被 Git 忽略的 <code>.recsys-workspace/</code>。公开站点没有全文检索，也不采集学习证据。</p>
-      <div class="hero-actions"><a class="button primary" href="https://github.com/jhljx/RecSys-Industrial-Book/blob/main/docs/agent-guide.md">阅读完整 Agent 指南 ↗</a><a class="button secondary" href="./">返回知识地图</a></div>
+      <div class="hero-actions"><a class="button primary" href="../docs/agent-guide.html">阅读完整 Agent 指南 ↗</a><a class="button secondary" href="./">返回知识地图</a></div>
     </section>
   </main>
   <footer><span>推荐系统：工业架构与核心算法 · 本地 Agent</span><a href="./">返回知识地图 ↑</a></footer>

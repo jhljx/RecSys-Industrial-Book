@@ -14,7 +14,12 @@
     if (text !== undefined) node.textContent = String(text);
     return node;
   };
-  const siteHref = href => location.protocol === 'file:' ? (href === '../' ? '../README.md' : href) : href.replace(/\.md$/, '.html');
+  const siteHref = href => {
+    if (href === '../') return './';
+    if (location.protocol === 'file:') return href;
+    if (/\/README\.md(?:#.*)?$/.test(href)) return href.replace(/\/README\.md(?=#|$)/, '/');
+    return href.replace(/\.md(?=#|$)/, '.html');
+  };
   document.querySelectorAll('a[href]').forEach(a => { a.href = siteHref(a.getAttribute('href')); });
   const link = (label, href) => { const a = el('a', '', label); a.href = siteHref(href); return a; };
   const add = (parent, ...children) => { for (const child of children) parent.append(child); return parent; };
@@ -212,5 +217,9 @@
     path.units.forEach(unit => { const card = el('article', 'course-unit'); add(card, el('span', '', `WEEK ${String(unit.week).padStart(2, '0')} / ${unit.id.toUpperCase()}`), el('h3', '', unit.title), el('p', '', unit.deliverable), el('p', 'reading', unit.chapters.length > 6 ? `复习已学的 ${unit.chapters.length} 章 · 综合迁移` : unit.chapters.map(chapterLabel).join(' · ')));
       const button = el('button', '', '查看关联章节 →'); button.type = 'button'; button.addEventListener('click', () => { state.kind = 'chapters'; state.group = 'all'; state.query = ''; $('search').value = ''; state.selected = `c:${unit.chapters.find(n => chapters.has(n))}`; render(); $('catalog').scrollIntoView({behavior:'smooth'}); }); add(card, button); add($('course-list'), card); });
   }
+  $('concept-catalog-link').addEventListener('click', () => {
+    state.kind = 'concepts'; state.group = 'all'; state.query = ''; state.selected = null;
+    $('search').value = ''; render();
+  });
   render(); renderCourses();
 })();

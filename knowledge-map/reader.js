@@ -13,10 +13,15 @@
   }
   const byNumber = new Map(rows.map(row => [row.number, row]));
   const chapterHash = (number, page = 1) => `#ch${number}&page=${page}`;
-  const siteHref = href => location.protocol === 'file:' ? (href === '../' ? '../README.md' : href) : href.replace(/\.md$/, '.html');
+  const siteHref = href => {
+    if (href === '../') return './';
+    if (location.protocol === 'file:') return href;
+    if (/\/README\.md(?:#.*)?$/.test(href)) return href.replace(/\/README\.md(?=#|$)/, '/');
+    return href.replace(/\.md(?=#|$)/, '.html');
+  };
   document.querySelectorAll('a[href="../"]').forEach(anchor => { anchor.href = siteHref('../'); });
   // A PDF fragment is interpreted by the browser's built-in PDF viewer, not fetched via GitHub raw.
-  const pdfHref = (chapter, page) => `${chapter.pdf}#page=${page}`;
+  const pdfHref = (chapter, page) => `${chapter.pdf}#page=${page}&view=Fit`;
   let activeNumber;
   let activePage;
 
