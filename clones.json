@@ -55,8 +55,12 @@
   "2026-11-03": {
    "count": 55,
    "uniques": 31
+  },
+  "2026-11-04": {
+   "count": 113,
+   "uniques": 43
   }
  },
- "total": 316,
- "uniques_sum": 144
+ "total": 429,
+ "uniques_sum": 187
 }
