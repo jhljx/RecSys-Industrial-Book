@@ -26,6 +26,8 @@ CHROME = os.environ.get("RECSYS_TEST_CHROME") or next((path for path in (
     shutil.which("google-chrome"), shutil.which("chromium"),
     "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
 ) if path and Path(path).is_file()), None)
+# GitHub-hosted Ubuntu runners disable unprivileged user namespaces, so Chrome's sandbox cannot start in CI.
+SANDBOX_FLAGS = ["--no-sandbox"] if os.environ.get("RECSYS_REQUIRE_BROWSER") == "1" else []
 
 # Run inside the actual reader DOM after its deferred scripts finish. The result
 # is serialized in a marker that headless Chrome --dump-dom can return to Python.
@@ -175,7 +177,7 @@ class BrowserNavigationTest(unittest.TestCase):
 
     def run_browser(self, url):
         completed = subprocess.run(
-            [CHROME, "--headless", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
+            [CHROME, "--headless", "--disable-gpu", *SANDBOX_FLAGS, "--no-first-run", "--no-default-browser-check",
              "--virtual-time-budget=4000", "--dump-dom", url],
             capture_output=True, text=True, timeout=25,
         )
@@ -223,7 +225,7 @@ class BrowserNavigationTest(unittest.TestCase):
                     for url, _probe in urls:
                         with self.subTest(url=url):
                             completed = subprocess.run(
-                                [CHROME, "--headless", "--disable-gpu", "--no-first-run", "--no-default-browser-check",
+                                [CHROME, "--headless", "--disable-gpu", *SANDBOX_FLAGS, "--no-first-run", "--no-default-browser-check",
                                  "--virtual-time-budget=4000", "--dump-dom", url],
                                 capture_output=True, text=True, timeout=25,
                             )

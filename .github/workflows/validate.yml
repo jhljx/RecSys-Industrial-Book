@@ -40,6 +40,13 @@ jobs:
           python3 tools/build_search_pages.py
           git diff --exit-code -- knowledge-map/catalog.html sitemap.xml _data/concept_links.json
           test -z "$(git ls-files --others --exclude-standard knowledge-map/catalog.html sitemap.xml _data/concept_links.json)"
+      - name: Build local PDF index and enforce retrieval quality (index is required by repository tests)
+        run: |
+          python3 tools/recsys_agent.py index
+          python3 tools/recsys_agent.py doctor
+          python3 tools/recsys_agent.py eval --min-hit-at-1 1.0
+          python3 tools/recsys_agent.py eval --dataset evals/page-evidence.jsonl
+          python3 tools/recsys_agent.py eval --dataset evals/unanswerable.jsonl
       - name: Set up Chrome
         id: chrome
         uses: browser-actions/setup-chrome@v1
@@ -57,12 +64,5 @@ jobs:
           node --check knowledge-map/reader.js
           node --check knowledge-map/code.js
           node --check knowledge-map/document.js
-      - name: Build local PDF index and enforce retrieval quality
-        run: |
-          python3 tools/recsys_agent.py index
-          python3 tools/recsys_agent.py doctor
-          python3 tools/recsys_agent.py eval --min-hit-at-1 1.0
-          python3 tools/recsys_agent.py eval --dataset evals/page-evidence.jsonl
-          python3 tools/recsys_agent.py eval --dataset evals/unanswerable.jsonl
       - name: Test pipeline internals (including deadline degradation)
         run: python3 -m unittest discover -s templates/recommendation-pipeline/tests -p 'test_*.py' -v

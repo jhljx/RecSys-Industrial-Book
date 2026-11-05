@@ -39,7 +39,7 @@ def catalog(root: Path = ROOT, chapter: int | None = None) -> list[dict[str, obj
         if not readme.is_file():
             continue
         files = [p for p in code_dir.rglob("*") if p.is_file() and p.suffix.lower() in SOURCE_EXTENSIONS
-                 and not p.is_symlink() and "__pycache__" not in p.parts]
+                 and not p.is_symlink() and not {"__pycache__", "target", "build", "dist", ".venv", "venv"}.intersection(p.relative_to(code_dir).parts)]
         names: dict[str, list[Path]] = {}
         for path in files:
             names.setdefault(path.name.casefold(), []).append(path)
