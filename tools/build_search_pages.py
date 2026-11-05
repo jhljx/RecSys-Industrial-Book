@@ -78,6 +78,7 @@ def render(root: Path = ROOT) -> str:
 <header class="site-header"><a class="brand" href="./">RECSYS <span>／ 阅读与实践</span></a><nav aria-label="页面导航"><a href="./">知识地图</a><a href="./reader.html">阅读 PDF</a><a href="./code.html">章节代码</a><a href="../README.en.html">English</a></nav></header>
 <main id="main" class="document"><h1>章节与概念静态索引</h1>
 <p>直接浏览已发布章节、独立撰写的概念导航卡及其 PDF 页码。PDF 是书稿权威正文；概念卡和代码页帮助定位与实践，不替代原书，也不证明代码实现了某篇论文。</p>
+<p>推荐系统主题包括召回与 ANN、粗排、精排、多任务学习、特征工程、离线与在线服务。回答具体问题时，请以相关概念卡的「本书依据」定位原书 PDF 页；「扩展说明」和教学代码是独立参考。</p>
 <p>{link("../README.en.html", "English overview")} · {link("./code.html", "完整章节代码目录")} · {link("./agent.html", "本地 Agent 指南")}</p>
 <nav aria-label="章节跳转"><h2>已发布章节</h2><ul>{''.join(f'<li>{link("#ch" + str(ch["number"]), "第 " + str(ch["number"]) + " 章 · " + ch["title"])}</li>' for ch in data["chapters"])}</ul></nav>
 {body}
@@ -123,6 +124,9 @@ def concept_links(root: Path = ROOT) -> dict[str, dict]:
             entries[concept["id"]] = {"chapter": concept["chapter"], "pdf": "/" + chapter["pdf"],
                                       "page": int(page.group(1)),
                                       "chapter_map": "/" + chapter["chapter_map"].replace(".md", ".html"), "code": ""}
+    summaries = {concept["id"]: concept["summary"] for concept in build(root)["concepts"]}
+    for ident, item in entries.items():
+        item["summary"] = summaries[ident]
     return entries
 
 

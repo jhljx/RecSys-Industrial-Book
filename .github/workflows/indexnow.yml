@@ -1,0 +1,42 @@
+name: Notify IndexNow after Pages publication
+
+on:
+  page_build:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Notify only after a successful Pages build
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EVENT_NAME: ${{ github.event_name }}
+          BUILD_STATUS: ${{ github.event.build.status }}
+          BUILD_COMMIT: ${{ github.event.build.commit }}
+        run: |
+          set -euo pipefail
+          if [[ "$EVENT_NAME" == "page_build" && "$BUILD_STATUS" != "built" ]]; then
+            echo "Pages build is not successful: $BUILD_STATUS"
+            exit 0
+          fi
+          gh api "repos/${GITHUB_REPOSITORY}/pages/builds" > "$RUNNER_TEMP/pages-builds.json"
+          python3 - "$RUNNER_TEMP/pages-builds.json" <<'PY'
+          import json, os, subprocess, sys
+          builds = json.load(open(sys.argv[1], encoding='utf-8'))
+          successful = [row['commit'] for row in builds if row['status'] == 'built' and row.get('commit')]
+          commit = os.environ['BUILD_COMMIT'] if os.environ['EVENT_NAME'] == 'page_build' else (successful[0] if successful else '')
+          if len(successful) < 2 or commit != successful[0] or (os.environ['EVENT_NAME'] == 'page_build' and os.environ['BUILD_STATUS'] != 'built'):
+              print('No latest successful Pages build pair; skip notification')
+              sys.exit(0)
+          # The checked-out tree must be exactly the published commit.
+          subprocess.run(['git', 'checkout', '--detach', commit], check=True)
+          subprocess.run([sys.executable, 'tools/notify_indexnow.py', '--before', successful[1], '--after', commit, '--send'], check=True)
+          PY

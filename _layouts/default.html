@@ -7,7 +7,7 @@
   {% if page.path contains 'README.en.md' %}<meta name="description" content="Chinese-language industrial recommender systems book and local-first AI learning toolkit: retrieval, ranking, feature engineering, serving, and source-cited PDF chapters.">
   <link rel="canonical" href="{{ '/README.en.html' | absolute_url }}">
   <link rel="alternate" hreflang="zh-CN" href="{{ '/knowledge-map/' | absolute_url }}">
-  <link rel="alternate" hreflang="en" href="{{ '/README.en.html' | absolute_url }}">{% else %}<meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <link rel="alternate" hreflang="en" href="{{ '/README.en.html' | absolute_url }}">{% else %}<meta name="description" content="{{ page.description | default: site.data.concept_links[page.id].summary | default: site.description | strip_html | truncate: 155 | escape }}">
   <link rel="canonical" href="{{ page.url | absolute_url }}">{% endif %}
   <link rel="stylesheet" href="{{ '/knowledge-map/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/knowledge-map/document.css' | relative_url }}">

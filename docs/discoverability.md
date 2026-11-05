@@ -20,3 +20,10 @@
 3. 因 GitHub Pages 是 `jhljx.github.io` 共享域名，**项目内 `robots.txt` 不能充当域名根路径 `/robots.txt`**；没有该域名根站点的控制权时不要写无效的项目级规则。sitemap 仍可直接提交及外部引用。
 4. 定期检查索引覆盖、英文/中文搜索词、点击和展示量；抽样用中英文问题核查 AI 回答是否找到**具体的原始页面与 PDF 页码**。这些是可观察指标，不保证排序或 AI 引用。
 5. 新发布 PDF/章节/概念或代码后重新生成站点数据、代码页和静态目录与 sitemap，跑测试与公开边界检查，再手动审阅提交；本地生成不等于线上已更新。
+
+## Bing / Copilot 与 IndexNow
+
+- Bing Webmaster Tools 中验证本项目站点后提交完整地址 `https://jhljx.github.io/RecSys-Industrial-Book/sitemap.xml`，用 URL Inspection 抽查知识地图、静态目录和代表性概念页；AI Performance（若账户可用）用于观察引用趋势，而非保证 Copilot 引用。可用中英文问题分别核查 AI 引用是否指向概念卡、章节地图和准确 PDF 页码。
+- IndexNow 的公开密钥文件位于项目根目录 `9d4390e1830e48f0b4d52fb03d1a4b2c.txt`；因本站在 GitHub Pages 项目子路径下，通知必须携带 `keyLocation=https://jhljx.github.io/RecSys-Industrial-Book/9d4390e1830e48f0b4d52fb03d1a4b2c.txt`，只用于本项目路径内的 URL。密钥用于公开所有权验证，不是保密 API 凭据；不要借它通知同域名下别的项目。
+- `.github/workflows/indexnow.yml` 在成功的 legacy Pages 构建事件后读取相邻的成功构建提交，`tools/notify_indexnow.py` 只通知 sitemap 中新增、更新或删除的公开 URL；先核对线上密钥和完整 sitemap 与构建提交一致，再向 Bing 的 IndexNow 接口发送。不会在本地生成、PR 或仅推送未部署的文件时通知。异常与非 200/202 状态要查看 Actions 日志；202 表示密钥验证待完成，200/202 都不是收录承诺。
+- 手工预览本次相邻构建差异：`python3 tools/notify_indexnow.py --before <上一成功构建SHA> --after <当前成功构建SHA>`。初次启用没有前一次成功构建记录时不会批量推送旧 URL；继续依赖 sitemap 与内链。手动重跑 workflow 只用于构建已成功、自动事件漏报的情况，不要对未更新内容反复发送。

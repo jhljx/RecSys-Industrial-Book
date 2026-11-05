@@ -4,671 +4,767 @@
     "pdf": "/ch03 推荐系统评价体系/第三章-推荐系统评价体系.pdf",
     "page": 6,
     "chapter_map": "/knowledge/chapters/ch03.html",
-    "code": "/knowledge-map/code/d5fafca58e2359d31e19.html"
+    "code": "/knowledge-map/code/d5fafca58e2359d31e19.html",
+    "summary": "A/B 实验通过随机化建立策略与业务指标变化之间的因果比较，是推荐系统在线评价的核心证据。"
   },
   "ann-index-lifecycle": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
     "page": 44,
     "chapter_map": "/knowledge/chapters/ch18.html",
-    "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html"
+    "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html",
+    "summary": "离线新索引构建完成不等于已可接管查询；模型、物品向量与索引若不属于同一可查询版本，切换期间会产生漏召，索引生命周期应与检索算法选型分开治理。"
   },
   "ann-index": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
     "page": 44,
     "chapter_map": "/knowledge/chapters/ch18.html",
-    "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html"
+    "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html",
+    "summary": "索引选择是召回率、延迟、内存、构建速度和增量更新之间的多目标决策。"
   },
   "cold-start": {
     "chapter": 1,
     "pdf": "/ch01 推荐系统概述/第一章-推荐系统概述.pdf",
     "page": 5,
     "chapter_map": "/knowledge/chapters/ch01.html",
-    "code": ""
+    "code": "",
+    "summary": "冷启动是交互证据不足时的决策问题，需要结合内容、先验、探索和热门兜底。"
   },
   "collaborative-filtering-recall": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch10.html",
-    "code": "/knowledge-map/code/694f99e53ed329d03071.html"
+    "code": "/knowledge-map/code/694f99e53ed329d03071.html",
+    "summary": "协同过滤利用用户—物品交互邻域建立候选，适合作为可解释、易迭代的强基线；交互稀疏、热门偏置和更新频率决定采用 ItemCF、UserCF 还是更复杂的变体。"
   },
   "creator-side-recommendation": {
     "chapter": 2,
     "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
     "page": 12,
     "chapter_map": "/knowledge/chapters/ch02.html",
-    "code": ""
+    "code": "",
+    "summary": "消费侧从用户找内容，作者侧则从内容找潜在受众；当供给侧成长和长尾曝光成为目标时，应显式设计作者侧候选与用户侧主链路的汇合规则，不能把作者曝光需求误当成单点相关性分数。"
   },
   "data-leakage": {
     "chapter": 15,
     "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
     "page": 37,
     "chapter_map": "/knowledge/chapters/ch15.html",
-    "code": "/knowledge-map/code/990271b17a63bcd9158a.html"
+    "code": "/knowledge-map/code/990271b17a63bcd9158a.html",
+    "summary": "样本穿越指训练特征使用了预测时点之后的信息，会制造无法在线复现的离线收益。"
   },
   "diversity-reranking": {
     "chapter": 7,
     "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
     "page": 10,
     "chapter_map": "/knowledge/chapters/ch07.html",
-    "code": "/knowledge-map/code/be3c4d321bb2488e3fdd.html"
+    "code": "/knowledge-map/code/be3c4d321bb2488e3fdd.html",
+    "summary": "目标与相似度已定时，再比较算法：MMR 逐步平衡相关性与冗余，DPP 考虑集合层面排斥，SSD 用向量正交化思路打散；选择由候选规模、可解释性和计算预算共同决定。本卡不重复定义多样性指标。"
   },
   "diversity": {
     "chapter": 7,
     "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
     "page": 9,
     "chapter_map": "/knowledge/chapters/ch07.html",
-    "code": "/knowledge-map/code/1f9163ebd1db2ef223c6.html"
+    "code": "/knowledge-map/code/1f9163ebd1db2ef223c6.html",
+    "summary": "先决定列表要防止哪种重复：主题、作者、内容表征或相邻位置的相似；没有明确相似度与展示窗口，任何打散算法都难以对应具体体验问题。本卡定义多样性目标，不负责 MMR、DPP、SSD 的算法选型。"
   },
   "duration-bucket-modeling": {
     "chapter": 23,
     "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
     "page": 16,
     "chapter_map": "/knowledge/chapters/ch23.html",
-    "code": "/knowledge-map/code/29f61f1722ad337b9744.html"
+    "code": "/knowledge-map/code/29f61f1722ad337b9744.html",
+    "summary": "分桶目标在直接回归与二分类之间保留时长强度信息；桶边界、标签平滑和长尾样本共同决定校准与分辨率。"
   },
   "duration-distribution": {
     "chapter": 23,
     "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
     "page": 37,
     "chapter_map": "/knowledge/chapters/ch23.html",
-    "code": "/knowledge-map/code/29f61f1722ad337b9744.html"
+    "code": "/knowledge-map/code/29f61f1722ad337b9744.html",
+    "summary": "时长目标长尾、截断且受内容长度影响；预测完整分布能表达点估计无法表示的不确定性和不同业务效用。"
   },
   "duration-threshold-labels": {
     "chapter": 23,
     "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch23.html",
-    "code": "/knowledge-map/code/2790b5db86d99a3e652a.html"
+    "code": "/knowledge-map/code/2790b5db86d99a3e652a.html",
+    "summary": "把连续观看时长转成阈值分类可简化学习，但阈值定义改变了目标；绝对时长、内容长度比例与多阈值各自保留的信息不同。"
   },
   "embedding-server": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
     "page": 17,
     "chapter_map": "/knowledge/chapters/ch17.html",
-    "code": ""
+    "code": "",
+    "summary": "Embedding Server 将大规模稀疏参数或向量从模型计算中解耦，服务设计重点是版本、缓存和批量访问。"
   },
   "exploration": {
     "chapter": 28,
     "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
     "page": 13,
     "chapter_map": "/knowledge/chapters/ch28.html",
-    "code": ""
+    "code": "",
+    "summary": "探索牺牲部分已知收益以获取新信息，利用选择当前估计最优内容；两者需受风险预算约束。"
   },
   "exposure-bias": {
     "chapter": 19,
     "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch19.html",
-    "code": ""
+    "code": "",
+    "summary": "训练数据来自历史策略选择后的曝光，未曝光物品缺少反事实反馈，模型会延续旧策略偏好。"
   },
   "fallback": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
     "page": 3,
     "chapter_map": "/knowledge/chapters/ch17.html",
-    "code": ""
+    "code": "",
+    "summary": "降级以部分个性化损失换取可用性；兜底必须快速、非空、可解释且独立于故障依赖。"
   },
   "feature-crossing-deep-ranking": {
     "chapter": 12,
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 8,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": ""
+    "code": "",
+    "summary": "精排模型需要同时利用有明确业务语义的低阶特征组合与深层网络学习的非线性关系。Wide & Deep 并行融合人工交叉与 DNN；DeepFM 利用 FM 学习二阶交互并与 DNN 共享特征嵌入；DLRM 则显式计算嵌入间交互后交由顶部网络组合。它们的交互位置、参数共享方式和成本不同，不能仅按模型名称替换。"
   },
   "feature-engineering": {
     "chapter": 15,
     "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch15.html",
-    "code": "/knowledge-map/code/85e95694a208b7cf5470.html"
+    "code": "/knowledge-map/code/85e95694a208b7cf5470.html",
+    "summary": "特征工程连接行为数据、模型和在线服务，价值取决于信息量、时效性与一致性。"
   },
   "feature-freshness": {
     "chapter": 15,
     "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
     "page": 12,
     "chapter_map": "/knowledge/chapters/ch15.html",
-    "code": "/knowledge-map/code/85e95694a208b7cf5470.html"
+    "code": "/knowledge-map/code/85e95694a208b7cf5470.html",
+    "summary": "特征新鲜度是事件发生到在线可见的总延迟，过期特征会使模型响应滞后。"
   },
   "feature-governance": {
     "chapter": 15,
     "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch15.html",
-    "code": "/knowledge-map/code/c338defe0dd7ed94c64d.html"
+    "code": "/knowledge-map/code/c338defe0dd7ed94c64d.html",
+    "summary": "特征工程不仅是构造表达，还要治理定义、时间语义、血缘、版本、复用和离在线一致性，否则局部收益无法稳定交付。"
   },
   "feature-pruning": {
     "chapter": 15,
     "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
     "page": 34,
     "chapter_map": "/knowledge/chapters/ch15.html",
-    "code": "/knowledge-map/code/85e95694a208b7cf5470.html"
+    "code": "/knowledge-map/code/85e95694a208b7cf5470.html",
+    "summary": "高度相关的特征不必全部保留，但单一特征的重要性低不等于可直接删除；应在现有特征集合上测量边际收益，成组评估冗余后再按效果与成本决定剪枝。"
   },
   "feedback-loop": {
     "chapter": 1,
     "pdf": "/ch01 推荐系统概述/第一章-推荐系统概述.pdf",
     "page": 5,
     "chapter_map": "/knowledge/chapters/ch01.html",
-    "code": ""
+    "code": "",
+    "summary": "推荐结果改变用户曝光与行为，新的行为又成为后续训练数据，因此系统优化面对的是持续演化的数据生成闭环。"
   },
   "filtering": {
     "chapter": 4,
     "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch04.html",
-    "code": "/knowledge-map/code/8222ff4e9554951ea529.html"
+    "code": "/knowledge-map/code/8222ff4e9554951ea529.html",
+    "summary": "过滤同时承担合规、体验和去重职责；不可恢复的硬过滤应早于昂贵排序。"
   },
   "forward-inverted-index-update": {
     "chapter": 16,
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
     "page": 60,
     "chapter_map": "/knowledge/chapters/ch16.html",
-    "code": ""
+    "code": "",
+    "summary": "正排回答物品属性，倒排回答条件下的候选集合；仅更新其中一侧会造成召回命中后取不到物品或使用过期状态。全量重建与实时变更应共享输入版本和可见性边界。"
   },
   "generated-item-lookup": {
     "chapter": 9,
     "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
     "page": 12,
     "chapter_map": "/knowledge/chapters/ch09.html",
-    "code": "/knowledge-map/code/d1a4228ecb4b77286ff1.html"
+    "code": "/knowledge-map/code/d1a4228ecb4b77286ff1.html",
+    "summary": "生成 token 序列不是最终可展示物品；必须将有效语义 ID 映射回在库物品，并处理多对一重复与查不到物品等异常，才能与传统召回比较。"
   },
   "generative-recsys": {
     "chapter": 9,
     "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
     "page": 20,
     "chapter_map": "/knowledge/chapters/ch09.html",
-    "code": "/knowledge-map/code/484d41b03605426f4a5b.html"
+    "code": "/knowledge-map/code/484d41b03605426f4a5b.html",
+    "summary": "生成式推荐以序列生成方式统一候选建模，但仍需满足服务延迟、约束和可回退要求。"
   },
   "generative-token-objective": {
     "chapter": 9,
     "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
     "page": 10,
     "chapter_map": "/knowledge/chapters/ch09.html",
-    "code": "/knowledge-map/code/7b651f51819289571f5c.html"
+    "code": "/knowledge-map/code/7b651f51819289571f5c.html",
+    "summary": "将用户行为和语义 ID 组织为模型输入后，自回归模型学习下一个 token 的条件分布；训练 token 预测能力不等同于生成合法物品及获得业务收益。"
   },
   "graph-recall": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
     "page": 24,
     "chapter_map": "/knowledge/chapters/ch10.html",
-    "code": "/knowledge-map/code/7a3a68e2514e850f3c90.html"
+    "code": "/knowledge-map/code/7a3a68e2514e850f3c90.html",
+    "summary": "图召回将用户、物品及其连接关系用于表征学习；只有结构信号提供超出协同过滤与向量基线的增量时，建图和训练复杂度才值得承担。"
   },
   "hard-negative": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
     "page": 79,
     "chapter_map": "/knowledge/chapters/ch10.html",
-    "code": ""
+    "code": "",
+    "summary": "困难负样本提高模型区分相似候选的能力，但误标潜在正样本会损伤训练。"
   },
   "hnsw": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
     "page": 42,
     "chapter_map": "/knowledge/chapters/ch18.html",
-    "code": "/knowledge-map/code/63e64134e9cd1dca5fe1.html"
+    "code": "/knowledge-map/code/63e64134e9cd1dca5fe1.html",
+    "summary": "HNSW 通过分层图导航取得较高检索质量，代价是额外内存和构建成本。"
   },
   "hybrid-architecture": {
     "chapter": 2,
     "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch02.html",
-    "code": ""
+    "code": "",
+    "summary": "混合架构把不同信号或策略在候选、分数或列表层组合，以互补覆盖、精度和业务约束。"
   },
   "industrial-recsys-scope": {
     "chapter": 0,
     "pdf": "/ch00 前言/第0章-前言.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch00.html",
-    "code": ""
+    "code": "",
+    "summary": "工业推荐系统不是模型清单，而是业务目标、数据、算法、服务与反馈共同组成的闭环；局部模型收益必须放回全链路约束中判断。"
   },
   "late-feedback-labels": {
     "chapter": 16,
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
     "page": 5,
     "chapter_map": "/knowledge/chapters/ch16.html",
-    "code": ""
+    "code": "",
+    "summary": "请求与反馈异步到达时，立即产出样本会把尚未到达的正反馈误当负例；等待窗口又不能无限延长。按反馈类型设定合并规则和有界等待，并保证重投递不会覆盖更完整的结果。"
   },
   "latency-budget": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
     "page": 4,
     "chapter_map": "/knowledge/chapters/ch17.html",
-    "code": ""
+    "code": "",
+    "summary": "端到端延迟预算必须分配给各阶段并预留网络、调度和组装余量，不能让子服务各自使用总预算。"
   },
   "lightweight-dnn-pre-ranking": {
     "chapter": 11,
     "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
     "page": 29,
     "chapter_map": "/knowledge/chapters/ch11.html",
-    "code": "/knowledge-map/code/bdbc58dc4696fe38bc07.html"
+    "code": "/knowledge-map/code/bdbc58dc4696fe38bc07.html",
+    "summary": "双塔内积无法表达必要的用户—物品交互时，可用轻量 DNN 在粗排阶段引入交叉特征；是否采用取决于交互增益能否覆盖逐候选推理及特征读取成本，而非只比较模型参数量。"
   },
   "listwise-ranking-loss": {
     "chapter": 12,
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 58,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": ""
+    "code": "",
+    "summary": "Listwise 损失把同一请求的候选列表作为联合优化对象，利用列表内标签与分数构造相对分布；它改善的是请求内排序监督，并不天然给出可直接用于多任务融合的绝对点击概率。"
   },
   "load-pid-control": {
     "chapter": 8,
     "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
     "page": 17,
     "chapter_map": "/knowledge/chapters/ch08.html",
-    "code": "/knowledge-map/code/30c3c606f70c25e5d337.html"
+    "code": "/knowledge-map/code/30c3c606f70c25e5d337.html",
+    "summary": "当混排目标流量随请求波动、静态比例无法稳定满足时，可先用 Load 统计观测偏差，再用窗口反馈的 PID 调节流量；它控制目标负载而不替代候选序列的价值排序，也不承担强插／保量的硬规则决策。"
   },
   "mixed-ranking": {
     "chapter": 8,
     "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch08.html",
-    "code": "/knowledge-map/code/30c3c606f70c25e5d337.html"
+    "code": "/knowledge-map/code/30c3c606f70c25e5d337.html",
+    "summary": "混排在多个业务或内容类型之间分配展示位置，需统一价值尺度并约束体验。"
   },
   "mixed-sequence-generation": {
     "chapter": 8,
     "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
     "page": 7,
     "chapter_map": "/knowledge/chapters/ch08.html",
-    "code": "/knowledge-map/code/b7989e98e612cd1e5c38.html"
+    "code": "/knowledge-map/code/b7989e98e612cd1e5c38.html",
+    "summary": "跨业务候选组合受位置与供给规则约束；预竞价先压缩参选空间，全竞价让更多候选参与竞争，选型须同时衡量全局收益损失与在线计算成本。"
   },
   "mixed-sequence-ranking": {
     "chapter": 8,
     "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
     "page": 13,
     "chapter_map": "/knowledge/chapters/ch08.html",
-    "code": "/knowledge-map/code/b7989e98e612cd1e5c38.html"
+    "code": "/knowledge-map/code/b7989e98e612cd1e5c38.html",
+    "summary": "跨业务序列生成只确定可行解，序列排序还须按统一口径比较整体价值；单纯累加 item 分数会受长度和位置影响，不能等同用户、平台、生态的共同收益。"
   },
   "mixed-value-evaluation": {
     "chapter": 8,
     "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
     "page": 14,
     "chapter_map": "/knowledge/chapters/ch08.html",
-    "code": "/knowledge-map/code/bc593db38633016bd081.html"
+    "code": "/knowledge-map/code/bc593db38633016bd081.html",
+    "summary": "跨业务的内容消费与变现分不同口径，短期收益不能单独定义最优序列；价值评估应显式区分用户体验、平台收益与生态目标，再决定各自的约束和权重。"
   },
   "model-distillation": {
     "chapter": 11,
     "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
     "page": 22,
     "chapter_map": "/knowledge/chapters/ch11.html",
-    "code": "/knowledge-map/code/1aa61c5d91d3f7c62da3.html"
+    "code": "/knowledge-map/code/1aa61c5d91d3f7c62da3.html",
+    "summary": "粗排蒸馏用高容量教师的分数或表征监督低成本学生，在在线预算内逼近后级模型的排序能力。"
   },
   "model-release": {
     "chapter": 16,
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
     "page": 69,
     "chapter_map": "/knowledge/chapters/ch16.html",
-    "code": ""
+    "code": "",
+    "summary": "模型上线不是复制单个权重文件，而是把数据、代码、特征、模型、评估结果和依赖版本作为可追溯发布单元交付。"
   },
   "multi-interest-pre-ranking": {
     "chapter": 11,
     "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
     "page": 38,
     "chapter_map": "/knowledge/chapters/ch11.html",
-    "code": "/knowledge-map/code/09b731131e42c1f6d6c4.html"
+    "code": "/knowledge-map/code/09b731131e42c1f6d6c4.html",
+    "summary": "用户兴趣跨内容或行为目标明显分化时，单一用户向量容易压缩掉与当前候选相关的意图；粗排可用多兴趣表示，并依据目标物品或标签选择相关兴趣，而不是无条件增加表示数量。"
   },
   "multi-interest-recall": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
     "page": 100,
     "chapter_map": "/knowledge/chapters/ch10.html",
-    "code": "/knowledge-map/code/bfa322e0d233c4cbefd2.html"
+    "code": "/knowledge-map/code/bfa322e0d233c4cbefd2.html",
+    "summary": "单一用户向量可能折叠不同兴趣，多兴趣召回以多个表征覆盖意图；收益应体现为独立候选增量，而不只是检索次数增加。"
   },
   "multi-objective": {
     "chapter": 6,
     "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
     "page": 5,
     "chapter_map": "/knowledge/chapters/ch06.html",
-    "code": "/knowledge-map/code/8558e32d9a15200f5c09.html"
+    "code": "/knowledge-map/code/8558e32d9a15200f5c09.html",
+    "summary": "多目标建模同时预测点击、时长、互动等目标，融合策略决定最终业务取舍。"
   },
   "multi-recall": {
     "chapter": 4,
     "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
     "page": 3,
     "chapter_map": "/knowledge/chapters/ch04.html",
-    "code": "/knowledge-map/code/c182199872244eca2ebb.html"
+    "code": "/knowledge-map/code/c182199872244eca2ebb.html",
+    "summary": "多路召回以不同兴趣信号和内容来源扩大候选覆盖，重点不只是路数，而是互补性。"
   },
   "multi-task-experts": {
     "chapter": 12,
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 30,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": ""
+    "code": "",
+    "summary": "MMoE 以任务独立门控组合共享专家；CGC/PLE 进一步区分共享专家与任务专属专家，并通过分层结构调节共享程度。这些结构都在共享收益与任务冲突之间取舍，并不保证任务数量或专家数量越多越好。"
   },
   "multi-tower-pre-ranking": {
     "chapter": 11,
     "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
     "page": 10,
     "chapter_map": "/knowledge/chapters/ch11.html",
-    "code": "/knowledge-map/code/82d9e7cd0fcebd716c20.html"
+    "code": "/knowledge-map/code/82d9e7cd0fcebd716c20.html",
+    "summary": "多塔模型把不同信号或交互路径拆分建模；增加塔应对应可验证的表达缺口，而不是单纯增加容量。"
   },
   "negative-sampling": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
     "page": 60,
     "chapter_map": "/knowledge/chapters/ch10.html",
-    "code": "/knowledge-map/code/ead8f9251950d64f54ef.html"
+    "code": "/knowledge-map/code/ead8f9251950d64f54ef.html",
+    "summary": "负采样决定模型学到的判别边界；采样分布与线上候选分布不一致会引入偏差。"
   },
   "observability": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch17.html",
-    "code": ""
+    "code": "",
+    "summary": "推荐可观测性必须覆盖业务漏斗、模型分布和服务健康，才能区分供给、策略、模型与系统故障。"
   },
   "offline-online-architecture": {
     "chapter": 2,
     "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
     "page": 5,
     "chapter_map": "/knowledge/chapters/ch02.html",
-    "code": ""
+    "code": "",
+    "summary": "离线侧产出训练样本、特征、模型和索引，在线侧按请求获取最新可用的用户及物品信息；选定交付频率时须先划分哪些信号必须实时更新、哪些可以周期性发布。"
   },
   "offline-online-evaluation": {
     "chapter": 3,
     "pdf": "/ch03 推荐系统评价体系/第三章-推荐系统评价体系.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch03.html",
-    "code": ""
+    "code": "",
+    "summary": "离线指标用于低成本筛选候选方案，在线指标检验真实业务增益；二者衡量对象和数据分布不同，不能相互替代。"
   },
   "offline-pipeline": {
     "chapter": 16,
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch16.html",
-    "code": ""
+    "code": "",
+    "summary": "离线链路将日志转化为样本、特征、模型和发布产物，版本与时间语义必须贯穿全程。"
   },
   "one-stage-generative-alignment": {
     "chapter": 9,
     "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
     "page": 14,
     "chapter_map": "/knowledge/chapters/ch09.html",
-    "code": "/knowledge-map/code/caaddc587d185cb78a39.html"
+    "code": "/knowledge-map/code/caaddc587d185cb78a39.html",
+    "summary": "先量化物品再训练生成器可能出现编码目标与推荐目标不一致；一阶段方法尝试联合或交替优化离散表示与生成学习，选型应看对齐收益是否覆盖训练和服务复杂度。"
   },
   "online-serving": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch17.html",
-    "code": ""
+    "code": "",
+    "summary": "在线服务将召回、排序和策略组织成受端到端延迟约束的请求链路。"
   },
   "overload-control": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
     "page": 3,
     "chapter_map": "/knowledge/chapters/ch17.html",
-    "code": ""
+    "code": "",
+    "summary": "限流和熔断用于阻止过载与故障扩散，触发条件必须早于资源完全耗尽。"
   },
   "point-in-time-join": {
     "chapter": 16,
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch16.html",
-    "code": "/knowledge-map/code/1abdfabd5717d027b0b3.html"
+    "code": "/knowledge-map/code/1abdfabd5717d027b0b3.html",
+    "summary": "样本关联特征时只能使用标签时刻已经可见的版本；事件发生时间晚于标签或当时尚未到达的数据都会造成穿越。"
   },
   "position-bias": {
     "chapter": 19,
     "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch19.html",
-    "code": ""
+    "code": "",
+    "summary": "高位置获得更多注意，观察到的点击混合了相关性和展示位置影响。"
   },
   "position-debiasing": {
     "chapter": 19,
     "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch19.html",
-    "code": ""
+    "code": "",
+    "summary": "观测反馈同时受物品相关性和曝光位置影响；位置偏差校正试图从日志中分离展示机制，避免模型把“排得靠前”误学为“更相关”。"
   },
   "pre-ranking-chain-consistency": {
     "chapter": 5,
     "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch05.html",
-    "code": "/knowledge-map/code/925666b5a9dc8f948529.html"
+    "code": "/knowledge-map/code/925666b5a9dc8f948529.html",
+    "summary": "粗排应尽量保留精排偏好的优质候选，但一味拟合精排会使粗排成为后级的复制品；选模型时需在保真、增量信息与单位请求算力间取舍。"
   },
   "pre-ranking-objective-fusion": {
     "chapter": 5,
     "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
     "page": 4,
     "chapter_map": "/knowledge/chapters/ch05.html",
-    "code": "/knowledge-map/code/925666b5a9dc8f948529.html"
+    "code": "/knowledge-map/code/925666b5a9dc8f948529.html",
+    "summary": "按预测值融合保留收益量纲，却受目标分数尺度影响；按序关系融合弱化尺度差异，却丢失分值间距。粗排公式应依据候选保留目标选型，不能只看权重是否易调。"
   },
   "pre-ranking-set-optimization": {
     "chapter": 5,
     "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
     "page": 15,
     "chapter_map": "/knowledge/chapters/ch05.html",
-    "code": "/knowledge-map/code/925666b5a9dc8f948529.html"
+    "code": "/knowledge-map/code/925666b5a9dc8f948529.html",
+    "summary": "即使每个候选的粗排分数都合理，简单取前 K 仍可能得到冗余集合；当后级对覆盖和组合质量敏感时，要把候选集视作优化对象，而不仅是单点排序的截断结果。"
   },
   "pre-ranking-two-tower": {
     "chapter": 11,
     "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch11.html",
-    "code": "/knowledge-map/code/c916ab627f692466bcc3.html"
+    "code": "/knowledge-map/code/c916ab627f692466bcc3.html",
+    "summary": "粗排双塔通过分别编码用户和候选控制推理成本，但交互受限；应在固定服务预算下判断它能否保留精排偏好的优质候选。"
   },
   "pre-ranking": {
     "chapter": 5,
     "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch05.html",
-    "code": "/knowledge-map/code/925666b5a9dc8f948529.html"
+    "code": "/knowledge-map/code/925666b5a9dc8f948529.html",
+    "summary": "粗排在大候选量和有限延迟下逼近精排偏好，目标是保留优质候选而非独立追求最终排序最优。"
   },
   "quantization": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
     "page": 33,
     "chapter_map": "/knowledge/chapters/ch18.html",
-    "code": "/knowledge-map/code/42c3cda17dd2fab71f69.html"
+    "code": "/knowledge-map/code/42c3cda17dd2fab71f69.html",
+    "summary": "向量量化用精度损失换取内存和距离计算效率，误差可能改变近邻顺序。"
   },
   "quota-truncation": {
     "chapter": 5,
     "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
     "page": 12,
     "chapter_map": "/knowledge/chapters/ch05.html",
-    "code": "/knowledge-map/code/ccbe158776d4078b8e1b.html"
+    "code": "/knowledge-map/code/ccbe158776d4078b8e1b.html",
+    "summary": "Quota 与截断在算力预算内控制各通道或业务候选进入后级的数量，决定后续模型可见的候选分布。"
   },
   "ranking-evaluation-metrics": {
     "chapter": 3,
     "pdf": "/ch03 推荐系统评价体系/第三章-推荐系统评价体系.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch03.html",
-    "code": "/knowledge-map/code/dd8b309a409fc007f8f5.html"
+    "code": "/knowledge-map/code/dd8b309a409fc007f8f5.html",
+    "summary": "全局 AUC 与请求内头部排序衡量不同质量；离线准入应按召回、排序和校准职责分别选指标，而不是以一个总分替代整条漏斗。"
   },
   "ranking-formula": {
     "chapter": 6,
     "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
     "page": 5,
     "chapter_map": "/knowledge/chapters/ch06.html",
-    "code": "/knowledge-map/code/00eaf14e76dbc946a8af.html"
+    "code": "/knowledge-map/code/00eaf14e76dbc946a8af.html",
+    "summary": "多目标排序公式把多个预估任务映射为最终排序分数；乘法、序变换和权重寻优会改变尺度敏感性、单调性与目标间取舍。"
   },
   "ranking-loss-selection": {
     "chapter": 12,
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 55,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": ""
+    "code": "",
+    "summary": "Pointwise 直接学习目标概率，Pairwise 优化同请求候选顺序，Listwise 面向整个列表；需要概率可解释性时不能只追求排序指标。"
   },
   "ranking-ltr-choice": {
     "chapter": 6,
     "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch06.html",
-    "code": "/knowledge-map/code/9b13b388e02512789702.html"
+    "code": "/knowledge-map/code/9b13b388e02512789702.html",
+    "summary": "精排行为预估学习可解释的点击、时长和互动概率，LTR 直接学习综合排序偏好；二者互补，不应把排序损失提升误作各目标预估准确。"
   },
   "ranking-traffic-control": {
     "chapter": 6,
     "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
     "page": 13,
     "chapter_map": "/knowledge/chapters/ch06.html",
-    "code": "/knowledge-map/code/dde58816c947b75b7726.html"
+    "code": "/knowledge-map/code/dde58816c947b75b7726.html",
+    "summary": "融合分数并不自动满足新内容、商业或供给侧目标；精排流量调控需把保量与强插的收益、用户损失和约束优先级单独评估，区别于混排跨业务 Load／PID 闭环。"
   },
   "ranking": {
     "chapter": 6,
     "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch06.html",
-    "code": "/knowledge-map/code/c71eba90f79aba140a36.html"
+    "code": "/knowledge-map/code/c71eba90f79aba140a36.html",
+    "summary": "精排对较小候选集进行高成本个性化打分，是多目标效果建模的主要位置。"
   },
   "recall-concurrency-isolation": {
     "chapter": 4,
     "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
     "page": 3,
     "chapter_map": "/knowledge/chapters/ch04.html",
-    "code": ""
+    "code": "",
+    "summary": "多路召回并行能压缩整体等待时间，但慢路不应拖垮候选形成；要在前处理、异步执行和后处理之间明确超时与空路的责任边界。"
   },
   "recall-fusion": {
     "chapter": 4,
     "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
     "page": 10,
     "chapter_map": "/knowledge/chapters/ch04.html",
-    "code": "/knowledge-map/code/1a43a5985d789d115e51.html"
+    "code": "/knowledge-map/code/1a43a5985d789d115e51.html",
+    "summary": "召回融合负责去重、配额和来源平衡，防止高产召回路挤占其他信号。"
   },
   "recall-route-selection": {
     "chapter": 4,
     "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
     "page": 5,
     "chapter_map": "/knowledge/chapters/ch04.html",
-    "code": ""
+    "code": "",
+    "summary": "协同过滤利用交互共现，内容与规则路兼顾可控供给，向量路捕捉表示空间中的兴趣，图路挖掘高阶关系；选择路由应看可用信号与新增候选价值，而非统一套用一种模型。"
   },
   "recommendation-log-contract": {
     "chapter": 2,
     "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
     "page": 15,
     "chapter_map": "/knowledge/chapters/ch02.html",
-    "code": ""
+    "code": "",
+    "summary": "只有将请求、曝光、交互与实验信息按可关联的时间和标识落盘，才能把在线决策可靠地回收到训练与评估；聚合报表不能替代请求级事实。"
   },
   "recsys-funnel": {
     "chapter": 2,
     "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch02.html",
-    "code": ""
+    "code": "",
+    "summary": "推荐漏斗用逐级缩小候选集换取效果与延迟平衡；越靠后模型越重、候选越少。"
   },
   "reranking-postprocessing": {
     "chapter": 7,
     "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
     "page": 19,
     "chapter_map": "/knowledge/chapters/ch07.html",
-    "code": ""
+    "code": "",
+    "summary": "末端后处理适合执行必须满足的曝光或合规约束；若把软目标全部延后到此阶段，将破坏已优化的序列分数，应尽量在搜索阶段考虑可预知的约束。"
   },
   "reranking-sequence-evaluation": {
     "chapter": 7,
     "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
     "page": 8,
     "chapter_map": "/knowledge/chapters/ch07.html",
-    "code": ""
+    "code": "",
+    "summary": "候选序列生成后须以整体列表价值而非单个最高分挑选最终展示序列；单点高分之和若忽略位置与项间影响，无法体现重排增益。"
   },
   "reranking-sequence-generation": {
     "chapter": 7,
     "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
     "page": 3,
     "chapter_map": "/knowledge/chapters/ch07.html",
-    "code": "/knowledge-map/code/8a74640f3fcfecdfae47.html"
+    "code": "/knowledge-map/code/8a74640f3fcfecdfae47.html",
+    "summary": "序列搜索空间随位置和候选量迅速扩大；选择权重扰动、逐位置构造或 Beam Search 时，要以生成足够不同且可比较的序列为目标，而非盲目增加搜索宽度。"
   },
   "reranking": {
     "chapter": 7,
     "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch07.html",
-    "code": "/knowledge-map/code/64d9845ea0985ff68c1f.html"
+    "code": "/knowledge-map/code/64d9845ea0985ff68c1f.html",
+    "summary": "重排在精排分数基础上处理列表级约束、重复、多样性和业务规则。"
   },
   "rl-recsys": {
     "chapter": 28,
     "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
     "page": 16,
     "chapter_map": "/knowledge/chapters/ch28.html",
-    "code": ""
+    "code": "",
+    "summary": "强化学习推荐优化序列决策和长期回报，但受状态表达、反馈延迟与离线评估困难约束。"
   },
   "safe-exploration": {
     "chapter": 28,
     "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch28.html",
-    "code": ""
+    "code": "",
+    "summary": "推荐探索必须在收益、体验和风险护栏内获取新信息；无约束随机探索会把学习成本直接转嫁给用户和生态。"
   },
   "sample-selection-bias": {
     "chapter": 19,
     "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
     "page": 3,
     "chapter_map": "/knowledge/chapters/ch19.html",
-    "code": ""
+    "code": "",
+    "summary": "入样并非一次性的曝光筛选：召回、粗排、精排逐层缩小候选，前级漏掉的物品不能给后级提供训练反馈；仅修正最终展示位置无法补足缺失的候选支持。"
   },
   "score-calibration": {
     "chapter": 8,
     "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch08.html",
-    "code": "/knowledge-map/code/5f8f746f1f37271bcf02.html"
+    "code": "/knowledge-map/code/5f8f746f1f37271bcf02.html",
+    "summary": "不同业务或模型的原始分数通常不可直接比较；校准把分数映射到具有一致解释的空间，为混排提供可比基础。"
   },
   "semantic-id": {
     "chapter": 9,
     "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
     "page": 4,
     "chapter_map": "/knowledge/chapters/ch09.html",
-    "code": "/knowledge-map/code/c38f21262c05ce06187b.html"
+    "code": "/knowledge-map/code/c38f21262c05ce06187b.html",
+    "summary": "语义 ID 将物品表示为离散 Token 序列，使生成模型能够直接生成候选物品标识，同时把量化误差和 ID 合法性带入链路。"
   },
   "sequential-recall": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
     "page": 81,
     "chapter_map": "/knowledge/chapters/ch10.html",
-    "code": "/knowledge-map/code/b3503f7e311b950f915b.html"
+    "code": "/knowledge-map/code/b3503f7e311b950f915b.html",
+    "summary": "序列召回利用行为顺序刻画短期意图；当近期行为改变候选偏好时，比仅聚合长期兴趣更有价值，但历史截断和推理成本不可忽略。"
   },
   "target-attention-ranking": {
     "chapter": 12,
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 42,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": ""
+    "code": "",
+    "summary": "目标注意力按当前候选从用户行为中提取相关兴趣，而自注意力刻画行为间依赖；两者解决的问题不同，不能只以模型层数比较。"
   },
   "two-tower": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
     "page": 60,
     "chapter_map": "/knowledge/chapters/ch10.html",
-    "code": "/knowledge-map/code/77eef1cbff00cb8ce25f.html"
+    "code": "/knowledge-map/code/77eef1cbff00cb8ce25f.html",
+    "summary": "双塔将用户与物品编码到同一向量空间，使物品向量可离线计算并通过 ANN 在线检索。"
   },
   "user-group-bias": {
     "chapter": 19,
     "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
     "page": 5,
     "chapter_map": "/knowledge/chapters/ch19.html",
-    "code": ""
+    "code": "",
+    "summary": "活跃用户提供更多训练行为，整体指标改善可能掩盖新用户和低活跃用户体验下降；此问题区别于展示位置导致的点击差异。"
   },
   "vector-retrieval": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
     "page": 1,
     "chapter_map": "/knowledge/chapters/ch18.html",
-    "code": ""
+    "code": "",
+    "summary": "向量检索以近似邻居搜索换取大规模候选发现效率，必须联合评估召回率、延迟和内存。"
   },
   "version-consistency": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
     "page": 16,
     "chapter_map": "/knowledge/chapters/ch17.html",
-    "code": ""
+    "code": "",
+    "summary": "模型、特征、Embedding 和索引必须来自兼容发布集合；单独更新任一组件可能产生静默错误。"
   },
   "weighted-lr-duration": {
     "chapter": 23,
     "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
     "page": 12,
     "chapter_map": "/knowledge/chapters/ch23.html",
-    "code": "/knowledge-map/code/7972b3f7f1f3dfe03d99.html"
+    "code": "/knowledge-map/code/7972b3f7f1f3dfe03d99.html",
+    "summary": "Weighted LR 是时长目标的一条独立路线，与阈值二分类和离散分桶并列：它对观看样本按时长加权训练二分类，再由预测概率的 Odds 反解时长；该概率不能直接解释为普通点击率或观看率。"
   },
   "duration-modeling": {
     "chapter": 23,
     "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
     "page": 2,
     "chapter_map": "/knowledge/chapters/ch23.html",
-    "code": ""
+    "code": "",
+    "summary": "时长目标具有长尾、截断和内容时长依赖，不能直接按普通回归问题处理；阈值二分类、Weighted LR 与离散分桶是不同标签/损失路径，不应把加权二分类当成阈值或分桶的后续步骤。"
   },
   "lsh-retrieval": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
     "page": 19,
     "chapter_map": "/knowledge/chapters/ch18.html",
-    "code": ""
+    "code": "",
+    "summary": "LSH 的哈希族必须匹配相似度：集合相似度可考虑 MinHash，向量夹角可考虑随机超平面 SimHash；签名相似并不等于候选一定相似，分桶检索还有漏召与桶膨胀的取舍。"
   }
 }
