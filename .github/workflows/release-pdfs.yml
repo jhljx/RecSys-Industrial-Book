@@ -9,6 +9,7 @@ on:
 
 permissions:
   contents: write
+  actions: read
 
 concurrency:
   group: release-pdfs
@@ -16,8 +17,26 @@ concurrency:
 jobs:
   release:
     runs-on: ubuntu-latest
+    timeout-minutes: 35
     steps:
       - uses: actions/checkout@v4
+
+      - name: Require public validation for this commit
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          for attempt in {1..120}; do
+            run_id="$(gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/validate.yml/runs?head_sha=${GITHUB_SHA}&event=push&per_page=20" \
+              --jq '.workflow_runs | sort_by(.created_at) | last | .id // empty')"
+            if [[ -n "$run_id" ]]; then
+              gh run watch "$run_id" --exit-status --interval 15
+              exit 0
+            fi
+            sleep 15
+          done
+          echo "No push validation run found for ${GITHUB_SHA}; refusing to publish" >&2
+          exit 1
 
       - name: Build assets
         run: |

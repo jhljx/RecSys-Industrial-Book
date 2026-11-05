@@ -10,6 +10,6 @@ python3 tools/recsys_agent.py eval
 
 别名表 `knowledge/aliases.json` 按术语族组织：中文复合术语与英文缩写按原查询中的最长、互不重叠的出现位置识别；同一段文本不会同时触发短词和长词的不同术语族，分开的出现位置仍可表达混合意图。例如「协同过滤」不等于「候选过滤」，但「协同过滤召回后过滤已看内容」应识别两个意图。新增别名时应补充正反查询扩展用例，并运行上述固定检索集；不要仅靠章节加权或改写评测查询掩盖误匹配。
 
-`unanswerable.jsonl` 收录无关书本主题的负例，`expected_chapters: []` 表示应拒绝作为书中证据。执行 `python3 tools/recsys_agent.py eval --dataset evals/unanswerable.jsonl`；报告的 `negative_rejection_rate` 必须为 100%。当前使用保守的检索分数门槛，仅是降低误报的启发式，不证明所有未覆盖问题都能正确拒答；新增负例与歧义例应人工确认。
+`unanswerable.jsonl` 收录无关主题及明确索取尚未发布章节 PDF 的负例，`expected_chapters: []` 表示应拒绝作为书中证据。执行 `python3 tools/recsys_agent.py eval --dataset evals/unanswerable.jsonl`；报告的 `negative_rejection_rate` 必须为 100%。对具体未发布章节 PDF 的请求先按已发布文件目录拒答；其他问题仍使用保守检索分数门槛。这不能证明所有书外问题都能正确拒答，尤其是与已发布主题相近的虚构结论；新增负例与歧义例应人工确认。
 
-`page-evidence.jsonl` 是另一个独立的小型页级门禁：人工对照已发布 PDF 为查询标定 `expected_pages`（章节号 → 允许的 PDF 页范围），要求 Top-1 同时落在对应章节和页范围。执行 `python3 tools/recsys_agent.py eval --dataset evals/page-evidence.jsonl`。这仍只能证明定位页，不能证明 Agent 的最终解释正确；后续扩充歧义与未覆盖查询，并按 `evals/usability.md` 盲评答案。
+`page-evidence.jsonl` 是另一个独立的小型页级门禁：人工对照已发布 PDF 为查询标定 `expected_pages`（章节号 → 允许的 PDF 页范围），要求 Top-1 同时落在对应章节和页范围。执行 `python3 tools/recsys_agent.py eval --dataset evals/page-evidence.jsonl`。当前 7 条覆盖 6 个章节，仍只能证明定位页，不能证明 Agent 的最终解释正确；后续扩充歧义与未覆盖查询，并按 `evals/usability.md` 盲评答案的每条论断及其引用。

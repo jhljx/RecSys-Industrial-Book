@@ -40,7 +40,8 @@ def destination(page, href, local):
     if local:
         relative = target.relative_to(ROOT).as_posix()
         if target.is_dir():
-            target = target / ("README.md" if relative.startswith(("knowledge/", "learning-paths/", "docs/", "templates/")) else "index.html")
+            target = target / ("README.md" if relative in ("knowledge", "learning-paths", "docs", "templates")
+                               or relative.startswith(("knowledge/", "learning-paths/", "docs/", "templates/")) else "index.html")
         elif re.match(r"^(README\.en|(?:knowledge|learning-paths|docs|templates)/.*)\.html$", relative):
             target = target.with_suffix(".md")
     else:
@@ -49,13 +50,20 @@ def destination(page, href, local):
         elif target.suffix == ".md":
             target = target.with_suffix(".html")
         if target.is_dir():
-            target = target / "index.html"
+            target = target / ("README.md" if (target / "README.md").is_file() else "index.html")
         if not target.is_file() and target.suffix == ".html":
             target = target.with_suffix(".md")  # Jekyll's rendered Markdown document
     return target
 
 
 class SiteRoutesTest(unittest.TestCase):
+    def test_template_directory_routes_have_real_readmes(self) -> None:
+        homepage = (ROOT / "README.md").read_text(encoding="utf-8")
+        self.assertIn("[可运行项目](templates/README.md)", homepage)
+        for href in ("templates/", "templates/two-tower-ann/", "templates/feature-consistency/"):
+            for local in (True, False):
+                self.assertTrue(destination(ROOT / "index.html", href, local).is_file(), (href, local))
+
     def test_markdown_readme_routes_are_not_rewritten_to_missing_html(self) -> None:
         for name in ("app.js", "reader.js"):
             script = (ROOT / "knowledge-map" / name).read_text(encoding="utf-8")

@@ -14,6 +14,7 @@
 | 层 | 安装/运行方式（仓库根目录） | 覆盖范围与边界 |
 |---|---|---|
 | 基础（CI） | `python3 -m unittest discover -s tools/tests -p 'test_chapter_smoke.py' -v` | 仅导入精选第 3、7、8 章纯标准库函数，断言正常输入及小边界；不会遍历执行全部章节脚本。 |
+| 全量源码静态检查（CI） | `python3 tools/check_chapter_code.py` | 检查章节 README 逐文件标签与全部 Python 源码语法；Java/C++/SQL 仅展示，不宣称运行验证。 |
 | 模板（CI） | `python3 -m unittest discover -s tools/tests -p 'test_template_cli.py' -v` 及 `python3 -m unittest discover -s templates/recommendation-pipeline/tests -v` | 四个独立教学模板的 CLI 成功/拒绝/降级；不需要额外 Python 包。 |
 | 数值/传统 ML（按需） | 在**隔离虚拟环境**中按选定脚本的 import 安装 `numpy`、`scipy`、`scikit-learn`、`pandas` 等，运行单个脚本或对应测试 | 不在基础 CI 安装；运行前检查数据规模、随机种子和可用内存。第 4 章 `cascade_budget_simulation.py` 用到 numpy，性能测量受机器影响，不断言固定毫秒值。 |
 | 深度学习/向量/服务（按需） | 按**具体示例**另建环境，按需安装兼容的 `torch`、`tensorflow`、`transformers`、`faiss`、`grpcio` 等及其模型/数据资源 | 可能依赖 GPU、网络、外部权重或服务；不要在默认 CI 下载大模型、启动外部服务或对全量代码做一键依赖安装。 |
@@ -24,6 +25,8 @@
 ## 验证
 
 基础 CI 冒烟断言：分类混淆矩阵和全负例的 Recall；MMR 在不同权重下的选择；归一化保序与常数输入。附加的四模板检查覆盖版本错配、未来特征、容量与慢依赖、召回管线过载及非法时限。上述检查只验证被选中的小路径，不能证明其它章节例子均可运行、数值/模型质量达标或生产可用。
+
+代码目录给每个源码显示 `CI 主路径冒烟`、`Python 语法检查` 或 `仅源码展示`。这些是可公开复现的验证范围，不把源码存在或语法正确说成模型训练成功。数值、深度学习和服务依赖按选定项目的 README 在隔离环境中逐个复验，再记录运行环境、随机种子、输入输出、参数变化和失败情形。
 
 ## 待业务确认
 

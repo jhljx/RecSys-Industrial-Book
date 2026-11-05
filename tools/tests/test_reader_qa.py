@@ -47,6 +47,13 @@ class ReaderQATest(unittest.TestCase):
         self.assertEqual([], pages)
         self.assertIn("不足以可靠回答", text)
 
+    def test_unreleased_chapter_pdf_question_abstains_without_model(self):
+        with patch.object(qa, "model_answer") as model:
+            _, answer, pages = qa.answer_question(TOOLS.parent, "第十四章正式出版的 PDF 第 1 页是什么？")
+        self.assertEqual("insufficient_evidence", answer["status"])
+        self.assertEqual([], pages)
+        model.assert_not_called()
+
     def test_concept_navigation_reuses_answer_session(self):
         root = TOOLS.parent
         with tempfile.TemporaryDirectory() as temporary:

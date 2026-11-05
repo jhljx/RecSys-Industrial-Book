@@ -1,3 +1,7 @@
 {"query":"双塔召回负采样偏差","expected_chapters":[10],"expected_pages":{"10":[[59,60]]}}
 {"query":"Embedding Server 版本一致性","expected_chapters":[17],"expected_pages":{"17":[[17,18]]}}
 {"query":"协同过滤召回 ItemCF 稀疏交互与热门偏置","expected_chapters":[10],"expected_pages":{"10":[[2,6]]}}
+{"query":"MMR 多样性重排相关性与去冗余权衡","expected_chapters":[7],"expected_pages":{"7":[[10,11]]}}
+{"query":"混排中的归一化不能代替校准","expected_chapters":[8],"expected_pages":{"8":[[5,7]]}}
+{"query":"离线分类评价 Precision Recall F1 取舍","expected_chapters":[3],"expected_pages":{"3":[[1,2]]}}
+{"query":"LSH MinHash SimHash Banding","expected_chapters":[18],"expected_pages":{"18":[[19,25],[30,31]]}}

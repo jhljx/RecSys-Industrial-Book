@@ -29,6 +29,8 @@ ANSWER_SCHEMA = {
 def evidence_pages(root: Path, query: str, *, prior_topic: str = "", limit: int = 4) -> list[dict[str, object]]:
     import recsys_agent as agent
 
+    if agent.requests_unreleased_pdf(root, query):
+        return []
     retrieval_query = f"{prior_topic} {query}" if prior_topic else query
     ranked = agent.rank(root, retrieval_query)
     if not ranked or ranked[0][0] < agent.EVIDENCE_SCORE_FLOOR:

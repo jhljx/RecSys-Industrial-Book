@@ -185,6 +185,28 @@ def public_pdfs(root: Path) -> list[Path]:
     return sorted(path for path in root.glob("ch[0-9][0-9] */*.pdf") if path.is_file())
 
 
+def requests_unreleased_pdf(root: Path, query: str) -> bool:
+    """Reject a request for a specific unpublished chapter's PDF, not its topic."""
+    digits = {character: number for number, character in enumerate("零一二三四五六七八九")}
+
+    def chapter_number_text(value: str) -> int | None:
+        if value.isdecimal():
+            return int(value)
+        if "十" in value:
+            before, after = value.split("十", 1)
+            if (before and before not in digits) or (after and after not in digits):
+                return None
+            return (digits[before] if before else 1) * 10 + (digits[after] if after else 0)
+        return digits.get(value)
+
+    if not re.search(r"(?:已发布|正式出版|完整原书|PDF|页码)", query, re.I) or re.search(r"(?:尚未|未发布)", query):
+        return False
+    mentioned = {n for match in re.finditer(r"第([零一二三四五六七八九十\d]+)章", query)
+                 if (n := chapter_number_text(match.group(1))) is not None}
+    released = {chapter_number(path) for path in public_pdfs(root)}
+    return bool(mentioned and not mentioned.issubset(released))
+
+
 def page_heading(page: str, fallback: str) -> str:
     for line in page.splitlines():
         candidate = normalize(line)
@@ -382,7 +404,7 @@ def evaluate(root: Path, dataset: Path, min_hit_at_1: float = 1.0) -> None:
     top1_misses: list[dict[str, object]] = []
     negative_total = negative_hits = 0
     for case in cases:
-        results = rank(root, case["query"])[:5]
+        results = [] if requests_unreleased_pdf(root, case["query"]) else rank(root, case["query"])[:5]
         expected = set(case["expected_chapters"])
         if not expected:
             negative_total += 1

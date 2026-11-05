@@ -68,6 +68,13 @@ class RecSysAgentTest(unittest.TestCase):
         with self.assertRaisesRegex(SystemExit, "评测集为空"):
             recsys_agent.evaluate(self.root, dataset)
 
+    def test_only_explicit_unreleased_pdf_requests_are_rejected(self) -> None:
+        root = TOOLS.parent
+        self.assertTrue(recsys_agent.requests_unreleased_pdf(root, "第十三章完整原书页码"))
+        self.assertTrue(recsys_agent.requests_unreleased_pdf(root, "第22章已发布PDF第1页"))
+        self.assertFalse(recsys_agent.requests_unreleased_pdf(root, "第十二章已发布PDF第1页"))
+        self.assertFalse(recsys_agent.requests_unreleased_pdf(root, "第22章尚未发布，第5章如何解释链路一致性？"))
+
     def test_eval_allows_configured_top1_misses_but_not_recall_failures(self) -> None:
         from unittest.mock import patch
 

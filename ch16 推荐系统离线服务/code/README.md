@@ -44,6 +44,39 @@ code/
 
 ## 说明
 
+下列逐文件标签用于代码目录导航，来自本目录公开源码的类名、文件名和测试职责。它们是教学线索，不是运行结果。
+
+| 文件 | 导航说明 |
+|---|---|
+| `FlinkSampleJoiner.java` | 普通样本流的 Flink 拼接示例 |
+| `NormalSampleFlow.java` | 普通样本流处理过程 |
+| `SampleFlowService.java` | 普通样本流服务入口 |
+| `SampleFlowTypes.java` | 普通样本流数据类型 |
+| `NormalSampleFlowTest.java` | 普通样本流测试 |
+| `FlinkRLJoiner.java` | 强化学习样本流的 Flink 拼接示例 |
+| `RLSampleFlow.java` | 强化学习样本流处理过程 |
+| `RLSampleFlowService.java` | 强化学习样本流服务入口 |
+| `RLSampleFlowTest.java` | 强化学习样本流测试 |
+| `BehaviorLogService.java` | 行为日志处理服务 |
+| `BehaviorLogServiceTest.java` | 行为日志服务测试 |
+| `StatFeatureService.java` | 统计特征生产服务 |
+| `StatFeatureServiceTest.java` | 统计特征服务测试 |
+| `ContentEmbeddingService.java` | 物品内容向量 Java 服务 |
+| `GrpcImageEmbeddingClient.java` | 物品内容向量 gRPC 客户端 |
+| `ImageEmbeddingRequest.java` | 图像向量请求消息类型 |
+| `ImageEmbeddingResponse.java` | 图像向量响应消息类型 |
+| `ImageEmbeddingServiceGrpc.java` | 图像向量服务的 gRPC 接口代码 |
+| `ContentEmbeddingServiceTest.java` | Java 内容向量服务测试 |
+| `GrpcIntegrationTest.java` | Java gRPC 集成测试 |
+| `content_embedding_service.py` | Python 内容向量服务 |
+| `image_embedding_service_pb2.py` | 由 protobuf 生成的 Python 消息类型 |
+| `image_embedding_service_pb2_grpc.py` | 由 protobuf 生成的 Python gRPC 桩 |
+| `qwen_vl_rpc_service.py` | Qwen VL 图文 RPC 服务示例 |
+| `test_content_embedding.py` | Python 内容向量服务测试 |
+| `test_qwen_vl_rpc.py` | Qwen VL RPC 测试 |
+| `ItemIndexService.java` | 物品索引特征服务 |
+| `ItemIndexServiceTest.java` | 物品索引服务测试 |
+
 - ch01–ch04、ch06：Java，使用 Maven 构建，Java 17+
 - ch05：Python（向量服务）+ Java（gRPC 客户端），Python 3.10+，Java 17+
 - ch07：C++17，无第三方依赖，使用 `build_and_test.sh` 编译

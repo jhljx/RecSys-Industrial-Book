@@ -1,0 +1,9 @@
+cff-version: 1.2.0
+message: "Cite the released chapter PDF and its PDF page for specific book claims."
+title: "推荐系统：工业架构与核心算法 — public chapter PDFs and learning toolkit"
+type: software
+authors:
+  - name: "RecSys-Industrial-Book contributors"
+repository-code: "https://github.com/jhljx/RecSys-Industrial-Book"
+url: "https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/"
+license: CC-BY-NC-SA-4.0

@@ -8,6 +8,11 @@ import re
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_EXTENSIONS = {".py", ".java", ".cpp", ".h", ".sql"}
+CI_SMOKE_SOURCES = {
+    "ch03 推荐系统评价体系/code/ch01_offline_metrics/classification_metrics.py",
+    "ch07 重排模块/code/ch05_diversity/mmr_diversification.py",
+    "ch08 混排模块/code/ch02_pre_processing/score_normalization.py",
+}
 _CODE_PAGE_PREFIX = "./code/"
 
 _FILENAME = re.compile(r"(?<![\w./-])([\w.-]+\.(?:py|java|cpp|h|sql))(?![\w./-])", re.I)
@@ -54,7 +59,9 @@ def catalog(root: Path = ROOT, chapter: int | None = None) -> list[dict[str, obj
             if len(hits) == 1 and hits[0] not in labels:
                 labels[hits[0]] = line.strip(" |├└─-` ")[:240]
         for path in sorted(files):
-            records.append({"path": path.relative_to(root).as_posix(), "chapter": number,
+            relative = path.relative_to(root).as_posix()
+            validation = "ci_smoke" if relative in CI_SMOKE_SOURCES else "syntax_only" if path.suffix == ".py" else "source_only"
+            records.append({"path": relative, "chapter": number, "validation": validation,
                             "readme": readme.relative_to(root).as_posix(),
                             "description": labels.get(path, ""), "language": path.suffix.lstrip("."),
                             "page": page_url(path.relative_to(root).as_posix())})

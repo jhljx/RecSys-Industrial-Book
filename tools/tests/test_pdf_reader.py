@@ -54,7 +54,8 @@ class PdfReaderTest(unittest.TestCase):
         self.assertIn(".reader-layout .reading{min-width:0;width:100%;max-width:none;margin:0;padding:0}", css)
         script = (READER / "reader.js").read_text(encoding="utf-8")
         self.assertIn("#page=${page}&view=FitH", script)
-        self.assertIn("reader.js?v=fit-width-1", (READER / "reader.html").read_text(encoding="utf-8"))
+        self.assertRegex((READER / "reader.html").read_text(encoding="utf-8"),
+                         r'<script src="\./reader\.js\?v=[a-z0-9-]+" defer></script>')
 
 
 if __name__ == "__main__":

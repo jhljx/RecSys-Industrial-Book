@@ -9,9 +9,9 @@ from __future__ import annotations
 import json
 import re
 from pathlib import Path
+from check_knowledge import citation_pointers
 
 ROOT = Path(__file__).resolve().parents[1]
-_CITATION_PAGE = re.compile(r"PDF\s*第\s*(\d+)\s*(?:[–—-]\s*(\d+))?\s*页")
 _FRONTMATTER = re.compile(r"\A---\s*\n(.*?)\n---", re.S)
 _FOLLOWUP = re.compile(r"^(?:那|那么|它|这个|这些|其|再|请|能否|可以|给我|看看|以及|的|关于|对应|相关|还有|展开|具体|代码|论文|怎么|如何|为什么|哪里|哪些|有无|是什么|实例|示例|实现|对比|继续|细说|详述|讲讲|呢|？|\?|\s)+$")
 # Editorial pointers, not a guarantee that a demonstration implements a production model.
@@ -67,22 +67,21 @@ class NavigationIndex:
                 self.chapters[number] = {"number": number, "title": meta["title"], "pdf": pdf,
                                          "chapter_map": path.relative_to(self.root).as_posix()}
         self.concepts: dict[str, dict] = {}
+        chapters_by_pdf = {Path(row["pdf"]).name: number for number, row in self.chapters.items()}
         for path in sorted((self.root / "knowledge/concepts").glob("*.md")):
             meta = _metadata(path)
             chapter = int(meta["chapter"])
-            if chapter not in self.chapters:
-                continue
             text = path.read_text(encoding="utf-8")
             citation = re.search(r"(?ms)^## 本书依据\s*\n(.*?)(?=^## |\Z)", text)
-            page = _CITATION_PAGE.search(citation.group(1)) if citation else None
-            # No PDF page = no trustworthy Q&A citation.
-            if not page:
+            pointers = citation_pointers(citation.group(1)) if citation else []
+            if not pointers or pointers[0][0] not in chapters_by_pdf:
                 continue
+            pdf_name, start, end = pointers[0]
             ident = meta["id"]
             self.concepts[ident] = {"id": ident, "title": meta["title"], "chapter": chapter,
                                     "concept_card": path.relative_to(self.root).as_posix(),
-                                    "pdf_page": int(page.group(1)),
-                                    "pdf_page_end": int(page.group(2)) if page.group(2) else None}
+                                    "evidence_chapter": chapters_by_pdf[pdf_name],
+                                    "pdf_page": start, "pdf_page_end": end if end != start else None}
         graph = json.loads((self.root / "knowledge/graph.json").read_text(encoding="utf-8"))
         self.edges = [(a, b) for a, b in graph["edges"] if a in self.concepts and b in self.concepts]
         catalog = json.loads((self.root / "knowledge/paper-map.json").read_text(encoding="utf-8"))
@@ -124,7 +123,7 @@ class NavigationIndex:
 
     def _concept(self, ident: str, focus_paper: dict | None = None) -> dict:
         item = self.concepts[ident]
-        chapter = self.chapters[item["chapter"]]
+        chapter = self.chapters[item["evidence_chapter"]]
         papers = [p for p in self.papers if ident in p["concepts"]]
         if focus_paper:
             papers = [focus_paper]
@@ -132,7 +131,7 @@ class NavigationIndex:
                     "relation": "downstream" if a == ident else "prerequisite"}
                    for a, b in self.edges if a == ident or b == ident]
         result = {"id": ident, "title": item["title"], "concept_card": item["concept_card"],
-                  "chapter": item["chapter"], "chapter_map": chapter["chapter_map"],
+                  "chapter": item["chapter"], "evidence_chapter": item["evidence_chapter"], "chapter_map": chapter["chapter_map"],
                   "pdf": chapter["pdf"], "pdf_page": item["pdf_page"], "pdf_page_end": item["pdf_page_end"],
                   "code": self._code(ident, papers), "papers": [
                       {"id": p["id"], "method": p["method"], "title": p["title"],
@@ -140,7 +139,11 @@ class NavigationIndex:
                        **({"url": p["url"]} if "url" in p else {})} for p in papers], "related": related}
         import recsys_code
 
-        result["code_pages"] = [{"path": path, "url": recsys_code.page_url(path)} for path in result["code"]]
+        result["code_pages"] = [{"path": path, "url": recsys_code.page_url(path)} for path in result["code"]
+                                if (self.root / "knowledge-map" / recsys_code.page_url(path)).is_file()]
+        result["template_guides"] = [{"path": path, "url": "../" + Path(path).parent.as_posix() + "/",
+                                      "local_url": "../" + str(Path(path).parent / "README.md")}
+                                     for path in result["code"] if path.startswith("templates/")]
         if focus_paper:
             result.update(paper_id=focus_paper["id"], paper_title=focus_paper["title"],
                           paper_pages=focus_paper["pages"], pdf_page=focus_paper["pages"][0],

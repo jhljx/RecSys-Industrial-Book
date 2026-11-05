@@ -26,6 +26,7 @@ jobs:
           python3 tools/check_knowledge.py
           python3 tools/check_public_boundary.py
           python3 tools/check_skills.py
+          python3 tools/check_chapter_code.py
       - name: Check committed knowledge-map data
         run: |
           python3 tools/build_knowledge_map.py
@@ -40,6 +41,10 @@ jobs:
           python3 tools/build_search_pages.py
           git diff --exit-code -- knowledge-map/catalog.html sitemap.xml _data/concept_links.json
           test -z "$(git ls-files --others --exclude-standard knowledge-map/catalog.html sitemap.xml _data/concept_links.json)"
+      - name: Check README released status
+        run: |
+          python3 tools/build_readme_status.py
+          git diff --exit-code -- README.md
       - name: Build local PDF index and enforce retrieval quality (index is required by repository tests)
         run: |
           python3 tools/recsys_agent.py index

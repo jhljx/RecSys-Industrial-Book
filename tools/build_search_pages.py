@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import re
 from collections import defaultdict
 from html import escape
 from pathlib import Path
@@ -41,17 +40,16 @@ def render(root: Path = ROOT) -> str:
         concepts = []
         for concept in concepts_by_chapter[number]:
             card = concept["url"].removeprefix("../").replace(".md", ".html")
-            source = navigation.concepts.get(concept["id"])
-            page = source["pdf_page"] if source else int(re.search(r"PDF\s*第\s*(\d+)", concept["source"]).group(1))
+            source = navigation.concepts[concept["id"]]
+            page = source["pdf_page"]
             evidence = " · " + link(unquote(chapter["pdf"]) + "#page=" + str(page), "PDF 第 " + str(page) + " 页")
             # Concept cards themselves carry definition, applicability and a PDF citation.
             code = ""
-            if source:
-                candidates = navigation._code(concept["id"], [paper for paper in navigation.papers if concept["id"] in paper["concepts"]])
-                pages = ["./" + page_url(path).removeprefix("./") for path in candidates
-                         if (root / "knowledge-map" / page_url(path).removeprefix("./")).is_file()]
-                if pages:
-                    code = " · " + link(pages[0], "相关教学代码")
+            candidates = navigation._code(concept["id"], [paper for paper in navigation.papers if concept["id"] in paper["concepts"]])
+            pages = ["./" + page_url(path).removeprefix("./") for path in candidates
+                     if (root / "knowledge-map" / page_url(path).removeprefix("./")).is_file()]
+            if pages:
+                code = " · " + link(pages[0], "相关教学代码")
             concepts.append(f'<li>{link("../" + card, concept["title"])}{evidence}{code}</li>')
         map_path = chapter["map"].replace(".md", ".html")
         code_dir = any((p / "code/README.md").is_file() for p in root.glob(f"ch{number:02d} *"))
@@ -65,7 +63,10 @@ def render(root: Path = ROOT) -> str:
 </section>''')
     other = [concept for concept in data["concepts"] if concept["chapter"] not in {row["number"] for row in data["chapters"]}]
     if other:
-        items = "".join(f'<li>{link(concept["url"].replace(".md", ".html"), concept["title"])}：所引章节尚未以独立章节发布，请以概念卡现有的已发布 PDF 依据为准。</li>' for concept in other)
+        items = "".join(f'<li>{link(concept["url"].replace(".md", ".html"), concept["title"])}：所引章节尚未以独立章节发布；'
+                        + (link("../" + unquote(navigation.chapters[navigation.concepts[concept["id"]]["evidence_chapter"]]["pdf"]).removeprefix("../")
+                                + "#page=" + str(navigation.concepts[concept["id"]]["pdf_page"]), "已发布 PDF 依据")
+                           if concept["id"] in navigation.concepts else "请核对概念卡依据") + '</li>' for concept in other)
         sections.append(f'<section><h2>其他已引用概念卡</h2><ul>{items}</ul></section>')
     body = "\n".join(sections)
     focus = {concept["id"]: concept for concept in data["concepts"]}
@@ -95,9 +96,9 @@ def render(root: Path = ROOT) -> str:
 
 
 def sitemap_paths(root: Path, data: dict) -> list[str]:
-    paths = {"knowledge-map/", "knowledge-map/catalog.html", "knowledge-map/reader.html",
+    paths = {"knowledge-map/", "templates/", "knowledge-map/catalog.html", "knowledge-map/reader.html",
              "knowledge-map/code.html", "knowledge-map/agent.html", "README.en.html",
-             "docs/agent-guide.html", "docs/discoverability.html", "knowledge/", "learning-paths/new-engineer.html", "learning-paths/graduate.html"}
+             "docs/agent-guide.html", "docs/discoverability.html", "docs/local-preview.html", "knowledge/", "learning-paths/new-engineer.html", "learning-paths/graduate.html"}
     for chapter in data["chapters"]:
         paths.add(chapter["map"].removeprefix("../").replace(".md", ".html"))
         pdf = unquote(chapter["pdf"].removeprefix("../"))
@@ -107,7 +108,7 @@ def sitemap_paths(root: Path, data: dict) -> list[str]:
     for file in (root / "knowledge-map/code").glob("*.html"):
         paths.add("knowledge-map/code/" + file.name)
     for readme in (root / "templates").glob("*/README.md"):
-        paths.add(readme.relative_to(root).as_posix().removesuffix(".md") + ".html")
+        paths.add(readme.parent.relative_to(root).as_posix() + "/")
     return sorted(paths)
 
 
@@ -116,23 +117,17 @@ def concept_links(root: Path = ROOT) -> dict[str, dict]:
     navigation = NavigationIndex(root)
     entries = {}
     for ident, item in navigation.concepts.items():
-        chapter = navigation.chapters[item["chapter"]]
+        chapter = navigation.chapters[item["evidence_chapter"]]
         papers = [paper for paper in navigation.papers if ident in paper["concepts"]]
         codes = [page_url(path) for path in navigation._code(ident, papers)
                  if (root / "knowledge-map" / page_url(path).removeprefix("./")).is_file()]
-        entries[ident] = {"chapter": item["chapter"], "pdf": "/" + chapter["pdf"],
+        entries[ident] = {"chapter": item["evidence_chapter"], "pdf": "/" + chapter["pdf"],
                           "page": item["pdf_page"], "chapter_map": "/" + chapter["chapter_map"].replace(".md", ".html"),
                           "code": "/knowledge-map/" + codes[0].removeprefix("./") if codes else ""}
-    for concept in build(root)["concepts"]:
-        if concept["id"] in entries or concept["chapter"] not in navigation.chapters:
-            continue
-        chapter = navigation.chapters[concept["chapter"]]
-        page = re.search(r"PDF\s*第\s*(\d+)", concept["source"])
-        if page:
-            entries[concept["id"]] = {"chapter": concept["chapter"], "pdf": "/" + chapter["pdf"],
-                                      "page": int(page.group(1)),
-                                      "chapter_map": "/" + chapter["chapter_map"].replace(".md", ".html"), "code": ""}
-    summaries = {concept["id"]: concept["summary"] for concept in build(root)["concepts"]}
+    concepts = build(root)["concepts"]
+    if set(entries) != {concept["id"] for concept in concepts}:
+        raise ValueError("some public concepts lack released PDF evidence")
+    summaries = {concept["id"]: concept["summary"] for concept in concepts}
     for ident, item in entries.items():
         item["summary"] = summaries[ident]
     return entries

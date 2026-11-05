@@ -9,6 +9,18 @@ PAGE = re.compile(r"PDF\s*第\s*(\d+)(?:\s*[–-]\s*(\d+))?(?:\s*[、]\s*(\d+)(?
 READING = re.compile(r"ch(\d{2})\s+PDF\s+([^；（]+)")
 
 
+def citation_pointers(source_text: str) -> list[tuple[str, int, int]]:
+    """Return released-PDF filename and first page range for each cited clause."""
+    pointers = []
+    for match in CITATION.finditer(source_text):
+        next_match = CITATION.search(source_text, match.end())
+        clause = source_text[match.end():next_match.start() if next_match else len(source_text)]
+        page = PAGE.search(clause)
+        if page:
+            pointers.append((match.group(1), int(page.group(1)), int(page.group(2) or page.group(1))))
+    return pointers
+
+
 def pdf_page_count(path: Path) -> int:
     data = path.read_bytes()
     counts = [int(value) for value in re.findall(rb"/Count\s+(\d+)", data)]

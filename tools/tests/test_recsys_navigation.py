@@ -52,6 +52,25 @@ class NavigationTests(unittest.TestCase):
     def test_one_shot_api(self):
         self.assertTrue(resolve("MMR", root=ROOT)["matches"])
 
+    def test_every_public_concept_resolves_to_released_evidence(self):
+        from build_knowledge_map import build
+        for concept in build(ROOT)["concepts"]:
+            with self.subTest(concept=concept["id"]):
+                row = next((item for item in self.index.resolve(concept["id"])["matches"]
+                            if item["id"] == concept["id"]), None)
+                self.assertIsNotNone(row)
+                self.assertTrue((ROOT / row["pdf"]).is_file())
+                self.assertTrue((ROOT / row["chapter_map"]).is_file())
+        self.assertEqual(22, self.index.resolve("consistency-modeling")["matches"][0]["chapter"])
+        self.assertEqual(5, self.index.resolve("consistency-modeling")["matches"][0]["evidence_chapter"])
+
+    def test_code_pages_only_point_to_generated_pages(self):
+        for topic in ("two-tower", "fallback", "point-in-time-join"):
+            row = self.index.resolve(topic)["matches"][0]
+            self.assertTrue(all((ROOT / "knowledge-map" / item["url"]).is_file() for item in row["code_pages"]))
+            self.assertTrue(all((ROOT / "knowledge-map" / item["local_url"]).is_file() for item in row["template_guides"]))
+            self.assertTrue(all((ROOT / "knowledge-map" / item["url"] / "README.md").is_file() for item in row["template_guides"]))
+
 
 if __name__ == "__main__":
     unittest.main()

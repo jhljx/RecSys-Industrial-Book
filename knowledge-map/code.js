@@ -37,6 +37,7 @@
     const node = document.createElement(tag); if (className) node.className = className;
     if (text !== undefined) node.textContent = String(text); return node;
   };
+  const validationLabel = {ci_smoke: 'CI 主路径冒烟', syntax_only: 'Python 语法检查', source_only: '仅源码展示'};
   const show = () => {
     const query = input.value.trim().toLocaleLowerCase(); const chapter = select.value;
     const matches = records.filter(row => (!chapter || String(row.chapter) === chapter)
@@ -53,7 +54,8 @@
       const list = el('div', 'code-items');
       for (const row of rows) {
         const a = el('a', 'code-item'); a.href = row.url;
-        a.append(el('small', '', row.path.split('/').slice(-2, -1)[0] || `ch${number}`), el('strong', '', row.path.split('/').at(-1)),
+        a.append(el('small', '', `${row.path.split('/').slice(-2, -1)[0] || `ch${number}`} · ${validationLabel[row.validation] || '未验证'}`),
+          el('strong', '', row.path.split('/').at(-1)),
           el('span', '', row.description || '暂无逐文件说明；打开源码查看结构和完整内容。'));
         list.append(a);
       }

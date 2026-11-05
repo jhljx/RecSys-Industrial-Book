@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Train a deterministic two-tower toy model and query a versioned ANN service."""
+"""Rank fixed mock vectors exactly and check model/index version agreement."""
 from __future__ import annotations
 import argparse, json, math
 from dataclasses import dataclass

@@ -39,6 +39,14 @@
     "code": "/knowledge-map/code/694f99e53ed329d03071.html",
     "summary": "协同过滤利用用户—物品交互邻域建立候选，适合作为可解释、易迭代的强基线；交互稀疏、热门偏置和更新频率决定采用 ItemCF、UserCF 还是更复杂的变体。"
   },
+  "consistency-modeling": {
+    "chapter": 5,
+    "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch05.html",
+    "code": "",
+    "summary": "链路一致性建模让上游阶段学习下游偏好或最终目标，减少阶段目标错位造成的优质候选损失。"
+  },
   "creator-side-recommendation": {
     "chapter": 2,
     "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
@@ -84,8 +92,16 @@
     "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
     "page": 37,
     "chapter_map": "/knowledge/chapters/ch23.html",
-    "code": "/knowledge-map/code/29f61f1722ad337b9744.html",
+    "code": "/knowledge-map/code/95a9321cf312ab4b587a.html",
     "summary": "时长目标长尾、截断且受内容长度影响；预测完整分布能表达点估计无法表示的不确定性和不同业务效用。"
+  },
+  "duration-modeling": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/95a9321cf312ab4b587a.html",
+    "summary": "时长目标具有长尾、截断和内容时长依赖，不能直接按普通回归问题处理；阈值二分类、Weighted LR 与离散分桶是不同标签/损失路径，不应把加权二分类当成阈值或分桶的后续步骤。"
   },
   "duration-threshold-labels": {
     "chapter": 23,
@@ -188,7 +204,7 @@
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
     "page": 60,
     "chapter_map": "/knowledge/chapters/ch16.html",
-    "code": "",
+    "code": "/knowledge-map/code/d2f500783b3833dc7d0a.html",
     "summary": "正排回答物品属性，倒排回答条件下的候选集合；仅更新其中一侧会造成召回命中后取不到物品或使用过期状态。全量重建与实时变更应共享输入版本和可见性边界。"
   },
   "generated-item-lookup": {
@@ -294,6 +310,14 @@
     "chapter_map": "/knowledge/chapters/ch08.html",
     "code": "/knowledge-map/code/30c3c606f70c25e5d337.html",
     "summary": "当混排目标流量随请求波动、静态比例无法稳定满足时，可先用 Load 统计观测偏差，再用窗口反馈的 PID 调节流量；它控制目标负载而不替代候选序列的价值排序，也不承担强插／保量的硬规则决策。"
+  },
+  "lsh-retrieval": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 19,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/a0c30f5c9e659a76e0f3.html",
+    "summary": "LSH 的哈希族必须匹配相似度：集合相似度可考虑 MinHash，向量夹角可考虑随机超平面 SimHash；签名相似并不等于候选一定相似，分桶检索还有漏召与桶膨胀的取舍。"
   },
   "mixed-ranking": {
     "chapter": 8,
@@ -402,7 +426,7 @@
   "observability": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
-    "page": 1,
+    "page": 7,
     "chapter_map": "/knowledge/chapters/ch17.html",
     "code": "",
     "summary": "推荐可观测性必须覆盖业务漏斗、模型分布和服务健康，才能区分供给、策略、模型与系统故障。"
@@ -750,21 +774,5 @@
     "chapter_map": "/knowledge/chapters/ch23.html",
     "code": "/knowledge-map/code/7972b3f7f1f3dfe03d99.html",
     "summary": "Weighted LR 是时长目标的一条独立路线，与阈值二分类和离散分桶并列：它对观看样本按时长加权训练二分类，再由预测概率的 Odds 反解时长；该概率不能直接解释为普通点击率或观看率。"
-  },
-  "duration-modeling": {
-    "chapter": 23,
-    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
-    "page": 2,
-    "chapter_map": "/knowledge/chapters/ch23.html",
-    "code": "",
-    "summary": "时长目标具有长尾、截断和内容时长依赖，不能直接按普通回归问题处理；阈值二分类、Weighted LR 与离散分桶是不同标签/损失路径，不应把加权二分类当成阈值或分桶的后续步骤。"
-  },
-  "lsh-retrieval": {
-    "chapter": 18,
-    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
-    "page": 19,
-    "chapter_map": "/knowledge/chapters/ch18.html",
-    "code": "",
-    "summary": "LSH 的哈希族必须匹配相似度：集合相似度可考虑 MinHash，向量夹角可考虑随机超平面 SimHash；签名相似并不等于候选一定相似，分桶检索还有漏召与桶膨胀的取舍。"
   }
 }
