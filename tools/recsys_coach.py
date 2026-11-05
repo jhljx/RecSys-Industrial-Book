@@ -88,7 +88,7 @@ def _previous(root: Path, course_id: str, unit_id: str) -> dict[str, object] | N
     return latest
 
 
-def _semantic_feedback(unit: dict[str, object], text: str, feedback: str, root: Path, model: str | None) -> dict[str, object]:
+def _semantic_feedback(unit: dict[str, object], text: str, feedback: str, root: Path, model: str | None, agent_cli: str = "claude") -> dict[str, object]:
     """Optional model-guided critique; never auto-grades or completes a unit."""
     import recsys_agent as agent
 
@@ -122,9 +122,7 @@ def _semantic_feedback(unit: dict[str, object], text: str, feedback: str, root: 
                               "excerpt": agent.normalize(" ".join(chunk.text for chunk in chunks))[:2500]})
     if not pages:
         return {"status": "needs_source", "diagnosis": [], "question": "请先核对课程阅读页后再讨论具体误区。"}
-    cli = shutil.which("claude")
-    if not cli:
-        return {"status": "model_unavailable", "diagnosis": [], "question": "请用自己的话解释本单元的关键机制。"}
+    import recsys_qa
     schema = {"type": "object", "properties": {
         "diagnosis": {"type": "array", "items": {"type": "object", "properties": {
             "observation": {"type": "string"}, "suggestion": {"type": "string"},
@@ -139,17 +137,12 @@ def _semantic_feedback(unit: dict[str, object], text: str, feedback: str, root: 
               "\n课程问题：" + json.dumps(unit.get("questions", []), ensure_ascii=False) +
               "\n学习者提交：" + text[:6000] + "\n当前困惑：" + feedback[:1000] +
               "\nPDF 证据：" + json.dumps(pages, ensure_ascii=False))
-    cmd = [cli, "-p", "--tools", "", "--permission-mode", "dontAsk", "--no-session-persistence",
-           "--output-format", "json", "--json-schema", json.dumps(schema, ensure_ascii=False)]
-    if model:
-        cmd.extend(["--model", model])
-    result = subprocess.run([*cmd, prompt], text=True, capture_output=True, timeout=120)
-    if result.returncode:
-        raise ValueError(f"语义陪练模型不可用：{result.stderr.strip() or result.stdout[:200]}")
-    envelope = json.loads(result.stdout)
-    if envelope.get("is_error"):
-        raise ValueError(f"语义陪练模型不可用：{envelope.get('result')}")
-    report = envelope.get("structured_output") or json.loads(envelope.get("result", "{}"))
+    try:
+        report = recsys_qa.invoke_model(prompt, schema, cli=agent_cli, model=model, timeout=120)
+    except RuntimeError as error:
+        if "模型命令不可用" in str(error):
+            return {"status": "model_unavailable", "diagnosis": [], "question": "请用自己的话解释本单元的关键机制。"}
+        raise ValueError(f"语义陪练模型不可用：{error}") from error
     allowed = {page["id"] for page in pages}
     if not isinstance(report, dict) or report.get("status") not in {"provisional", "needs_source"}:
         raise ValueError("语义陪练输出结构无效。")
@@ -166,7 +159,7 @@ def _semantic_feedback(unit: dict[str, object], text: str, feedback: str, root: 
 
 
 
-def coach(root: Path, course_id: str, evidence: Path | None = None, feedback: str = "", *, semantic: bool = False, model: str | None = None) -> dict[str, object]:
+def coach(root: Path, course_id: str, evidence: Path | None = None, feedback: str = "", *, semantic: bool = False, model: str | None = None, agent_cli: str = "claude") -> dict[str, object]:
     """Assess a learner's submission and persist concise local follow-up state.
 
     Returns JSON-serializable feedback. Missing material is flagged; no score or
@@ -204,6 +197,7 @@ def coach(root: Path, course_id: str, evidence: Path | None = None, feedback: st
                     "suggestion": "反馈主题不属于当前课程单元；可用 ask / navigate 自由学习，或先完成当前单元再进入匹配的课程单元。未对该主题给出课程诊断或写入陪练状态。"}
 
     sections = _sections(text)
+    kind = "experiment" if unit.get("practice") or "concepts" not in unit else "design"
     previous = _previous(root, course_id, unit_id)
     findings: list[dict[str, str]] = []
     tasks: list[str] = []
@@ -217,7 +211,7 @@ def coach(root: Path, course_id: str, evidence: Path | None = None, feedback: st
         flag("提交物", "尚无可检查的解释与实践记录；当前仅收到学习者反馈。",
              f"围绕「{unit['deliverable']}」提交包含四个章节的 evidence，注明你的解释、问题答案及可复核的实践输出。")
     else:
-        for name in SECTIONS:
+        for name in ("本书依据", "我的解释", "实践" if kind == "experiment" else "方案验证", "问题答案"):
             if not sections.get(name):
                 flag(name, f"缺少「{name}」章节或该章节为空。", f"补写「{name}」，对应本单元「{unit['deliverable']}」。")
         source = sections.get("本书依据", "")
@@ -238,7 +232,11 @@ def coach(root: Path, course_id: str, evidence: Path | None = None, feedback: st
                 flag("问题答案", "未标出各题对应答案，可能遗漏课程问题。",
                      "按课程问题编号逐题回答，避免把多个问题合并成一句结论。")
         practice = sections.get("实践", "")
-        if practice:
+        if kind == "design" and sections.get("方案验证"):
+            missing = [label for label in ("检验方法", "反例或失败条件", "验收依据") if not _field(sections["方案验证"], label)]
+            if missing:
+                flag("方案验证", "缺少可核对字段：" + "、".join(missing) + "。", "补充检验方法、反例或失败条件及验收依据。")
+        if kind == "experiment" and practice:
             missing = [label for label in PRACTICE_FIELDS if not _field(practice, label)]
             if missing:
                 flag("实践", "缺少可复核的实践字段：" + "、".join(missing) + "。",
@@ -256,14 +254,14 @@ def coach(root: Path, course_id: str, evidence: Path | None = None, feedback: st
     follow_up = questions[0] if questions else f"「{unit['title']}」的方案在什么条件下失效，你如何验证？"
     if previous and previous.get("follow_up") and not evidence:
         follow_up = str(previous["follow_up"])
-    semantic_report = _semantic_feedback(unit, text, feedback, root, model) if semantic else None
+    semantic_report = _semantic_feedback(unit, text, feedback, root, model, agent_cli=agent_cli) if semantic else None
     if semantic_report and semantic_report.get("question"):
         follow_up = str(semantic_report["question"])
         if semantic_report.get("diagnosis"):
             tasks.insert(0, "根据语义反馈逐条修改解释，再对照引用的 PDF 原页核查。")
     report: dict[str, object] = {
         "status": "needs_evidence" if evidence is None or not text else "needs_revision" if findings else "ready_for_manual_review",
-        "course_id": course_id, "unit_id": unit_id, "unit_title": unit["title"],
+        "course_id": course_id, "unit_id": unit_id, "unit_title": unit["title"], "evidence_kind": kind,
         "diagnosis": findings, "follow_up": follow_up, "next_tasks": tasks[:6],
         "acceptance": acceptance, "questions": questions,
         "book_reading": {"reading": unit.get("reading", ""), "pdf_pointers": _reading_sources(root, str(unit.get("reading", ""))),

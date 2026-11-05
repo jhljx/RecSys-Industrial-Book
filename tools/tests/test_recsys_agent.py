@@ -8,6 +8,7 @@ import sys
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 TOOLS = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(TOOLS))
@@ -289,6 +290,51 @@ class RecSysAgentTest(unittest.TestCase):
         self.assertEqual(1, status["completed_units"])
         self.assertEqual("ne-02", status["current_unit"])
         self.assertEqual("completed", status["units"][0]["status"])
+
+    def test_course_feedback_and_design_evidence(self) -> None:
+        path = self.root / "learning-paths"
+        path.mkdir()
+        (path / "courses.json").write_text(json.dumps({"courses": {"new-engineer": {
+            "title": "测试课程", "default_minutes": 90, "units": [{"id": "ne-01", "title": "方案设计", "concepts": ["a", "b"],
+            "chapters": [], "reading": "", "deliverable": "方案", "acceptance": [], "questions": []}]}}}), encoding="utf-8")
+        recsys_agent.append_progress(self.root, {"record_type": "course", "action": "start", "course_id": "new-engineer", "status": "started"})
+        recsys_agent.append_progress(self.root, {"record_type": "course", "action": "feedback", "course_id": "new-engineer", "unit_id": "ne-01", "feedback": "需要补基础"})
+        with patch("recsys_code.search", return_value=[]):
+            today = self.capture_json(recsys_agent.course_command, self.root, "today", "new-engineer", None, None)
+        self.assertEqual("需要补基础", today["feedback_context"])
+        self.assertEqual("design", today["evidence_kind"])
+        self.assertEqual(["a", "b"], today["checkpoints"][0]["concepts"])
+        self.assertEqual("ne-01-1", today["current_checkpoint"])
+        self.capture_json(recsys_agent.course_checkpoint, self.root, "new-engineer", "ne-01-1")
+        with patch("recsys_code.search", return_value=[]):
+            resumed = self.capture_json(recsys_agent.course_command, self.root, "today", "new-engineer", None, None)
+        self.assertIsNone(resumed["current_checkpoint"])
+        evidence = self.root / "design.md"
+        evidence.write_text("## 本书依据\nPDF 第 1 页\n## 我的解释\n机制\n## 方案验证\n检验方法：对照基线\n反例或失败条件：流量异常\n验收依据：候选覆盖率\n## 问题答案\n结论\n", encoding="utf-8")
+        result = self.capture_json(recsys_agent.course_submit, self.root, "new-engineer", "ne-01", evidence, 0.9, False, False)
+        self.assertEqual("completed", result["status"])
+        overview = self.capture_json(recsys_agent.learning_overview, self.root)
+        self.assertEqual(1, overview["courses"]["new-engineer"]["completed_units"])
+
+    def test_checkpoint_feedback_keeps_published_order_and_resumes(self) -> None:
+        unit = {"id": "ne-05", "concepts": ["a", "b", "c", "d", "e", "f", "g"]}
+        cards = self.root / "knowledge/concepts"
+        cards.mkdir(parents=True)
+        (cards / "g.md").write_text("title: 最后概念\n", encoding="utf-8")
+        checkpoints = recsys_agent.course_checkpoints(unit, "最后概念仍然困难", self.root)
+        self.assertEqual(["a", "b", "c", "d", "e"], checkpoints[0]["concepts"])
+        self.assertEqual(["f", "g"], checkpoints[1]["concepts"])
+        self.assertIn("重点复核", checkpoints[1]["task"])
+        self.assertNotIn("重点复核", checkpoints[0]["task"])
+        (self.root / "learning-paths").mkdir()
+        (self.root / "learning-paths/courses.json").write_text(json.dumps({"courses": {"new-engineer": {
+            "title": "测试", "default_minutes": 60, "units": [unit]}}}), encoding="utf-8")
+        self.capture_json(recsys_agent.course_checkpoint, self.root, "new-engineer", "ne-05-1")
+        with self.assertRaises(SystemExit):
+            self.capture_json(recsys_agent.course_checkpoint, self.root, "new-engineer", "ne-05-1")
+        with patch("recsys_code.search", return_value=[]):
+            today = self.capture_json(recsys_agent.course_command, self.root, "today", "new-engineer", None, None)
+        self.assertEqual("ne-05-2", today["current_checkpoint"])
 
     def test_unrelated_explain_and_course_progress_filter(self) -> None:
         self.assertEqual("needs_source", self.capture_json(recsys_agent.explain, self.root, "zxqvplm unrelated", "new-engineer")["status"])

@@ -47,6 +47,7 @@ window.addEventListener('load', () => {
       document.querySelector('[data-kind="concepts"]').getAttribute('aria-pressed') === 'true', document.querySelector('#detail').textContent.slice(0, 80));
     const concept = document.querySelector('#detail .detail-links a').href;
     check('concept URL', concept.includes(root) && /knowledge\/concepts\/[^/]+\.(md|html)$/.test(concept), concept);
+    check('local Agent command', document.querySelector('#detail .agent-command code')?.textContent.includes('recsys_agent.py ask'), document.querySelector('#detail .agent-command')?.textContent.slice(0, 80));
     document.querySelector('[data-course="graduate"]').click();
     check('course selection', document.querySelector('[data-course="graduate"]').getAttribute('aria-pressed') === 'true' &&
       document.querySelectorAll('#course-list .course-unit').length > 0, document.querySelector('#course-list').textContent.slice(0, 80));

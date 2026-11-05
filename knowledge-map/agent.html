@@ -34,7 +34,7 @@ python3 tools/recsys_agent.py page --chapter 10 --page 60</code></pre>
     <section class="agent-section alternate" aria-labelledby="work-title">
       <div class="section-heading"><div><span class="overline">02 / WORKFLOWS</span><h2 id="work-title">按任务进入</h2><p>先找到 PDF 证据，再做学习或工程判断；导航卡不代替原书。</p></div></div>
       <div class="agent-grid">
-        <article><span class="overline">查书与引用</span><h3>检索 · 阅读 · 讲解</h3><p><code>search</code> 返回章节与 PDF 页；<code>page</code> 核对完整页，<code>explain</code> 生成提纲与证据包。回答要区分「本书依据」与「扩展说明」。</p><a href="./reader.html">打开站内 PDF →</a></article>
+        <article><span class="overline">查书与引用</span><h3>检索 · 阅读 · 讲解</h3><p><code>ask --session reading</code> 可本地连续提问，<code>search</code> 返回 PDF 页，<code>page</code> 核对原页；概念卡详情提供可复制提问命令。回答要区分「本书依据」与「扩展说明」。</p><a href="./reader.html">打开站内 PDF →</a></article>
         <article><span class="overline">学习闭环</span><h3>课程 · 练习 · 复习</h3><p><code>course list</code>、<code>course start new-engineer</code>、<code>course today</code> 开始课程；提交证据后使用 <code>course review</code> 延迟复习。</p><a href="./#courses">查看两条课程 →</a></article>
         <article><span class="overline">章节代码</span><h3>概念 · 示例 · 源码</h3><p><code>code "HNSW"</code> 定位章节示例；网页逐文件展示 README 说明、函数入口与完整源码。书中论断仍须核对 PDF 页。</p><a href="./code.html">浏览代码目录 →</a></article>
         <article><span class="overline">工程任务</span><h3>设计 · 评审 · 排障</h3><p><code>design</code> 输出约束和容量预算，<code>review</code> 指出代码风险，<code>debug</code> 按证据排序假设；没有遥测不臆断根因。</p><a href="../docs/agent-guide.html#5-工程工作流">查看命令示例 →</a></article>

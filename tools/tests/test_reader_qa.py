@@ -84,6 +84,45 @@ class ReaderQATest(unittest.TestCase):
         with self.assertRaises(SystemExit):
             agent.reader_session_path(self.root, "../elsewhere")
 
+    def test_followup_receives_short_answer_summary(self):
+        first = {"status": "answered", "points": [{"text": "第一种取舍较稳健。", "evidence_ids": [1]}], "boundary": "规模较小时"}
+        with patch.object(qa, "answer_question", side_effect=[("回答", first, [self.page]), ("续问", first, [self.page])]) as ask:
+            with contextlib.redirect_stdout(io.StringIO()):
+                agent.reader_ask(self.root, "两种方案怎么选", "lesson", "claude", 120, False)
+                agent.reader_ask(self.root, "第二种呢", "lesson", "claude", 120, False)
+        self.assertIn("第一种取舍", ask.call_args.kwargs["context"])
+        record = (self.root / ".recsys-workspace/reader-sessions/lesson.json").read_text(encoding="utf-8")
+        self.assertNotIn("ItemCF 基于", record)
+
+    def test_explicit_new_concept_resets_session_without_retrieval_guess(self):
+        cards = self.root / "knowledge/concepts"
+        cards.mkdir(parents=True)
+        (cards / "two-tower.md").write_text("title: 双塔召回\n", encoding="utf-8")
+        (cards / "negative-sampling.md").write_text("title: 负采样\n", encoding="utf-8")
+        reply = {"status": "answered", "points": [], "boundary": ""}
+        with patch.object(qa, "answer_question", return_value=("回答", reply, [self.page])) as ask:
+            with contextlib.redirect_stdout(io.StringIO()):
+                agent.reader_ask(self.root, "双塔召回是什么", "lesson", "claude", 120, False)
+                agent.reader_ask(self.root, "它的局限呢", "lesson", "claude", 120, False)
+            self.assertEqual("双塔召回是什么", ask.call_args.kwargs["prior_topic"])
+            with contextlib.redirect_stdout(io.StringIO()):
+                agent.reader_ask(self.root, "负采样是什么", "lesson", "claude", 120, False)
+            self.assertEqual("", ask.call_args.kwargs["prior_topic"])
+            self.assertEqual("", ask.call_args.kwargs["context"])
+
+    def test_codex_adapter_uses_read_only_schema_and_output_file(self):
+        from subprocess import CompletedProcess
+
+        def fake_run(command, **kwargs):
+            self.assertIn("read-only", command)
+            self.assertIn("--output-schema", command)
+            Path(command[command.index("-o") + 1]).write_text('{"status":"insufficient_evidence"}', encoding="utf-8")
+            return CompletedProcess(command, 0, "", "")
+
+        with patch.object(qa.shutil, "which", return_value="/usr/local/bin/codex"), patch.object(qa.subprocess, "run", side_effect=fake_run):
+            result = qa.invoke_model("question", qa.ANSWER_SCHEMA, cli="codex")
+        self.assertEqual("insufficient_evidence", result["status"])
+
 
 if __name__ == "__main__":
     unittest.main()

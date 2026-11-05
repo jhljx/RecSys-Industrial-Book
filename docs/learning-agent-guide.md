@@ -32,7 +32,7 @@ python3 tools/recsys_agent.py course start new-engineer  # 校招入职/初级�
 python3 tools/recsys_agent.py course start graduate      # 研究生
 ```
 
-两门课程各 12 个单元，覆盖 19 个已发布章节。人读入口是 `learning-paths/*.md`；机器可读课程在 `learning-paths/courses.json`。课程单元包含章节、概念、指定阅读、实践命令、提交物、验收条件和检索/应用题。
+两门课程各 12 个单元，覆盖 20 个已发布章节（含前言）。人读入口是 `learning-paths/*.md`；机器可读课程在 `learning-paths/courses.json`。课程单元包含章节、概念、指定阅读、提交物、验收条件和检索/应用题；代码实验单元还给出实践命令。
 
 ## 3. 每次只生成一个可完成任务
 
@@ -40,19 +40,19 @@ python3 tools/recsys_agent.py course start graduate      # 研究生
 python3 tools/recsys_agent.py course today --minutes 90
 ```
 
-输出按主题特征分配阅读、推导、实践和验收时间。实践型主题会给实践更多时间；实验设计型主题会给推导更多时间。不要让 Agent 一次生成整周长文；让它依次做：
+输出按主题特征分配阅读、推导、实践/方案验证和验收时间。实践型主题会给实践更多时间；方案型主题会给验证和推导更多时间。不要让 Agent 一次生成整周长文；让它依次做：
 
 1. 根据 `reading` 打开 PDF 指定页，提取问题相关证据；
 2. 回答 `questions`，先独立作答再让 Agent 纠错；
-3. 运行 `practice` 主路径，保存命令、退出码和关键输出；
-4. 修改参数或注入故障，运行失败路径；
+3. 有 `practice` 的单元运行主路径和失败路径，保存命令、退出码与关键输出；
+4. 方案单元写检验方法、反例或失败条件和验收依据；
 5. 按 `acceptance` 检查提交物。
 
 可直接给 Agent：
 
 ```text
 执行 course today 给出的当前单元。先让我回答问题，不要直接泄露答案；
-然后检查我的推理。实践必须真实运行主路径和失败路径，把命令、输出、原因、恢复条件写进提交物。
+然后检查我的推理。若本单元给出实践命令，真实运行主路径和失败路径并记录输出；否则审查方案的反例与验收依据。
 ```
 
 ## 4. 提交真实证据，而不是口头“学完了”
@@ -90,7 +90,7 @@ python3 tools/recsys_agent.py course submit \
   --practice-passed --failure-path
 ```
 
-`submit` 和 `complete` 会检查上述章节、PDF 页码及主/失败路径的命令、退出码、输出、原因和恢复条件；缺项仅记 `assessed`。这只是结构门禁，无法证明输出真实或答案正确，仍需 Agent 阅读提交物并按单元验收条件评分。`--score`、`--practice-passed`、`--failure-path` 均为学习者声明。
+`complete` 与实验型 `course submit` 会检查上述章节、PDF 页码及主/失败路径的命令、退出码、输出、原因和恢复条件；方案型 `course submit` 检查下文的方案验证字段。缺项仅记 `assessed`。这只是结构门禁，无法证明输出真实或答案正确，仍需 Agent 阅读提交物并按单元验收条件评分。`--score`、`--practice-passed`、`--failure-path` 均为学习者声明。
 
 状态语义：
 
@@ -99,12 +99,23 @@ stateDiagram-v2
     [*] --> started: course start / today
     started --> assessed: 提交或测验
     assessed --> started: 低于 0.8 或证据不全
-    assessed --> completed: 提交物 + 主路径 + 失败路径 + score≥0.8
+    assessed --> completed: 对应单元证据齐全 + score≥0.8
     completed --> review_due: 7 天后
     review_due --> completed: 延迟复习通过
 ```
 
 `--practice-passed` 和 `--failure-path` 是学习者声明；提交物应保留可复核输出。Agent 必须读取提交物并按单元 `acceptance` 评分，不能仅因文件存在就给高分。
+
+没有 `practice` 的方案单元保留上述三个共通章节，把 `## 实践` 换为：
+
+```markdown
+## 方案验证
+- 检验方法：如何比较方案与基线
+- 反例或失败条件：何时方案不成立
+- 验收依据：对应指标、来源与判断标准
+```
+
+此类单元仍使用相同 `course submit` 命令，`--practice-passed` 与 `--failure-path` 若传入也不会被当作实验运行证明。每个单元的概念检查点供分段阅读，完成状态仍按原单元记录。
 
 ## 5. 随时反馈，下一次再调整
 
@@ -125,6 +136,7 @@ python3 tools/recsys_agent.py course today --minutes 45
 
 ```bash
 python3 tools/recsys_agent.py course status
+python3 tools/recsys_agent.py overview
 python3 tools/recsys_agent.py next
 python3 tools/recsys_agent.py graph --course new-engineer --output /tmp/new-engineer.mmd
 ```
@@ -202,7 +214,7 @@ python3 tools/recsys_agent.py coach --course new-engineer --evidence /tmp/ne-01.
 # 若本机默认 Claude 模型不可用，添加 --model <可用模型ID>；不调用模型则添加 --no-model。
 ```
 
-提交物可按四节组织：`本书依据`（PDF 文件和页码）、`我的解释`、`实践`（主路径与失败路径的命令、退出码、输出、失败原因与恢复条件）、`问题答案`。`coach` 会结合课程问题和本地已发布 PDF 候选页，指出最多两处需核对的概念或推理缺口，先给追问而非直接揭晓答案；下次调用同课程当前单元时读取上一轮任务，继续调整。只有反馈而无提交物也可用，但会明确要求补交证据。若反馈明确命中已编目的其他单元概念而不属于当前单元，返回 `topic_mismatch`，不运行语义诊断、不写入陪练状态；可用 `ask` / `navigate` 自由学习，或先完成当前单元。未被概念目录识别的跨主题反馈仍需学习者自行判断。
+提交物按 `course today` 返回的 `evidence_sections` 组织：共通的是`本书依据`、`我的解释`、`问题答案`；有命令的实验单元还写`实践`（主路径与失败路径记录），方案单元写`方案验证`（检验方法、反例或失败条件、验收依据）。`coach` 会结合课程问题和本地已发布 PDF 候选页提出追问，但不能替代人工判分。`course feedback` 将在下一次 `course today` 返回 `feedback_context`，预算仍由 `--minutes` 指定；`overview` 汇总课程与陪练状态，不把单元完成当成所有关联概念已掌握。
 
 不希望模型看到提交物时使用 `--no-model`，只进行本地结构检查。模型反馈是待核对的学习提示，不会自动评分、运行提交物中的命令、证明输出真实或宣告掌握。正式课程完成仍须人工/可信 Agent 核对，再用 `course submit` 显式提交；七天后用 `course review` 做延迟回忆和迁移。
 

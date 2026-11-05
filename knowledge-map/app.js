@@ -29,6 +29,19 @@
   };
   document.querySelectorAll('a[href]').forEach(a => { a.href = siteHref(a.getAttribute('href')); });
   const link = (label, href) => { const a = el('a', '', label); a.href = siteHref(href); return a; };
+  const addAgentCommand = (parent, topic) => {
+    const quote = value => `'${value.replaceAll("'", "'\"'\"'")}'`;
+    const command = `python3 tools/recsys_agent.py ask ${quote(`书中如何解释${topic}？`)} --session reading`;
+    const block = el('div', 'agent-command');
+    add(block, el('h4', '', '继续向本地 Agent 提问'), el('p', '', '在仓库根目录运行以下命令；问答使用本机 PDF 索引。'));
+    const code = el('code', '', command); add(block, code);
+    const copy = el('button', 'inline-link', '复制命令'); copy.type = 'button';
+    copy.addEventListener('click', async () => {
+      try { await navigator.clipboard.writeText(command); copy.textContent = '已复制'; }
+      catch { copy.textContent = '请手动选中命令复制'; }
+    });
+    add(block, copy); add(parent, block);
+  };
   const add = (parent, ...children) => { for (const child of children) parent.append(child); return parent; };
   const groupOf = row => chapters.get(row.chapter)?.group || 'frontiers';
   const chapterLabel = n => chapters.get(n) ? `第 ${n} 章 · ${chapters.get(n).title}` : `第 ${n} 章 · 尚未发布`;
@@ -188,6 +201,7 @@
       if (!c) return;
       appendHeading(panel, `CHAPTER ${String(c.number).padStart(2, '0')} / ${groups.get(c.group).title}`, c.title);
       const actions = el('div', 'detail-links'); add(actions, link('站内阅读 PDF ↗', `./reader.html#ch${c.number}`), link('直接打开 PDF ↗', c.pdf), link('章节阅读地图 ↗', c.map));
+      addAgentCommand(panel, `第${c.number}章${c.title}`);
       if (codeByChapter.has(c.number)) add(actions, link(`本章代码示例（${codeByChapter.get(c.number).length}）↗`, `./code.html#ch${c.number}`));
       const graphAction = el('button', 'graph-jump', '查看本章关系图 →'); graphAction.type = 'button';
       graphAction.addEventListener('click', () => { state.graphChapter = c.number; renderGraph(); $('graph').scrollIntoView({ behavior: 'smooth' }); graphChapter.focus({ preventScroll: true }); });
@@ -203,6 +217,7 @@
       appendHeading(panel, `CONCEPT / ${chapterLabel(c.chapter)}`, c.title);
       add(panel, el('h4', '', '定义'), el('p', 'concept-definition', c.definition || '暂无定义'), el('h4', '', '核心判断'), el('p', '', c.summary));
       const actions = el('div', 'detail-links'); add(actions, link('阅读概念卡 ↗', c.url));
+      addAgentCommand(panel, c.title);
       const citationChapter = data.chapters.filter(chapter => c.source.includes(decodeURIComponent(chapter.pdf).split('/').at(-1)))
         .sort((a, b) => c.source.indexOf(decodeURIComponent(a.pdf).split('/').at(-1)) - c.source.indexOf(decodeURIComponent(b.pdf).split('/').at(-1)))[0];
       if (citationChapter) add(actions, link('站内阅读所引 PDF ↗', `./reader.html#ch${citationChapter.number}`)); add(panel, actions);
@@ -217,6 +232,9 @@
       const next = data.edges.filter(edge => edge[0] === c.id).map(edge => concepts.get(edge[1]));
       addRelations(panel, prerequisites, '无前置要求'); add(panel, el('h4', '', '由此继续')); addRelations(panel, next, '暂无后续依赖');
       add(panel, el('h4', '', '工程检查'), el('p', '', c.check), el('h4', '', '本书依据'), el('p', 'citation', c.source));
+      for (const [title, detail] of [['适用与取舍', c.tradeoffs], ['如何验证', c.verification], ['容易误判', c.misjudgments]]) {
+        if (detail) add(panel, el('h4', '', title), el('p', '', detail));
+      }
       if (!chapters.has(c.chapter)) add(panel, el('p', '', '此概念卡关联待发布章节；请以卡片列出的已发布 PDF 引用为准。'));
     }
   }

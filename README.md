@@ -90,6 +90,8 @@ python3 tools/install_skills.py --client claude
 
 项目入口：[`knowledge/chapters/`](knowledge/chapters/README.md) 的章节阅读地图、[`knowledge/`](knowledge/README.md) 的概念卡与前置图谱、[`learning-paths/new-engineer.md`](learning-paths/new-engineer.md) 的新人课程、[`learning-paths/graduate.md`](learning-paths/graduate.md) 的研究生课程，以及[四个可运行项目](templates/README.md)。完整命令和引用规则见 [`docs/agent-guide.md`](docs/agent-guide.md)；课程提示词、证据模板、反馈与隐私边界见 [`docs/learning-agent-guide.md`](docs/learning-agent-guide.md)；评测协议见 [`evals/usability.md`](evals/usability.md)。
 
+本地 Agent 可用 `ask --session <名称>` 连续提问，`session-clear` 清理会话，`course today` 按单元提供小任务，`overview` 汇总本地学习状态。知识地图的概念详情提供可复制提问命令；向量索引换代的[教学验证案例](cases/ann-release-checklist.md)演示版本契约与故障拒绝。课程与问答保留原有 CLI 用法；命令细节见 Agent 指南。
+
 ### 可视化知识地图
 
 [`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 20 章、97 张概念卡、104 条前置依赖，并以独立图谱展示 90 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。

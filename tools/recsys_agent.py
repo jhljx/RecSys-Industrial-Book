@@ -458,6 +458,9 @@ def doctor(root: Path, mode: str) -> None:
     for reason in reasons:
         print(f"  {reason}")
     print(f"{'tex_sources' if mode == 'private' else 'pdf_sources'}={len(sources(root, mode))}")
+    print(f"model_claude={'available' if shutil.which('claude') else 'missing'}")
+    print(f"model_codex={'available' if shutil.which('codex') else 'missing'}")
+    print("ask_and_coach=requires_model_cli; search_and_navigation=local_index")
 
 def workspace(root: Path) -> Path:
     path = root / ".recsys-workspace"
@@ -504,6 +507,18 @@ def concept_id(root: Path, topic: str) -> str | None:
     return max(matches)[1] if matches else None
 
 
+def explicitly_named_concept(root: Path, question: str) -> str | None:
+    """Only literal card names may reset a conversation; retrieval expansion must not."""
+    normalized = re.sub(r"[-_\s]+", " ", question.casefold())
+    matches = []
+    for path in (root / "knowledge/concepts").glob("*.md"):
+        title = re.search(r"(?m)^title:\s*(.+)$", path.read_text(encoding="utf-8"))
+        for name in (path.stem.replace("-", " "), title.group(1).casefold() if title else ""):
+            if len(name) >= 3 and name in normalized:
+                matches.append((len(name), path.stem))
+    return max(matches)[1] if matches else None
+
+
 def allocate_minutes(total: int, weights: tuple[int, ...]) -> list[int]:
     if total < len(weights):
         raise SystemExit(f"时间预算至少为 {len(weights)} 分钟。")
@@ -545,21 +560,26 @@ def effort_profile(identifier: str | None, level: str, metadata: dict[str, objec
     return (20, 30, 30, 20) if research else (25, 30, 30, 15)
 
 
-def evidence_gaps(evidence: Path | None) -> list[str]:
+def evidence_gaps(evidence: Path | None, kind: str = "experiment") -> list[str]:
     if evidence is None or not evidence.is_file():
         return ["非空 evidence 文件"]
     text = evidence.read_text(encoding="utf-8").strip()
     if not text:
         return ["非空 evidence 文件"]
     sections = {name: body for name, body in re.findall(r"(?ms)^##\s+([^\n]+)\n(.*?)(?=^##\s+|\Z)", text)}
-    required = ("本书依据", "我的解释", "实践", "问题答案")
+    required = ("本书依据", "我的解释", "问题答案") + (("实践",) if kind == "experiment" else ("方案验证",))
     missing = [f"提交物章节：{name}" for name in required if not sections.get(name, "").strip()]
     if sections.get("本书依据") and not re.search(r"PDF\s*第\s*\d+\s*页", sections["本书依据"]):
         missing.append("PDF 第 N 页引用")
-    practice = sections.get("实践", "")
-    for label in ("主路径命令", "主路径退出码", "主路径输出", "失败路径命令", "失败路径退出码", "失败路径输出", "失败原因", "恢复条件"):
-        if not re.search(rf"(?m)^[-*]?\s*{label}\s*[：:]\s*\S+", practice):
-            missing.append(label)
+    if kind == "experiment":
+        practice = sections.get("实践", "")
+        for label in ("主路径命令", "主路径退出码", "主路径输出", "失败路径命令", "失败路径退出码", "失败路径输出", "失败原因", "恢复条件"):
+            if not re.search(rf"(?m)^[-*]?\s*{label}\s*[：:]\s*\S+", practice):
+                missing.append(label)
+    elif sections.get("方案验证"):
+        for label in ("检验方法", "反例或失败条件", "验收依据"):
+            if not re.search(rf"(?m)^[-*]?\s*{label}\s*[：:]\s*\S+", sections["方案验证"]):
+                missing.append(label)
     return missing
 
 
@@ -652,6 +672,64 @@ def adaptive_next(root: Path) -> None:
     print(json.dumps({"completed": sorted(completed), "recommended_next": available[:5], "reason": "前置已满足；低掌握度与基础节点优先"}, ensure_ascii=False, indent=2))
 
 
+def course_unit_kind(unit: dict[str, object]) -> str:
+    # Legacy course definitions without concept metadata retain the original gate.
+    return "experiment" if unit.get("practice") or "concepts" not in unit else "design"
+
+
+def course_checkpoints(unit: dict[str, object], feedback: str = "", root: Path | None = None) -> list[dict[str, object]]:
+    concepts = list(unit.get("concepts", []))
+    # Preserve the published unit ID and order; checkpoints are a reading aid, not new completion records.
+    groups = [concepts[i:i + 5] for i in range(0, len(concepts), 5)] or [[]]
+    rows = [{"id": f"{unit['id']}-{i + 1}", "concepts": group,
+             "task": "核对本组概念对应的阅读页，回答课程问题并记录一项取舍或反例。"}
+            for i, group in enumerate(groups)]
+    if feedback:
+        focus = []
+        if root:
+            for concept in concepts:
+                card = root / "knowledge/concepts" / f"{concept}.md"
+                if card.is_file():
+                    title = re.search(r"(?m)^title:\s*(.+)$", card.read_text(encoding="utf-8"))
+                    if title and title.group(1).casefold() in feedback.casefold(): focus.append(concept)
+        focus.extend(concept for concept in concepts if concept in feedback.casefold())
+        if focus:
+            for row in rows:
+                if set(row["concepts"]) & set(focus):
+                    row["task"] = "根据反馈重点复核这些概念，再回答课程问题并记录一项反例。"
+        else:
+            rows[0]["task"] = "先对照本次反馈定位困惑，再阅读本组概念并完成课程问题。"
+    return rows
+
+
+def course_feedback_context(rows: list[dict[str, object]], course_id: str, unit_id: str) -> str | None:
+    for row in reversed(rows):
+        if row.get("course_id") == course_id and row.get("unit_id") == unit_id and row.get("action") == "feedback":
+            return str(row.get("feedback") or "") or None
+    return None
+
+
+def course_checkpoint(root: Path, course_id: str, checkpoint_id: str) -> None:
+    courses = load_courses(root)
+    if course_id not in courses:
+        raise SystemExit("未知课程。")
+    rows = progress_rows(root)
+    completed = {row.get("unit_id") for row in rows if row.get("course_id") == course_id and row.get("action") == "submit" and row.get("status") == "completed"}
+    unit = next((item for item in courses[course_id]["units"] if item["id"] not in completed), None)
+    if unit is None:
+        raise SystemExit("课程已完成。")
+    feedback = course_feedback_context(rows, course_id, unit["id"]) or ""
+    checkpoints = course_checkpoints(unit, feedback, root)
+    done = {row.get("checkpoint_id") for row in rows if row.get("course_id") == course_id and row.get("unit_id") == unit["id"] and row.get("action") == "checkpoint"}
+    remaining = next((item for item in checkpoints if item["id"] not in done), None)
+    if remaining is None or checkpoint_id != remaining["id"]:
+        raise SystemExit(f"仅可记录当前检查点：{remaining['id'] if remaining else '全部已记录'}。")
+    append_progress(root, {"record_type": "course", "action": "checkpoint", "course_id": course_id,
+                           "unit_id": unit["id"], "checkpoint_id": checkpoint_id, "status": "visited"})
+    print(json.dumps({"course_id": course_id, "unit_id": unit["id"], "checkpoint_id": checkpoint_id,
+                      "status": "visited", "note": "记录阅读位置，不代表单元通过或概念已掌握。"}, ensure_ascii=False, indent=2))
+
+
 def load_courses(root: Path) -> dict[str, object]:
     return json.loads((root / "learning-paths/courses.json").read_text(encoding="utf-8"))["courses"]
 
@@ -699,7 +777,15 @@ def course_command(root: Path, action: str, course_id: str | None, minutes: int 
                 if title:
                     code_examples.extend(recsys_code.search(root, title.group(1), chapter=int(chapter), limit=2))
         code_examples = list({item["path"]: item for item in code_examples}.values())[:6]
-        output = {"course_id": selected, "unit": current, "minutes": total, "steps": [{"minutes": value, "kind": kind} for kind, value in zip(("read", "reason", "practice", "assess"), budgets)], "code_examples": code_examples, "code_note": "章节代码仅为可选参考；需先读 README 和源码，运行前检查依赖及耗时，不能充当 PDF 依据。", "feedback_context": states.get(current["id"], {}).get("feedback"), "submit": f"course submit --course {selected} --unit {current['id']} --evidence <path> --score <0..1> --practice-passed --failure-path"}
+        kind = course_unit_kind(current)
+        feedback_context = course_feedback_context(rows, selected, current["id"])
+        checkpoints = course_checkpoints(current, feedback_context or "", root)
+        visited = {row.get("checkpoint_id") for row in rows if row.get("course_id") == selected and row.get("unit_id") == current["id"] and row.get("action") == "checkpoint"}
+        current_checkpoint = next((item["id"] for item in checkpoints if item["id"] not in visited), None)
+        phase = ("read", "reason", "practice", "assess") if kind == "experiment" else ("read", "reason", "verify", "assess")
+        submit = f"course submit --course {selected} --unit {current['id']} --evidence <path> --score <0..1>"
+        if kind == "experiment": submit += " --practice-passed --failure-path"
+        output = {"course_id": selected, "unit": current, "minutes": total, "steps": [{"minutes": value, "kind": step} for step, value in zip(phase, budgets)], "checkpoints": checkpoints, "current_checkpoint": current_checkpoint, "checkpoint_note": "按顺序阅读；用 course checkpoint --course ID --id 检查点ID 记录位置，最终仍由原单元验收。", "evidence_kind": kind, "evidence_sections": ["本书依据", "我的解释", "实践" if kind == "experiment" else "方案验证", "问题答案"], "code_examples": code_examples, "code_note": "章节代码仅为可选参考；需先读 README 和源码，运行前检查依赖及耗时，不能充当 PDF 依据。", "feedback_context": feedback_context, "adaptation_note": "反馈供学习者调整阅读重点；时间预算以 --minutes 为准。" if feedback_context else None, "submit": submit}
         print(json.dumps(output, ensure_ascii=False, indent=2))
         return
     if action == "feedback":
@@ -720,14 +806,16 @@ def course_submit(root: Path, course_id: str, unit_id: str, evidence: Path, scor
     current = next((item for item in courses[course_id]["units"] if item["id"] not in completed_units), None)
     if current is None or current["id"] != unit_id:
         raise SystemExit(f"仅可提交当前课程单元：{current['id'] if current else '课程已完成'}。")
-    missing = evidence_gaps(evidence)
-    if not practice_passed: missing.append("practice-passed")
-    if not failure_path: missing.append("failure-path")
+    kind = course_unit_kind(unit)
+    missing = evidence_gaps(evidence, kind=kind)
+    if kind == "experiment":
+        if not practice_passed: missing.append("practice-passed")
+        if not failure_path: missing.append("failure-path")
     if not math.isfinite(score) or not 0 <= score <= 1: missing.append("0..1 score")
     passed = not missing and score >= 0.8
     status = "completed" if passed else "assessed"
-    remedial = [] if passed else ["重读本单元 reading 指定页并逐题作答", "重新运行实践和失败路径", "按 acceptance 自评后再次提交"]
-    row = {"record_type": "course", "action": "submit", "course_id": course_id, "unit_id": unit_id, "status": status, "score": score, "evidence": str(evidence), "practice_passed": practice_passed, "failure_path": failure_path, "missing": missing, "review_due": (datetime.now(timezone.utc) + timedelta(days=7)).date().isoformat() if passed else None}
+    remedial = [] if passed else ["重读本单元 reading 指定页并逐题作答", "补充实践运行记录" if kind == "experiment" else "补充方案检验、反例与验收依据", "按 acceptance 自评后再次提交"]
+    row = {"record_type": "course", "action": "submit", "course_id": course_id, "unit_id": unit_id, "status": status, "score": score, "evidence_kind": kind, "evidence": str(evidence), "practice_passed": practice_passed if kind == "experiment" else None, "failure_path": failure_path if kind == "experiment" else None, "missing": missing, "review_due": (datetime.now(timezone.utc) + timedelta(days=7)).date().isoformat() if passed else None}
     append_progress(root, row)
     print(json.dumps({**row, "remedial": remedial, "recommended_next": "course today" if passed else f"retry {unit_id}"}, ensure_ascii=False, indent=2))
     if not passed:
@@ -817,6 +905,33 @@ def self_evaluate(root: Path, output: Path) -> None:
     print(json.dumps({"status": "complete", "report": str(output), **report}, ensure_ascii=False, indent=2))
 
 
+def learning_overview(root: Path) -> None:
+    rows = progress_rows(root)
+    courses = load_courses(root)
+    result = {}
+    for course_id, course in courses.items():
+        relevant = [row for row in rows if row.get("record_type") == "course" and row.get("course_id") == course_id]
+        completed = {row.get("unit_id") for row in relevant if row.get("action") == "submit" and row.get("status") == "completed"}
+        current = next((unit for unit in course["units"] if unit["id"] not in completed), None)
+        result[course_id] = {"completed_units": len(completed), "total_units": len(course["units"]),
+                             "current_unit": current["id"] if current else None,
+                             "feedback": course_feedback_context(relevant, course_id, current["id"]) if current else None,
+                             "due_reviews": [row for row in due_reviews(root, course_id)],
+                             "note": "课程完成不等于每个关联概念均已掌握。"}
+    topics = latest_by([row for row in rows if row.get("concept_id") and row.get("record_type") != "course"], "concept_id")
+    coach_path = workspace(root) / "coach.jsonl"
+    coach = []
+    if coach_path.is_file():
+        for number, line in enumerate(coach_path.read_text(encoding="utf-8").splitlines(), 1):
+            try:
+                if line.strip(): coach.append(json.loads(line))
+            except json.JSONDecodeError as error:
+                raise SystemExit(f"陪练记录第 {number} 行损坏：{error}") from error
+    print(json.dumps({"courses": result, "free_topics": {key: {"status": row.get("status"), "score": row.get("score")} for key, row in topics.items()},
+                      "coach_follow_up": [{"course_id": row.get("course_id"), "unit_id": row.get("unit_id"), "follow_up": row.get("follow_up")} for row in coach[-2:]],
+                      "privacy": "本地状态概览，不包含 PDF 提取文本。"}, ensure_ascii=False, indent=2))
+
+
 def source_rows(root: Path, query: str, limit: int = 3) -> list[dict[str, object]]:
     return [{"chapter": chunk.chapter, "source": chunk.source, "page": chunk.page_start, "section": chunk.section} for _, chunk in rank(root, query)[:limit]]
 
@@ -879,8 +994,11 @@ def save_reader_session(root: Path, name: str | None, topic: str, question: str,
     path = reader_session_path(root, name)
     path.parent.mkdir(parents=True, exist_ok=True)
     # Do not save PDF extracts or model raw output; this is local ignored state.
+    points = answer.get("points", []) if isinstance(answer, dict) else []
+    summary = "；".join(str(point.get("text", "")) for point in points if isinstance(point, dict))[:1200]
     path.write_text(json.dumps({"topic": topic, "concept_id": concept_id, "last_question": question,
-                                "last_status": answer["status"]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+                                "last_status": answer["status"], "last_summary": summary,
+                                "last_boundary": str(answer.get("boundary", ""))[:500]}, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
 
 def reader_ask(root: Path, question: str, session: str | None, agent: str, timeout: int, as_json: bool, model: str | None = None) -> None:
@@ -890,17 +1008,26 @@ def reader_ask(root: Path, question: str, session: str | None, agent: str, timeo
         raise SystemExit("问题不能为空，且 --timeout 必须为正数。")
     state = reader_session(root, session)
     prior_topic = str(state.get("topic", "")) if session else ""
+    current_concept = concept_id(root, question) if session else None
+    previous_concept = state.get("concept_id")
+    # A named, different concept starts a new subject; pronoun follow-ups keep the previous one.
+    explicit = explicitly_named_concept(root, question) if session and previous_concept else None
+    if explicit and previous_concept and explicit != previous_concept:
+        prior_topic = ""
+        state = {}
+        current_concept = explicit
+    context = ""
+    if state:
+        context = json.dumps({key: state.get(key) for key in ("last_question", "last_summary", "last_boundary")}, ensure_ascii=False)
     try:
         rendered, answer, pages = recsys_qa.answer_question(root, question, prior_topic=prior_topic,
-                                                              cli=agent, model=model, timeout=timeout)
+                                                              cli=agent, model=model, timeout=timeout, context=context)
     except (RuntimeError, subprocess.CalledProcessError, subprocess.TimeoutExpired, ValueError) as error:
         raise SystemExit(f"问答未完成：{error}") from error
     topic = prior_topic or question
     concept = None
     if answer["status"] == "answered":
-        concept = concept_id(root, question)
-        if not concept and prior_topic:
-            concept = str(state.get("concept_id") or "") or concept_id(root, prior_topic)
+        concept = (str(state.get("concept_id") or "") if prior_topic and not explicit else "") or current_concept or concept_id(root, question)
     save_reader_session(root, session, topic, question, answer, concept)
     if as_json:
         print(json.dumps({"question": question, "session": session, "answer": answer,
@@ -936,11 +1063,11 @@ def reader_code(root: Path, query: str, chapter: int | None, limit: int) -> None
     print(json.dumps(result, ensure_ascii=False, indent=2))
 
 
-def reader_coach(root: Path, course_id: str, evidence: Path | None, feedback: str, model: str | None = None, semantic: bool = True) -> None:
+def reader_coach(root: Path, course_id: str, evidence: Path | None, feedback: str, model: str | None = None, semantic: bool = True, agent_cli: str = "claude") -> None:
     import recsys_coach
 
     try:
-        report = recsys_coach.coach(root, course_id, evidence, feedback, semantic=semantic, model=model)
+        report = recsys_coach.coach(root, course_id, evidence, feedback, semantic=semantic, model=model, agent_cli=agent_cli)
     except (OSError, ValueError, subprocess.TimeoutExpired) as error:
         raise SystemExit(f"陪练未完成：{error}") from error
     print(json.dumps(report, ensure_ascii=False, indent=2))
@@ -960,7 +1087,10 @@ def parse_quantity(value: str, expected_unit: str | None = None) -> float | None
         return math.inf
 
 
-def design(root: Path, topic: str, constraints: list[str]) -> None:
+def design(root: Path, topic: str, constraints: list[str], project: Path | None = None,
+           evidence: Path | None = None, domain: str | None = None) -> None:
+    import recsys_engineering as engineering
+    engineering_context = engineering.project_report(project, evidence, domain)
     required = ["objective", "qps", "p99", "items", "freshness", "availability", "cost"]
     parsed = dict(item.split("=", 1) for item in constraints if "=" in item)
     missing = [key for key in required if not parsed.get(key, "").strip()]
@@ -1003,10 +1133,22 @@ def design(root: Path, topic: str, constraints: list[str]) -> None:
         "assumptions": ["Latency allocation is an initial budget, not measured capacity.", "All external calls propagate a request deadline."],
         "pending_business_confirmation": [key for key in ("feature_scale", "consistency", "runtime", "deployment", "privacy") if not parsed.get(key)],
     }
+    report.update(engineering_context)
+    if domain is not None:
+        report["domain_options"] = engineering.PLAYBOOKS[domain]
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
-def review_surface(root: Path, path: Path) -> None:
+def review_surface(root: Path, path: Path, project: Path | None = None,
+                   evidence: Path | None = None, domain: str | None = None) -> None:
+    import recsys_engineering as engineering
+    engineering_context = engineering.project_report(project, evidence, domain)
+    context = engineering_context.get("project_context")
+    if context is not None:
+        resolved = (project / path).resolve() if not path.is_absolute() else path.resolve()
+        if not resolved.is_relative_to(Path(context["root"])):
+            raise SystemExit("评审文件必须位于 --project 目录内。")
+        path = resolved
     if not path.exists() or not path.is_file():
         raise SystemExit(f"评审目标不是可读文件：{path}")
     text = path.read_text(encoding="utf-8")
@@ -1047,10 +1189,16 @@ def review_surface(root: Path, path: Path) -> None:
     }
     if parse_error:
         report["parse_error"] = parse_error
+    report.update(engineering_context)
+    if domain is not None:
+        report["domain_acceptance"] = engineering.PLAYBOOKS[domain]["acceptance"]
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
-def debug_scenario(root: Path, symptom: str, fixture: bool = False) -> None:
+def debug_scenario(root: Path, symptom: str, fixture: bool = False, project: Path | None = None,
+                   evidence: Path | None = None, domain: str | None = None) -> None:
+    import recsys_engineering as engineering
+    engineering_context = engineering.project_report(project, evidence, domain)
     branches = [
         {"priority": 1, "hypothesis": "traffic or experiment/configuration changed", "evidence": ["traffic by bucket", "configuration diff", "experiment assignment", "first bad time"]},
         {"priority": 2, "hypothesis": "candidate supply or filtering changed", "evidence": ["per-route candidate count", "merge count", "filter reason", "empty-result rate"]},
@@ -1070,6 +1218,15 @@ def debug_scenario(root: Path, symptom: str, fixture: bool = False) -> None:
         "recovery_verification": ["fault-injected end-to-end P99 meets the budget", "candidate count and non-empty rate meet SLO", "timeout and fallback reason are observable", "removing the fault restores the normal route"],
         "sources": source_rows(root, "召回 延迟预算 timeout 过载 降级"),
     }
+    report.update(engineering_context)
+    if domain is not None:
+        report["domain_next_check"] = engineering.PLAYBOOKS[domain]["next_check"]
+    if evidence is not None:
+        checked = engineering_context["evidence_check"]
+        report["supported_observation"] = (f"提供的记录中，第 {checked['failed_records']} 条违反 {domain} 契约。"
+                                         if checked["failed_records"] else "提供的记录没有违反所检查的契约；不能排除其他原因。")
+        report["next_check"] = ("核对记录来源及目标代码路径；" if checked["failed_records"] else
+                                "补充故障时段与健康对照样本；") + engineering.PLAYBOOKS[domain]["next_check"]
     print(json.dumps(report, ensure_ascii=False, indent=2))
 
 
@@ -1096,10 +1253,12 @@ def main() -> None:
     ask_parser = commands.add_parser("ask", help="用已发布 PDF 证据生成可追溯回答并支持追问")
     ask_parser.add_argument("question", help="自然语言问题或追问")
     ask_parser.add_argument("--session", help="本地对话名；续问时复用，保存在忽略的个人工作区")
-    ask_parser.add_argument("--agent", default="claude", help="非交互模型 CLI（默认 claude）")
+    ask_parser.add_argument("--agent", default="claude", choices=("claude", "codex"), help="非交互模型 CLI（默认 claude）")
     ask_parser.add_argument("--model", help="可用模型 ID；若本机默认模型不可用请显式指定")
     ask_parser.add_argument("--timeout", type=int, default=120, help="模型超时秒数")
     ask_parser.add_argument("--json", action="store_true", help="输出结构化回答")
+    session_clear = commands.add_parser("session-clear", help="清除指定本地问答会话")
+    session_clear.add_argument("--session", required=True)
     navigate_parser = commands.add_parser("navigate", help="从主题跳到概念、已发布 PDF、代码和代表论文")
     navigate_parser.add_argument("topic", nargs="?", default="", help="书中主题或概念；有 --session 时可省略")
     navigate_parser.add_argument("--session", help="沿用本地问答会话上下文")
@@ -1112,6 +1271,7 @@ def main() -> None:
     coach_parser.add_argument("--evidence", type=Path, help="学习提交物；也可仅提供 --feedback")
     coach_parser.add_argument("--feedback", default="", help="学习者当前困惑或时间约束")
     coach_parser.add_argument("--model", help="可用模型 ID；本机默认不可用时指定")
+    coach_parser.add_argument("--agent", default="claude", choices=("claude", "codex"), help="非交互模型 CLI（默认 claude）")
     coach_parser.add_argument("--no-model", action="store_true", help="仅做离线结构检查，不调用模型")
     commands.add_parser("doctor", help="检查依赖、索引新鲜度和知识源")
     learn_parser = commands.add_parser("learn", help="生成带阅读页和实践的学习计划")
@@ -1128,6 +1288,7 @@ def main() -> None:
     explain_parser.add_argument("topic", help="解释主题")
     explain_parser.add_argument("--audience", choices=("graduate", "new-engineer", "interview"), default="new-engineer", help="目标受众")
     commands.add_parser("next", help="按前置、掌握度和完成状态推荐下一主题")
+    commands.add_parser("overview", help="查看课程、自由主题与陪练的本地状态概览")
     course_parser = commands.add_parser("course", help="运行机器可读课程学习闭环")
     course_commands = course_parser.add_subparsers(dest="course_action", required=True)
     course_commands.add_parser("list", help="列出课程")
@@ -1141,6 +1302,9 @@ def main() -> None:
     course_feedback = course_commands.add_parser("feedback", help="反馈困难、时间与学习观察")
     course_feedback.add_argument("--course", choices=("new-engineer", "graduate"))
     course_feedback.add_argument("--message", required=True)
+    course_checkpoint_parser = course_commands.add_parser("checkpoint", help="记录当前单元小任务的阅读位置")
+    course_checkpoint_parser.add_argument("--course", required=True, choices=("new-engineer", "graduate"))
+    course_checkpoint_parser.add_argument("--id", required=True, help="course today 返回的当前检查点 ID")
     course_submit_parser = course_commands.add_parser("submit", help="提交当前单元证据并验收")
     course_submit_parser.add_argument("--course", required=True, choices=("new-engineer", "graduate"))
     course_submit_parser.add_argument("--unit", required=True)
@@ -1161,12 +1325,29 @@ def main() -> None:
     design_parser = commands.add_parser("design", help="生成可机读的推荐系统设计报告")
     design_parser.add_argument("system", help="待设计系统")
     design_parser.add_argument("constraints", nargs="*", help="key=value 约束，如 qps=10000 p99=200ms")
+    design_parser.add_argument("--project", type=Path, help="目标项目目录")
+    design_parser.add_argument("--domain", choices=("feature-time", "serving", "release-version"), help="证据契约领域")
+    design_parser.add_argument("--evidence", type=Path, help="本地 JSON 证据文件（需同时指定 --domain）")
     review_parser = commands.add_parser("review", help="生成带位置、风险和验证的领域评审报告")
     review_parser.add_argument("path", type=Path, help="待评审文件")
+    review_parser.add_argument("--project", type=Path, help="目标项目目录；评审路径相对于此目录")
+    review_parser.add_argument("--domain", choices=("feature-time", "serving", "release-version"), help="证据契约领域")
+    review_parser.add_argument("--evidence", type=Path, help="本地 JSON 证据文件（需同时指定 --domain）")
     debug_parser = commands.add_parser("debug", help="生成证据树、结论、修复和恢复验证报告")
     debug_parser.add_argument("symptom", help="故障现象")
     debug_parser.add_argument("--fixture", choices=("multi-recall-tail-latency",), help="显式加载教学案例；并非现场遥测")
+    debug_parser.add_argument("--project", type=Path, help="目标项目目录")
+    debug_parser.add_argument("--domain", choices=("feature-time", "serving", "release-version"), help="证据契约领域")
+    debug_parser.add_argument("--evidence", type=Path, help="本地 JSON 证据文件（需同时指定 --domain）")
+    verify_parser = commands.add_parser("verify", help="运行目标项目三阶段命令并检查 JSON 契约输出")
+    verify_parser.add_argument("--project", type=Path, required=True, help="目标项目目录")
+    verify_parser.add_argument("--domain", required=True, choices=("feature-time", "serving", "release-version"))
+    for phase in ("baseline", "fault", "recovery"):
+        verify_parser.add_argument("--" + phase, required=True, help="以引号包裹的本地命令；输出单个 JSON 记录")
+    verify_parser.add_argument("--timeout", type=int, default=30, help="每条命令超时秒数（1–300）")
     args = parser.parse_args()
+    if args.command in {"design", "review", "debug"} and bool(args.evidence) != bool(args.domain):
+        parser.error("--evidence 与 --domain 必须同时提供。")
     root = args.root.resolve()
     mode = detect_mode(root) if args.mode == "auto" else args.mode
     if args.command in {"search", "page", "eval", "learn", "explain", "design", "review", "debug", "self-eval", "ask", "navigate", "coach"}:
@@ -1181,12 +1362,17 @@ def main() -> None:
         evaluate(root, root / args.dataset, args.min_hit_at_1)
     elif args.command == "ask":
         reader_ask(root, args.question, args.session, args.agent, args.timeout, args.json, args.model)
+    elif args.command == "session-clear":
+        path = reader_session_path(root, args.session)
+        if path.is_file():
+            path.unlink()
+        print(json.dumps({"session": args.session, "status": "cleared"}, ensure_ascii=False))
     elif args.command == "navigate":
         reader_navigate(root, args.topic, args.session)
     elif args.command == "code":
         reader_code(root, args.query, args.chapter, args.limit)
     elif args.command == "coach":
-        reader_coach(root, args.course, args.evidence, args.feedback, args.model, not args.no_model)
+        reader_coach(root, args.course, args.evidence, args.feedback, args.model, not args.no_model, args.agent)
     elif args.command == "learn":
         learning_plan(root, args.topic, args.level, args.minutes)
     elif args.command == "complete":
@@ -1195,8 +1381,12 @@ def main() -> None:
         explain(root, args.topic, args.audience)
     elif args.command == "next":
         adaptive_next(root)
+    elif args.command == "overview":
+        learning_overview(root)
     elif args.command == "course":
-        if args.course_action == "submit":
+        if args.course_action == "checkpoint":
+            course_checkpoint(root, args.course, args.id)
+        elif args.course_action == "submit":
             course_submit(root, args.course, args.unit, args.evidence, args.score, args.practice_passed, args.failure_path)
         elif args.course_action == "review":
             if args.unit and (not args.course or not args.evidence or args.score is None):
@@ -1211,14 +1401,22 @@ def main() -> None:
     elif args.command == "self-eval":
         self_evaluate(root, root / args.output if not args.output.is_absolute() else args.output)
     elif args.command == "design":
-        design(root, args.system, args.constraints)
+        design(root, args.system, args.constraints, args.project, args.evidence, args.domain)
     elif args.command == "review":
-        review_surface(root, args.path)
+        review_surface(root, args.path, args.project, args.evidence, args.domain)
     elif args.command == "debug":
-        debug_scenario(root, args.symptom, bool(args.fixture))
+        debug_scenario(root, args.symptom, bool(args.fixture), args.project, args.evidence, args.domain)
+    elif args.command == "verify":
+        import recsys_engineering
+        result = recsys_engineering.verify_commands(args.project, args.domain,
+                    [(phase, getattr(args, phase)) for phase in ("baseline", "fault", "recovery")], args.timeout)
+        print(json.dumps(result, ensure_ascii=False, indent=2))
     else:
         doctor(root, mode)
 
 
 if __name__ == "__main__":
-    main()
+    try:
+        main()
+    except ValueError as error:
+        raise SystemExit(str(error)) from error

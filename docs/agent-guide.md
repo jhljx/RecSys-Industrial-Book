@@ -37,6 +37,8 @@ python3 tools/recsys_agent.py search --help
 | `next` | 按前置与掌握状态推荐下一主题 | 概念 ID 列表 |
 | `graph` | 输出全局或课程 Mermaid 知识图谱 | 节点与依赖边 |
 | `self-eval` | 生成读者本地自测报告 | 检索、引用、学习与复习状态 |
+| `overview` | 汇总课程、自由主题、复习和陪练状态 | 本地学习概览 |
+| `session-clear` | 清除指定问答会话 | 显式结束一个问答主题 |
 | `explain` | 按受众组织讲解提纲和 PDF 证据 | 受众提纲、引用页码、证据摘录 |
 | `design` | 生成可机读系统设计报告 | 链路、P99 预算、容量、稳定性、版本与发布契约 |
 | `review` | 生成带位置的领域评审报告 | 发现、风险、修复与验证要求 |
@@ -53,7 +55,7 @@ python3 tools/recsys_agent.py ask "书中如何估计采样概率？" --session 
 python3 tools/recsys_agent.py navigate --session two-tower
 ```
 
-`ask` 使用本地已发布 PDF 索引挑选少量页面，再通过本机 `claude -p` 组织回答。模型只收到当前问题及候选页摘录，禁用工具和会话持久化；程序把每条书中论断的引用 ID 绑定到这些已存在的 PDF 文件和页码。若检索不到可信候选或模型证据不足，则明确拒答；`--json` 可供其他客户端消费。`--session` 在被 Git 忽略的 `.recsys-workspace/reader-sessions/` 仅保存主题和最近问题，不保存 PDF 提取文本；不带它就是无状态提问。本机默认模型不可用时可加 `--model <可用模型ID>`。模型调用可能耗费额度且需要本机可用认证；自动绑定页码不能证明每句推理正确，重要公式仍应打开 PDF 原页核对。
+`ask` 使用本地已发布 PDF 索引挑选少量页面，再通过本机 `claude -p` 或 `codex exec` 组织回答。提示词只包含当前问题、上一轮短摘要及候选页摘录；Claude 调用禁用工具和会话持久化，Codex 调用使用只读沙箱（不等于禁用其读取能力）。程序把每条书中论断的引用 ID 绑定到这些已存在的 PDF 文件和页码。若检索不到可信候选或模型证据不足，则明确拒答；`--json` 可供其他客户端消费。`--session` 在被 Git 忽略的 `.recsys-workspace/reader-sessions/` 保存主题、最近问题和论断摘要，不保存 PDF 提取文本；可用 `session-clear --session <name>` 清除。通过 `--agent codex` 可显式使用另一运行时，`coach` 也支持同一参数；`doctor` 会分别报告两种 CLI 是否可用。模型调用可能耗费额度且需要本机可用认证；自动绑定页码不能证明每句推理正确，重要公式仍应打开 PDF 原页核对。
 
 `navigate` 把当前主题连接到已发布章节、概念卡、前置概念、相关教学代码和人工精选的代表论文；空缺资源会明确留空，不会凭关联猜测书中结论。静态网站仍是导航页，不在线运行模型。
 
@@ -115,7 +117,7 @@ python3 tools/recsys_agent.py course review
 python3 tools/recsys_agent.py self-eval
 ```
 
-证据不全或分数低于 0.8 时只记为 `assessed`，不会进入 `completed`；仅允许提交当前未完成单元，已完成状态不会被低分重复提交撤销。CLI 会检查提交物结构和可复核记录，但不能证实命令真的运行或答案正确，仍需 Agent 按 `acceptance` 评分。七天后 `course review` 安排回忆、纠错、参数预测和迁移任务；核查四节答案后，可用 `course review --course new-engineer --unit ne-01 --evidence /tmp/ne-01-review.md --score 0.85` 提交复习，通过后不再重复提醒。课程外补缺可运行：
+证据不全或分数低于 0.8 时只记为 `assessed`，不会进入 `completed`；仅允许提交当前未完成单元，已完成状态不会被低分重复提交撤销。代码实验单元需要主路径和失败路径；方案单元在提交物中写 `## 方案验证`，逐行列出 `检验方法`、`反例或失败条件`、`验收依据`，不强制命令日志。`course today` 会给大单元生成可顺序完成的概念检查点；完成阅读后可用 `course checkpoint --course new-engineer --id ne-04-1` 记录位置，下一次 `today` 从尚未记录的检查点继续。检查点仅表示已访问，不是掌握评分。CLI 仅检查结构，仍需评阅者按 `acceptance` 核对质量。七天后 `course review` 安排回忆、纠错、参数预测和迁移任务；核查四节答案后，可用 `course review --course new-engineer --unit ne-01 --evidence /tmp/ne-01-review.md --score 0.85` 提交复习，通过后不再重复提醒。课程外补缺可运行：
 
 ```bash
 python3 tools/recsys_agent.py learn "HNSW" --level graduate --minutes 120
@@ -129,6 +131,41 @@ python3 tools/recsys_agent.py next
 详细的读者提示词、证据模板、反馈方法、状态语义和隐私边界见 [`learning-agent-guide.md`](learning-agent-guide.md)。个人状态只写入被 Git 忽略的 `.recsys-workspace/`。
 
 ## 5. 工程工作流
+
+现有 `design`、`review`、`debug` 支持可选的 `--project` 指向读者自己的项目，并通过 `--domain`、`--evidence` 核对用户提供的本地 JSON 观测。书籍索引仍由仓库根目录提供；目标项目的代码和证据不会写入公开仓库。`--project` 仅列出有限的入口与测试候选，Agent 还必须阅读实际实现、调用方和目标项目的运行说明。对目标项目的改动由宿主 Agent 在用户要求修复时执行，CLI 只做只读检查。
+
+若目标项目能输出单条 JSON 观测，可以用 `verify` 运行三个明确的本地脚本，检查基线、故障和恢复：
+
+```bash
+python3 tools/recsys_agent.py verify \
+  --project /path/to/my-recommender --domain feature-time \
+  --baseline "python3 emit_observation.py baseline" \
+  --fault "python3 emit_observation.py fault" \
+  --recovery "python3 emit_observation.py recovery"
+```
+
+`verify` 只接受目标项目目录内的 Python 脚本，单条命令最长 300 秒以内，要求标准输出为一个 JSON 对象。`feature-time` 可输出带 `rows` 的对象（每行含 `label_time`、`feature_time`）；`release-version` 的正常输出也可用 `status=ok`、`version` 表示当前版本；其他场景输出相应契约字段。故障命令可用退出码 2 加 `status=rejected` 和领域匹配的 `error`（特征穿越含 `future feature`，版本错配含 `version mismatch`）表示显式拒绝，这种结果仍需阅读代码确认拒绝原因。输出会区分 `fault_reproduced_and_recovered`、`fault_rejected_and_recovered`、`baseline_or_recovery_failed` 和 `fault_not_reproduced`；这证明了本地脚本本次运行的契约行为，不等于线上根因或性能达标。
+
+三个首批契约为 `feature-time`、`serving`、`release-version`。证据文件格式是 `{ "domain": "...", "records": [...] }`；每条记录的 `phase` 为 `baseline`、`fault` 或 `recovery`。这是用户提供的样本，不自动认定为现场遥测。推荐提供三阶段记录；`coverage` 会显示缺失阶段。具体字段如下：
+
+| 领域 | 每条记录必需字段 | 检查结果 |
+|---|---|---|
+| `feature-time` | `label_time`、`feature_time`（同单位的数值，或带时区 ISO 时间）、`selected`（布尔） | 入样特征不能晚于标签时刻 |
+| `serving` | `budget_ms`（正数）、`elapsed_ms`（非负数）、`candidates`（非负整数） | 请求不超预算且候选非空 |
+| `release-version` | `model_release`、`embedding_release`、`index_release`（非空字符串）、`accepted`（布尔） | 不兼容版本必须拒绝 |
+
+例如，将脱敏的故障记录保存在目标项目以外的本地文件 `/tmp/feature-observations.json` 后运行：
+
+```bash
+python3 tools/recsys_agent.py review src/producer.py \
+  --project /path/to/my-recommender \
+  --domain feature-time --evidence /tmp/feature-observations.json
+python3 tools/recsys_agent.py debug "样本包含未来特征" \
+  --project /path/to/my-recommender \
+  --domain feature-time --evidence /tmp/feature-observations.json
+```
+
+`evidence_check` 返回违规记录序号和三阶段覆盖情况。工程 Agent 应继续核对证据来源、阅读源码和调用方，在本地安全样本上复现；用户要求修复时修改目标项目，并用同一个故障场景验证修复前失败、修复后通过、边界样本行为正确。只凭 `no_violation_in_samples` 不能宣称代码正确或线上指标达标。`design`、`review`、`debug` 的证据检查只读本地文件；`verify` 会执行指定脚本。当前不做跨文件数据流证明，也不自动接入监控平台。
 
 ### 设计
 
@@ -186,7 +223,7 @@ python3 tools/recsys_agent.py navigate "负采样"  # 概念卡、PDF 页、代�
 | 项目 | 正常路径 | 故障路径 |
 |---|---|---|
 | `templates/recommendation-pipeline/` | 多路召回到重排 | timeout、过载降级 |
-| `templates/two-tower-ann/` | 训练玩具双塔并查询 ANN | 模型/索引版本错配 |
+| `templates/two-tower-ann/` | 固定示例向量的精确排序与版本契约 | 模型/索引版本错配 |
 | `templates/feature-consistency/` | point-in-time join | 样本穿越拒绝 |
 | `templates/serving-reliability/` | 容量内个性化服务 | 慢依赖、过载、fallback |
 

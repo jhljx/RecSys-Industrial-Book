@@ -86,6 +86,23 @@ class CoachTests(unittest.TestCase):
         self.assertIn("不会修改课程完成状态", result["limits"])
         self.assertFalse((self.root / ".recsys-workspace/progress.jsonl").exists())
 
+    def test_design_unit_requires_verification_not_command_logs(self):
+        courses_path = self.root / "learning-paths/courses.json"
+        data = json.loads(courses_path.read_text(encoding="utf-8"))
+        data["courses"]["new-engineer"]["units"][0]["concepts"] = ["retrieval"]
+        courses_path.write_text(json.dumps(data), encoding="utf-8")
+        submission = self.root / "design.md"
+        submission.write_text("## 本书依据\nch04 召回/book.pdf PDF 第 3 页：待人工核对。\n"
+                              "## 我的解释\n输入是用户请求，输出是候选集合，需要控制延迟和处理结果规模。\n"
+                              "## 方案验证\n检验方法：同流量比较候选覆盖与延迟\n"
+                              "反例或失败条件：索引版本错配导致召回缺失\n"
+                              "验收依据：候选覆盖与 P99 相对基线不退化\n"
+                              "## 问题答案\n1. 召回控制候选规模并输出集合，排序对候选逐个打分，二者目标不同且需在相同流量下核对。\n"
+                              "2. 注入索引版本错配，核对拒绝路径与兜底结果；若覆盖率或延迟退化则不应发布。\n", encoding="utf-8")
+        report = recsys_coach.coach(self.root, "new-engineer", submission)
+        self.assertEqual("design", report["evidence_kind"])
+        self.assertEqual("ready_for_manual_review", report["status"], report["diagnosis"])
+
     def test_current_unit_ignores_non_course_and_rejects_invalid_inputs(self):
         (self.root / ".recsys-workspace").mkdir()
         (self.root / ".recsys-workspace/progress.jsonl").write_text(

@@ -78,3 +78,7 @@ For book answers, distinguish `本书依据` and `扩展说明`. For engineering
 - Concept pages carry their existing PDF citations; `knowledge-map/catalog.html` adds crawlable links to the relevant chapter PDF page and teaching-code candidates. Candidate code is discovery only, not proof of a book claim.
 - Pages is hosted under `/RecSys-Industrial-Book/`. A `robots.txt` inside this project path is not the domain-root robots policy. See `docs/discoverability.md` for external links and manual search-console submission; never claim a local change has been deployed or indexed.
 - `page_build` 成功后由 `.github/workflows/indexnow.yml` 对比相邻成功构建的 sitemap/文件差异；仅在公开密钥与 sitemap 确认部署后通知 IndexNow。概念卡的简短 description 来自公开策划摘要，AI 引用以已发布 PDF 原页为准。不得把 IndexNow 接收当作收录或 Copilot 引用承诺。
+
+- 课程单元 ID 与原 CLI 命令保持稳定；有 `practice` 的单元检查真实主路径和失败路径，方案单元用 `方案验证` 记录检验方法、反例和验收依据。`overview` 仅显示本地进度，不将单元完成推断为逐概念掌握。
+- 知识地图的概念/章节详情提供可复制本地 `ask` 命令；静态网页不运行模型，不读写个人学习状态。修改 `app.js` 时更新 HTML 缓存键并核对本地及 Pages 路由。
+- 工程 CLI 的 `--project` 只发现目标项目入口候选，`--domain` 与 `--evidence` 检查用户提供的本地 JSON 契约样本；不得将这些样本当作线上事实或将目标项目资料写入公开仓库。结论仍须追溯目标代码路径和实际运行证据。

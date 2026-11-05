@@ -9,3 +9,4 @@ description: Diagnose recommendation quality, traffic, feature, model, retrieval
 4. At each branch collect the named evidence before moving on. Compare against a known-good cohort or version.
 5. Reproduce the fault where safe; fix the root cause, then rerun the same scenario.
 6. Output timeline, evidence, root cause, corrective change, verification, and prevention. Never suppress an alert as the fix.
+7. When the user provides a target project and local observations, use `debug <symptom> --project <root> --domain <feature-time|serving|release-version> --evidence <local-json>`. Distinguish a violated sample contract from a confirmed root cause; check the executing code path and compare baseline, fault and recovery before claiming recovery.

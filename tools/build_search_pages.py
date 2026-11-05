@@ -98,7 +98,7 @@ def render(root: Path = ROOT) -> str:
 def sitemap_paths(root: Path, data: dict) -> list[str]:
     paths = {"knowledge-map/", "templates/", "knowledge-map/catalog.html", "knowledge-map/reader.html",
              "knowledge-map/code.html", "knowledge-map/agent.html", "README.en.html",
-             "docs/agent-guide.html", "docs/discoverability.html", "docs/local-preview.html", "knowledge/", "learning-paths/new-engineer.html", "learning-paths/graduate.html"}
+             "docs/agent-guide.html", "docs/discoverability.html", "docs/local-preview.html", "cases/ann-release-checklist.html", "knowledge/", "learning-paths/new-engineer.html", "learning-paths/graduate.html"}
     for chapter in data["chapters"]:
         paths.add(chapter["map"].removeprefix("../").replace(".md", ".html"))
         pdf = unquote(chapter["pdf"].removeprefix("../"))
@@ -143,7 +143,7 @@ def sitemap(root: Path = ROOT) -> str:
             source = root / relative / "README.md" if relative != "knowledge-map/" else root / "knowledge-map/index.html"
         elif relative == "README.en.html":
             source = root / "README.en.md"
-        elif relative.endswith(".html") and relative.startswith(("knowledge/", "learning-paths/", "docs/", "templates/")):
+        elif relative.endswith(".html") and relative.startswith(("knowledge/", "learning-paths/", "docs/", "templates/", "cases/")):
             source = root / (relative.removesuffix(".html") + ".md")
         else:
             source = root / relative

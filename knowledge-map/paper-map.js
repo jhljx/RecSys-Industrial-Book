@@ -38,6 +38,7 @@
     addLink('站内阅读对应 PDF 页 ↗', `./reader.html#ch${paper.chapter}&page=${paper.pages[0]}`);
     const related = document.createElement('p'); related.textContent = '关联概念：' + paper.concepts.map(id => concepts.get(id).title).join('、'); detail.append(related);
     paper.concepts.forEach(id => addLink(`阅读概念卡 · ${concepts.get(id).title} ↗`, concepts.get(id).url));
+    const practice = document.createElement('p'); practice.textContent = '选型与复现：先固定本章所比较的目标、样本和线上预算，再查看关联概念卡的工程检查与章节代码；论文方法链接仅供延伸阅读。'; detail.append(practice);
     if (paper.url) addLink('论文原文（扩展说明）↗', paper.url);
   }
   async function render() {

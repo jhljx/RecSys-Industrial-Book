@@ -9,3 +9,4 @@ description: Review recommendation-system code, architecture, experiment, or des
 4. Prioritize consumer-visible correctness, leakage, version mismatch, unbounded work, timeout/overload, empty fallback, missing metrics, and unsafe rollout.
 5. Report findings by severity with exact location, failure scenario, proposed fix, and verification. No style-only filler.
 6. Keep book evidence distinct from engineering judgment.
+7. For a reader project, use `review <relative-path> --project <root>` and optional `--domain ... --evidence <local-json>`. A sample violation must be traced to the executing path and reproduced before asserting the code caused it.
