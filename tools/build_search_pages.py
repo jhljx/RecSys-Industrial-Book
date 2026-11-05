@@ -68,18 +68,26 @@ def render(root: Path = ROOT) -> str:
         items = "".join(f'<li>{link(concept["url"].replace(".md", ".html"), concept["title"])}：所引章节尚未以独立章节发布，请以概念卡现有的已发布 PDF 依据为准。</li>' for concept in other)
         sections.append(f'<section><h2>其他已引用概念卡</h2><ul>{items}</ul></section>')
     body = "\n".join(sections)
+    focus = {concept["id"]: concept for concept in data["concepts"]}
+    focus_topics = (("two-tower", "大规模召回如何兼顾效率与采样偏差？"),
+                    ("ann-index", "ANN 索引怎样权衡召回率、延迟和内存？"),
+                    ("feature-freshness", "实时特征为什么在线仍不够新？"),
+                    ("fallback", "推荐链路超时后如何降级或兜底？"))
+    focus_links = "".join(f'<li>{escape(question)} {link(focus[ident]["url"].replace(".md", ".html"), focus[ident]["title"])}</li>'
+                          for ident, question in focus_topics if ident in focus)
     return f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>章节与概念静态索引 · 推荐系统：工业架构与核心算法</title>
 <meta name="description" content="浏览已发布推荐系统章节 PDF、章节阅读地图、概念卡和代码目录；每个概念关联可核查的 PDF 页码。">
 <link rel="canonical" href="{BASE}knowledge-map/catalog.html">
-<link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./document.css"></head>
+<link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./document.css"><script src="./site-links.js" defer></script></head>
 <body><a class="skip" href="#main">跳到正文</a>
 <header class="site-header"><a class="brand" href="./">RECSYS <span>／ 阅读与实践</span></a><nav aria-label="页面导航"><a href="./">知识地图</a><a href="./reader.html">阅读 PDF</a><a href="./code.html">章节代码</a><a href="../README.en.html">English</a></nav></header>
 <main id="main" class="document"><h1>章节与概念静态索引</h1>
 <p>直接浏览已发布章节、独立撰写的概念导航卡及其 PDF 页码。PDF 是书稿权威正文；概念卡和代码页帮助定位与实践，不替代原书，也不证明代码实现了某篇论文。</p>
 <p>推荐系统主题包括召回与 ANN、粗排、精排、多任务学习、特征工程、离线与在线服务。回答具体问题时，请以相关概念卡的「本书依据」定位原书 PDF 页；「扩展说明」和教学代码是独立参考。</p>
 <p>{link("../README.en.html", "English overview")} · {link("./code.html", "完整章节代码目录")} · {link("./agent.html", "本地 Agent 指南")}</p>
+<section aria-labelledby="focus-questions"><h2 id="focus-questions">按工程问题查找出处</h2><ul>{focus_links}</ul><p>这些是独立撰写的导航卡；请核对卡片所引的已发布 PDF 原页，不把教学代码作为书籍论断证据。</p></section>
 <nav aria-label="章节跳转"><h2>已发布章节</h2><ul>{''.join(f'<li>{link("#ch" + str(ch["number"]), "第 " + str(ch["number"]) + " 章 · " + ch["title"])}</li>' for ch in data["chapters"])}</ul></nav>
 {body}
 </main><footer><span>推荐系统：工业架构与核心算法 · 静态目录</span><a href="./">返回知识地图 ↑</a></footer></body></html>

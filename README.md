@@ -18,6 +18,8 @@
 
 **搜索与传播**：英文项目介绍见 [English overview](README.en.md)；不依赖 JS 的[章节／概念静态索引](knowledge-map/catalog.html)可逐项进入章节 PDF、概念卡和相关教学代码。站外引用入口、sitemap 提交及实际收录检查见[可发现性与引用指南](docs/discoverability.md)。
 
+**按工程问题直达原书依据**：如何选双塔召回？看[双塔召回的效率与采样取舍](knowledge/concepts/two-tower.md)；ANN 为什么检索质量下降？看[索引选择与版本切换](knowledge/concepts/ann-index.md)；实时特征为何线上仍滞后？看[特征时效性](knowledge/concepts/feature-freshness.md)；依赖超时如何保持可用？看[降级与兜底](knowledge/concepts/fallback.md)。每张卡都区分书中 PDF 页码与额外的工程验证建议，完整章节入口见[静态索引](knowledge-map/catalog.html)。
+
 📖 [站内 PDF 阅读器](knowledge-map/reader.html) · 🗺️ [全书知识地图](knowledge-map/) · 💻 [章节代码讲解](knowledge-map/code.html) · 🤖 [Agent 五分钟开始](knowledge-map/agent.html#start) · 🎓 [12 周课程](learning-paths/new-engineer.md) · 🧭 [章节地图](knowledge/chapters/README.md) · 🧪 [可运行项目](templates/)
 
 **书稿**：持续更新的上下册电子书稿，聚焦工业推荐系统的全链路架构、算法、工程实践与业务权衡；只发布已审阅的章节 PDF，不公开 LaTeX 或正文等价 Markdown。
@@ -94,7 +96,7 @@ python3 tools/install_skills.py --client claude
 
 网页中的概念目录可直接使用[知识地图的概念筛选](knowledge-map/#catalog)，完整[本地 Agent 指南](docs/agent-guide.md)在 Pages 上采用与知识地图一致的文档页样式；目录型 README 在 Pages 上使用目录 URL（例如 `/knowledge/`），不要链接不存在的 `README.html`。
 
-知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建 `knowledge-map/data.js`；新增或修改章节 `code/` 后运行 `python3 tools/build_code_pages.py`，重建 `knowledge-map/code-data.js` 和共用模板渲染的源码 HTML。再运行 `python3 tools/build_search_pages.py`，更新不依赖 JS 的 `knowledge-map/catalog.html`、概念卡 PDF/代码链接及 `sitemap.xml`。三者更新后运行 `python3 -m unittest discover -s tools/tests -v`，并检查公开边界。网页没有服务端、账号或在线 Agent；全文检索和个人进度仍通过本地 CLI。
+知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建 `knowledge-map/data.js`；新增或修改章节 `code/` 后运行 `python3 tools/build_code_pages.py`，重建 `knowledge-map/code-data.js` 和共用模板渲染的源码 HTML。再运行 `python3 tools/build_search_pages.py`，更新不依赖 JS 的 `knowledge-map/catalog.html`、概念卡 PDF/代码链接及 `sitemap.xml`。三者更新后运行 `python3 -m unittest discover -s tools/tests -v`，并检查公开边界。知识地图的静态导航在本地 `file://` 与 GitHub Pages 使用同一套链接：本地将 Jekyll 生成的文档 `.html` 链接切换到仓库中的 `.md` 原文件（浏览器显示 Markdown 原文），Pages 则保持排版后的 `.html` 页面。新增静态入口或生成链接后，可运行 `python3 -m unittest discover -s tools/tests -p test_site_routes.py -v` 检查两种模式的站内目标。网页没有服务端、账号或在线 Agent；全文检索和个人进度仍通过本地 CLI。
 
 ## 章节源码也是 Agent 的知识来源（但不是正文证据）
 
@@ -109,8 +111,8 @@ python3 tools/install_skills.py --client claude
 新章节在私有写作仓库完成 LaTeX 和审阅 PDF 后，发布工作流要求同时提交章节地图、经策划的概念卡以及新人/研究生两条课程的单元更新；深入讲解论文方法的章节还应提供论文方法索引。发布器会拒绝缺失课程更新、未知 concept、未覆盖新章节或仍有待定 PDF 页码的发布，再确定性重建知识目录与图谱。因此 `knowledge/`、`knowledge/paper-map.json` 和 `learning-paths/courses.json` 与新章节一同演进，而不是靠事后手工补齐。
 
 
-## 📚 已完成章节阅读入口
-> 点击下方章节名称即可快速跳转至对应内容。
+## 📚 已发布章节 PDF 阅读入口
+> 点击下方章节名称即可快速跳转至对应内容。第 12 章《精排模型》已发布；第 13～14 章尚未发布，不在此表中。
 
 | 章节         | 章节名称                     | 快捷链接      |
 | :--------- | :----------------------- | :-------- |
@@ -142,14 +144,14 @@ python3 tools/install_skills.py --client claude
 
 ## ✍️ 当前写作进度
 
-> 以下进度实时更新，欢迎追更！
+> 以下按公开仓库中已发布的章节 PDF 标注；第 13～14 章仍在写作中。
 
 | 章节范围 | 涵盖内容 | 当前状态 |
 | :--- | :--- | :---: |
 | **第 1 ~ 9 章** | 推荐系统概览、架构、评价体系、召回与过滤模块、粗排/精排/重排/混排/生成式推荐模块 | ✅ **已完成** |
 | **第 10 章** | 召回模型（协同过滤/图召回/向量召回/双塔等，**约 120 页深度拆解**） | ✅ **已完成** |
 | **第 11 章** | 粗排模型（双塔模型/多塔模型/蒸馏模型/DNN模型等，**约 50页深度拆解**） | ✅ **已完成** |
-| **第 12 章** | 精排模型（传统模型、深度架构、损失函数与实践） | ✅ **已完成** |
+| **第 12 章** | 精排模型（传统模型、深度架构、损失函数与实践；[已发布 PDF](ch12%20精排模型/第十二章-精排模型.pdf)） | ✅ **已发布** |
 | **第 13 ~ 14 章** | Learning to Rank模型、重排/混排模型 | 🚧 **写作中** |
 | **第 15 ~ 18 章** | 上册其余部分（特征工程、推荐系统离线服务、推荐系统在线服务、向量检索系统） | ✅ **已完成** |
 | **第 19 章** | 推荐系统偏差问题（样本选择偏差、用户群体偏差、混淆偏差、曝光位置偏差、Duration偏差等） | ✅ **已完成** |

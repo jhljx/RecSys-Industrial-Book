@@ -12,6 +12,8 @@
 - **Engineering examples:** [chapter source-code pages](knowledge-map/code.html) and [runnable templates](templates/) for practicing recommendation workflows. Teaching examples marked `[MOCK]` are not production integrations.
 - **Local AI Agent toolkit:** PDF-page-cited retrieval and Q&A, chapter-code discovery, study plans, self-evaluation, and engineering exercises. Search indexes and personal progress stay on your machine, not on the public site.
 
+For specific engineering questions, start with the Chinese concept cards on [two-tower retrieval](knowledge/concepts/two-tower.md), [ANN index choice](knowledge/concepts/ann-index.md), [feature freshness](knowledge/concepts/feature-freshness.md), or [online fallback](knowledge/concepts/fallback.md). Each links to the released PDF page and separates book-grounded claims from additional engineering checks; these are navigation aids, not an English translation.
+
 ## Try it locally
 
 With Python 3.10+ and `pdftotext` installed, run from the repository root:

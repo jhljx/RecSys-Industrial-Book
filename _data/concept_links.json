@@ -18,7 +18,7 @@
   "ann-index": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
-    "page": 44,
+    "page": 42,
     "chapter_map": "/knowledge/chapters/ch18.html",
     "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html",
     "summary": "索引选择是召回率、延迟、内存、构建速度和增量更新之间的多目标决策。"
@@ -714,7 +714,7 @@
   "two-tower": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
-    "page": 60,
+    "page": 58,
     "chapter_map": "/knowledge/chapters/ch10.html",
     "code": "/knowledge-map/code/77eef1cbff00cb8ce25f.html",
     "summary": "双塔将用户与物品编码到同一向量空间，使物品向量可离线计算并通过 ANN 在线检索。"

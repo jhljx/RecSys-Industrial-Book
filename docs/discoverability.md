@@ -24,6 +24,7 @@
 ## Bing / Copilot 与 IndexNow
 
 - Bing Webmaster Tools 中验证本项目站点后提交完整地址 `https://jhljx.github.io/RecSys-Industrial-Book/sitemap.xml`，用 URL Inspection 抽查知识地图、静态目录和代表性概念页；AI Performance（若账户可用）用于观察引用趋势，而非保证 Copilot 引用。可用中英文问题分别核查 AI 引用是否指向概念卡、章节地图和准确 PDF 页码。
+- Copilot 引用优化先看 **AI Performance → Pages / Grounding Queries**：记录被引用的具体页面及查询主题。若暂时无数据，先用 URL Inspection 判断是否可索引；引用数据有处理延迟且与搜索点击不同，不把短期变化归因于单次改动。按真实问题抽样，例如“双塔召回如何控制采样偏差”“ANN 索引如何权衡延迟与召回”“特征更新快但线上仍滞后怎么办”“推荐链路超时如何降级”。检查回答是否引用准确概念卡和 PDF 页、是否误将教学代码当原书论断。只针对表现薄弱且有已发布书稿依据的页面深化内容，不批量扩写 97 张卡。参见 [Bing AI Performance 官方说明](https://www.bing.com/webmasters/help/ai-performance-9f8e7d6c)。
 - IndexNow 的公开密钥文件位于项目根目录 `9d4390e1830e48f0b4d52fb03d1a4b2c.txt`；因本站在 GitHub Pages 项目子路径下，通知必须携带 `keyLocation=https://jhljx.github.io/RecSys-Industrial-Book/9d4390e1830e48f0b4d52fb03d1a4b2c.txt`，只用于本项目路径内的 URL。密钥用于公开所有权验证，不是保密 API 凭据；不要借它通知同域名下别的项目。
 - `.github/workflows/indexnow.yml` 在成功的 legacy Pages 构建事件后读取相邻的成功构建提交，`tools/notify_indexnow.py` 只通知 sitemap 中新增、更新或删除的公开 URL；先核对线上密钥和完整 sitemap 与构建提交一致，再向 Bing 的 IndexNow 接口发送。不会在本地生成、PR 或仅推送未部署的文件时通知。异常与非 200/202 状态要查看 Actions 日志；202 表示密钥验证待完成，200/202 都不是收录承诺。
 - 手工预览本次相邻构建差异：`python3 tools/notify_indexnow.py --before <上一成功构建SHA> --after <当前成功构建SHA>`。初次启用没有前一次成功构建记录时不会批量推送旧 URL；继续依赖 sitemap 与内链。手动重跑 workflow 只用于构建已成功、自动事件漏报的情况，不要对未更新内容反复发送。

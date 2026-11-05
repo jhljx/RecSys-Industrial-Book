@@ -22,7 +22,7 @@
     return node;
   };
   const siteHref = href => {
-    if (href === '../') return './';
+    if (href === '../') return './index.html';
     if (location.protocol === 'file:') return href;
     if (/\/README\.md(?:#.*)?$/.test(href)) return href.replace(/\/README\.md(?=#|$)/, '/');
     return href.replace(/\.md(?=#|$)/, '.html');

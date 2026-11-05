@@ -14,7 +14,7 @@
   const byNumber = new Map(rows.map(row => [row.number, row]));
   const chapterHash = (number, page = 1) => `#ch${number}&page=${page}`;
   const siteHref = href => {
-    if (href === '../') return './';
+    if (href === '../') return './index.html';
     if (location.protocol === 'file:') return href;
     if (/\/README\.md(?:#.*)?$/.test(href)) return href.replace(/\/README\.md(?=#|$)/, '/');
     return href.replace(/\.md(?=#|$)/, '.html');

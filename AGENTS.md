@@ -73,6 +73,8 @@ For book answers, distinguish `本书依据` and `扩展说明`. For engineering
 
 - `README.en.md` is a concise English project overview, not an English translation of the Chinese book; keep its links and language boundary accurate.
 - `python3 tools/build_search_pages.py` regenerates the JS-free chapter/concept catalog and project-path sitemap from public curated metadata and generated code pages. Rebuild it after knowledge or chapter-code changes; do not publish extracted PDF text.
+- Site navigation must resolve in both `file://` and Pages modes: `knowledge-map/site-links.js` maps Jekyll document `.html` URLs to local `.md`, and local directory links to existing entry files. Include it when adding static pages with document links; add new routes to `tools/tests/test_site_routes.py` and run the link tests after regeneration.
+
 - Concept pages carry their existing PDF citations; `knowledge-map/catalog.html` adds crawlable links to the relevant chapter PDF page and teaching-code candidates. Candidate code is discovery only, not proof of a book claim.
 - Pages is hosted under `/RecSys-Industrial-Book/`. A `robots.txt` inside this project path is not the domain-root robots policy. See `docs/discoverability.md` for external links and manual search-console submission; never claim a local change has been deployed or indexed.
 - `page_build` 成功后由 `.github/workflows/indexnow.yml` 对比相邻成功构建的 sitemap/文件差异；仅在公开密钥与 sitemap 确认部署后通知 IndexNow。概念卡的简短 description 来自公开策划摘要，AI 引用以已发布 PDF 原页为准。不得把 IndexNow 接收当作收录或 Copilot 引用承诺。
