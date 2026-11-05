@@ -35,6 +35,11 @@ jobs:
           python3 tools/build_code_pages.py
           git diff --exit-code -- knowledge-map/code-data.js knowledge-map/code/
           test -z "$(git ls-files --others --exclude-standard knowledge-map/code-data.js knowledge-map/code/)"
+      - name: Check committed static catalog and sitemap
+        run: |
+          python3 tools/build_search_pages.py
+          git diff --exit-code -- knowledge-map/catalog.html sitemap.xml _data/concept_links.json
+          test -z "$(git ls-files --others --exclude-standard knowledge-map/catalog.html sitemap.xml _data/concept_links.json)"
       - name: Set up Chrome
         id: chrome
         uses: browser-actions/setup-chrome@v1

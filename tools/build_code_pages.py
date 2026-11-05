@@ -71,6 +71,8 @@ def build(root: Path = ROOT) -> list[dict[str, object]]:
         target.write_text(f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(path.name)} · 第 {chapter} 章代码讲解</title>
+<meta name="description" content="第 {chapter} 章教学源码 {html.escape(path.name, quote=True)}：{html.escape(str(row['description'])[:115], quote=True)}">
+<link rel="canonical" href="https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/code/{url}">
 <link rel="stylesheet" href="{relative}style.css"><link rel="stylesheet" href="{relative}code.css">
 <script src="{relative}code.js" defer></script></head><body>
 <a class="skip" href="#main">跳到正文</a><header class="site-header"><a class="brand" href="{relative}index.html">RECSYS <span>／ 代码讲解</span></a>

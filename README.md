@@ -7,13 +7,16 @@
 
 # RecSys-Industrial-Book
 
+**中文说明** · [English overview](README.en.md) · [静态章节与概念索引](knowledge-map/catalog.html)
+
+
 **《推荐系统：工业架构与核心算法》开源书稿 + AI-native 学习工作台**
 
 把已发布章节 PDF 作为权威知识源，通过本地优先的 AI Agent 将书稿连接到检索引用、课程学习、复习评估和可运行的推荐系统实践。知识地图帮助定位内容，Agent 帮助读者把内容学会、用起来。
 
 > 面向具备机器学习或推荐基础的研究生、推荐/算法工程师、架构师和技术研究者。零基础读者建议先补机器学习与深度学习基础。书稿和主要学习资料以中文为主。
 
-**English:** An industrial recommender-systems e-book paired with a local-first AI Agent learning toolkit for PDF-grounded Q&A, cited retrieval, adaptive courses, review, and hands-on engineering practice.
+**搜索与传播**：英文项目介绍见 [English overview](README.en.md)；不依赖 JS 的[章节／概念静态索引](knowledge-map/catalog.html)可逐项进入章节 PDF、概念卡和相关教学代码。站外引用入口、sitemap 提交及实际收录检查见[可发现性与引用指南](docs/discoverability.md)。
 
 📖 [站内 PDF 阅读器](knowledge-map/reader.html) · 🗺️ [全书知识地图](knowledge-map/) · 💻 [章节代码讲解](knowledge-map/code.html) · 🤖 [Agent 五分钟开始](knowledge-map/agent.html#start) · 🎓 [12 周课程](learning-paths/new-engineer.md) · 🧭 [章节地图](knowledge/chapters/README.md) · 🧪 [可运行项目](templates/)
 
@@ -91,7 +94,7 @@ python3 tools/install_skills.py --client claude
 
 网页中的概念目录可直接使用[知识地图的概念筛选](knowledge-map/#catalog)，完整[本地 Agent 指南](docs/agent-guide.md)在 Pages 上采用与知识地图一致的文档页样式；目录型 README 在 Pages 上使用目录 URL（例如 `/knowledge/`），不要链接不存在的 `README.html`。
 
-知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建 `knowledge-map/data.js`；新增或修改章节 `code/` 后运行 `python3 tools/build_code_pages.py`，重建 `knowledge-map/code-data.js` 和共用模板渲染的源码 HTML。两者都要运行 `python3 -m unittest discover -s tools/tests -v`，并检查公开边界。网页没有服务端、账号或在线 Agent；全文检索和个人进度仍通过本地 CLI。
+知识内容更新后运行 `python3 tools/build_knowledge_map.py` 重建 `knowledge-map/data.js`；新增或修改章节 `code/` 后运行 `python3 tools/build_code_pages.py`，重建 `knowledge-map/code-data.js` 和共用模板渲染的源码 HTML。再运行 `python3 tools/build_search_pages.py`，更新不依赖 JS 的 `knowledge-map/catalog.html`、概念卡 PDF/代码链接及 `sitemap.xml`。三者更新后运行 `python3 -m unittest discover -s tools/tests -v`，并检查公开边界。网页没有服务端、账号或在线 Agent；全文检索和个人进度仍通过本地 CLI。
 
 ## 章节源码也是 Agent 的知识来源（但不是正文证据）
 

@@ -16,11 +16,13 @@ DENIED_NAMES = {"book.md"}
 PRIVATE_SOURCE_REF = re.compile(r"(?<![\w/])(?:chapters/)?ch\d+\.tex\b", re.IGNORECASE)
 ALLOWED_MARKDOWN = {
     "README.md",
+    "README.en.md",
     "AGENTS.md",
     "CLAUDE.md",
     "CHANGELOG.md",
     "docs/agent-guide.md",
     "docs/ai-native-validation-report.md",
+    "docs/discoverability.md",
     "docs/learning-agent-guide.md",
 }
 

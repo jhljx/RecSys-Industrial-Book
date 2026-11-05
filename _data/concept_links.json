@@ -1,0 +1,674 @@
+{
+  "ab-experiment": {
+    "chapter": 3,
+    "pdf": "/ch03 推荐系统评价体系/第三章-推荐系统评价体系.pdf",
+    "page": 6,
+    "chapter_map": "/knowledge/chapters/ch03.html",
+    "code": "/knowledge-map/code/d5fafca58e2359d31e19.html"
+  },
+  "ann-index-lifecycle": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 44,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html"
+  },
+  "ann-index": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 44,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html"
+  },
+  "cold-start": {
+    "chapter": 1,
+    "pdf": "/ch01 推荐系统概述/第一章-推荐系统概述.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch01.html",
+    "code": ""
+  },
+  "collaborative-filtering-recall": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/694f99e53ed329d03071.html"
+  },
+  "creator-side-recommendation": {
+    "chapter": 2,
+    "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
+    "page": 12,
+    "chapter_map": "/knowledge/chapters/ch02.html",
+    "code": ""
+  },
+  "data-leakage": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 37,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/990271b17a63bcd9158a.html"
+  },
+  "diversity-reranking": {
+    "chapter": 7,
+    "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
+    "page": 10,
+    "chapter_map": "/knowledge/chapters/ch07.html",
+    "code": "/knowledge-map/code/be3c4d321bb2488e3fdd.html"
+  },
+  "diversity": {
+    "chapter": 7,
+    "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
+    "page": 9,
+    "chapter_map": "/knowledge/chapters/ch07.html",
+    "code": "/knowledge-map/code/1f9163ebd1db2ef223c6.html"
+  },
+  "duration-bucket-modeling": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 16,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/29f61f1722ad337b9744.html"
+  },
+  "duration-distribution": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 37,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/29f61f1722ad337b9744.html"
+  },
+  "duration-threshold-labels": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/2790b5db86d99a3e652a.html"
+  },
+  "embedding-server": {
+    "chapter": 17,
+    "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
+    "page": 17,
+    "chapter_map": "/knowledge/chapters/ch17.html",
+    "code": ""
+  },
+  "exploration": {
+    "chapter": 28,
+    "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
+    "page": 13,
+    "chapter_map": "/knowledge/chapters/ch28.html",
+    "code": ""
+  },
+  "exposure-bias": {
+    "chapter": 19,
+    "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch19.html",
+    "code": ""
+  },
+  "fallback": {
+    "chapter": 17,
+    "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch17.html",
+    "code": ""
+  },
+  "feature-crossing-deep-ranking": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 8,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": ""
+  },
+  "feature-engineering": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/85e95694a208b7cf5470.html"
+  },
+  "feature-freshness": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 12,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/85e95694a208b7cf5470.html"
+  },
+  "feature-governance": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/c338defe0dd7ed94c64d.html"
+  },
+  "feature-pruning": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 34,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/85e95694a208b7cf5470.html"
+  },
+  "feedback-loop": {
+    "chapter": 1,
+    "pdf": "/ch01 推荐系统概述/第一章-推荐系统概述.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch01.html",
+    "code": ""
+  },
+  "filtering": {
+    "chapter": 4,
+    "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch04.html",
+    "code": "/knowledge-map/code/8222ff4e9554951ea529.html"
+  },
+  "forward-inverted-index-update": {
+    "chapter": 16,
+    "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
+    "page": 60,
+    "chapter_map": "/knowledge/chapters/ch16.html",
+    "code": ""
+  },
+  "generated-item-lookup": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 12,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/d1a4228ecb4b77286ff1.html"
+  },
+  "generative-recsys": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 20,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/484d41b03605426f4a5b.html"
+  },
+  "generative-token-objective": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 10,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/7b651f51819289571f5c.html"
+  },
+  "graph-recall": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 24,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/7a3a68e2514e850f3c90.html"
+  },
+  "hard-negative": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 79,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": ""
+  },
+  "hnsw": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 42,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/63e64134e9cd1dca5fe1.html"
+  },
+  "hybrid-architecture": {
+    "chapter": 2,
+    "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch02.html",
+    "code": ""
+  },
+  "industrial-recsys-scope": {
+    "chapter": 0,
+    "pdf": "/ch00 前言/第0章-前言.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch00.html",
+    "code": ""
+  },
+  "late-feedback-labels": {
+    "chapter": 16,
+    "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch16.html",
+    "code": ""
+  },
+  "latency-budget": {
+    "chapter": 17,
+    "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
+    "page": 4,
+    "chapter_map": "/knowledge/chapters/ch17.html",
+    "code": ""
+  },
+  "lightweight-dnn-pre-ranking": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 29,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/bdbc58dc4696fe38bc07.html"
+  },
+  "listwise-ranking-loss": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 58,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": ""
+  },
+  "load-pid-control": {
+    "chapter": 8,
+    "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
+    "page": 17,
+    "chapter_map": "/knowledge/chapters/ch08.html",
+    "code": "/knowledge-map/code/30c3c606f70c25e5d337.html"
+  },
+  "mixed-ranking": {
+    "chapter": 8,
+    "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch08.html",
+    "code": "/knowledge-map/code/30c3c606f70c25e5d337.html"
+  },
+  "mixed-sequence-generation": {
+    "chapter": 8,
+    "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
+    "page": 7,
+    "chapter_map": "/knowledge/chapters/ch08.html",
+    "code": "/knowledge-map/code/b7989e98e612cd1e5c38.html"
+  },
+  "mixed-sequence-ranking": {
+    "chapter": 8,
+    "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
+    "page": 13,
+    "chapter_map": "/knowledge/chapters/ch08.html",
+    "code": "/knowledge-map/code/b7989e98e612cd1e5c38.html"
+  },
+  "mixed-value-evaluation": {
+    "chapter": 8,
+    "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
+    "page": 14,
+    "chapter_map": "/knowledge/chapters/ch08.html",
+    "code": "/knowledge-map/code/bc593db38633016bd081.html"
+  },
+  "model-distillation": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 22,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/1aa61c5d91d3f7c62da3.html"
+  },
+  "model-release": {
+    "chapter": 16,
+    "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
+    "page": 69,
+    "chapter_map": "/knowledge/chapters/ch16.html",
+    "code": ""
+  },
+  "multi-interest-pre-ranking": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 38,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/09b731131e42c1f6d6c4.html"
+  },
+  "multi-interest-recall": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 100,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/bfa322e0d233c4cbefd2.html"
+  },
+  "multi-objective": {
+    "chapter": 6,
+    "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch06.html",
+    "code": "/knowledge-map/code/8558e32d9a15200f5c09.html"
+  },
+  "multi-recall": {
+    "chapter": 4,
+    "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch04.html",
+    "code": "/knowledge-map/code/c182199872244eca2ebb.html"
+  },
+  "multi-task-experts": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 30,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": ""
+  },
+  "multi-tower-pre-ranking": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 10,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/82d9e7cd0fcebd716c20.html"
+  },
+  "negative-sampling": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 60,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/ead8f9251950d64f54ef.html"
+  },
+  "observability": {
+    "chapter": 17,
+    "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch17.html",
+    "code": ""
+  },
+  "offline-online-architecture": {
+    "chapter": 2,
+    "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch02.html",
+    "code": ""
+  },
+  "offline-online-evaluation": {
+    "chapter": 3,
+    "pdf": "/ch03 推荐系统评价体系/第三章-推荐系统评价体系.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch03.html",
+    "code": ""
+  },
+  "offline-pipeline": {
+    "chapter": 16,
+    "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch16.html",
+    "code": ""
+  },
+  "one-stage-generative-alignment": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 14,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/caaddc587d185cb78a39.html"
+  },
+  "online-serving": {
+    "chapter": 17,
+    "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch17.html",
+    "code": ""
+  },
+  "overload-control": {
+    "chapter": 17,
+    "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch17.html",
+    "code": ""
+  },
+  "point-in-time-join": {
+    "chapter": 16,
+    "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch16.html",
+    "code": "/knowledge-map/code/1abdfabd5717d027b0b3.html"
+  },
+  "position-bias": {
+    "chapter": 19,
+    "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch19.html",
+    "code": ""
+  },
+  "position-debiasing": {
+    "chapter": 19,
+    "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch19.html",
+    "code": ""
+  },
+  "pre-ranking-chain-consistency": {
+    "chapter": 5,
+    "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch05.html",
+    "code": "/knowledge-map/code/925666b5a9dc8f948529.html"
+  },
+  "pre-ranking-objective-fusion": {
+    "chapter": 5,
+    "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
+    "page": 4,
+    "chapter_map": "/knowledge/chapters/ch05.html",
+    "code": "/knowledge-map/code/925666b5a9dc8f948529.html"
+  },
+  "pre-ranking-set-optimization": {
+    "chapter": 5,
+    "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
+    "page": 15,
+    "chapter_map": "/knowledge/chapters/ch05.html",
+    "code": "/knowledge-map/code/925666b5a9dc8f948529.html"
+  },
+  "pre-ranking-two-tower": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/c916ab627f692466bcc3.html"
+  },
+  "pre-ranking": {
+    "chapter": 5,
+    "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch05.html",
+    "code": "/knowledge-map/code/925666b5a9dc8f948529.html"
+  },
+  "quantization": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 33,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/42c3cda17dd2fab71f69.html"
+  },
+  "quota-truncation": {
+    "chapter": 5,
+    "pdf": "/ch05 粗排模块/第五章-粗排模块.pdf",
+    "page": 12,
+    "chapter_map": "/knowledge/chapters/ch05.html",
+    "code": "/knowledge-map/code/ccbe158776d4078b8e1b.html"
+  },
+  "ranking-evaluation-metrics": {
+    "chapter": 3,
+    "pdf": "/ch03 推荐系统评价体系/第三章-推荐系统评价体系.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch03.html",
+    "code": "/knowledge-map/code/dd8b309a409fc007f8f5.html"
+  },
+  "ranking-formula": {
+    "chapter": 6,
+    "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch06.html",
+    "code": "/knowledge-map/code/00eaf14e76dbc946a8af.html"
+  },
+  "ranking-loss-selection": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 55,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": ""
+  },
+  "ranking-ltr-choice": {
+    "chapter": 6,
+    "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch06.html",
+    "code": "/knowledge-map/code/9b13b388e02512789702.html"
+  },
+  "ranking-traffic-control": {
+    "chapter": 6,
+    "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
+    "page": 13,
+    "chapter_map": "/knowledge/chapters/ch06.html",
+    "code": "/knowledge-map/code/dde58816c947b75b7726.html"
+  },
+  "ranking": {
+    "chapter": 6,
+    "pdf": "/ch06 精排模块/第六章-精排模块.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch06.html",
+    "code": "/knowledge-map/code/c71eba90f79aba140a36.html"
+  },
+  "recall-concurrency-isolation": {
+    "chapter": 4,
+    "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch04.html",
+    "code": ""
+  },
+  "recall-fusion": {
+    "chapter": 4,
+    "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
+    "page": 10,
+    "chapter_map": "/knowledge/chapters/ch04.html",
+    "code": "/knowledge-map/code/1a43a5985d789d115e51.html"
+  },
+  "recall-route-selection": {
+    "chapter": 4,
+    "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch04.html",
+    "code": ""
+  },
+  "recommendation-log-contract": {
+    "chapter": 2,
+    "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
+    "page": 15,
+    "chapter_map": "/knowledge/chapters/ch02.html",
+    "code": ""
+  },
+  "recsys-funnel": {
+    "chapter": 2,
+    "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch02.html",
+    "code": ""
+  },
+  "reranking-postprocessing": {
+    "chapter": 7,
+    "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
+    "page": 19,
+    "chapter_map": "/knowledge/chapters/ch07.html",
+    "code": ""
+  },
+  "reranking-sequence-evaluation": {
+    "chapter": 7,
+    "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
+    "page": 8,
+    "chapter_map": "/knowledge/chapters/ch07.html",
+    "code": ""
+  },
+  "reranking-sequence-generation": {
+    "chapter": 7,
+    "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch07.html",
+    "code": "/knowledge-map/code/8a74640f3fcfecdfae47.html"
+  },
+  "reranking": {
+    "chapter": 7,
+    "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch07.html",
+    "code": "/knowledge-map/code/64d9845ea0985ff68c1f.html"
+  },
+  "rl-recsys": {
+    "chapter": 28,
+    "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
+    "page": 16,
+    "chapter_map": "/knowledge/chapters/ch28.html",
+    "code": ""
+  },
+  "safe-exploration": {
+    "chapter": 28,
+    "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch28.html",
+    "code": ""
+  },
+  "sample-selection-bias": {
+    "chapter": 19,
+    "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch19.html",
+    "code": ""
+  },
+  "score-calibration": {
+    "chapter": 8,
+    "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch08.html",
+    "code": "/knowledge-map/code/5f8f746f1f37271bcf02.html"
+  },
+  "semantic-id": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 4,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/c38f21262c05ce06187b.html"
+  },
+  "sequential-recall": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 81,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/b3503f7e311b950f915b.html"
+  },
+  "target-attention-ranking": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 42,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": ""
+  },
+  "two-tower": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 60,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/77eef1cbff00cb8ce25f.html"
+  },
+  "user-group-bias": {
+    "chapter": 19,
+    "pdf": "/ch19 推荐系统偏差问题/第十九章-推荐系统偏差问题.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch19.html",
+    "code": ""
+  },
+  "vector-retrieval": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": ""
+  },
+  "version-consistency": {
+    "chapter": 17,
+    "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
+    "page": 16,
+    "chapter_map": "/knowledge/chapters/ch17.html",
+    "code": ""
+  },
+  "weighted-lr-duration": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 12,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/7972b3f7f1f3dfe03d99.html"
+  },
+  "duration-modeling": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": ""
+  },
+  "lsh-retrieval": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 19,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": ""
+  }
+}

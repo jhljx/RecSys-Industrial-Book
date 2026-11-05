@@ -1,21 +1,30 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="{% if page.path contains 'README.en.md' %}en{% else %}zh-CN{% endif %}">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>{{ page.title | default: site.title | escape }}</title>
+  <title>{% if page.path contains 'README.en.md' %}Industrial Recommender Systems Book and Learning Toolkit{% else %}{{ page.title | default: site.title | escape }}{% endif %}</title>
+  {% if page.path contains 'README.en.md' %}<meta name="description" content="Chinese-language industrial recommender systems book and local-first AI learning toolkit: retrieval, ranking, feature engineering, serving, and source-cited PDF chapters.">
+  <link rel="canonical" href="{{ '/README.en.html' | absolute_url }}">
+  <link rel="alternate" hreflang="zh-CN" href="{{ '/knowledge-map/' | absolute_url }}">
+  <link rel="alternate" hreflang="en" href="{{ '/README.en.html' | absolute_url }}">{% else %}<meta name="description" content="{{ page.description | default: site.description | escape }}">
+  <link rel="canonical" href="{{ page.url | absolute_url }}">{% endif %}
   <link rel="stylesheet" href="{{ '/knowledge-map/style.css' | relative_url }}">
   <link rel="stylesheet" href="{{ '/knowledge-map/document.css' | relative_url }}">
 </head>
 <body>
   <a class="skip" href="#main">跳到主要内容</a>
   <header class="site-header"><a class="brand" href="{{ '/knowledge-map/' | relative_url }}">RECSYS <span>／ 阅读与实践</span></a><nav aria-label="页面导航"><a href="{{ '/knowledge-map/' | relative_url }}">知识地图</a><a href="{{ '/knowledge-map/reader.html' | relative_url }}">阅读 PDF</a><a href="{{ '/knowledge-map/agent.html' | relative_url }}">本地 Agent</a><a href="{{ '/knowledge-map/#courses' | relative_url }}">学习路径</a></nav></header>
-  <main id="main" class="document">{% if page.path contains 'knowledge/concepts/' %}
+  <main id="main" class="document">{% if page.path contains 'knowledge/concepts/' %}{% assign concept_links = site.data.concept_links[page.id] %}
     <header class="concept-hero">
       <p class="concept-eyebrow">核心概念 <span aria-hidden="true">／</span> 第 {{ page.chapter }} 章</p>
       <h1>{{ page.title | escape }}</h1>
       <p class="concept-id">{{ page.id | escape }}</p>
-      <div class="concept-actions"><a href="{{ '/knowledge-map/' | relative_url }}#catalog">浏览概念目录与已发布 PDF</a></div>
+      <div class="concept-actions"><a href="{{ '/knowledge-map/' | relative_url }}#catalog">浏览概念目录与已发布 PDF</a>{% if concept_links %}
+        <a href="{{ concept_links.chapter_map | relative_url }}">第 {{ concept_links.chapter }} 章阅读地图</a>
+        <a href="{{ concept_links.pdf | relative_url }}#page={{ concept_links.page }}">原书 PDF 第 {{ concept_links.page }} 页</a>
+        {% if concept_links.code != '' %}<a href="{{ concept_links.code | relative_url }}">相关教学代码（仅供参考）</a>{% endif %}
+      {% endif %}</div>
     </header>{% endif %}
     {{ content }}</main>
   <footer><span>推荐系统：工业架构与核心算法 · 文档</span><a href="{{ '/knowledge-map/' | relative_url }}">返回知识地图 ↑</a></footer>
