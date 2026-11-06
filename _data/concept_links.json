@@ -148,7 +148,7 @@
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 8,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": "",
+    "code": "/knowledge-map/code/83fe41bc3cd0be844cd7.html",
     "summary": "精排模型需要同时利用有明确业务语义的低阶特征组合与深层网络学习的非线性关系。Wide & Deep 并行融合人工交叉与 DNN；DeepFM 利用 FM 学习二阶交互并与 DNN 共享特征嵌入；DLRM 则显式计算嵌入间交互后交由顶部网络组合。它们的交互位置、参数共享方式和成本不同，不能仅按模型名称替换。"
   },
   "feature-engineering": {
@@ -300,7 +300,7 @@
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 58,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": "",
+    "code": "/knowledge-map/code/962074915d8183602799.html",
     "summary": "Listwise 损失把同一请求的候选列表作为联合优化对象，利用列表内标签与分数构造相对分布；它改善的是请求内排序监督，并不天然给出可直接用于多任务融合的绝对点击概率。"
   },
   "load-pid-control": {
@@ -404,7 +404,7 @@
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 30,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": "",
+    "code": "/knowledge-map/code/b0bba57922892eb861da.html",
     "summary": "MMoE 以任务独立门控组合共享专家；CGC/PLE 进一步区分共享专家与任务专属专家，并通过分层结构调节共享程度。这些结构都在共享收益与任务冲突之间取舍，并不保证任务数量或专家数量越多越好。"
   },
   "multi-tower-pre-ranking": {
@@ -580,7 +580,7 @@
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 55,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": "",
+    "code": "/knowledge-map/code/962074915d8183602799.html",
     "summary": "Pointwise 直接学习目标概率，Pairwise 优化同请求候选顺序，Listwise 面向整个列表；需要概率可解释性时不能只追求排序指标。"
   },
   "ranking-ltr-choice": {
@@ -732,7 +732,7 @@
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
     "page": 42,
     "chapter_map": "/knowledge/chapters/ch12.html",
-    "code": "",
+    "code": "/knowledge-map/code/9226042ce24621063785.html",
     "summary": "目标注意力按当前候选从用户行为中提取相关兴趣，而自注意力刻画行为间依赖；两者解决的问题不同，不能只以模型层数比较。"
   },
   "two-tower": {

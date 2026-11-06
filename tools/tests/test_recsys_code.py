@@ -34,8 +34,19 @@ class ChapterCodeDiscoveryTest(unittest.TestCase):
             recsys_code.search(ROOT, "")
 
     def test_short_acronym_does_not_match_incidental_words(self):
-        self.assertEqual([], recsys_code.search(ROOT, "PLE"))
-        self.assertEqual([], recsys_code.search(ROOT, "DeepFM"))
+        # "DIN" appears as a substring in 16+ unrelated filenames (e.g. cascading,
+        # embedding, sliding); the tokeniser must reject it as an incidental match.
+        self.assertEqual([], recsys_code.search(ROOT, "DIN"))
+        # "SIM" appears in simhash, simcse, simulation; same guard.
+        self.assertEqual([], recsys_code.search(ROOT, "SIM"))
+        # "PLE" is the basename of ch12 ple.py — it is a legitimate exact match.
+        ple_results = recsys_code.search(ROOT, "PLE")
+        self.assertTrue(ple_results)
+        self.assertTrue(ple_results[0]["path"].endswith("ple.py"))
+        # "DeepFM" is an exact filename stem — legitimate match expected.
+        deepfm_results = recsys_code.search(ROOT, "DeepFM")
+        self.assertTrue(deepfm_results)
+        self.assertTrue(deepfm_results[0]["path"].endswith("deepfm.py"))
 
     def test_changed_chapter_files_are_discovered_without_curated_hints(self):
         with tempfile.TemporaryDirectory() as temporary:

@@ -337,6 +337,19 @@ def cosine(left: Counter[int], right: Counter[int]) -> float:
 
 def rank(root: Path, query: str, chapter: int | None = None) -> list[tuple[float, Chunk]]:
     chunks = [chunk for chunk in load(root) if chapter is None or chunk.chapter == chapter]
+    # A bare concept title is a navigational query. Prefer its curated, released
+    # PDF pointer while keeping longer contextual questions on the normal ranker.
+    exact_pointers: set[tuple[str, int]] = set()
+    if len(query.strip()) <= 32 and (root / "knowledge/concepts").is_dir():
+        from check_knowledge import citation_pointers
+        for card in (root / "knowledge/concepts").glob("*.md"):
+            content = card.read_text(encoding="utf-8")
+            title = re.search(r"(?m)^title:\s*(.+)$", content)
+            if not title or query.strip().casefold() != title.group(1).strip().casefold():
+                continue
+            source = re.search(r"(?ms)^## 本书依据\s*\n(.*?)(?=^## |\Z)", content)
+            for pdf_name, start, end in citation_pointers(source.group(1)) if source else []:
+                exact_pointers.update((pdf_name, page) for page in range(start, end + 1))
     expanded = expand_query(root, query)
     chapter_hints = concept_chapter_hints(root, query)
     if len(chapter_hints) != 1:
@@ -363,7 +376,8 @@ def rank(root: Path, query: str, chapter: int | None = None) -> list[tuple[float
         exact = 6.0 if query.lower() in f"{chunk.title} {chunk.section} {chunk.text}".lower() else 0.0
         heading = 2.0 * sum(1 for token in set(query_tokens) if token in terms(chunk.section))
         chapter_prior = 12.0 if chunk.chapter in chapter_hints else 0.0
-        score = bm25 + semantic * 3.0 + exact + heading + chapter_prior
+        pointer_prior = 20.0 if (Path(chunk.source).name, chunk.page_start) in exact_pointers else 0.0
+        score = bm25 + semantic * 3.0 + exact + heading + chapter_prior + pointer_prior
         if score > 0:
             ranked.append((score, chunk))
     ranked.sort(key=lambda item: (-item[0], item[1].id))
@@ -1151,6 +1165,11 @@ def review_surface(root: Path, path: Path, project: Path | None = None,
         path = resolved
     if not path.exists() or not path.is_file():
         raise SystemExit(f"评审目标不是可读文件：{path}")
+    if path.suffix.lower() != ".py":
+        print(json.dumps({"status": "unsupported_target", "target": str(path),
+                          "target_type": path.suffix.lower().lstrip(".") or "unknown",
+                          "message": "当前 review 仅支持 Python 源码；请指定 .py 文件。"}, ensure_ascii=False, indent=2))
+        return
     text = path.read_text(encoding="utf-8")
     findings: list[dict[str, object]] = []
     parse_error = None

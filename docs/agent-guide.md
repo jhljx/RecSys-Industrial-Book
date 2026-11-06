@@ -80,6 +80,8 @@ python3 tools/recsys_agent.py page --chapter 17 --page 17
 
 检索结果是发现证据，不是最终答案。公式、表格、限定条件或相邻上下文重要时，必须执行 `page` 或打开对应 PDF 页面。回答格式：
 
+精确输入某张概念卡的标题（如「负采样」）时，检索优先展示该卡「本书依据」标注的已发布 PDF 页；加上具体场景的查询仍按检索分数排序。概念卡引用只用于导航，最终论断必须核对 PDF 原页。
+
 - `本书依据`：只陈述发布 PDF 支持的内容并标注文件和 PDF 页；
 - `扩展说明`：工程经验、外部资料或推导；
 - 找不到时明确说发布章节未覆盖，不补造书中结论。
@@ -188,6 +190,7 @@ python3 tools/recsys_agent.py review templates/recommendation-pipeline/app.py
 输出 JSON 包含精确文件位置、静态线索、待执行验证和 PDF 来源；`status=needs_runtime_verification` 不是代码通过评审。静态检查只识别仓库内显式模式，不能替代运行验证。
 
 当前 PIT 检查只通过 Python AST 识别少数明确比较表达式；识别到表达式不代表运行时行为正确。未识别代码或语法错误时不会出具通过结论。
+对于 Markdown 等非 `.py` 文件，返回 `unsupported_target` 和文件类型，不执行 Python 静态评审。
 
 ### 排障
 

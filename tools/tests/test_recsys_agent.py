@@ -164,6 +164,20 @@ class RecSysAgentTest(unittest.TestCase):
             ranked = recsys_agent.rank(self.root, "协同过滤召回稀疏交互")
         self.assertEqual(10, ranked[0][1].chapter)
 
+    def test_exact_concept_title_prefers_curated_pdf_pointer(self) -> None:
+        root = TOOLS.parent
+        ranked = recsys_agent.rank(root, "负采样", chapter=10)
+        self.assertTrue(ranked)
+        self.assertEqual(60, ranked[0][1].page_start)
+
+    def test_review_rejects_unsupported_target_type(self) -> None:
+        target = self.root / "README.md"
+        target.write_text("# target\n", encoding="utf-8")
+        report = self.capture_json(recsys_agent.review_surface, self.root, target)
+        self.assertEqual("unsupported_target", report["status"])
+        self.assertEqual("md", report["target_type"])
+        self.assertIn("仅支持 Python 源码", report["message"])
+
     def test_explain_cli_returns_audience_guidance_and_pdf_evidence(self) -> None:
         script = TOOLS / "recsys_agent.py"
         result = subprocess.run(
