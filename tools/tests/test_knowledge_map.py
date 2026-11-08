@@ -16,6 +16,22 @@ import build_knowledge_map  # noqa: E402
 
 
 class KnowledgeMapTest(unittest.TestCase):
+    def test_chapter_24_has_overview_four_methods_and_cross_chapter_dependencies(self) -> None:
+        data = build_knowledge_map.build()
+        cards = {row["id"] for row in data["concepts"] if row["chapter"] == 24}
+        self.assertEqual({"personalized-network-parameters", "poso-submergence", "apg-conditional-parameters",
+                          "pepnet-gate-nu", "appnet-feature-partition"}, cards)
+        self.assertEqual(4, len([row for row in data["papers"] if row["chapter"] == 24]))
+        self.assertEqual(4, len(data["paperHierarchy"]["24"]))
+        self.assertEqual(cards, set(data["conceptFocus"]["24"]))
+        self.assertIn(["cold-start", "poso-submergence"], data["edges"])
+        self.assertIn(["lhuc-hidden-unit-adaptation", "personalized-network-parameters"], data["edges"])
+        self.assertIn(["personalized-network-parameters", "poso-submergence"], data["edges"])
+        self.assertIn(["lhuc-hidden-unit-adaptation", "pepnet-gate-nu"], data["edges"])
+        self.assertIn(["feature-engineering", "lhuc-hidden-unit-adaptation"], data["edges"])
+        self.assertIn(["lhuc-hidden-unit-adaptation", "fibinet-bilinear"], data["edges"])
+        self.assertTrue({"lhuc-hidden-unit-adaptation", "fibinet-bilinear"} <= set(data["conceptFocus"]["15"]))
+
     def test_chapter_focus_keeps_paper_specific_cards_out_of_overview(self) -> None:
         data = build_knowledge_map.build()
         focus = data["conceptFocus"]["20"]
@@ -119,7 +135,7 @@ class KnowledgeMapTest(unittest.TestCase):
         chapter12 = [paper for paper in data["papers"] if paper["chapter"] == 12]
         self.assertTrue({"wide-and-deep", "pnn", "deepfm", "xdeepfm", "mmoe", "ple", "deepseekmoe"}
                         <= {paper["id"] for paper in chapter12})
-        self.assertEqual({7, 9, 10, 11, 12, 15, 20, 23}, {paper["chapter"] for paper in data["papers"]})
+        self.assertEqual({7, 9, 10, 11, 12, 15, 20, 23, 24}, {paper["chapter"] for paper in data["papers"]})
         self.assertEqual(len(data["papers"]), len({paper["id"] for paper in data["papers"]}))
         self.assertTrue(all(paper["pages"][0] >= 1 for paper in data["papers"]))
         self.assertTrue(all(set(paper["concepts"]) <= {concept["id"] for concept in data["concepts"]}
@@ -129,7 +145,7 @@ class KnowledgeMapTest(unittest.TestCase):
         data = build_knowledge_map.build()
         original = json.loads((ROOT / "knowledge/paper-map.json").read_text(encoding="utf-8"))
         changes = [
-            ({"chapter": 24}, "unknown paper chapter"),
+            ({"chapter": 25}, "unknown paper chapter"),
             ({"pages": [1, 70]}, "paper pages exceed PDF bounds"),
             ({"pages": [10, 9]}, "invalid paper pages"),
             ({"concepts": ["not-a-concept"]}, "paper concepts"),

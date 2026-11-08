@@ -35,6 +35,8 @@
     "15": [
       "feature-engineering",
       "feature-interaction-models",
+      "lhuc-hidden-unit-adaptation",
+      "fibinet-bilinear",
       "feature-freshness",
       "feature-pruning",
       "feature-governance",
@@ -67,6 +69,13 @@
       "weighted-lr-duration",
       "duration-bucket-modeling",
       "duration-distribution"
+    ],
+    "24": [
+      "personalized-network-parameters",
+      "poso-submergence",
+      "apg-conditional-parameters",
+      "pepnet-gate-nu",
+      "appnet-feature-partition"
     ]
   }
 }

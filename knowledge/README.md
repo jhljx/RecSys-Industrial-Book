@@ -111,8 +111,9 @@
 | feature-governance | 特征治理 | 15 | feature-engineering |
 | feature-interaction-models | 特征交互模型选型 | 15 | feature-engineering |
 | feature-pruning | 冗余特征分组剪枝 | 15 | feature-engineering |
-| fibinet-bilinear | FiBiNet双线性交互 | 15 | feature-crossing-deep-ranking |
+| fibinet-bilinear | FiBiNet双线性交互 | 15 | feature-crossing-deep-ranking, lhuc-hidden-unit-adaptation |
 | gdcn-gated-cross | GDCN门控深层交叉 | 15 | feature-crossing-deep-ranking |
+| lhuc-hidden-unit-adaptation | LHUC隐藏单元贡献自适应 | 15 | feature-engineering |
 | forward-inverted-index-update | 正排与倒排索引协同更新 | 16 | offline-pipeline |
 | late-feedback-labels | 迟到反馈的 Label 合并与样本等待 | 16 | offline-pipeline |
 | model-release | 模型原子发布 | 16 | offline-pipeline |
@@ -192,6 +193,11 @@
 | flowtime-personal-prior | FlowTime个性化流先验 | 23 | duration-distribution |
 | tpm-progressive-regression | TPM树状渐进回归 | 23 | duration-distribution |
 | weighted-lr-duration | Weighted LR 时长反解 | 23 | duration-modeling |
+| apg-conditional-parameters | APG条件参数生成 | 24 | personalized-network-parameters |
+| appnet-feature-partition | APPNet自动特征划分与参数门控 | 24 | personalized-network-parameters, pepnet-gate-nu, apg-conditional-parameters |
+| pepnet-gate-nu | PEPNet先验驱动的双层门控 | 24 | personalized-network-parameters, lhuc-hidden-unit-adaptation |
+| personalized-network-parameters | 个性化网络参数 | 24 | lhuc-hidden-unit-adaptation |
+| poso-submergence | POSO冷启动个性化模块 | 24 | cold-start, personalized-network-parameters |
 | exploration | 探索与利用 | 28 | cold-start |
 | rl-recsys | 强化学习推荐 | 28 | exploration |
 | safe-exploration | 安全探索 | 28 | exploration |

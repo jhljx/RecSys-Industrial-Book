@@ -110,6 +110,7 @@
     "feature-pruning",
     "fibinet-bilinear",
     "gdcn-gated-cross",
+    "lhuc-hidden-unit-adaptation",
     "forward-inverted-index-update",
     "late-feedback-labels",
     "model-release",
@@ -189,6 +190,11 @@
     "flowtime-personal-prior",
     "tpm-progressive-regression",
     "weighted-lr-duration",
+    "apg-conditional-parameters",
+    "appnet-feature-partition",
+    "pepnet-gate-nu",
+    "personalized-network-parameters",
+    "poso-submergence",
     "exploration",
     "rl-recsys",
     "safe-exploration"
@@ -655,8 +661,16 @@
       "fibinet-bilinear"
     ],
     [
+      "lhuc-hidden-unit-adaptation",
+      "fibinet-bilinear"
+    ],
+    [
       "feature-crossing-deep-ranking",
       "gdcn-gated-cross"
+    ],
+    [
+      "feature-engineering",
+      "lhuc-hidden-unit-adaptation"
     ],
     [
       "offline-pipeline",
@@ -973,6 +987,42 @@
     [
       "duration-modeling",
       "weighted-lr-duration"
+    ],
+    [
+      "personalized-network-parameters",
+      "apg-conditional-parameters"
+    ],
+    [
+      "personalized-network-parameters",
+      "appnet-feature-partition"
+    ],
+    [
+      "pepnet-gate-nu",
+      "appnet-feature-partition"
+    ],
+    [
+      "apg-conditional-parameters",
+      "appnet-feature-partition"
+    ],
+    [
+      "personalized-network-parameters",
+      "pepnet-gate-nu"
+    ],
+    [
+      "lhuc-hidden-unit-adaptation",
+      "pepnet-gate-nu"
+    ],
+    [
+      "lhuc-hidden-unit-adaptation",
+      "personalized-network-parameters"
+    ],
+    [
+      "cold-start",
+      "poso-submergence"
+    ],
+    [
+      "personalized-network-parameters",
+      "poso-submergence"
     ],
     [
       "cold-start",

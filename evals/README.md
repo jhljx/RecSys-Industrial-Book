@@ -1,6 +1,6 @@
 # 检索与引用评测
 
-`retrieval.jsonl` 当前含 88 条中英文高频查询。每条指定允许命中的章节；评测同时报告 Hit@1、Recall@5 和 PDF 页码引用有效性。题目数以文件实际记录为准，新增题目后同步更新本文。
+`retrieval.jsonl` 当前含 89 条中英文高频查询。每条指定允许命中的章节；评测同时报告 Hit@1、Recall@5 和 PDF 页码引用有效性。题目数以文件实际记录为准，新增题目后同步更新本文。
 
 ```bash
 python3 tools/recsys_agent.py eval

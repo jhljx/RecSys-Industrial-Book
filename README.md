@@ -41,7 +41,7 @@
 |---|---|---|
 | 直接问书与继续追问 | 针对发布 PDF 生成简明回答、页码依据和适用边界；会话保存在本机 | `ask --session`、`navigate` |
 | 学习陪练 | 对单元提交物给出具体追问、实践建议与下一步任务，不冒充自动评分 | `coach` |
-| 查书与可靠引用 | 检索 21 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
+| 查书与可靠引用 | 检索 22 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
 | 12 周学习课程 | 新人全链路或研究生可信实验路线，按反馈和时间预算生成今日任务 | `course start/today/feedback/status` |
 | 证据化掌握 | 用提交物、实际命令输出、主路径、失败路径和测验分数验收；不接受口头“学会了” | `course submit`、`complete` |
 | 自适应复习 | 前置满足后推荐下一主题，低分补救，七天后安排回忆、纠错和迁移 | `next`、`course review` |
@@ -96,7 +96,7 @@ python3 tools/install_skills.py --client claude
 
 论文导图的人工归属写在 [`knowledge/paper-hierarchy.json`](knowledge/paper-hierarchy.json)：每篇论文在本章只出现一次，归入一个汇总概念；专属方法卡收在论文详情里。新增章节尚未策划层级时，构建器按论文的第一个本章概念生成临时归属，后续应审阅并补入该文件。论文关联的概念卡及 PDF 页码仍以 [`knowledge/paper-map.json`](knowledge/paper-map.json) 为准。
 
-[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 21 章、191 张概念卡、198 条前置依赖，并以独立图谱展示 118 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
+[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 22 章、197 张概念卡、209 条前置依赖，并以独立图谱展示 122 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
 
 [`knowledge-map/reader.html`](knowledge-map/reader.html) 是无需构建工具的站内章节 PDF 阅读器，可本地以 `file://` 打开，也可通过 [GitHub Pages](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html) 使用；左侧选择已发布章节、上一章/下一章和 PDF 页码跳转均保持在阅读器内。链接如 `reader.html#ch10&page=60` 可直达第 10 章 PDF 第 60 页。阅读器会向浏览器 PDF 查看器请求默认“适应宽度”（`view=FitH`），并让阅读区域铺满可用列；查看器是否采纳缩放参数取决于浏览器。若浏览器禁用内嵌 PDF 或本地文件预览，可使用页面底部的直接打开/下载链接。
 
@@ -142,6 +142,7 @@ python3 tools/install_skills.py --client claude
 | **第 19 章** | 推荐系统偏差问题 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch19&page=1) |
 | **第 20 章** | 用户兴趣与序列建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch20&page=1) |
 | **第 23 章** | 时长预估建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch23&page=1) |
+| **第 24 章** | 个性化网络参数 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch24&page=1) |
 | **第 28 章** | 强化学习推荐场景 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch28&page=1) |
 
 ---
@@ -164,20 +165,21 @@ python3 tools/install_skills.py --client claude
 | **第 19 章** | 推荐系统偏差问题（样本选择偏差、用户群体偏差、混淆偏差、曝光位置偏差、Duration偏差等） | ✅ **已完成** |
 | **第 23 章** | 时长预估建模（基于加权二分类的时长建模、基于离散化分桶的时长建模、经典时长预估建模方法、生成式时长建模） | ✅ **已完成** |
 | **第 21 ~ 22 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
-| **第 24 ~ 27 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
+| **第 24 章** | 个性化网络参数 | ✅ **已完成** |
+| **第 25 ~ 27 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
 | **第 28 章** | 强化学习推荐场景 | ✅ **已发布** |
 | **第 29 ~ 38 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
 
 <!-- released-status:start -->
-**公开发布快照**：21 份章节 PDF（含前言），共 879 个 PDF 页。已发布章节编号：0–12、15–20、23、28。这里仅统计仓库公开 PDF，不推断未发布章节的写作进度。
+**公开发布快照**：22 份章节 PDF（含前言），共 897 个 PDF 页。已发布章节编号：0–12、15–20、23–24、28。这里仅统计仓库公开 PDF，不推断未发布章节的写作进度。
 <!-- released-status:end -->
 
 
 ## 全书章节目录
 
-以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、24–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。已发布章节入口见上方表格。
+以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、25–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。已发布章节入口见上方表格。
 
-以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、24–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。
+以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、25–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。
 
 - **第一部分 推荐系统基础**  
     - [**第 1 章 推荐系统概述**](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch1&page=1)
@@ -785,12 +787,29 @@ python3 tools/install_skills.py --client claude
             - 23.6.7 时长预估的持续迭代与实践经验  
         - 23.7 本章小结  
         - 23.8 参考文献    
-    - **第 24 章 个性化网络参数**
-        - 24.1 个性化网络参数
-        - 24.2 LUHC
-        - 24.3 SNet
-        - 24.4 POSO
-        - 24.5 PEPNet
+    - [**第 24 章 个性化网络参数**](ch24%20个性化网络参数/第二十四章-个性化网络参数.pdf)
+        - 24.1 POSO模型
+            - 24.1.1 问题背景与核心思想
+            - 24.1.2 POSO的模块设计
+                - 24.1.2.1 POSO (MLP)模块
+                - 24.1.2.2 POSO (MHA)模块
+                - 24.1.2.3 POSO (MMoE)模块
+            - 24.1.3 POSO在冷启动场景中的应用
+        - 24.2 APG模型
+            - 24.2.1 原始APG与条件设计
+            - 24.2.2 高效APG结构与复杂度优化
+        - 24.3 PEPNet模型
+            - 24.3.1 门控神经单元
+            - 24.3.2 Embedding个性化网络（EPNet）
+            - 24.3.3 参数个性化网络（PPNet）
+            - 24.3.4 工业部署与工程优化
+        - 24.4 APPNet模型
+            - 24.4.1 自动特征划分模块（AFP）
+                - 24.4.1.1 Feature-wise AFP模块
+                - 24.4.1.2 Bit-wise AFP模块
+            - 24.4.2 参数个性化网络（PPNet）
+            - 24.4.3 全空间多任务学习目标
+        - 24.5 本章小结
         - 24.6 参考文献
     - **第 25 章 多任务融合**
         - 25.1 多任务融合概述

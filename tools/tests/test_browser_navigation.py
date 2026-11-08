@@ -42,6 +42,12 @@ window.addEventListener('load', () => {
     select.value = '20'; select.dispatchEvent(new Event('change', {bubbles: true}));
     check('chapter 20 summary graph', document.querySelectorAll('#graph-view .graph-node.local').length === 11 &&
       !document.querySelector('#graph-view').textContent.includes('DIN 目标局部激活'), document.querySelector('#graph-count').textContent);
+    select.value = '24'; select.dispatchEvent(new Event('change', {bubbles: true}));
+    check('chapter 24 LHUC connection', document.querySelectorAll('#graph-view .graph-node.local').length === 5 &&
+      document.querySelector('#graph-view').textContent.includes('LHUC隐藏单元贡献自适应'), document.querySelector('#graph-count').textContent);
+    select.value = '15'; select.dispatchEvent(new Event('change', {bubbles: true}));
+    check('chapter 15 LHUC and FiBiNet', document.querySelector('#graph-view').textContent.includes('LHUC隐藏单元贡献自适应') &&
+      document.querySelector('#graph-view').textContent.includes('FiBiNet双线性交互'), document.querySelector('#graph-count').textContent);
     select.value = '4'; select.dispatchEvent(new Event('change', {bubbles: true}));
     check('chapter graph', document.querySelectorAll('#graph-view .graph-node').length > 0 &&
       document.querySelector('#graph-count').textContent.includes('前置关系'), document.querySelector('#graph-count').textContent);

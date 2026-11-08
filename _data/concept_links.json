@@ -31,6 +31,22 @@
     "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html",
     "summary": "索引选择是召回率、延迟、内存、构建速度和增量更新之间的多目标决策。"
   },
+  "apg-conditional-parameters": {
+    "chapter": 24,
+    "pdf": "/ch24 个性化网络参数/第二十四章-个性化网络参数.pdf",
+    "page": 6,
+    "chapter_map": "/knowledge/chapters/ch24.html",
+    "code": "",
+    "summary": "直接生成完整矩阵随输入和输出维度增长；低秩仅减少参数表示，若仍重构完整矩阵便失去前向计算收益。共享两侧矩阵、仅生成较小中间矩阵是更高效的实现。"
+  },
+  "appnet-feature-partition": {
+    "chapter": 24,
+    "pdf": "/ch24 个性化网络参数/第二十四章-个性化网络参数.pdf",
+    "page": 14,
+    "chapter_map": "/knowledge/chapters/ch24.html",
+    "code": "",
+    "summary": "两个分支前向仍能看到完整表示，掩码控制的是梯度；维度级划分更细但参数更多。全空间联合目标用CTR×CVR约束曝光到转化的概率，而非把未点击曝光当作CVR负例。"
+  },
   "attention-polarization": {
     "chapter": 20,
     "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
@@ -421,7 +437,7 @@
     "page": 16,
     "chapter_map": "/knowledge/chapters/ch15.html",
     "code": "/knowledge-map/code/03809b2c364910416b0f.html",
-    "summary": "域重要性与域对交互是两种不同信号，分别消融才能判断收益来源。"
+    "summary": "域重要性与域对交互是两种不同信号，分别消融才能判断收益来源。LHUC调节隐藏单元贡献，FiBiNet的SE分支调节特征域贡献，二者属于第15章从动态贡献走向特征重加权的相关思想，不能视为相同结构。"
   },
   "filtering": {
     "chapter": 4,
@@ -630,6 +646,14 @@
     "chapter_map": "/knowledge/chapters/ch09.html",
     "code": "/knowledge-map/code/a8dfd02006f25d9982e3.html",
     "summary": "大词表无需大规模码本向量查找，但二值组合利用率与训练目标仍需额外约束。"
+  },
+  "lhuc-hidden-unit-adaptation": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 32,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "",
+    "summary": "隐藏单元的贡献可以在共享主干之上单独调节；这为推荐模型按用户、场景调制中间表示提供了结构启发，但LHUC原始目标是声学模型自适应，不能直接当作推荐场景的实测收益。"
   },
   "lightgcn-propagation": {
     "chapter": 10,
@@ -959,6 +983,22 @@
     "code": "/knowledge-map/code/3e4da0de37b4169b1265.html",
     "summary": "路径扩展带来更多关系但易被热门中介节点主导，须区分结构增量与共现重复。"
   },
+  "pepnet-gate-nu": {
+    "chapter": 24,
+    "pdf": "/ch24 个性化网络参数/第二十四章-个性化网络参数.pdf",
+    "page": 10,
+    "chapter_map": "/knowledge/chapters/ch24.html",
+    "code": "",
+    "summary": "Gate NU借鉴第15章LHUC的隐藏单元贡献调制，但针对推荐的多场景多任务设计；EPNet门控输入的停止梯度不等于冻结共享Embedding，PPNet与EPNet各司其职。"
+  },
+  "personalized-network-parameters": {
+    "chapter": 24,
+    "pdf": "/ch24 个性化网络参数/第二十四章-个性化网络参数.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch24.html",
+    "code": "",
+    "summary": "提供个性化输入特征不保证共享网络会用好少数群体信号；POSO强调冷启动群体门控，APG生成条件参数，PEPNet使用先验调制Embedding和任务塔，APPNet学习个性化分支与主预测分支的梯度归属。第15章LHUC的隐藏单元贡献调制为门控路线提供先前概念。"
+  },
   "pinsage-neighbor-sampling": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
@@ -1014,6 +1054,14 @@
     "chapter_map": "/knowledge/chapters/ch20.html",
     "code": "",
     "summary": "把近期正反馈与短播等负反馈分别编码，能给排序模型提供不同方向的兴趣信号；短播不能在所有场景下等同于厌恶。"
+  },
+  "poso-submergence": {
+    "chapter": 24,
+    "pdf": "/ch24 个性化网络参数/第二十四章-个性化网络参数.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch24.html",
+    "code": "",
+    "summary": "新用户冷启动不只是行为历史不足，还可能是群体样本少、统一参数忽略新用户标记；用户累计观看数分桶和物品年龄/曝光编码可调节中间层计算，而不必复制整网。"
   },
   "pq-semantic-tokenizer": {
     "chapter": 9,

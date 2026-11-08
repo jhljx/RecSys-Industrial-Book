@@ -1589,6 +1589,58 @@
       "concepts": [
         "cofars-context-prototype-search"
       ]
+    },
+    {
+      "id": "ch24-poso",
+      "method": "POSO",
+      "title": "POSO: Personalized Cold Start Modules for Large-scale Recommender Systems",
+      "chapter": 24,
+      "pages": [
+        1,
+        6
+      ],
+      "concepts": [
+        "poso-submergence"
+      ]
+    },
+    {
+      "id": "ch24-apg",
+      "method": "APG",
+      "title": "APG: Adaptive Parameter Generation Network for Click-Through Rate Prediction",
+      "chapter": 24,
+      "pages": [
+        6,
+        9
+      ],
+      "concepts": [
+        "apg-conditional-parameters"
+      ]
+    },
+    {
+      "id": "ch24-pepnet",
+      "method": "PEPNet",
+      "title": "PEPNet: Parameter and Embedding Personalized Network for Infusing with Personalized Prior Information",
+      "chapter": 24,
+      "pages": [
+        9,
+        12
+      ],
+      "concepts": [
+        "pepnet-gate-nu"
+      ]
+    },
+    {
+      "id": "ch24-appnet",
+      "method": "APPNet",
+      "title": "APPNet: Automatic Feature Partitioning-Based Parameter Personalized Network for Conversion Prediction in E-commerce",
+      "chapter": 24,
+      "pages": [
+        12,
+        17
+      ],
+      "concepts": [
+        "appnet-feature-partition"
+      ]
     }
   ]
 }

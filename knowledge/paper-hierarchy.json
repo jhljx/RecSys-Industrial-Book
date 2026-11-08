@@ -280,6 +280,32 @@
           "flowtime"
         ]
       }
+    ],
+    "24": [
+      {
+        "concept": "poso-submergence",
+        "papers": [
+          "ch24-poso"
+        ]
+      },
+      {
+        "concept": "pepnet-gate-nu",
+        "papers": [
+          "ch24-apg"
+        ]
+      },
+      {
+        "concept": "appnet-feature-partition",
+        "papers": [
+          "ch24-pepnet"
+        ]
+      },
+      {
+        "concept": "apg-conditional-parameters",
+        "papers": [
+          "ch24-appnet"
+        ]
+      }
     ]
   }
 }

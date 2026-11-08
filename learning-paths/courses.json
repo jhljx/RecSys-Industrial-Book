@@ -120,7 +120,8 @@
             6,
             11,
             12,
-            20
+            20,
+            24
           ],
           "concepts": [
             "pre-ranking",
@@ -196,20 +197,27 @@
             "sequence-contrast-overview",
             "sequence-memory-overview",
             "long-history-interest-modeling",
-            "multimodal-interest-modeling"
+            "multimodal-interest-modeling",
+            "apg-conditional-parameters",
+            "appnet-feature-partition",
+            "pepnet-gate-nu",
+            "personalized-network-parameters",
+            "poso-submergence"
           ],
-          "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）",
-          "deliverable": "效果-成本 Pareto 表、特征交叉消融、多任务结构与排序损失方案；长序列兴趣检索与目标注意力的效果-成本对照",
+          "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）；ch24 PDF 1-18（重点1-6、7-9、10-12、14-17）",
+          "deliverable": "效果-成本 Pareto 表、特征交叉消融、多任务结构与排序损失方案；长序列兴趣检索与目标注意力的效果-成本对照；POSO/APG/PEPNet/APPNet在冷启动分群、参数开销与在线延迟下的结构选型对照",
           "acceptance": [
             "固定服务预算比较候选保留率、特征交叉消融与排序指标",
             "检查多任务冲突、列表分组、公式单调性和线上成本",
-            "在固定候选规模与延迟预算下检查长序列召回、兴趣表示和回退效果"
+            "在固定候选规模与延迟预算下检查长序列召回、兴趣表示和回退效果",
+            "固定训练窗口和服务预算，对照新老用户、不同场景的分群校准与P99，并核验门控条件可用性"
           ],
           "questions": [
             "显式交叉分支的增量如何通过消融验证？",
             "多专家结构如何验证任务共享收益？",
             "Listwise 训练的数据分组错误会造成什么问题？",
-            "检索截断与目标注意力的增益如何在同一预算下验证？"
+            "检索截断与目标注意力的增益如何在同一预算下验证？",
+            "POSO缓解冷启动群体信号淹没与PEPNet的LHUC式隐藏单元调制有什么结构联系？"
           ]
         },
         {
@@ -307,7 +315,8 @@
             "dcn-v2-cross",
             "fibinet-bilinear",
             "gdcn-gated-cross",
-            "feature-interaction-models"
+            "feature-interaction-models",
+            "lhuc-hidden-unit-adaptation"
           ],
           "reading": "ch15 PDF 1-38；ch16 PDF 1-20、46-75",
           "deliverable": "特征契约、样本时间线与发布 manifest",
@@ -471,6 +480,7 @@
             19,
             20,
             23,
+            24,
             28
           ],
           "concepts": [
@@ -614,7 +624,8 @@
             6,
             11,
             12,
-            20
+            20,
+            24
           ],
           "concepts": [
             "pre-ranking",
@@ -690,20 +701,27 @@
             "sequence-contrast-overview",
             "sequence-memory-overview",
             "long-history-interest-modeling",
-            "multimodal-interest-modeling"
+            "multimodal-interest-modeling",
+            "apg-conditional-parameters",
+            "appnet-feature-partition",
+            "pepnet-gate-nu",
+            "personalized-network-parameters",
+            "poso-submergence"
           ],
-          "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）",
-          "deliverable": "固定预算的特征交叉、教师-学生、多专家和 Listwise 消融；长序列兴趣检索与目标注意力的效果-成本对照",
+          "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）；ch24 PDF 1-18（重点1-6、7-9、10-12、14-17）",
+          "deliverable": "固定预算的特征交叉、教师-学生、多专家和 Listwise 消融；长序列兴趣检索与目标注意力的效果-成本对照；POSO/APG/PEPNet/APPNet在冷启动分群、参数开销与在线延迟下的结构选型对照",
           "acceptance": [
             "报告 Pareto 前沿、分任务收益和列表指标",
             "控制参数量、延迟、训练数据与请求分组语义",
-            "在固定候选规模与延迟预算下检查长序列召回、兴趣表示和回退效果"
+            "在固定候选规模与延迟预算下检查长序列召回、兴趣表示和回退效果",
+            "固定训练窗口和服务预算，对照新老用户、不同场景的分群校准与P99，并核验门控条件可用性"
           ],
           "questions": [
             "如何排除特征交叉收益只是参数量增长的结果？",
             "多任务收益如何排除参数量增长的影响？",
             "Listwise 目标在什么数据条件下可能劣于 Pointwise？",
-            "检索截断与目标注意力的增益如何在同一预算下验证？"
+            "检索截断与目标注意力的增益如何在同一预算下验证？",
+            "POSO缓解冷启动群体信号淹没与PEPNet的LHUC式隐藏单元调制有什么结构联系？"
           ]
         },
         {
@@ -791,7 +809,8 @@
             "dcn-v2-cross",
             "fibinet-bilinear",
             "gdcn-gated-cross",
-            "feature-interaction-models"
+            "feature-interaction-models",
+            "lhuc-hidden-unit-adaptation"
           ],
           "reading": "ch15 PDF 1-38",
           "deliverable": "point-in-time 数据卡与交互结构消融",
@@ -953,6 +972,7 @@
             19,
             20,
             23,
+            24,
             28
           ],
           "concepts": [
