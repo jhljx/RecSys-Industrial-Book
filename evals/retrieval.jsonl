@@ -61,7 +61,7 @@
 {"query": "时长预估建模", "expected_chapters": [23]}
 {"query": "watch time prediction", "expected_chapters": [23]}
 {"query": "推荐冷启动", "expected_chapters": [1, 4, 28]}
-{"query": "新物品冷启动", "expected_chapters": [1, 4, 28]}
+{"query": "新物品冷启动", "expected_chapters": [1, 4, 24, 28]}
 {"query": "多样性打散", "expected_chapters": [7]}
 {"query": "MMR 多样性", "expected_chapters": [7]}
 {"query": "探索与利用", "expected_chapters": [28]}
@@ -86,4 +86,4 @@
 {"query": "时长阈值标签绝对时长与完播比例", "expected_chapters": [23]}
 {"query": "时长分桶边界漂移分位点和校准", "expected_chapters": [23]}
 {"query": "混排 Load 流量控制 PID 积分限幅与调节震荡", "expected_chapters": [8]}
-{"query": "LHUC如何通过隐藏单元贡献实现个性化，并与PEPNet有什么关联？", "expected_chapters": [15]}
+{"query": "LHUC如何通过隐藏单元贡献实现个性化，并与PEPNet有什么关联？", "expected_chapters": [15, 24]}
