@@ -16,6 +16,28 @@ import build_knowledge_map  # noqa: E402
 
 
 class KnowledgeMapTest(unittest.TestCase):
+    def test_chapter_focus_keeps_paper_specific_cards_out_of_overview(self) -> None:
+        data = build_knowledge_map.build()
+        focus = data["conceptFocus"]["20"]
+        chapter_cards = {row["id"] for row in data["concepts"] if row["chapter"] == 20}
+        self.assertEqual(11, len(focus))
+        self.assertEqual(len(focus), len(set(focus)))
+        self.assertTrue(set(focus) <= chapter_cards)
+        self.assertNotIn("din-local-activation", focus)
+        self.assertIn("din-local-activation", chapter_cards)
+        self.assertIn("sequence-attention-overview", focus)
+        self.assertTrue(any(a in focus and b in focus for a, b in data["edges"]))
+
+    def test_chapter_focus_rejects_cross_chapter_card(self) -> None:
+        data = build_knowledge_map.build()
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "knowledge").mkdir()
+            (root / "knowledge/concept-focus.json").write_text(
+                json.dumps({"version": 1, "chapters": {"20": ["semantic-id"]}}), encoding="utf-8")
+            with self.assertRaisesRegex(ValueError, "invalid concept focus for chapter 20"):
+                build_knowledge_map.load_concept_focus(root, data["chapters"], data["concepts"])
+
     def test_paper_hierarchy_has_one_parent_per_paper(self) -> None:
         data = build_knowledge_map.build()
         hierarchy = data["paperHierarchy"]

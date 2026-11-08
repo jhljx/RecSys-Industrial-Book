@@ -52,13 +52,15 @@
     const summary = document.createElement('p'); summary.textContent = concept.summary; detail.append(summary);
     addLink('阅读概念卡 ↗', concept.url);
     const count = document.createElement('p'); count.className = 'citation';
-    count.textContent = `本分支包含 ${group.papers.length} 个代表论文方法；点击圆点展开或收起。`;
+    count.textContent = `本分支包含 ${group.papers.length} 个代表论文方法；点击圆点收起或重新展开。`;
     detail.append(count);
   }
   async function render() {
     const number = Number(select.value);
     const rows = papers.filter(paper => paper.chapter === number);
     selected = new Map(rows.map(paper => [paper.id, paper]));
+    // Expanded trees need enough vertical room for readable method labels.
+    svg.style.height = `${Math.max(620, Math.min(1600, 200 + rows.length * 35))}px`;
     const groups = hierarchy[number] || [];
     selectedGroups = new Map(groups.map(group => [group.concept, group]));
     document.getElementById('paper-count').textContent = `${groups.length} 类汇总概念 · ${rows.length} 个代表论文方法`;
@@ -74,7 +76,7 @@
       else {
       mm = window.markmap.Markmap.create(svg, {
         color: node => ['#9b3924', '#546d73', '#6b675e'][Math.min((node.state?.depth || 1) - 1, 2)], colorFreezeLevel: 2,
-        initialExpandLevel: 2, maxWidth: 240, spacingHorizontal: 100, spacingVertical: 14,
+        initialExpandLevel: -1, maxWidth: 240, spacingHorizontal: 100, spacingVertical: 14,
         duration: 240, maxInitialScale: 1.4
       });
       await mm.setData(tree); await mm.fit();
@@ -90,7 +92,7 @@
       list.append(item);
     }
     detail.append(list);
-    const hint = document.createElement('p'); hint.textContent = '点击圆点展开方法，点击名称看 PDF 页码与专属概念卡；连线仅表示归属。'; detail.append(hint);
+    const hint = document.createElement('p'); hint.textContent = '方法默认全部展开；点击名称查看 PDF 页码与专属概念卡。连线仅表示归属。'; detail.append(hint);
   }
   svg.addEventListener('click', event => {
     const group = event.target.closest('g.markmap-node');

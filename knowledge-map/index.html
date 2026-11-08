@@ -8,12 +8,12 @@
   <link rel="canonical" href="https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/">
   <link rel="alternate" hreflang="en" href="https://jhljx.github.io/RecSys-Industrial-Book/README.en.html">
   <link rel="stylesheet" href="./style.css">
-  <script src="./data.js" defer></script>
+  <script src="./data.js?v=concept-focus-1" defer></script>
   <script src="./code-data.js" defer></script>
   <script src="./vendor/d3-7.9.0.min.js" defer></script>
   <script src="./vendor/markmap-view-0.18.12.js" defer></script>
-  <script src="./app.js?v=agent-command-1" defer></script>
-  <script src="./paper-map.js?v=practice-1" defer></script>
+  <script src="./app.js?v=concept-focus-1" defer></script>
+  <script src="./paper-map.js?v=expand-all-1" defer></script>
   <script src="./site-links.js" defer></script>
 </head>
 <body>
@@ -37,18 +37,18 @@
       <p class="legend">蓝图是独立编排的导航层，不是书稿正文。板块间为阅读顺序；概念之间的连线才表示前置依赖。</p>
     </section>
     <section class="graph-section" id="graph" aria-labelledby="graph-title">
-      <div class="section-heading"><div><span class="overline">02 / CONNECTIONS</span><h2 id="graph-title">章节聚焦 · 概念关系图谱</h2><p>一次只看一章：本章概念及与它们直接相连的跨章前置、后续概念。箭头表示「前置 → 后续」，不是章节阅读顺序。</p></div></div>
+      <div class="section-heading"><div><span class="overline">02 / CONNECTIONS</span><h2 id="graph-title">章节聚焦 · 概念关系图谱</h2><p>一次只看一章的汇总概念及与它们直接相连的跨章汇总概念。论文方法细卡可在下方概念目录和论文详情中查找。箭头表示「前置 → 后续」。</p></div></div>
       <div class="graph-toolbar"><label for="graph-chapter">聚焦章节 <select id="graph-chapter"></select></label><p id="graph-count" role="status" aria-live="polite"></p></div>
       <div class="graph-key" aria-hidden="true"><span class="graph-key-local">本章概念</span><span class="graph-key-external">跨章概念</span><span>前置 → 后续</span></div>
       <div id="graph-view" class="graph-view" role="group" aria-label="章节概念关系图"></div>
       <div id="graph-relations" class="graph-relations" aria-label="当前章节的有向关系"></div>
-      <p class="graph-note">点击或用 Tab 聚焦概念，再按 Enter / 空格打开下方详情。孤立概念仍会展示；图仅显示直接关系，不推断额外依赖。</p>
+      <p class="graph-note">点击或用 Tab 聚焦概念，再按 Enter / 空格打开下方详情。未与其他汇总概念直接相连的本章汇总概念仍会展示；图不推断额外依赖。</p>
     </section>
     <section class="paper-section" id="papers" aria-labelledby="papers-title">
       <div class="section-heading"><div><span class="overline">03 / PAPER METHODS</span><h2 id="papers-title">章节 → 汇总概念 → 代表论文方法</h2><p>每篇论文只归入一个主分支；论文专属概念卡收在论文详情里。连线表示方法归属，<strong>不是</strong>上方图谱的前置依赖。</p></div></div>
       <div class="graph-toolbar"><label for="paper-chapter">论文方法章节 <select id="paper-chapter"></select></label><p id="paper-count" role="status" aria-live="polite"></p></div>
       <div class="paper-layout"><svg id="paper-map-view" class="paper-map-view" role="img" aria-label="主题、概念与代表论文方法导图"></svg><aside id="paper-detail" class="paper-detail" aria-live="polite"></aside></div>
-      <p class="graph-note">点击论文方法名称查看书中 PDF 页码；拖动平移、滚轮缩放，点击圆点展开或收起分支。未纳入图谱的章节仍可从章节目录阅读。</p>
+      <p class="graph-note">论文方法默认全部展开。点击名称查看书中 PDF 页码；拖动平移、滚轮缩放，点击圆点收起或重新展开分支。未纳入图谱的章节仍可从章节目录阅读。</p>
     </section>
     <section class="explorer" id="catalog" aria-labelledby="catalog-title">
       <div class="section-heading"><div><span class="overline">04 / EXPLORE</span><h2 id="catalog-title">从章节进入，从概念深入</h2><p>筛选章节与概念，打开 PDF、阅读地图和前置知识。</p></div></div>

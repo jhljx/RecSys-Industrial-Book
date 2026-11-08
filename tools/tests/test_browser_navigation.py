@@ -39,6 +39,9 @@ window.addEventListener('load', () => {
   try {
     check('rendered catalog', document.querySelectorAll('#items .item').length > 0, document.querySelector('#result-count').textContent);
     const select = document.querySelector('#graph-chapter');
+    select.value = '20'; select.dispatchEvent(new Event('change', {bubbles: true}));
+    check('chapter 20 summary graph', document.querySelectorAll('#graph-view .graph-node.local').length === 11 &&
+      !document.querySelector('#graph-view').textContent.includes('DIN 目标局部激活'), document.querySelector('#graph-count').textContent);
     select.value = '4'; select.dispatchEvent(new Event('change', {bubbles: true}));
     check('chapter graph', document.querySelectorAll('#graph-view .graph-node').length > 0 &&
       document.querySelector('#graph-count').textContent.includes('前置关系'), document.querySelector('#graph-count').textContent);
@@ -70,8 +73,16 @@ window.addEventListener('load', () => {
     const codeLink = [...document.querySelectorAll('#detail a')].find(a => a.textContent.includes('two_tower_debias.py'));
     check('concept to code page', codeLink && codeLink.href.includes(root) && /code\/[0-9a-f]+\.html$/.test(codeLink.href), codeLink?.href);
   } catch (error) { check('browser script', false, error.stack || error); }
-  const marker = document.createElement('output'); marker.id = 'browser-test-result';
-  marker.textContent = JSON.stringify(checks); document.body.append(marker);
+  setTimeout(() => {
+    const map = document.querySelector('#paper-map-view');
+    const expected = 1 + window.KNOWLEDGE_MAP.paperHierarchy['20'].length +
+      window.KNOWLEDGE_MAP.papers.filter(paper => paper.chapter === 20).length +
+      window.KNOWLEDGE_MAP.paperHierarchy['20'].reduce((count, group) => count + (group.extraConcepts || []).length, 0);
+    check('paper methods expanded', map.querySelectorAll('g.markmap-node').length === expected,
+      `${map.querySelectorAll('g.markmap-node').length}/${expected} visible nodes`);
+    const marker = document.createElement('output'); marker.id = 'browser-test-result';
+    marker.textContent = JSON.stringify(checks); document.body.append(marker);
+  }, 700);
 });
 </script>"""
 
@@ -149,6 +160,25 @@ window.addEventListener('load', () => {
 });
 </script>"""
 
+CATALOG_PROBE = r"""<script>
+window.addEventListener('load', () => {
+  const checks = [];
+  const check = (name, ok, detail) => checks.push({name, ok: !!ok, detail: String(detail || '')});
+  const nav = document.querySelector('main nav[aria-label="章节跳转"]');
+  const heading = nav.querySelector('h2').getBoundingClientRect();
+  const list = nav.querySelector('ul').getBoundingClientRect();
+  check('chapter heading precedes links', getComputedStyle(nav).display === 'block' &&
+    heading.bottom <= list.top, `${heading.bottom} <= ${list.top}`);
+  const first = document.querySelector('#ch0');
+  const second = document.querySelector('#ch1');
+  check('chapter sections compact', parseFloat(getComputedStyle(first).paddingTop) <= 24 &&
+    second.getBoundingClientRect().top - first.getBoundingClientRect().bottom < 30,
+    `${getComputedStyle(first).paddingTop}; ${second.getBoundingClientRect().top - first.getBoundingClientRect().bottom}`);
+  const marker = document.createElement('output'); marker.id = 'browser-test-result';
+  marker.textContent = JSON.stringify(checks); document.body.append(marker);
+});
+</script>"""
+
 
 class PagesHandler(SimpleHTTPRequestHandler):
     def log_message(self, *_args):
@@ -189,6 +219,18 @@ class BrowserNavigationTest(unittest.TestCase):
         checks = json.loads(html.unescape(marker.group(1)))
         self.assertTrue(checks and all(row["ok"] for row in checks), checks)
         return checks
+
+    @unittest.skipUnless(CHROME, "Chrome not installed; optional local browser layout test")
+    def test_static_catalog_layout(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            website = Path(tmp) / "knowledge-map"
+            website.mkdir()
+            for name in ("style.css", "document.css", "site-links.js"):
+                shutil.copy2(ROOT / "knowledge-map" / name, website / name)
+            catalog = website / "catalog.html"
+            catalog.write_text((ROOT / "knowledge-map/catalog.html").read_text(encoding="utf-8")
+                               .replace("</body>", CATALOG_PROBE + "</body>"), encoding="utf-8")
+            self.run_browser(catalog.as_uri())
 
     @unittest.skipUnless(CHROME, "Chrome not installed; optional local browser smoke test")
     def test_file_and_pages_subpath_navigation(self):

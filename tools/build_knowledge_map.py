@@ -120,6 +120,21 @@ def load_paper_hierarchy(root: Path, chapters: list[dict], concepts: list[dict],
     return source["chapters"]
 
 
+def load_concept_focus(root: Path, chapters: list[dict], concepts: list[dict]) -> dict[str, list[str]]:
+    """Select summary concepts for the chapter dependency view; retain all cards elsewhere."""
+    source = json.loads((root / "knowledge/concept-focus.json").read_text(encoding="utf-8"))
+    if set(source) != {"version", "chapters"} or source["version"] != 1 or not isinstance(source["chapters"], dict):
+        raise ValueError("invalid concept focus schema")
+    by_id = {row["id"]: row for row in concepts}
+    released = {row["number"] for row in chapters}
+    for chapter, ids in source["chapters"].items():
+        if (not chapter.isdigit() or int(chapter) not in released or not isinstance(ids, list) or not ids or
+                any(not isinstance(id, str) or id not in by_id or by_id[id]["chapter"] != int(chapter) for id in ids) or
+                len(ids) != len(set(ids))):
+            raise ValueError(f"invalid concept focus for chapter {chapter}")
+    return source["chapters"]
+
+
 def build(root: Path = ROOT) -> dict:
     groups = [{"id": key, "title": title, "description": description, "chapters": list(chapters)} for key, title, description, chapters in GROUPS]
     chapter_files = sorted((root / "knowledge/chapters").glob("ch[0-9][0-9].md"))
@@ -186,8 +201,10 @@ def build(root: Path = ROOT) -> dict:
         raise ValueError("course reference mismatch")
     papers = load_papers(root, chapters, concept_ids)
     paper_hierarchy = load_paper_hierarchy(root, chapters, concepts, papers)
+    concept_focus = load_concept_focus(root, chapters, concepts)
     return {"version": 1, "groups": groups, "chapters": chapters, "concepts": concepts,
-            "edges": graph["edges"], "paths": paths, "papers": papers, "paperHierarchy": paper_hierarchy}
+            "edges": graph["edges"], "paths": paths, "papers": papers,
+            "paperHierarchy": paper_hierarchy, "conceptFocus": concept_focus}
 
 
 

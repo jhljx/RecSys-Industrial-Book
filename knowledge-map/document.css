@@ -1,3 +1,17 @@
 .document{max-width:1040px;margin:0 auto;padding:65px 36px 100px;overflow-wrap:anywhere}.document h1,.document h2,.document h3{font-family:var(--serif);line-height:1.35;color:var(--color-text-primary)}.document h1{font-size:clamp(36px,5vw,56px);letter-spacing:-.04em}.document h2{font-size:30px;border-top:1px solid var(--color-border);padding-top:32px;margin-top:55px}.document h3{font-size:22px;margin-top:35px}.document p,.document li{line-height:1.85}.document a{color:#913624;text-underline-offset:3px}.document img{max-width:100%;height:auto}.document table{display:block;width:100%;overflow-x:auto;border-collapse:collapse;background:#fff;font-size:14px}.document th,.document td{padding:10px 12px;border:1px solid var(--color-border);text-align:left}.document th{background:var(--color-bg-subtle)}.document pre{padding:20px;background:var(--color-primary);color:#fff;overflow:auto;border-radius:3px}.document code{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.9em}.document :not(pre)>code{background:var(--color-bg-subtle);padding:2px 4px}.document blockquote{border-left:3px solid var(--color-accent);margin:25px 0;padding:3px 18px;background:#fff}
 .concept-hero{border-bottom:1px solid var(--color-border);padding:4px 0 30px;margin-bottom:45px}.concept-hero .concept-eyebrow{font-size:12px;font-weight:750;letter-spacing:.15em;color:var(--color-accent);margin:0}.concept-hero h1{margin:12px 0 6px}.concept-hero .concept-id{font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace;color:var(--color-text-secondary);margin:0}.concept-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.concept-actions a{padding:7px 12px;border:1px solid var(--color-border);background:#fff;text-decoration:none;font-size:13px}.concept-actions a:hover{background:var(--color-accent-light);border-color:var(--color-accent)}.concept-hero+ h2{border-top:0;margin-top:0;padding-top:0}.document .concept-hero~h2#定义{font-size:24px;margin-top:0;padding-top:0;border-top:0}.document .concept-hero~h2#定义+p{font-size:18px;line-height:1.85;color:var(--color-text-primary);background:var(--color-bg-subtle);border-left:3px solid var(--color-accent);padding:18px 22px;margin:16px 0 38px}
 @media(max-width:700px){.document{padding:45px 20px 70px}.document h2{font-size:26px}.concept-hero h1{font-size:38px}.document .concept-hero~h2#定义+p{font-size:16px;padding:15px 17px}}
+
+/* The static catalog uses the site document shell, not the homepage's full-height sections or horizontal nav. */
+.document.catalog-page nav{display:block;margin:28px 0 24px}
+.document.catalog-page nav h2{margin:0 0 16px;padding-top:22px}
+.document.catalog-page nav ul{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 24px;margin:0;padding-left:24px}
+.document.catalog-page nav li{line-height:1.55}
+.document.catalog-page nav a{font-size:inherit;text-decoration:underline;text-underline-offset:3px}
+.document.catalog-page section{max-width:none;margin:0;padding:22px 0;border-top:1px solid var(--color-border)}
+.document.catalog-page section h2{margin:0 0 10px;padding:0;border:0}
+.document.catalog-page section h3{font-size:19px;margin:14px 0 8px}
+.document.catalog-page section p{margin:8px 0}
+.document.catalog-page section ul{margin:8px 0 0;padding-left:24px}
+.document.catalog-page section li{margin:3px 0}
+@media(max-width:700px){.document.catalog-page nav ul{grid-template-columns:1fr}.document.catalog-page section{padding:20px 0}}

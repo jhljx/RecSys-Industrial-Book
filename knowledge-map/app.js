@@ -6,6 +6,8 @@
   if (!data) { $('items').textContent = '知识地图数据缺失，请重新运行 python3 tools/build_knowledge_map.py。'; return; }
   const chapters = new Map(data.chapters.map(row => [row.number, row]));
   const concepts = new Map(data.concepts.map(row => [row.id, row]));
+  const focusByChapter = new Map(Object.entries(data.conceptFocus || {}).map(([number, ids]) => [Number(number), new Set(ids)]));
+  const isOverview = concept => !focusByChapter.has(concept.chapter) || focusByChapter.get(concept.chapter).has(concept.id);
   const codeByChapter = new Map();
   for (const row of window.CHAPTER_CODE || []) {
     if (!codeByChapter.has(row.chapter)) codeByChapter.set(row.chapter, []);
@@ -61,7 +63,8 @@
   }
   document.querySelectorAll('.tab[data-kind]').forEach(button => button.addEventListener('click', () => { state.kind = button.dataset.kind; state.selected = null; render(); }));
   $('search').addEventListener('input', e => { state.query = e.target.value.trim().toLocaleLowerCase(); state.selected = null; render(); });
-  // Keep the graph chapter-scoped: only one-hop edges touching a concept in this chapter.
+  // The chapter graph shows curated summary concepts and their direct prerequisites.
+  // Paper-specific cards remain in the concept catalog and paper details.
   const graphChapter = $('graph-chapter');
   data.chapters.forEach(chapter => {
     const option = el('option', '', chapterLabel(chapter.number));
@@ -122,9 +125,10 @@
   function renderGraph() {
     const number = state.graphChapter;
     graphChapter.value = String(number);
-    const local = data.concepts.filter(c => c.chapter === number).sort(graphSort);
+    const local = data.concepts.filter(c => c.chapter === number && isOverview(c)).sort(graphSort);
     const ids = new Set(local.map(c => c.id));
-    graphEdges = data.edges.filter(([from, to]) => ids.has(from) || ids.has(to)).filter(([from, to]) => concepts.has(from) && concepts.has(to));
+    graphEdges = data.edges.filter(([from, to]) => ids.has(from) || ids.has(to))
+      .filter(([from, to]) => concepts.has(from) && concepts.has(to) && isOverview(concepts.get(from)) && isOverview(concepts.get(to)));
     const before = [...new Set(graphEdges.filter(([, to]) => ids.has(to)).map(([from]) => from))].filter(id => !ids.has(id)).map(id => concepts.get(id)).sort(graphSort);
     const after = [...new Set(graphEdges.filter(([from]) => ids.has(from)).map(([, to]) => to))].filter(id => !ids.has(id)).map(id => concepts.get(id)).sort(graphSort);
     graphView.replaceChildren(); graphNodes = new Map(); graphSvg = null;

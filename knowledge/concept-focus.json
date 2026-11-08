@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "chapters": {
+    "9": [
+      "generative-recsys",
+      "semantic-id",
+      "generative-token-objective",
+      "generated-item-lookup",
+      "one-stage-generative-alignment"
+    ],
+    "10": [
+      "collaborative-filtering-recall",
+      "graph-recall",
+      "two-tower",
+      "negative-sampling",
+      "hard-negative",
+      "sequential-recall",
+      "multi-interest-recall",
+      "structured-candidate-search"
+    ],
+    "11": [
+      "pre-ranking-two-tower",
+      "multi-tower-pre-ranking",
+      "model-distillation",
+      "lightweight-dnn-pre-ranking",
+      "multi-interest-pre-ranking"
+    ],
+    "12": [
+      "feature-crossing-deep-ranking",
+      "multi-task-experts",
+      "target-attention-ranking",
+      "ranking-loss-selection",
+      "listwise-ranking-loss"
+    ],
+    "15": [
+      "feature-engineering",
+      "feature-interaction-models",
+      "feature-freshness",
+      "feature-pruning",
+      "feature-governance",
+      "data-leakage"
+    ],
+    "18": [
+      "vector-retrieval",
+      "ann-index",
+      "ann-index-lifecycle",
+      "lsh-retrieval",
+      "quantization",
+      "hnsw"
+    ],
+    "20": [
+      "behavior-feedback-contrast",
+      "positive-negative-sequence",
+      "augmented-behavior-contrast",
+      "sequence-contrast-overview",
+      "sequence-attention-overview",
+      "sequence-memory-overview",
+      "long-sequence-retrieval",
+      "long-history-interest-modeling",
+      "sequence-hash-aggregation",
+      "multimodal-interest-modeling",
+      "context-temporal-prototypes"
+    ],
+    "23": [
+      "duration-modeling",
+      "duration-threshold-labels",
+      "weighted-lr-duration",
+      "duration-bucket-modeling",
+      "duration-distribution"
+    ]
+  }
+}
