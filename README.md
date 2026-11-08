@@ -179,8 +179,6 @@ python3 tools/install_skills.py --client claude
 
 以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、25–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。已发布章节入口见上方表格。
 
-以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、25–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。
-
 - **第一部分 推荐系统基础**  
     - [**第 1 章 推荐系统概述**](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch1&page=1)
         - 1.1 什么是推荐系统  
