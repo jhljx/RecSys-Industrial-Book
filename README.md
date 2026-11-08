@@ -94,7 +94,9 @@ python3 tools/install_skills.py --client claude
 
 ### 可视化知识地图
 
-[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 21 章、176 张概念卡、183 条前置依赖，并以独立图谱展示 118 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
+论文导图的人工归属写在 [`knowledge/paper-hierarchy.json`](knowledge/paper-hierarchy.json)：每篇论文在本章只出现一次，归入一个汇总概念；专属方法卡收在论文详情里。新增章节尚未策划层级时，构建器按论文的第一个本章概念生成临时归属，后续应审阅并补入该文件。论文关联的概念卡及 PDF 页码仍以 [`knowledge/paper-map.json`](knowledge/paper-map.json) 为准。
+
+[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 21 章、191 张概念卡、198 条前置依赖，并以独立图谱展示 118 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
 
 [`knowledge-map/reader.html`](knowledge-map/reader.html) 是无需构建工具的站内章节 PDF 阅读器，可本地以 `file://` 打开，也可通过 [GitHub Pages](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html) 使用；左侧选择已发布章节、上一章/下一章和 PDF 页码跳转均保持在阅读器内。链接如 `reader.html#ch10&page=60` 可直达第 10 章 PDF 第 60 页。阅读器会向浏览器 PDF 查看器请求默认“适应宽度”（`view=FitH`），并让阅读区域铺满可用列；查看器是否采纳缩放参数取决于浏览器。若浏览器禁用内嵌 PDF 或本地文件预览，可使用页面底部的直接打开/下载链接。
 

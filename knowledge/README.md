@@ -42,11 +42,19 @@
 | mixed-sequence-ranking | 混排候选序列排序 | 8 | mixed-sequence-generation |
 | mixed-value-evaluation | 混排用户平台生态价值评估 | 8 | mixed-sequence-ranking |
 | score-calibration | 分数校准 | 8 | mixed-ranking |
+| diger-differentiable-id | DIGER 可微语义 ID | 9 | one-stage-generative-alignment |
+| etegrec-end-to-end-token | ETEGRec 端到端物品 Token | 9 | one-stage-generative-alignment |
+| fsq-tokenizer | FSQ 有限标量量化 | 9 | semantic-id |
 | generated-item-lookup | 生成语义 ID 到可服务物品检索 | 9 | semantic-id, generative-token-objective |
 | generative-recsys | 生成式推荐 | 9 | ranking |
 | generative-token-objective | 生成式推荐序列目标 | 9 | generative-recsys, semantic-id |
+| lfq-tokenizer | LFQ 无查找表量化 | 9 | semantic-id |
 | one-stage-generative-alignment | 一阶段生成中编码与推荐目标对齐 | 9 | semantic-id, generative-token-objective |
+| pq-semantic-tokenizer | PQ 分组向量量化 | 9 | semantic-id |
+| rq-kmeans-tokenizer | RQ-KMeans 残差聚类编码 | 9 | semantic-id |
+| rq-vae-quantization | RQ-VAE 残差量化 | 9 | semantic-id |
 | semantic-id | 语义 ID | 9 | generative-recsys |
+| unisid-joint-embedding | UniSID 语义 ID 与内容表示联合生成 | 9 | one-stage-generative-alignment |
 | bert4rec-masked-items | BERT4Rec双向掩码建模 | 10 | collaborative-filtering-recall |
 | collaborative-filtering-recall | 协同过滤召回 | 10 | multi-recall |
 | eges-side-information | EGES侧信息融合 | 10 | collaborative-filtering-recall |
@@ -65,6 +73,7 @@
 | semantic-item-embedding | 预训练语义向量召回 | 10 | collaborative-filtering-recall |
 | sequence-contrast-augmentation | 序列对比视图增强 | 10 | collaborative-filtering-recall |
 | sequential-recall | 序列召回 | 10 | two-tower |
+| structured-candidate-search | 结构化候选搜索 | 10 | multi-recall |
 | swing-common-user-penalty | Swing共同用户去噪 | 10 | collaborative-filtering-recall |
 | tdm-tree-search | TDM树状候选搜索 | 10 | collaborative-filtering-recall |
 | two-tower | 双塔召回 | 10 | multi-recall |
@@ -100,6 +109,7 @@
 | feature-engineering | 特征工程 | 15 | recsys-funnel |
 | feature-freshness | 特征时效性 | 15 | feature-engineering |
 | feature-governance | 特征治理 | 15 | feature-engineering |
+| feature-interaction-models | 特征交互模型选型 | 15 | feature-engineering |
 | feature-pruning | 冗余特征分组剪枝 | 15 | feature-engineering |
 | fibinet-bilinear | FiBiNet双线性交互 | 15 | feature-crossing-deep-ranking |
 | gdcn-gated-cross | GDCN门控深层交叉 | 15 | feature-crossing-deep-ranking |
@@ -148,18 +158,23 @@
 | infonce-density-ratio | InfoNCE 与密度比 | 20 | behavior-feedback-contrast |
 | lcn-cross-domain-lifetime | LCN 跨域终身行为 | 20 | long-sequence-retrieval |
 | lmn-shared-memory | LMN 跨用户共享记忆 | 20 | mimn-user-memory |
+| long-history-interest-modeling | 长历史兴趣检索与压缩 | 20 | sequential-recall |
 | long-sequence-retrieval | 长行为序列的目标检索 | 20 | target-attention-ranking |
 | mimn-user-memory | MIMN 用户兴趣记忆 | 20 | dien-interest-evolution |
 | mirrn-multigranularity | MIRRN 多粒度检索 | 20 | sim-two-stage-search |
 | miss-multimodal-tree | MISS 多模态树检索 | 20 | multimodal-sim-search |
 | moco-queue | MoCo 动量队列 | 20 | infonce-density-ratio |
+| multimodal-interest-modeling | 多模态兴趣与语义融合 | 20 | sequential-recall |
 | multimodal-sim-search | 多模态 SIM 检索 | 20 | sim-two-stage-search |
 | muse-stagewise-modality | MUSE 分阶段模态融合 | 20 | multimodal-sim-search |
 | positive-negative-sequence | 正负反馈序列分离 | 20 | behavior-feedback-contrast |
 | psrq-semantic-codebooks | PSRQ 语义残差量化 | 20 | multimodal-sim-search |
 | reformer-lsh-attention | Reformer LSH 注意力 | 20 | sequence-hash-aggregation |
 | sdim-collision-aggregation | SDIM 碰撞聚合 | 20 | eta-simhash-retrieval |
+| sequence-attention-overview | 目标注意力与兴趣演化建模 | 20 | sequential-recall |
+| sequence-contrast-overview | 对比学习与反馈序列建模 | 20 | sequential-recall |
 | sequence-hash-aggregation | 序列哈希检索与聚合 | 20 | long-sequence-retrieval |
+| sequence-memory-overview | 长期兴趣记忆建模 | 20 | sequential-recall |
 | sim-two-stage-search | SIM 两阶段行为检索 | 20 | long-sequence-retrieval |
 | simclr-views | SimCLR 增广视图 | 20 | infonce-density-ratio |
 | simsiam-stop-gradient | SimSiam 停止梯度 | 20 | simclr-views |

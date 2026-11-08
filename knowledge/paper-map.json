@@ -228,7 +228,8 @@
         6
       ],
       "concepts": [
-        "semantic-id"
+        "semantic-id",
+        "rq-vae-quantization"
       ]
     },
     {
@@ -242,7 +243,7 @@
       ],
       "concepts": [
         "one-stage-generative-alignment",
-        "semantic-id"
+        "diger-differentiable-id"
       ]
     },
     {
@@ -256,7 +257,7 @@
       ],
       "concepts": [
         "one-stage-generative-alignment",
-        "semantic-id"
+        "etegrec-end-to-end-token"
       ]
     },
     {
@@ -270,7 +271,7 @@
       ],
       "concepts": [
         "one-stage-generative-alignment",
-        "semantic-id"
+        "unisid-joint-embedding"
       ]
     },
     {

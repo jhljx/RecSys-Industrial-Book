@@ -93,7 +93,8 @@
             "semantic-item-embedding",
             "sequence-contrast-augmentation",
             "swing-common-user-penalty",
-            "tdm-tree-search"
+            "tdm-tree-search",
+            "structured-candidate-search"
           ],
           "reading": "ch04 PDF 3-12；ch10 PDF 2-23、54-80",
           "deliverable": "三路召回设计与负采样说明",
@@ -190,7 +191,12 @@
             "mmoe-task-gates",
             "ple-progressive-separation",
             "pnn-product-interaction",
-            "xdeepfm-cin"
+            "xdeepfm-cin",
+            "sequence-attention-overview",
+            "sequence-contrast-overview",
+            "sequence-memory-overview",
+            "long-history-interest-modeling",
+            "multimodal-interest-modeling"
           ],
           "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）",
           "deliverable": "效果-成本 Pareto 表、特征交叉消融、多任务结构与排序损失方案；长序列兴趣检索与目标注意力的效果-成本对照",
@@ -255,7 +261,15 @@
             "semantic-id",
             "generated-item-lookup",
             "generative-token-objective",
-            "one-stage-generative-alignment"
+            "one-stage-generative-alignment",
+            "diger-differentiable-id",
+            "etegrec-end-to-end-token",
+            "fsq-tokenizer",
+            "lfq-tokenizer",
+            "pq-semantic-tokenizer",
+            "rq-kmeans-tokenizer",
+            "rq-vae-quantization",
+            "unisid-joint-embedding"
           ],
           "reading": "ch09 PDF 1-26",
           "deliverable": "生成式方案与双塔 ANN 同预算选型表",
@@ -292,7 +306,8 @@
             "can-coaction",
             "dcn-v2-cross",
             "fibinet-bilinear",
-            "gdcn-gated-cross"
+            "gdcn-gated-cross",
+            "feature-interaction-models"
           ],
           "reading": "ch15 PDF 1-38；ch16 PDF 1-20、46-75",
           "deliverable": "特征契约、样本时间线与发布 manifest",
@@ -573,7 +588,8 @@
             "semantic-item-embedding",
             "sequence-contrast-augmentation",
             "swing-common-user-penalty",
-            "tdm-tree-search"
+            "tdm-tree-search",
+            "structured-candidate-search"
           ],
           "reading": "ch04 PDF 3-12；ch10 PDF 2-108",
           "deliverable": "强基线、采样校正和 ANN 接口实验",
@@ -669,7 +685,12 @@
             "mmoe-task-gates",
             "ple-progressive-separation",
             "pnn-product-interaction",
-            "xdeepfm-cin"
+            "xdeepfm-cin",
+            "sequence-attention-overview",
+            "sequence-contrast-overview",
+            "sequence-memory-overview",
+            "long-history-interest-modeling",
+            "multimodal-interest-modeling"
           ],
           "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）",
           "deliverable": "固定预算的特征交叉、教师-学生、多专家和 Listwise 消融；长序列兴趣检索与目标注意力的效果-成本对照",
@@ -730,7 +751,15 @@
             "semantic-id",
             "generated-item-lookup",
             "generative-token-objective",
-            "one-stage-generative-alignment"
+            "one-stage-generative-alignment",
+            "diger-differentiable-id",
+            "etegrec-end-to-end-token",
+            "fsq-tokenizer",
+            "lfq-tokenizer",
+            "pq-semantic-tokenizer",
+            "rq-kmeans-tokenizer",
+            "rq-vae-quantization",
+            "unisid-joint-embedding"
           ],
           "reading": "ch09 PDF 1-26",
           "deliverable": "生成式方案与传统级联的同预算实验",
@@ -761,7 +790,8 @@
             "can-coaction",
             "dcn-v2-cross",
             "fibinet-bilinear",
-            "gdcn-gated-cross"
+            "gdcn-gated-cross",
+            "feature-interaction-models"
           ],
           "reading": "ch15 PDF 1-38",
           "deliverable": "point-in-time 数据卡与交互结构消融",

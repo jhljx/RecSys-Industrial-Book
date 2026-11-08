@@ -207,6 +207,14 @@
     "code": "",
     "summary": "DIEN先提取逐步兴趣状态，再让目标引导兴趣演化；时序状态与目标相关加权承担不同作用。"
   },
+  "diger-differentiable-id": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 14,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/915f15a51043da5f339c.html",
+    "summary": "一阶段可缓解冻结 tokenizer 与推荐目标错配，但离散采样近似可能带来训练方差和码本不稳定。"
+  },
   "din-local-activation": {
     "chapter": 20,
     "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
@@ -319,6 +327,14 @@
     "code": "",
     "summary": "ETA用目标与行为的哈希距离筛选历史，再做精确注意力；近似检索的漏检应计入整体排序指标。"
   },
+  "etegrec-end-to-end-token": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 17,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/a8dfd02006f25d9982e3.html",
+    "summary": "联合训练目标有助于对齐，但物品编码更新会影响历史行为 Token 与物品反查映射。"
+  },
   "exploration": {
     "chapter": 28,
     "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
@@ -374,6 +390,14 @@
     "chapter_map": "/knowledge/chapters/ch15.html",
     "code": "/knowledge-map/code/c338defe0dd7ed94c64d.html",
     "summary": "特征工程不仅是构造表达，还要治理定义、时间语义、血缘、版本、复用和离在线一致性，否则局部收益无法稳定交付。"
+  },
+  "feature-interaction-models": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 13,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/85e95694a208b7cf5470.html",
+    "summary": "DCN、AutoInt、FiBiNet、AFN 等方法解决的交互形态不同；应结合域数、稀疏度和在线预算比较。"
   },
   "feature-pruning": {
     "chapter": 15,
@@ -446,6 +470,14 @@
     "chapter_map": "/knowledge/chapters/ch11.html",
     "code": "/knowledge-map/code/73676578a8e4b995a992.html",
     "summary": "选择高预测力但极昂贵的特征可能损害整体吞吐；应以端到端时延约束评估。"
+  },
+  "fsq-tokenizer": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 8,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/a8dfd02006f25d9982e3.html",
+    "summary": "没有传统向量码本查表，但量化级数和压缩维度一起限定可表示空间。"
   },
   "gdcn-gated-cross": {
     "chapter": 15,
@@ -591,6 +623,14 @@
     "code": "",
     "summary": "当源域和目标域物品不重叠，需先建立跨域表示桥梁，再从源域长期行为选择对目标有用的信息。"
   },
+  "lfq-tokenizer": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 8,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/a8dfd02006f25d9982e3.html",
+    "summary": "大词表无需大规模码本向量查找，但二值组合利用率与训练目标仍需额外约束。"
+  },
   "lightgcn-propagation": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
@@ -630,6 +670,14 @@
     "chapter_map": "/knowledge/chapters/ch08.html",
     "code": "/knowledge-map/code/30c3c606f70c25e5d337.html",
     "summary": "当混排目标流量随请求波动、静态比例无法稳定满足时，可先用 Load 统计观测偏差，再用窗口反馈的 PID 调节流量；它控制目标负载而不替代候选序列的价值排序，也不承担强插／保量的硬规则决策。"
+  },
+  "long-history-interest-modeling": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 31,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "SIM、TWIN、MIRRN、FIM、LCN 和 CAIN 属于不同的历史组织路线，不能全称为两阶段检索。"
   },
   "long-sequence-retrieval": {
     "chapter": 20,
@@ -799,6 +847,14 @@
     "code": "/knowledge-map/code/82d9e7cd0fcebd716c20.html",
     "summary": "多塔模型把不同信号或交互路径拆分建模；增加塔应对应可验证的表达缺口，而不是单纯增加容量。"
   },
+  "multimodal-interest-modeling": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 66,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "PSRQ 的语义码本、MISS 的树检索与 MUSE 的阶段性模态融合解决不同问题，不宜统称多模态 SIM。"
+  },
   "multimodal-sim-search": {
     "chapter": 20,
     "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
@@ -958,6 +1014,14 @@
     "chapter_map": "/knowledge/chapters/ch20.html",
     "code": "",
     "summary": "把近期正反馈与短播等负反馈分别编码，能给排序模型提供不同方向的兴趣信号；短播不能在所有场景下等同于厌恶。"
+  },
+  "pq-semantic-tokenizer": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 8,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/d1a4228ecb4b77286ff1.html",
+    "summary": "分组编码易并行且可控，但独立子空间可能丢失跨组相关性；与残差量化不应混为一类。"
   },
   "pre-ranking-chain-consistency": {
     "chapter": 5,
@@ -1175,6 +1239,22 @@
     "code": "/knowledge-map/code/49bf61587f100e1c2a01.html",
     "summary": "教师收益只有传递到最终学生且上线延迟可接受时才有意义，不能只报告教师指标。"
   },
+  "rq-kmeans-tokenizer": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 8,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/3a9205b6f107ecdb7571.html",
+    "summary": "省去 Encoder 和 Decoder 的联合训练及 STE 近似，但码本质量仍依赖输入 Embedding 和聚类初始化。"
+  },
+  "rq-vae-quantization": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 4,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/c38f21262c05ce06187b.html",
+    "summary": "逐层残差降低量化误差，但最近邻选码不可导，需要近似梯度；重构好并不自动意味着下游推荐目标更好。"
+  },
   "safe-exploration": {
     "chapter": 28,
     "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
@@ -1239,6 +1319,14 @@
     "code": "/knowledge-map/code/a2579a2812feb4ad417a.html",
     "summary": "语义相近不等于消费偏好相近，编码器选择必须和点击或观看目标一起验收。"
   },
+  "sequence-attention-overview": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 13,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "DIN、DIEN、DSIN、BST 与 TIN 的历史组织和时间建模不同，长序列场景要同时核算候选量与复杂度。"
+  },
   "sequence-contrast-augmentation": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
@@ -1247,6 +1335,14 @@
     "code": "/knowledge-map/code/866e5510eca11290f78a.html",
     "summary": "裁剪或重排若改变了原始意图，正样本就会误导模型，增强强度应服从行为语义。"
   },
+  "sequence-contrast-overview": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "InfoNCE、SimCLR、MoCo、SimSiam 在负样本来源与梯度路径上不同；反馈增强须保持用户真实意图。"
+  },
   "sequence-hash-aggregation": {
     "chapter": 20,
     "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
@@ -1254,6 +1350,14 @@
     "chapter_map": "/knowledge/chapters/ch20.html",
     "code": "",
     "summary": "哈希使目标相关行为检索或聚合更便宜，但哈希碰撞会改变兴趣分桶与相关行为覆盖。"
+  },
+  "sequence-memory-overview": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 24,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "MIMN 与 LMN 的记忆状态组织不同；状态复用收益要与更新延迟和个性化损失比较。"
   },
   "sequential-recall": {
     "chapter": 10,
@@ -1294,6 +1398,14 @@
     "chapter_map": "/knowledge/chapters/ch20.html",
     "code": "",
     "summary": "仅靠两个视图的正对也可训练表示，但预测头与停止梯度是避免退化的重要机制；不能直接删除负样本并沿用原损失。"
+  },
+  "structured-candidate-search": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 109,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "",
+    "summary": "PDN利用路径表达高阶关系，TDM用树逐层筛选候选；结构不同，不宜归入双塔或普通图卷积模型。"
   },
   "swing-common-user-penalty": {
     "chapter": 10,
@@ -1366,6 +1478,14 @@
     "chapter_map": "/knowledge/chapters/ch10.html",
     "code": "/knowledge-map/code/77eef1cbff00cb8ce25f.html",
     "summary": "双塔将用户与物品编码到同一向量空间，使物品向量可离线计算并通过 ANN 在线检索。"
+  },
+  "unisid-joint-embedding": {
+    "chapter": 9,
+    "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
+    "page": 20,
+    "chapter_map": "/knowledge/chapters/ch09.html",
+    "code": "/knowledge-map/code/caaddc587d185cb78a39.html",
+    "summary": "以 argmax 生成离散 ID 不需要 RQ-VAE 最近邻码本；但不同层级的语义区分度和推荐目标仍需联合验收。"
   },
   "user-group-bias": {
     "chapter": 19,

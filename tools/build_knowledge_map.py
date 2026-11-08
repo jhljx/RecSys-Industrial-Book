@@ -77,6 +77,49 @@ def load_papers(root: Path, chapters: list[dict], concept_ids: set[str]) -> list
     return papers
 
 
+def load_paper_hierarchy(root: Path, chapters: list[dict], concepts: list[dict], papers: list[dict]) -> dict:
+    """Curated single-parent taxonomy for reading; independent of prerequisite edges."""
+    source = json.loads((root / "knowledge/paper-hierarchy.json").read_text(encoding="utf-8"))
+    if set(source) != {"version", "chapters"} or source["version"] != 1 or not isinstance(source["chapters"], dict):
+        raise ValueError("invalid paper hierarchy schema")
+    by_concept = {row["id"]: row for row in concepts}
+    by_paper = {row["id"]: row for row in papers}
+    # A newly released chapter may reach the builder before its editorial hierarchy
+    # is curated. Give each paper one local parent so the release still works.
+    for number in sorted({row["chapter"] for row in papers} - {int(key) for key in source["chapters"]}):
+        groups: dict[str, list[str]] = {}
+        for paper in papers:
+            if paper["chapter"] != number:
+                continue
+            parent = next((id for id in paper["concepts"] if by_concept[id]["chapter"] == number), None)
+            if parent is None:
+                raise ValueError(f"paper has no local hierarchy concept: {paper['id']}")
+            groups.setdefault(parent, []).append(paper["id"])
+        source["chapters"][str(number)] = [{"concept": id, "papers": ids} for id, ids in groups.items()]
+    expected = {row["id"] for row in papers}
+    assigned = []
+    for chapter, groups in source["chapters"].items():
+        if not chapter.isdigit() or int(chapter) not in {row["number"] for row in chapters} or not isinstance(groups, list) or not groups:
+            raise ValueError(f"invalid hierarchy chapter: {chapter}")
+        seen_concepts = set()
+        for group in groups:
+            if set(group) - {"concept", "papers", "extraConcepts"} or not {"concept", "papers"} <= set(group):
+                raise ValueError(f"invalid hierarchy group in chapter {chapter}")
+            ids = [group["concept"], *group.get("extraConcepts", [])]
+            if (not isinstance(group["papers"], list) or not group["papers"] or
+                    any(not isinstance(id, str) or id not in by_concept or by_concept[id]["chapter"] != int(chapter)
+                        for id in ids) or len(set(ids)) != len(ids) or seen_concepts.intersection(ids)):
+                raise ValueError(f"invalid hierarchy concepts in chapter {chapter}")
+            seen_concepts.update(ids)
+            for paper_id in group["papers"]:
+                if paper_id not in by_paper or by_paper[paper_id]["chapter"] != int(chapter):
+                    raise ValueError(f"invalid hierarchy paper: {paper_id}")
+                assigned.append(paper_id)
+    if set(assigned) != expected or len(assigned) != len(expected):
+        raise ValueError(f"paper hierarchy must place each paper exactly once: missing={sorted(expected - set(assigned))}")
+    return source["chapters"]
+
+
 def build(root: Path = ROOT) -> dict:
     groups = [{"id": key, "title": title, "description": description, "chapters": list(chapters)} for key, title, description, chapters in GROUPS]
     chapter_files = sorted((root / "knowledge/chapters").glob("ch[0-9][0-9].md"))
@@ -142,8 +185,9 @@ def build(root: Path = ROOT) -> dict:
     if any(set(u["chapters"]) - chapter_ids or set(u["concepts"]) - concept_ids for p in paths for u in p["units"]):
         raise ValueError("course reference mismatch")
     papers = load_papers(root, chapters, concept_ids)
+    paper_hierarchy = load_paper_hierarchy(root, chapters, concepts, papers)
     return {"version": 1, "groups": groups, "chapters": chapters, "concepts": concepts,
-            "edges": graph["edges"], "paths": paths, "papers": papers}
+            "edges": graph["edges"], "paths": paths, "papers": papers, "paperHierarchy": paper_hierarchy}
 
 
 

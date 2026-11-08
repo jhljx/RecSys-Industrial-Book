@@ -1,0 +1,285 @@
+{
+  "version": 1,
+  "chapters": {
+    "7": [
+      {
+        "concept": "diversity-reranking",
+        "papers": [
+          "mmr",
+          "dpp",
+          "ssd"
+        ]
+      }
+    ],
+    "9": [
+      {
+        "concept": "semantic-id",
+        "papers": [
+          "rq-vae"
+        ],
+        "extraConcepts": [
+          "rq-kmeans-tokenizer",
+          "pq-semantic-tokenizer",
+          "fsq-tokenizer",
+          "lfq-tokenizer"
+        ]
+      },
+      {
+        "concept": "one-stage-generative-alignment",
+        "papers": [
+          "diger",
+          "etegrec",
+          "unisid"
+        ]
+      }
+    ],
+    "10": [
+      {
+        "concept": "collaborative-filtering-recall",
+        "papers": [
+          "itemcf",
+          "usercf",
+          "online-cf",
+          "swing",
+          "matrix-factorization-recall",
+          "neural-cf",
+          "heterogeneous-cf"
+        ]
+      },
+      {
+        "concept": "graph-recall",
+        "papers": [
+          "deepwalk",
+          "node2vec",
+          "eges",
+          "gcn",
+          "gat",
+          "graphsage",
+          "lightgcn",
+          "pinsage",
+          "hybridgnn"
+        ]
+      },
+      {
+        "concept": "two-tower",
+        "papers": [
+          "youtube-dnn",
+          "two-tower-recall",
+          "fasttext",
+          "bert",
+          "sentence-bert",
+          "simcse",
+          "e5"
+        ]
+      },
+      {
+        "concept": "sequential-recall",
+        "papers": [
+          "item2vec",
+          "list2vec",
+          "gru4rec",
+          "sasrec",
+          "bert4rec",
+          "sdm",
+          "cl4srec",
+          "icsrec"
+        ]
+      },
+      {
+        "concept": "multi-interest-recall",
+        "papers": [
+          "mind",
+          "comirec",
+          "remi"
+        ]
+      },
+      {
+        "concept": "structured-candidate-search",
+        "papers": [
+          "pdn",
+          "tdm"
+        ]
+      }
+    ],
+    "11": [
+      {
+        "concept": "pre-ranking-two-tower",
+        "papers": [
+          "dssm",
+          "tdssm",
+          "dssm-transformer",
+          "dat"
+        ]
+      },
+      {
+        "concept": "multi-tower-pre-ranking",
+        "papers": [
+          "mv-dssm",
+          "dssm-fm",
+          "delayed-feedback-multi-tower",
+          "cross-feature-multi-tower"
+        ]
+      },
+      {
+        "concept": "model-distillation",
+        "papers": [
+          "teacher-student",
+          "rocket-launching",
+          "pfd"
+        ]
+      },
+      {
+        "concept": "lightweight-dnn-pre-ranking",
+        "papers": [
+          "cold",
+          "fscd",
+          "inttower"
+        ]
+      },
+      {
+        "concept": "multi-interest-pre-ranking",
+        "papers": [
+          "mvke",
+          "hit"
+        ]
+      }
+    ],
+    "12": [
+      {
+        "concept": "feature-crossing-deep-ranking",
+        "papers": [
+          "wide-and-deep",
+          "pnn",
+          "deepfm",
+          "xdeepfm",
+          "dlrm",
+          "deepmcp",
+          "dfn"
+        ]
+      },
+      {
+        "concept": "multi-task-experts",
+        "papers": [
+          "mmoe",
+          "ple",
+          "deepseekmoe"
+        ]
+      },
+      {
+        "concept": "target-attention-ranking",
+        "papers": [
+          "transformer",
+          "rope",
+          "flashattention"
+        ]
+      }
+    ],
+    "15": [
+      {
+        "concept": "feature-interaction-models",
+        "papers": [
+          "dcn",
+          "dcn-v2",
+          "autoint",
+          "fibinet",
+          "afn",
+          "fed",
+          "can",
+          "fint",
+          "gdcn",
+          "ipa"
+        ]
+      }
+    ],
+    "20": [
+      {
+        "concept": "sequence-contrast-overview",
+        "papers": [
+          "ch20-infonce-density-ratio",
+          "ch20-simclr-views",
+          "ch20-moco-queue",
+          "ch20-simsiam-stop-gradient"
+        ]
+      },
+      {
+        "concept": "sequence-attention-overview",
+        "papers": [
+          "ch20-din-local-activation",
+          "ch20-dien-interest-evolution",
+          "ch20-dsin-session-interest",
+          "ch20-bst-self-attention",
+          "ch20-tin-temporal-correlation",
+          "ch20-attention-polarization"
+        ]
+      },
+      {
+        "concept": "sequence-memory-overview",
+        "papers": [
+          "ch20-mimn-user-memory",
+          "ch20-lmn-shared-memory"
+        ]
+      },
+      {
+        "concept": "long-history-interest-modeling",
+        "papers": [
+          "ch20-sim-two-stage-search",
+          "ch20-twin-search-consistency",
+          "ch20-twin-v2-lifetime-compression",
+          "ch20-mirrn-multigranularity",
+          "ch20-fim-frequency-interest",
+          "ch20-lcn-cross-domain-lifetime",
+          "ch20-cain-context-aware-history"
+        ]
+      },
+      {
+        "concept": "sequence-hash-aggregation",
+        "papers": [
+          "ch20-reformer-lsh-attention",
+          "ch20-eta-simhash-retrieval",
+          "ch20-eta-net-serving",
+          "ch20-sdim-collision-aggregation"
+        ]
+      },
+      {
+        "concept": "multimodal-interest-modeling",
+        "papers": [
+          "ch20-psrq-semantic-codebooks",
+          "ch20-miss-multimodal-tree",
+          "ch20-muse-stagewise-modality"
+        ]
+      },
+      {
+        "concept": "context-temporal-prototypes",
+        "papers": [
+          "ch20-disenctr-dynamic-interest-graph",
+          "ch20-cofars-context-prototype-search"
+        ]
+      }
+    ],
+    "23": [
+      {
+        "concept": "duration-modeling",
+        "papers": [
+          "dvr",
+          "d2co"
+        ]
+      },
+      {
+        "concept": "duration-bucket-modeling",
+        "papers": [
+          "cread",
+          "tpm"
+        ]
+      },
+      {
+        "concept": "duration-distribution",
+        "papers": [
+          "d2q",
+          "egmn",
+          "generative-regression-duration",
+          "flowtime"
+        ]
+      }
+    ]
+  }
+}

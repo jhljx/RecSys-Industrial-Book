@@ -39,11 +39,19 @@
     "mixed-sequence-ranking",
     "mixed-value-evaluation",
     "score-calibration",
+    "diger-differentiable-id",
+    "etegrec-end-to-end-token",
+    "fsq-tokenizer",
     "generated-item-lookup",
     "generative-recsys",
     "generative-token-objective",
+    "lfq-tokenizer",
     "one-stage-generative-alignment",
+    "pq-semantic-tokenizer",
+    "rq-kmeans-tokenizer",
+    "rq-vae-quantization",
     "semantic-id",
+    "unisid-joint-embedding",
     "bert4rec-masked-items",
     "collaborative-filtering-recall",
     "eges-side-information",
@@ -62,6 +70,7 @@
     "semantic-item-embedding",
     "sequence-contrast-augmentation",
     "sequential-recall",
+    "structured-candidate-search",
     "swing-common-user-penalty",
     "tdm-tree-search",
     "two-tower",
@@ -97,6 +106,7 @@
     "feature-engineering",
     "feature-freshness",
     "feature-governance",
+    "feature-interaction-models",
     "feature-pruning",
     "fibinet-bilinear",
     "gdcn-gated-cross",
@@ -145,18 +155,23 @@
     "infonce-density-ratio",
     "lcn-cross-domain-lifetime",
     "lmn-shared-memory",
+    "long-history-interest-modeling",
     "long-sequence-retrieval",
     "mimn-user-memory",
     "mirrn-multigranularity",
     "miss-multimodal-tree",
     "moco-queue",
+    "multimodal-interest-modeling",
     "multimodal-sim-search",
     "muse-stagewise-modality",
     "positive-negative-sequence",
     "psrq-semantic-codebooks",
     "reformer-lsh-attention",
     "sdim-collision-aggregation",
+    "sequence-attention-overview",
+    "sequence-contrast-overview",
     "sequence-hash-aggregation",
+    "sequence-memory-overview",
     "sim-two-stage-search",
     "simclr-views",
     "simsiam-stop-gradient",
@@ -336,6 +351,18 @@
       "score-calibration"
     ],
     [
+      "one-stage-generative-alignment",
+      "diger-differentiable-id"
+    ],
+    [
+      "one-stage-generative-alignment",
+      "etegrec-end-to-end-token"
+    ],
+    [
+      "semantic-id",
+      "fsq-tokenizer"
+    ],
+    [
       "semantic-id",
       "generated-item-lookup"
     ],
@@ -357,6 +384,10 @@
     ],
     [
       "semantic-id",
+      "lfq-tokenizer"
+    ],
+    [
+      "semantic-id",
       "one-stage-generative-alignment"
     ],
     [
@@ -364,8 +395,24 @@
       "one-stage-generative-alignment"
     ],
     [
+      "semantic-id",
+      "pq-semantic-tokenizer"
+    ],
+    [
+      "semantic-id",
+      "rq-kmeans-tokenizer"
+    ],
+    [
+      "semantic-id",
+      "rq-vae-quantization"
+    ],
+    [
       "generative-recsys",
       "semantic-id"
+    ],
+    [
+      "one-stage-generative-alignment",
+      "unisid-joint-embedding"
     ],
     [
       "collaborative-filtering-recall",
@@ -438,6 +485,10 @@
     [
       "two-tower",
       "sequential-recall"
+    ],
+    [
+      "multi-recall",
+      "structured-candidate-search"
     ],
     [
       "collaborative-filtering-recall",
@@ -590,6 +641,10 @@
     [
       "feature-engineering",
       "feature-governance"
+    ],
+    [
+      "feature-engineering",
+      "feature-interaction-models"
     ],
     [
       "feature-engineering",
@@ -784,6 +839,10 @@
       "lmn-shared-memory"
     ],
     [
+      "sequential-recall",
+      "long-history-interest-modeling"
+    ],
+    [
       "target-attention-ranking",
       "long-sequence-retrieval"
     ],
@@ -802,6 +861,10 @@
     [
       "infonce-density-ratio",
       "moco-queue"
+    ],
+    [
+      "sequential-recall",
+      "multimodal-interest-modeling"
     ],
     [
       "sim-two-stage-search",
@@ -828,8 +891,20 @@
       "sdim-collision-aggregation"
     ],
     [
+      "sequential-recall",
+      "sequence-attention-overview"
+    ],
+    [
+      "sequential-recall",
+      "sequence-contrast-overview"
+    ],
+    [
       "long-sequence-retrieval",
       "sequence-hash-aggregation"
+    ],
+    [
+      "sequential-recall",
+      "sequence-memory-overview"
     ],
     [
       "long-sequence-retrieval",

@@ -16,6 +16,46 @@ import build_knowledge_map  # noqa: E402
 
 
 class KnowledgeMapTest(unittest.TestCase):
+    def test_paper_hierarchy_has_one_parent_per_paper(self) -> None:
+        data = build_knowledge_map.build()
+        hierarchy = data["paperHierarchy"]
+        self.assertEqual({paper["id"] for paper in data["papers"]},
+                         {paper_id for groups in hierarchy.values() for group in groups for paper_id in group["papers"]})
+        self.assertEqual(7, len(hierarchy["20"]))
+        self.assertEqual(28, sum(len(group["papers"]) for group in hierarchy["20"]))
+        self.assertEqual(["rq-vae"], next(group["papers"] for group in hierarchy["9"]
+                                          if group["concept"] == "semantic-id"))
+        self.assertEqual({"rq-kmeans-tokenizer", "pq-semantic-tokenizer", "fsq-tokenizer", "lfq-tokenizer"},
+                         set(hierarchy["9"][0]["extraConcepts"]))
+        self.assertEqual({"diger", "etegrec", "unisid"}, set(hierarchy["9"][1]["papers"]))
+        for paper in data["papers"]:
+            if paper["chapter"] == 9 and paper["id"] != "rq-vae":
+                self.assertNotIn("semantic-id", paper["concepts"])
+                self.assertGreater(len(paper["concepts"]), 1)
+
+    def test_paper_hierarchy_rejects_duplicate_placement(self) -> None:
+        data = build_knowledge_map.build()
+        catalog = {"version": 1, "chapters": json.loads(json.dumps(data["paperHierarchy"]))}
+        catalog["chapters"]["23"][1]["papers"].append("d2q")
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "knowledge").mkdir()
+            (root / "knowledge/paper-hierarchy.json").write_text(json.dumps(catalog))
+            with self.assertRaisesRegex(ValueError, "exactly once"):
+                build_knowledge_map.load_paper_hierarchy(root, data["chapters"], data["concepts"], data["papers"])
+
+    def test_new_chapter_papers_receive_one_temporary_parent(self) -> None:
+        data = build_knowledge_map.build()
+        catalog = {"version": 1, "chapters": json.loads(json.dumps(data["paperHierarchy"]))}
+        del catalog["chapters"]["9"]
+        with tempfile.TemporaryDirectory() as directory:
+            root = Path(directory)
+            (root / "knowledge").mkdir()
+            (root / "knowledge/paper-hierarchy.json").write_text(json.dumps(catalog))
+            hierarchy = build_knowledge_map.load_paper_hierarchy(root, data["chapters"], data["concepts"], data["papers"])
+            self.assertEqual({"rq-vae", "diger", "etegrec", "unisid"},
+                             {id for group in hierarchy["9"] for id in group["papers"]})
+
     def test_chapter_20_readme_lists_every_subsection(self) -> None:
         readme = (ROOT / "README.md").read_text(encoding="utf-8")
         chapter = readme.split("- [**第 20 章 用户兴趣与序列建模**]", 1)[1].split("- **第 21 章", 1)[0]
