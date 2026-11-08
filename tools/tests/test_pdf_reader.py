@@ -16,7 +16,7 @@ class PdfReaderTest(unittest.TestCase):
         from build_knowledge_map import build
 
         chapters = build()["chapters"]
-        self.assertEqual(20, len(chapters))
+        self.assertEqual(len(list((ROOT / "knowledge/chapters").glob("ch[0-9][0-9].md"))), len(chapters))
         for chapter in chapters:
             href = chapter["pdf"]
             self.assertFalse(urlsplit(href).scheme, href)

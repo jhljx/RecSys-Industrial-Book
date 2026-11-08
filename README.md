@@ -41,7 +41,7 @@
 |---|---|---|
 | 直接问书与继续追问 | 针对发布 PDF 生成简明回答、页码依据和适用边界；会话保存在本机 | `ask --session`、`navigate` |
 | 学习陪练 | 对单元提交物给出具体追问、实践建议与下一步任务，不冒充自动评分 | `coach` |
-| 查书与可靠引用 | 检索 20 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
+| 查书与可靠引用 | 检索 21 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
 | 12 周学习课程 | 新人全链路或研究生可信实验路线，按反馈和时间预算生成今日任务 | `course start/today/feedback/status` |
 | 证据化掌握 | 用提交物、实际命令输出、主路径、失败路径和测验分数验收；不接受口头“学会了” | `course submit`、`complete` |
 | 自适应复习 | 前置满足后推荐下一主题，低分补救，七天后安排回忆、纠错和迁移 | `next`、`course review` |
@@ -94,7 +94,7 @@ python3 tools/install_skills.py --client claude
 
 ### 可视化知识地图
 
-[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 20 章、97 张概念卡、104 条前置依赖，并以独立图谱展示 90 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
+[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 21 章、176 张概念卡、183 条前置依赖，并以独立图谱展示 118 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
 
 [`knowledge-map/reader.html`](knowledge-map/reader.html) 是无需构建工具的站内章节 PDF 阅读器，可本地以 `file://` 打开，也可通过 [GitHub Pages](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html) 使用；左侧选择已发布章节、上一章/下一章和 PDF 页码跳转均保持在阅读器内。链接如 `reader.html#ch10&page=60` 可直达第 10 章 PDF 第 60 页。阅读器会向浏览器 PDF 查看器请求默认“适应宽度”（`view=FitH`），并让阅读区域铺满可用列；查看器是否采纳缩放参数取决于浏览器。若浏览器禁用内嵌 PDF 或本地文件预览，可使用页面底部的直接打开/下载链接。
 
@@ -138,6 +138,7 @@ python3 tools/install_skills.py --client claude
 | **第 17 章** | 推荐系统在线服务      | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch17&page=1) |
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch18&page=1) |
 | **第 19 章** | 推荐系统偏差问题 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch19&page=1) |
+| **第 20 章** | 用户兴趣与序列建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch20&page=1) |
 | **第 23 章** | 时长预估建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch23&page=1) |
 | **第 28 章** | 强化学习推荐场景 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch28&page=1) |
 
@@ -160,21 +161,21 @@ python3 tools/install_skills.py --client claude
 | **第 15 ~ 18 章** | 上册其余部分（特征工程、推荐系统离线服务、推荐系统在线服务、向量检索系统） | ✅ **已完成** |
 | **第 19 章** | 推荐系统偏差问题（样本选择偏差、用户群体偏差、混淆偏差、曝光位置偏差、Duration偏差等） | ✅ **已完成** |
 | **第 23 章** | 时长预估建模（基于加权二分类的时长建模、基于离散化分桶的时长建模、经典时长预估建模方法、生成式时长建模） | ✅ **已完成** |
-| **第 20 ~ 22 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
+| **第 21 ~ 22 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
 | **第 24 ~ 27 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
 | **第 28 章** | 强化学习推荐场景 | ✅ **已发布** |
 | **第 29 ~ 38 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
 
 <!-- released-status:start -->
-**公开发布快照**：20 份章节 PDF（含前言），共 792 个 PDF 页。已发布章节编号：0–12、15–19、23、28。这里仅统计仓库公开 PDF，不推断未发布章节的写作进度。
+**公开发布快照**：21 份章节 PDF（含前言），共 879 个 PDF 页。已发布章节编号：0–12、15–20、23、28。这里仅统计仓库公开 PDF，不推断未发布章节的写作进度。
 <!-- released-status:end -->
 
 
 ## 全书章节目录
 
-以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、20–22、24–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。已发布章节入口见上方表格。
+以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、24–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。已发布章节入口见上方表格。
 
-以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、20–22、24–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。
+以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、24–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。
 
 - **第一部分 推荐系统基础**  
     - [**第 1 章 推荐系统概述**](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch1&page=1)
@@ -692,16 +693,45 @@ python3 tools/install_skills.py --client claude
         - 19.10 推荐偏差综合治理    
         - 19.11 本章小结  
         - 19.12 参考文献  
-    - **第 20 章 用户兴趣建模**
-        - 20.1 DIN
-        - 20.2 DIEN
-        - 20.3 BST
-        - 20.4 Transformer
-        - 20.5 SASRec
-        - 20.6 SIM
-        - 20.7 CAN
-        - 20.8 TWIN
-        - 20.9 本章小结
+    - [**第 20 章 用户兴趣与序列建模**](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch20&page=1)
+        - 20.1 基于对比学习的用户行为序列建模
+            - 20.1.1 InfoNCE对比学习
+            - 20.1.2 SimCLR对比学习
+            - 20.1.3 MoCo对比学习
+            - 20.1.4 SimSiam对比学习
+            - 20.1.5 基于正负反馈行为序列的对比学习建模
+            - 20.1.6 基于增广行为序列的对比学习建模
+        - 20.2 基于Attention的用户行为序列建模
+            - 20.2.1 DIN模型
+            - 20.2.2 DIEN模型
+            - 20.2.3 DSIN模型
+            - 20.2.4 BST模型
+            - 20.2.5 TIN模型
+            - 20.2.6 Attention序列建模的问题与解决方案
+        - 20.3 基于Memory的用户行为序列建模
+            - 20.3.1 MIMN模型
+            - 20.3.2 LMN模型
+        - 20.4 基于召回检索的用户行为序列建模
+            - 20.4.1 SIM模型
+            - 20.4.2 TWIN模型
+            - 20.4.3 TWIN-V2模型
+            - 20.4.4 MIRRN模型
+            - 20.4.5 FIM模型
+            - 20.4.6 LCN模型
+            - 20.4.7 LCN模型的后续应用
+        - 20.5 基于哈希的用户行为序列建模
+            - 20.5.1 Reformer模型
+            - 20.5.2 ETA与ETA-NET模型
+            - 20.5.3 SDIM模型
+        - 20.6 基于多模态信息的用户行为序列建模
+            - 20.6.1 多模态SIM模型
+            - 20.6.2 PSRQ模型
+            - 20.6.3 MISS模型
+            - 20.6.4 MUSE模型
+        - 20.7 基于时序图的用户行为序列建模
+            - 20.7.1 DisenCTR模型
+            - 20.7.2 CoFARS模型
+        - 20.8 本章小结
     - **第 21 章 多目标与多场景建模**
         - 21.1 ESM
         - 21.2 AIT

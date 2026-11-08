@@ -7,6 +7,14 @@
     "code": "/knowledge-map/code/d5fafca58e2359d31e19.html",
     "summary": "A/B 实验通过随机化建立策略与业务指标变化之间的因果比较，是推荐系统在线评价的核心证据。"
   },
+  "afn-adaptive-order": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 18,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/8f0f539af9bcd95b5162.html",
+    "summary": "交互阶数可学习并不消除输入特征质量问题，高阶项仍可能放大噪声。"
+  },
   "ann-index-lifecycle": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
@@ -22,6 +30,78 @@
     "chapter_map": "/knowledge/chapters/ch18.html",
     "code": "/knowledge-map/code/7c95d82ff12c649f6d96.html",
     "summary": "索引选择是召回率、延迟、内存、构建速度和增量更新之间的多目标决策。"
+  },
+  "attention-polarization": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 23,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "终身序列的目标注意力可能过度集中在少数行为，压缩了其他兴趣的贡献；注意力稀疏也可能是有效选择，需诊断而非一律平滑。"
+  },
+  "augmented-behavior-contrast": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 11,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "正向序列的 Shuffle 视图可作为辅助正例，短播和主动不喜欢序列提供不同强度的负例；增广不应打乱单条行为的关联字段。"
+  },
+  "autoint-field-attention": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 15,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/f81bfec72c16df937c21.html",
+    "summary": "注意力权重易受高频域主导，域交互可解释性也不能直接等同于因果重要性。"
+  },
+  "behavior-feedback-contrast": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "点击与长播不能自动视为同义正反馈；短播和主动负反馈也需区分。对比目标应保持行为语义和目标标签一致。"
+  },
+  "bert4rec-masked-items": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 90,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/2728bfe1396c472f60b5.html",
+    "summary": "预训练时可看后文，线上预测时只能看已发生行为，必须明确训练任务与服务输入差异。"
+  },
+  "bst-self-attention": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 19,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "BST用行为间自注意力构造上下文化序列表示，和目标对历史的单向权重不同；长序列的两两交互成本需单独计量。"
+  },
+  "cain-context-aware-history": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 51,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "历史行为的邻近上下文能提示兴趣转移；仅依据单点行为与目标相似度可能误判其价值。"
+  },
+  "can-coaction": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 22,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/707eb6020f3b7fcf6e15.html",
+    "summary": "动态参数带来较强表达力，也可能增加存储和查表压力。"
+  },
+  "cofars-context-prototype-search": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 81,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "CoFARS按目标场景匹配偏好原型，再筛选候选无关的历史子序列，适合多个候选共享上下文的请求。"
   },
   "cold-start": {
     "chapter": 1,
@@ -47,6 +127,22 @@
     "code": "",
     "summary": "链路一致性建模让上游阶段学习下游偏好或最终目标，减少阶段目标错位造成的优质候选损失。"
   },
+  "context-temporal-prototypes": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 78,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "上下文偏好原型可把场景相关的历史子序列筛选移到候选无关阶段；转移图提供兴趣演化信息。"
+  },
+  "cread-restoration": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 30,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/29f61f1722ad337b9744.html",
+    "summary": "分桶分类改善长尾训练，但桶内恢复若过粗会损失精确度。"
+  },
   "creator-side-recommendation": {
     "chapter": 2,
     "pdf": "/ch02 推荐系统架构/第二章-推荐系统架构.pdf",
@@ -55,6 +151,30 @@
     "code": "",
     "summary": "消费侧从用户找内容，作者侧则从内容找潜在受众；当供给侧成长和长尾曝光成为目标时，应显式设计作者侧候选与用户侧主链路的汇合规则，不能把作者曝光需求误当成单点相关性分数。"
   },
+  "d2co-noise": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 26,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/d3f9e33cac7f2c7958a9.html",
+    "summary": "短播可能源于偶发中断，长播也可能来自自动播放，原始秒数不是无噪声兴趣标签。"
+  },
+  "d2q-deconfounding": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 22,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/95a9321cf312ab4b587a.html",
+    "summary": "若不按视频长度分桶评估，整体误差变小仍可能掩盖对长短视频的不公平排序。"
+  },
+  "dat-dual-augmentation": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 7,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/5eadd0b840e5961effe0.html",
+    "summary": "双塔侧的交互增强受预计算边界约束，收益要与线上重复计算的成本一起衡量。"
+  },
   "data-leakage": {
     "chapter": 15,
     "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
@@ -62,6 +182,46 @@
     "chapter_map": "/knowledge/chapters/ch15.html",
     "code": "/knowledge-map/code/990271b17a63bcd9158a.html",
     "summary": "样本穿越指训练特征使用了预测时点之后的信息，会制造无法在线复现的离线收益。"
+  },
+  "dcn-v2-cross": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 14,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/51c2335e9cf4e05b3aac.html",
+    "summary": "交叉层增益应与额外参数和特征维度一起衡量，不能用离线AUC单项决定。"
+  },
+  "delayed-feedback-multitower": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 14,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/d0235daf8fd1f0638b89.html",
+    "summary": "过早把未发生转化记为负例会系统性压低慢反馈目标的概率。"
+  },
+  "dien-interest-evolution": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 15,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "DIEN先提取逐步兴趣状态，再让目标引导兴趣演化；时序状态与目标相关加权承担不同作用。"
+  },
+  "din-local-activation": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 13,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "DIN依据目标物品动态加权历史行为，区别于将所有行为做相同 Pooling；它仍需为每个候选读取相关历史。"
+  },
+  "disenctr-dynamic-interest-graph": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 78,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "动态用户物品图中的高阶协同与多兴趣解耦可以补充单用户序列，时间影响需与图传播共同评估。"
   },
   "diversity-reranking": {
     "chapter": 7,
@@ -78,6 +238,22 @@
     "chapter_map": "/knowledge/chapters/ch07.html",
     "code": "/knowledge-map/code/1f9163ebd1db2ef223c6.html",
     "summary": "先决定列表要防止哪种重复：主题、作者、内容表征或相邻位置的相似；没有明确相似度与展示窗口，任何打散算法都难以对应具体体验问题。本卡定义多样性目标，不负责 MMR、DPP、SSD 的算法选型。"
+  },
+  "dlrm-dot-interaction": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 19,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": "/knowledge-map/code/9ee2067a35a360a428c0.html",
+    "summary": "Embedding查表常比交互层本身更影响线上成本，应同时评估内存访问与模型计算。"
+  },
+  "dsin-session-interest": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 17,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "Session 内行为关联与 Session 间兴趣转移是两个尺度；固定窗口截断可能破坏会话边界。"
   },
   "duration-bucket-modeling": {
     "chapter": 23,
@@ -111,6 +287,14 @@
     "code": "/knowledge-map/code/2790b5db86d99a3e652a.html",
     "summary": "把连续观看时长转成阈值分类可简化学习，但阈值定义改变了目标；绝对时长、内容长度比例与多阈值各自保留的信息不同。"
   },
+  "eges-side-information": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 30,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/48fd72d24e5662484ef2.html",
+    "summary": "新物品缺少交互时侧信息有价值；侧信息质量差时可能将不同商品错误拉近。"
+  },
   "embedding-server": {
     "chapter": 17,
     "pdf": "/ch17 推荐系统在线服务/第十七章-推荐系统在线服务.pdf",
@@ -118,6 +302,22 @@
     "chapter_map": "/knowledge/chapters/ch17.html",
     "code": "",
     "summary": "Embedding Server 将大规模稀疏参数或向量从模型计算中解耦，服务设计重点是版本、缓存和批量访问。"
+  },
+  "eta-net-serving": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 62,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "ETA-Net将哈希行为检索与 CTR 主干结合，真正收益取决于行为特征存储及在线计算链路。"
+  },
+  "eta-simhash-retrieval": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 59,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "ETA用目标与行为的哈希距离筛选历史，再做精确注意力；近似检索的漏检应计入整体排序指标。"
   },
   "exploration": {
     "chapter": 28,
@@ -191,6 +391,14 @@
     "code": "",
     "summary": "推荐结果改变用户曝光与行为，新的行为又成为后续训练数据，因此系统优化面对的是持续演化的数据生成闭环。"
   },
+  "fibinet-bilinear": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 16,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/03809b2c364910416b0f.html",
+    "summary": "域重要性与域对交互是两种不同信号，分别消融才能判断收益来源。"
+  },
   "filtering": {
     "chapter": 4,
     "pdf": "/ch04 召回与过滤模块/第四章-召回与过滤模块.pdf",
@@ -199,6 +407,30 @@
     "code": "/knowledge-map/code/8222ff4e9554951ea529.html",
     "summary": "过滤同时承担合规、体验和去重职责；不可恢复的硬过滤应早于昂贵排序。"
   },
+  "fim-frequency-interest": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 45,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "本地生活偏好同时包含属性视角与周期频率；频域信息应验证是否提供时域模型之外的增量。"
+  },
+  "flashattention-io": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 50,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": "/knowledge-map/code/9226042ce24621063785.html",
+    "summary": "只有序列长度和硬件条件使访存成为瓶颈时，其吞吐优势才能兑现。"
+  },
+  "flowtime-personal-prior": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 41,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/b3a2f1f74311b34f1e41.html",
+    "summary": "分布灵活度提升需要靠校准和尾部概率验证，单点均方误差不足以说明价值。"
+  },
   "forward-inverted-index-update": {
     "chapter": 16,
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
@@ -206,6 +438,22 @@
     "chapter_map": "/knowledge/chapters/ch16.html",
     "code": "/knowledge-map/code/d2f500783b3833dc7d0a.html",
     "summary": "正排回答物品属性，倒排回答条件下的候选集合；仅更新其中一侧会造成召回命中后取不到物品或使用过期状态。全量重建与实时变更应共享输入版本和可见性边界。"
+  },
+  "fscd-feature-cost": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 33,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/73676578a8e4b995a992.html",
+    "summary": "选择高预测力但极昂贵的特征可能损害整体吞吐；应以端到端时延约束评估。"
+  },
+  "gdcn-gated-cross": {
+    "chapter": 15,
+    "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
+    "page": 26,
+    "chapter_map": "/knowledge/chapters/ch15.html",
+    "code": "/knowledge-map/code/c719907eac29f17d5925.html",
+    "summary": "更深的交叉层不一定更好，门控是否防止无效高阶项需要分层证据。"
   },
   "generated-item-lookup": {
     "chapter": 9,
@@ -239,6 +487,14 @@
     "code": "/knowledge-map/code/7a3a68e2514e850f3c90.html",
     "summary": "图召回将用户、物品及其连接关系用于表征学习；只有结构信号提供超出协同过滤与向量基线的增量时，建图和训练复杂度才值得承担。"
   },
+  "graph-walk-bias": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 27,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/f3136b6a8b34bf8b7dbb.html",
+    "summary": "游走的局部和远距离探索比例决定学到同质邻居还是结构角色，不能仅看整体离线相似度。"
+  },
   "hard-negative": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
@@ -246,6 +502,14 @@
     "chapter_map": "/knowledge/chapters/ch10.html",
     "code": "",
     "summary": "困难负样本提高模型区分相似候选的能力，但误标潜在正样本会损伤训练。"
+  },
+  "hnsw-search-budget": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 40,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/63e64134e9cd1dca5fe1.html",
+    "summary": "efSearch提高通常改善召回也增加距离计算，索引构图质量与搜索预算必须一起验收。"
   },
   "hnsw": {
     "chapter": 18,
@@ -271,6 +535,38 @@
     "code": "",
     "summary": "工业推荐系统不是模型清单，而是业务目标、数据、算法、服务与反馈共同组成的闭环；局部模型收益必须放回全链路约束中判断。"
   },
+  "infonce-density-ratio": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 1,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "InfoNCE把上下文与真实后继行为的匹配转为正负候选分类；互信息下界依赖负例从边缘分布采样，不能把任意高相似行为当作确定负例。"
+  },
+  "inttower-interaction": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 35,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/b6147af6a354522274d7.html",
+    "summary": "交互越丰富越难复用候选侧预计算，需要明确实际粗排阶段的可缓存部分。"
+  },
+  "ivfadc-residual-code": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 35,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/9a00d04f2c6dbdbf2731.html",
+    "summary": "只扩大倒排桶探测数未必能补偿粗量化误差，编码误差与探测范围要联合调参。"
+  },
+  "kd-tree-pruning": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/1f9968fb02b5762cb15b.html",
+    "summary": "维度升高时剪枝会失效；只有维度和数据规模适合空间划分时，才优于朴素扫描。"
+  },
   "late-feedback-labels": {
     "chapter": 16,
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
@@ -286,6 +582,22 @@
     "chapter_map": "/knowledge/chapters/ch17.html",
     "code": "",
     "summary": "端到端延迟预算必须分配给各阶段并预留网络、调度和组装余量，不能让子服务各自使用总预算。"
+  },
+  "lcn-cross-domain-lifetime": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 48,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "当源域和目标域物品不重叠，需先建立跨域表示桥梁，再从源域长期行为选择对目标有用的信息。"
+  },
+  "lightgcn-propagation": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 44,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/f9b1fb3c8eb4bdb11a5e.html",
+    "summary": "层数越深越可能把不同兴趣混在一起，应检查各层贡献而非盲目堆叠。"
   },
   "lightweight-dnn-pre-ranking": {
     "chapter": 11,
@@ -303,6 +615,14 @@
     "code": "/knowledge-map/code/962074915d8183602799.html",
     "summary": "Listwise 损失把同一请求的候选列表作为联合优化对象，利用列表内标签与分数构造相对分布；它改善的是请求内排序监督，并不天然给出可直接用于多任务融合的绝对点击概率。"
   },
+  "lmn-shared-memory": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 28,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "LMN以全局共享记忆槽存储可复用知识，和每用户独立维护状态的方案具有不同的容量与更新边界。"
+  },
   "load-pid-control": {
     "chapter": 8,
     "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
@@ -311,6 +631,14 @@
     "code": "/knowledge-map/code/30c3c606f70c25e5d337.html",
     "summary": "当混排目标流量随请求波动、静态比例无法稳定满足时，可先用 Load 统计观测偏差，再用窗口反馈的 PID 调节流量；它控制目标负载而不替代候选序列的价值排序，也不承担强插／保量的硬规则决策。"
   },
+  "long-sequence-retrieval": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 31,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "先从长历史检索与候选相关的行为，再执行精细聚合，能够控制每个候选的计算量；筛选损失可能抵消长历史收益。"
+  },
   "lsh-retrieval": {
     "chapter": 18,
     "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
@@ -318,6 +646,46 @@
     "chapter_map": "/knowledge/chapters/ch18.html",
     "code": "/knowledge-map/code/a0c30f5c9e659a76e0f3.html",
     "summary": "LSH 的哈希族必须匹配相似度：集合相似度可考虑 MinHash，向量夹角可考虑随机超平面 SimHash；签名相似并不等于候选一定相似，分桶检索还有漏召与桶膨胀的取舍。"
+  },
+  "mimn-user-memory": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 24,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "MIMN把长历史压入用户多通道记忆，并用独立兴趣更新中心解耦行为写入与在线请求。"
+  },
+  "mind-dynamic-routing": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 100,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/bfa322e0d233c4cbefd2.html",
+    "summary": "兴趣向量数过少漏掉次要兴趣，过多则增加检索量及相似意图的重复候选。"
+  },
+  "minhash-jaccard": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 19,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/1e09a8074ca937a9c6b6.html",
+    "summary": "集合交集是否是业务真正的相似性定义应先确认；把连续语义向量直接套入集合哈希会改变问题。"
+  },
+  "mirrn-multigranularity": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 41,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "目标、近期和全局兴趣的检索 Query 能互补，单一目标检索可能忽略稳定与局部偏好。"
+  },
+  "miss-multimodal-tree": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 71,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "MISS在召回层结合多模态索引树与长期行为检索，树节点与用户兴趣交互会影响候选覆盖和层级搜索成本。"
   },
   "mixed-ranking": {
     "chapter": 8,
@@ -350,6 +718,22 @@
     "chapter_map": "/knowledge/chapters/ch08.html",
     "code": "/knowledge-map/code/bc593db38633016bd081.html",
     "summary": "跨业务的内容消费与变现分不同口径，短期收益不能单独定义最优序列；价值评估应显式区分用户体验、平台收益与生态目标，再决定各自的约束和权重。"
+  },
+  "mmoe-task-gates": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 30,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": "/knowledge-map/code/b0bba57922892eb861da.html",
+    "summary": "任务间相关性不同，固定共享底层可能造成负迁移；门控有效性需按目标分别判断。"
+  },
+  "moco-queue": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 6,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "动量编码器让跨 Batch 队列中的负例表示相对一致，扩充负样本集合时需承担历史表征滞后。"
   },
   "model-distillation": {
     "chapter": 11,
@@ -415,6 +799,30 @@
     "code": "/knowledge-map/code/82d9e7cd0fcebd716c20.html",
     "summary": "多塔模型把不同信号或交互路径拆分建模；增加塔应对应可验证的表达缺口，而不是单纯增加容量。"
   },
+  "multimodal-sim-search": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 67,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "以内容向量替换纯 ID 检索表示，可帮助相似内容跨 ID 匹配；预训练模态向量质量决定初筛效果。"
+  },
+  "muse-stagewise-modality": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 74,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "GSU 的多模态相似度检索和 ESU 的细粒度模态融合承担不同任务；复杂融合应放在有实际收益的阶段。"
+  },
+  "mvke-interest-kernels": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 39,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/09b731131e42c1f6d6c4.html",
+    "summary": "专家分工若坍缩，多兴趣结构仅增加参数而不能改善不同目标的保留率。"
+  },
   "negative-sampling": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
@@ -422,6 +830,14 @@
     "chapter_map": "/knowledge/chapters/ch10.html",
     "code": "/knowledge-map/code/ead8f9251950d64f54ef.html",
     "summary": "负采样决定模型学到的判别边界；采样分布与线上候选分布不一致会引入偏差。"
+  },
+  "neural-cf-interaction": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 18,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/ae728cf3ee7457f96652.html",
+    "summary": "若简单矩阵分解已经充分拟合稀疏交互，增加MLP未必改善冷启动与尾部召回。"
   },
   "observability": {
     "chapter": 17,
@@ -479,6 +895,38 @@
     "code": "",
     "summary": "限流和熔断用于阻止过载与故障扩散，触发条件必须早于资源完全耗尽。"
   },
+  "pdn-path-matching": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 109,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/3e4da0de37b4169b1265.html",
+    "summary": "路径扩展带来更多关系但易被热门中介节点主导，须区分结构增量与共现重复。"
+  },
+  "pinsage-neighbor-sampling": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 46,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/ab49dcabb165a23debb3.html",
+    "summary": "邻居预算是规模与召回质量的共同旋钮，热门节点过度进入邻域会吞噬长尾信号。"
+  },
+  "ple-progressive-separation": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 33,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": "/knowledge-map/code/7b4694f12d911514adfa.html",
+    "summary": "任务专属容量过低无法缓解冲突，容量过高则损失迁移并增加服务成本。"
+  },
+  "pnn-product-interaction": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 10,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": "/knowledge-map/code/101e7cf1aad55bd28907.html",
+    "summary": "域数增大时乘积组合迅速增长，应先验证关键交叉是否足以解释收益。"
+  },
   "point-in-time-join": {
     "chapter": 16,
     "pdf": "/ch16 推荐系统离线服务/第十六章-推荐系统离线服务.pdf",
@@ -502,6 +950,14 @@
     "chapter_map": "/knowledge/chapters/ch19.html",
     "code": "",
     "summary": "观测反馈同时受物品相关性和曝光位置影响；位置偏差校正试图从日志中分离展示机制，避免模型把“排得靠前”误学为“更相关”。"
+  },
+  "positive-negative-sequence": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 9,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "把近期正反馈与短播等负反馈分别编码，能给排序模型提供不同方向的兴趣信号；短播不能在所有场景下等同于厌恶。"
   },
   "pre-ranking-chain-consistency": {
     "chapter": 5,
@@ -542,6 +998,22 @@
     "chapter_map": "/knowledge/chapters/ch05.html",
     "code": "/knowledge-map/code/925666b5a9dc8f948529.html",
     "summary": "粗排在大候选量和有限延迟下逼近精排偏好，目标是保留优质候选而非独立追求最终排序最优。"
+  },
+  "privileged-feature-distillation": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 27,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/1aa61c5d91d3f7c62da3.html",
+    "summary": "教师使用线上不可用信号是蒸馏目的，但学生推理路径不能泄露这些特征。"
+  },
+  "psrq-semantic-codebooks": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 67,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "多模态内容可编码为模态专属和联合语义 ID，再经跨码本注意力建模兴趣；码本不能只按重建误差评估。"
   },
   "quantization": {
     "chapter": 18,
@@ -647,6 +1119,14 @@
     "code": "",
     "summary": "推荐漏斗用逐级缩小候选集换取效果与延迟平衡；越靠后模型越重、候选越少。"
   },
+  "reformer-lsh-attention": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 56,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "LSH把全量两两注意力限制在相似哈希桶内，并配合可逆结构节省内存；不是直接的 CTR 模型。"
+  },
   "reranking-postprocessing": {
     "chapter": 7,
     "pdf": "/ch07 重排模块/第七章-重排模块.pdf",
@@ -687,6 +1167,14 @@
     "code": "",
     "summary": "强化学习推荐优化序列决策和长期回报，但受状态表达、反馈延迟与离线评估困难约束。"
   },
+  "rocket-launching-training": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 25,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/49bf61587f100e1c2a01.html",
+    "summary": "教师收益只有传递到最终学生且上线延迟可接受时才有意义，不能只报告教师指标。"
+  },
   "safe-exploration": {
     "chapter": 28,
     "pdf": "/ch28 强化学习推荐场景/第二十八章-强化学习推荐场景.pdf",
@@ -703,6 +1191,14 @@
     "code": "",
     "summary": "入样并非一次性的曝光筛选：召回、粗排、精排逐层缩小候选，前级漏掉的物品不能给后级提供训练反馈；仅修正最终展示位置无法补足缺失的候选支持。"
   },
+  "sasrec-causal-attention": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 89,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/08b19ddc36c6b331b728.html",
+    "summary": "兴趣变化快且历史混杂时注意力有益；序列变长也会提高计算和噪声成本。"
+  },
   "score-calibration": {
     "chapter": 8,
     "pdf": "/ch08 混排模块/第八章-混排模块.pdf",
@@ -710,6 +1206,22 @@
     "chapter_map": "/knowledge/chapters/ch08.html",
     "code": "/knowledge-map/code/5f8f746f1f37271bcf02.html",
     "summary": "不同业务或模型的原始分数通常不可直接比较；校准把分数映射到具有一致解释的空间，为混排提供可比基础。"
+  },
+  "sdim-collision-aggregation": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 64,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "SDIM用多轮哈希碰撞近似目标关注权重，并可把行为编码移到独立服务；不再对命中行为逐一运行标准 Target Attention。"
+  },
+  "sdm-long-short-interest": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 93,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/7b357311fb6929762434.html",
+    "summary": "近期噪声较多时短期信号会误导召回，融合权重需按活跃度与兴趣漂移评估。"
   },
   "semantic-id": {
     "chapter": 9,
@@ -719,6 +1231,30 @@
     "code": "/knowledge-map/code/c38f21262c05ce06187b.html",
     "summary": "语义 ID 将物品表示为离散 Token 序列，使生成模型能够直接生成候选物品标识，同时把量化误差和 ID 合法性带入链路。"
   },
+  "semantic-item-embedding": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 72,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/a2579a2812feb4ad417a.html",
+    "summary": "语义相近不等于消费偏好相近，编码器选择必须和点击或观看目标一起验收。"
+  },
+  "sequence-contrast-augmentation": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 96,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/866e5510eca11290f78a.html",
+    "summary": "裁剪或重排若改变了原始意图，正样本就会误导模型，增强强度应服从行为语义。"
+  },
+  "sequence-hash-aggregation": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 55,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "哈希使目标相关行为检索或聚合更便宜，但哈希碰撞会改变兴趣分桶与相关行为覆盖。"
+  },
   "sequential-recall": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
@@ -727,6 +1263,46 @@
     "code": "/knowledge-map/code/b3503f7e311b950f915b.html",
     "summary": "序列召回利用行为顺序刻画短期意图；当近期行为改变候选偏好时，比仅聚合长期兴趣更有价值，但历史截断和推理成本不可忽略。"
   },
+  "sim-two-stage-search": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 32,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "SIM先用通用检索单元缩小终身历史，再用精细单元执行目标感知建模；首阶段召回决定后续模型上限。"
+  },
+  "simclr-views": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "同一样本的两次增强形成正对，Batch 内其他样本形成负对；推荐行为增广必须保留对目标有用的语义。"
+  },
+  "simhash-hamming": {
+    "chapter": 18,
+    "pdf": "/ch18 向量检索系统/第十八章-向量检索系统.pdf",
+    "page": 25,
+    "chapter_map": "/knowledge/chapters/ch18.html",
+    "code": "/knowledge-map/code/fe0ef98041e5489438d8.html",
+    "summary": "哈希碰撞既降低计算，也会丢失细粒度排序；应把候选召回与后续精确重排分开评估。"
+  },
+  "simsiam-stop-gradient": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 8,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "仅靠两个视图的正对也可训练表示，但预测头与停止梯度是避免退化的重要机制；不能直接删除负样本并沿用原损失。"
+  },
+  "swing-common-user-penalty": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 9,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/6d48f5e24bdf11c95c86.html",
+    "summary": "当热门物品共同用户很多而兴趣区分度差时，比较Swing与ItemCF的长尾覆盖；惩罚过强可能削弱真实热门兴趣。"
+  },
   "target-attention-ranking": {
     "chapter": 12,
     "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
@@ -734,6 +1310,54 @@
     "chapter_map": "/knowledge/chapters/ch12.html",
     "code": "/knowledge-map/code/9226042ce24621063785.html",
     "summary": "目标注意力按当前候选从用户行为中提取相关兴趣，而自注意力刻画行为间依赖；两者解决的问题不同，不能只以模型层数比较。"
+  },
+  "tdm-tree-search": {
+    "chapter": 10,
+    "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
+    "page": 113,
+    "chapter_map": "/knowledge/chapters/ch10.html",
+    "code": "/knowledge-map/code/cebe98ac96a55aa26a42.html",
+    "summary": "树结构若与当前用户兴趣不匹配，早层剪枝会不可恢复地丢掉相关叶子。"
+  },
+  "tdssm-temporal-tower": {
+    "chapter": 11,
+    "pdf": "/ch11 粗排模型/第十一章-粗排模型.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch11.html",
+    "code": "/knowledge-map/code/dec2f7b8d8aea3f10296.html",
+    "summary": "短期兴趣更新频率决定增益，也改变用户向量缓存与检索索引的新鲜度要求。"
+  },
+  "tin-temporal-correlation": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 21,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "目标与历史的语义相近和时间接近需要联合刻画；只加入时间特征不等于建模二者交互。"
+  },
+  "tpm-progressive-regression": {
+    "chapter": 23,
+    "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
+    "page": 32,
+    "chapter_map": "/knowledge/chapters/ch23.html",
+    "code": "/knowledge-map/code/012be62b8135cc633a8a.html",
+    "summary": "前层错误会传播到后层；比较不同长度视频的早期分支错误率。"
+  },
+  "twin-search-consistency": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 35,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "TWIN让粗检索与精细注意力尽量沿用一致的目标相关度，减少两阶段目标不一致造成的漏检。"
+  },
+  "twin-v2-lifetime-compression": {
+    "chapter": 20,
+    "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
+    "page": 38,
+    "chapter_map": "/knowledge/chapters/ch20.html",
+    "code": "",
+    "summary": "TWIN-V2通过离线层次聚类压缩生命周期行为，再在线检索；压缩质量和更新滞后会影响长期小众兴趣。"
   },
   "two-tower": {
     "chapter": 10,
@@ -774,5 +1398,13 @@
     "chapter_map": "/knowledge/chapters/ch23.html",
     "code": "/knowledge-map/code/7972b3f7f1f3dfe03d99.html",
     "summary": "Weighted LR 是时长目标的一条独立路线，与阈值二分类和离散分桶并列：它对观看样本按时长加权训练二分类，再由预测概率的 Odds 反解时长；该概率不能直接解释为普通点击率或观看率。"
+  },
+  "xdeepfm-cin": {
+    "chapter": 12,
+    "pdf": "/ch12 精排模型/第十二章-精排模型.pdf",
+    "page": 16,
+    "chapter_map": "/knowledge/chapters/ch12.html",
+    "code": "/knowledge-map/code/3612e6610add4e19e542.html",
+    "summary": "高阶交互并非层数越多越好；在固定计算预算下比较CIN和DNN各自贡献。"
   }
 }

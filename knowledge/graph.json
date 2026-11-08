@@ -44,28 +44,62 @@
     "generative-token-objective",
     "one-stage-generative-alignment",
     "semantic-id",
+    "bert4rec-masked-items",
     "collaborative-filtering-recall",
+    "eges-side-information",
     "graph-recall",
+    "graph-walk-bias",
     "hard-negative",
+    "lightgcn-propagation",
+    "mind-dynamic-routing",
     "multi-interest-recall",
     "negative-sampling",
+    "neural-cf-interaction",
+    "pdn-path-matching",
+    "pinsage-neighbor-sampling",
+    "sasrec-causal-attention",
+    "sdm-long-short-interest",
+    "semantic-item-embedding",
+    "sequence-contrast-augmentation",
     "sequential-recall",
+    "swing-common-user-penalty",
+    "tdm-tree-search",
     "two-tower",
+    "dat-dual-augmentation",
+    "delayed-feedback-multitower",
+    "fscd-feature-cost",
+    "inttower-interaction",
     "lightweight-dnn-pre-ranking",
     "model-distillation",
     "multi-interest-pre-ranking",
     "multi-tower-pre-ranking",
+    "mvke-interest-kernels",
     "pre-ranking-two-tower",
+    "privileged-feature-distillation",
+    "rocket-launching-training",
+    "tdssm-temporal-tower",
+    "dlrm-dot-interaction",
     "feature-crossing-deep-ranking",
+    "flashattention-io",
     "listwise-ranking-loss",
+    "mmoe-task-gates",
     "multi-task-experts",
+    "ple-progressive-separation",
+    "pnn-product-interaction",
     "ranking-loss-selection",
     "target-attention-ranking",
+    "xdeepfm-cin",
+    "afn-adaptive-order",
+    "autoint-field-attention",
+    "can-coaction",
     "data-leakage",
+    "dcn-v2-cross",
     "feature-engineering",
     "feature-freshness",
     "feature-governance",
     "feature-pruning",
+    "fibinet-bilinear",
+    "gdcn-gated-cross",
     "forward-inverted-index-update",
     "late-feedback-labels",
     "model-release",
@@ -81,19 +115,64 @@
     "ann-index",
     "ann-index-lifecycle",
     "hnsw",
+    "hnsw-search-budget",
+    "ivfadc-residual-code",
+    "kd-tree-pruning",
     "lsh-retrieval",
+    "minhash-jaccard",
     "quantization",
+    "simhash-hamming",
     "vector-retrieval",
     "exposure-bias",
     "position-bias",
     "position-debiasing",
     "sample-selection-bias",
     "user-group-bias",
+    "attention-polarization",
+    "augmented-behavior-contrast",
+    "behavior-feedback-contrast",
+    "bst-self-attention",
+    "cain-context-aware-history",
+    "cofars-context-prototype-search",
+    "context-temporal-prototypes",
+    "dien-interest-evolution",
+    "din-local-activation",
+    "disenctr-dynamic-interest-graph",
+    "dsin-session-interest",
+    "eta-net-serving",
+    "eta-simhash-retrieval",
+    "fim-frequency-interest",
+    "infonce-density-ratio",
+    "lcn-cross-domain-lifetime",
+    "lmn-shared-memory",
+    "long-sequence-retrieval",
+    "mimn-user-memory",
+    "mirrn-multigranularity",
+    "miss-multimodal-tree",
+    "moco-queue",
+    "multimodal-sim-search",
+    "muse-stagewise-modality",
+    "positive-negative-sequence",
+    "psrq-semantic-codebooks",
+    "reformer-lsh-attention",
+    "sdim-collision-aggregation",
+    "sequence-hash-aggregation",
+    "sim-two-stage-search",
+    "simclr-views",
+    "simsiam-stop-gradient",
+    "tin-temporal-correlation",
+    "twin-search-consistency",
+    "twin-v2-lifetime-compression",
     "consistency-modeling",
+    "cread-restoration",
+    "d2co-noise",
+    "d2q-deconfounding",
     "duration-bucket-modeling",
     "duration-distribution",
     "duration-modeling",
     "duration-threshold-labels",
+    "flowtime-personal-prior",
+    "tpm-progressive-regression",
     "weighted-lr-duration",
     "exploration",
     "rl-recsys",
@@ -289,16 +368,36 @@
       "semantic-id"
     ],
     [
+      "collaborative-filtering-recall",
+      "bert4rec-masked-items"
+    ],
+    [
       "multi-recall",
       "collaborative-filtering-recall"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "eges-side-information"
     ],
     [
       "collaborative-filtering-recall",
       "graph-recall"
     ],
     [
+      "collaborative-filtering-recall",
+      "graph-walk-bias"
+    ],
+    [
       "negative-sampling",
       "hard-negative"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "lightgcn-propagation"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "mind-dynamic-routing"
     ],
     [
       "sequential-recall",
@@ -309,12 +408,64 @@
       "negative-sampling"
     ],
     [
+      "collaborative-filtering-recall",
+      "neural-cf-interaction"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "pdn-path-matching"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "pinsage-neighbor-sampling"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "sasrec-causal-attention"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "sdm-long-short-interest"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "semantic-item-embedding"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "sequence-contrast-augmentation"
+    ],
+    [
       "two-tower",
       "sequential-recall"
     ],
     [
+      "collaborative-filtering-recall",
+      "swing-common-user-penalty"
+    ],
+    [
+      "collaborative-filtering-recall",
+      "tdm-tree-search"
+    ],
+    [
       "multi-recall",
       "two-tower"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "dat-dual-augmentation"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "delayed-feedback-multitower"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "fscd-feature-cost"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "inttower-interaction"
     ],
     [
       "pre-ranking-two-tower",
@@ -333,6 +484,10 @@
       "multi-tower-pre-ranking"
     ],
     [
+      "pre-ranking-two-tower",
+      "mvke-interest-kernels"
+    ],
+    [
       "pre-ranking",
       "pre-ranking-two-tower"
     ],
@@ -341,16 +496,48 @@
       "pre-ranking-two-tower"
     ],
     [
+      "pre-ranking-two-tower",
+      "privileged-feature-distillation"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "rocket-launching-training"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "tdssm-temporal-tower"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "dlrm-dot-interaction"
+    ],
+    [
       "ranking",
       "feature-crossing-deep-ranking"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "flashattention-io"
     ],
     [
       "ranking",
       "listwise-ranking-loss"
     ],
     [
+      "feature-crossing-deep-ranking",
+      "mmoe-task-gates"
+    ],
+    [
       "multi-objective",
       "multi-task-experts"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "ple-progressive-separation"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "pnn-product-interaction"
     ],
     [
       "ranking",
@@ -369,8 +556,28 @@
       "target-attention-ranking"
     ],
     [
+      "feature-crossing-deep-ranking",
+      "xdeepfm-cin"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "afn-adaptive-order"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "autoint-field-attention"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "can-coaction"
+    ],
+    [
       "feature-engineering",
       "data-leakage"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "dcn-v2-cross"
     ],
     [
       "recsys-funnel",
@@ -387,6 +594,14 @@
     [
       "feature-engineering",
       "feature-pruning"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "fibinet-bilinear"
+    ],
+    [
+      "feature-crossing-deep-ranking",
+      "gdcn-gated-cross"
     ],
     [
       "offline-pipeline",
@@ -449,12 +664,32 @@
       "hnsw"
     ],
     [
+      "hnsw",
+      "hnsw-search-budget"
+    ],
+    [
+      "quantization",
+      "ivfadc-residual-code"
+    ],
+    [
+      "ann-index",
+      "kd-tree-pruning"
+    ],
+    [
       "ann-index",
       "lsh-retrieval"
     ],
     [
+      "lsh-retrieval",
+      "minhash-jaccard"
+    ],
+    [
       "ann-index",
       "quantization"
+    ],
+    [
+      "lsh-retrieval",
+      "simhash-hamming"
     ],
     [
       "two-tower",
@@ -481,8 +716,160 @@
       "user-group-bias"
     ],
     [
+      "din-local-activation",
+      "attention-polarization"
+    ],
+    [
+      "positive-negative-sequence",
+      "augmented-behavior-contrast"
+    ],
+    [
+      "target-attention-ranking",
+      "behavior-feedback-contrast"
+    ],
+    [
+      "din-local-activation",
+      "bst-self-attention"
+    ],
+    [
+      "lcn-cross-domain-lifetime",
+      "cain-context-aware-history"
+    ],
+    [
+      "context-temporal-prototypes",
+      "cofars-context-prototype-search"
+    ],
+    [
+      "long-sequence-retrieval",
+      "context-temporal-prototypes"
+    ],
+    [
+      "din-local-activation",
+      "dien-interest-evolution"
+    ],
+    [
+      "target-attention-ranking",
+      "din-local-activation"
+    ],
+    [
+      "context-temporal-prototypes",
+      "disenctr-dynamic-interest-graph"
+    ],
+    [
+      "dien-interest-evolution",
+      "dsin-session-interest"
+    ],
+    [
+      "eta-simhash-retrieval",
+      "eta-net-serving"
+    ],
+    [
+      "sequence-hash-aggregation",
+      "eta-simhash-retrieval"
+    ],
+    [
+      "mirrn-multigranularity",
+      "fim-frequency-interest"
+    ],
+    [
+      "behavior-feedback-contrast",
+      "infonce-density-ratio"
+    ],
+    [
+      "long-sequence-retrieval",
+      "lcn-cross-domain-lifetime"
+    ],
+    [
+      "mimn-user-memory",
+      "lmn-shared-memory"
+    ],
+    [
+      "target-attention-ranking",
+      "long-sequence-retrieval"
+    ],
+    [
+      "dien-interest-evolution",
+      "mimn-user-memory"
+    ],
+    [
+      "sim-two-stage-search",
+      "mirrn-multigranularity"
+    ],
+    [
+      "multimodal-sim-search",
+      "miss-multimodal-tree"
+    ],
+    [
+      "infonce-density-ratio",
+      "moco-queue"
+    ],
+    [
+      "sim-two-stage-search",
+      "multimodal-sim-search"
+    ],
+    [
+      "multimodal-sim-search",
+      "muse-stagewise-modality"
+    ],
+    [
+      "behavior-feedback-contrast",
+      "positive-negative-sequence"
+    ],
+    [
+      "multimodal-sim-search",
+      "psrq-semantic-codebooks"
+    ],
+    [
+      "sequence-hash-aggregation",
+      "reformer-lsh-attention"
+    ],
+    [
+      "eta-simhash-retrieval",
+      "sdim-collision-aggregation"
+    ],
+    [
+      "long-sequence-retrieval",
+      "sequence-hash-aggregation"
+    ],
+    [
+      "long-sequence-retrieval",
+      "sim-two-stage-search"
+    ],
+    [
+      "infonce-density-ratio",
+      "simclr-views"
+    ],
+    [
+      "simclr-views",
+      "simsiam-stop-gradient"
+    ],
+    [
+      "din-local-activation",
+      "tin-temporal-correlation"
+    ],
+    [
+      "sim-two-stage-search",
+      "twin-search-consistency"
+    ],
+    [
+      "twin-search-consistency",
+      "twin-v2-lifetime-compression"
+    ],
+    [
       "version-consistency",
       "consistency-modeling"
+    ],
+    [
+      "duration-distribution",
+      "cread-restoration"
+    ],
+    [
+      "duration-distribution",
+      "d2co-noise"
+    ],
+    [
+      "duration-distribution",
+      "d2q-deconfounding"
     ],
     [
       "duration-modeling",
@@ -499,6 +886,14 @@
     [
       "duration-modeling",
       "duration-threshold-labels"
+    ],
+    [
+      "duration-distribution",
+      "flowtime-personal-prior"
+    ],
+    [
+      "duration-distribution",
+      "tpm-progressive-regression"
     ],
     [
       "duration-modeling",

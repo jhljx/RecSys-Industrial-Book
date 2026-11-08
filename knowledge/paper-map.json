@@ -37,7 +37,8 @@
         19
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "xdeepfm-cin"
       ]
     },
     {
@@ -50,7 +51,8 @@
         33
       ],
       "concepts": [
-        "multi-task-experts"
+        "multi-task-experts",
+        "mmoe-task-gates"
       ]
     },
     {
@@ -63,7 +65,8 @@
         36
       ],
       "concepts": [
-        "multi-task-experts"
+        "multi-task-experts",
+        "ple-progressive-separation"
       ]
     },
     {
@@ -76,7 +79,8 @@
         14
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "pnn-product-interaction"
       ]
     },
     {
@@ -89,7 +93,8 @@
         22
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "dlrm-dot-interaction"
       ]
     },
     {
@@ -154,7 +159,8 @@
         51
       ],
       "concepts": [
-        "target-attention-ranking"
+        "target-attention-ranking",
+        "flashattention-io"
       ]
     },
     {
@@ -316,7 +322,8 @@
         15
       ],
       "concepts": [
-        "collaborative-filtering-recall"
+        "collaborative-filtering-recall",
+        "swing-common-user-penalty"
       ]
     },
     {
@@ -342,7 +349,8 @@
         21
       ],
       "concepts": [
-        "collaborative-filtering-recall"
+        "collaborative-filtering-recall",
+        "neural-cf-interaction"
       ]
     },
     {
@@ -381,7 +389,8 @@
         29
       ],
       "concepts": [
-        "graph-recall"
+        "graph-recall",
+        "graph-walk-bias"
       ]
     },
     {
@@ -394,7 +403,8 @@
         36
       ],
       "concepts": [
-        "graph-recall"
+        "graph-recall",
+        "eges-side-information"
       ]
     },
     {
@@ -446,7 +456,8 @@
         46
       ],
       "concepts": [
-        "graph-recall"
+        "graph-recall",
+        "lightgcn-propagation"
       ]
     },
     {
@@ -459,7 +470,8 @@
         49
       ],
       "concepts": [
-        "graph-recall"
+        "graph-recall",
+        "pinsage-neighbor-sampling"
       ]
     },
     {
@@ -538,7 +550,8 @@
         75
       ],
       "concepts": [
-        "two-tower"
+        "two-tower",
+        "semantic-item-embedding"
       ]
     },
     {
@@ -616,7 +629,8 @@
         90
       ],
       "concepts": [
-        "sequential-recall"
+        "sequential-recall",
+        "sasrec-causal-attention"
       ]
     },
     {
@@ -629,7 +643,8 @@
         92
       ],
       "concepts": [
-        "sequential-recall"
+        "sequential-recall",
+        "bert4rec-masked-items"
       ]
     },
     {
@@ -642,7 +657,8 @@
         95
       ],
       "concepts": [
-        "sequential-recall"
+        "sequential-recall",
+        "sdm-long-short-interest"
       ]
     },
     {
@@ -655,7 +671,8 @@
         97
       ],
       "concepts": [
-        "sequential-recall"
+        "sequential-recall",
+        "sequence-contrast-augmentation"
       ]
     },
     {
@@ -681,7 +698,8 @@
         105
       ],
       "concepts": [
-        "multi-interest-recall"
+        "multi-interest-recall",
+        "mind-dynamic-routing"
       ]
     },
     {
@@ -720,7 +738,8 @@
         113
       ],
       "concepts": [
-        "graph-recall"
+        "graph-recall",
+        "pdn-path-matching"
       ]
     },
     {
@@ -733,7 +752,8 @@
         118
       ],
       "concepts": [
-        "two-tower"
+        "two-tower",
+        "tdm-tree-search"
       ]
     },
     {
@@ -759,7 +779,8 @@
         5
       ],
       "concepts": [
-        "pre-ranking-two-tower"
+        "pre-ranking-two-tower",
+        "tdssm-temporal-tower"
       ]
     },
     {
@@ -785,7 +806,8 @@
         9
       ],
       "concepts": [
-        "pre-ranking-two-tower"
+        "pre-ranking-two-tower",
+        "dat-dual-augmentation"
       ]
     },
     {
@@ -825,7 +847,8 @@
       ],
       "concepts": [
         "multi-tower-pre-ranking",
-        "late-feedback-labels"
+        "late-feedback-labels",
+        "delayed-feedback-multitower"
       ]
     },
     {
@@ -864,7 +887,8 @@
         27
       ],
       "concepts": [
-        "model-distillation"
+        "model-distillation",
+        "rocket-launching-training"
       ]
     },
     {
@@ -877,7 +901,8 @@
         28
       ],
       "concepts": [
-        "model-distillation"
+        "model-distillation",
+        "privileged-feature-distillation"
       ]
     },
     {
@@ -904,7 +929,8 @@
       ],
       "concepts": [
         "lightweight-dnn-pre-ranking",
-        "feature-pruning"
+        "feature-pruning",
+        "fscd-feature-cost"
       ]
     },
     {
@@ -918,7 +944,8 @@
       ],
       "concepts": [
         "pre-ranking-two-tower",
-        "lightweight-dnn-pre-ranking"
+        "lightweight-dnn-pre-ranking",
+        "inttower-interaction"
       ]
     },
     {
@@ -931,7 +958,8 @@
         42
       ],
       "concepts": [
-        "multi-interest-pre-ranking"
+        "multi-interest-pre-ranking",
+        "mvke-interest-kernels"
       ]
     },
     {
@@ -971,7 +999,8 @@
         15
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "dcn-v2-cross"
       ]
     },
     {
@@ -984,7 +1013,8 @@
         16
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "autoint-field-attention"
       ]
     },
     {
@@ -997,7 +1027,8 @@
         18
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "fibinet-bilinear"
       ]
     },
     {
@@ -1010,7 +1041,8 @@
         20
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "afn-adaptive-order"
       ]
     },
     {
@@ -1036,7 +1068,8 @@
         25
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "can-coaction"
       ]
     },
     {
@@ -1062,7 +1095,8 @@
         28
       ],
       "concepts": [
-        "feature-crossing-deep-ranking"
+        "feature-crossing-deep-ranking",
+        "gdcn-gated-cross"
       ]
     },
     {
@@ -1089,7 +1123,8 @@
       ],
       "concepts": [
         "duration-distribution",
-        "duration-modeling"
+        "duration-modeling",
+        "d2q-deconfounding"
       ]
     },
     {
@@ -1115,7 +1150,8 @@
         29
       ],
       "concepts": [
-        "duration-modeling"
+        "duration-modeling",
+        "d2co-noise"
       ]
     },
     {
@@ -1129,7 +1165,8 @@
       ],
       "concepts": [
         "duration-bucket-modeling",
-        "duration-distribution"
+        "duration-distribution",
+        "cread-restoration"
       ]
     },
     {
@@ -1143,7 +1180,8 @@
       ],
       "concepts": [
         "duration-bucket-modeling",
-        "duration-modeling"
+        "duration-modeling",
+        "tpm-progressive-regression"
       ]
     },
     {
@@ -1183,7 +1221,372 @@
         43
       ],
       "concepts": [
-        "duration-distribution"
+        "duration-distribution",
+        "flowtime-personal-prior"
+      ]
+    },
+    {
+      "id": "ch20-infonce-density-ratio",
+      "method": "InfoNCE",
+      "title": "Representation learning with contrastive predictive coding",
+      "chapter": 20,
+      "pages": [
+        1,
+        5
+      ],
+      "concepts": [
+        "infonce-density-ratio"
+      ]
+    },
+    {
+      "id": "ch20-simclr-views",
+      "method": "SimCLR",
+      "title": "A simple framework for contrastive learning of visual representations",
+      "chapter": 20,
+      "pages": [
+        5,
+        6
+      ],
+      "concepts": [
+        "simclr-views"
+      ]
+    },
+    {
+      "id": "ch20-moco-queue",
+      "method": "MoCo",
+      "title": "Momentum contrast for unsupervised visual representation learning",
+      "chapter": 20,
+      "pages": [
+        6,
+        8
+      ],
+      "concepts": [
+        "moco-queue"
+      ]
+    },
+    {
+      "id": "ch20-simsiam-stop-gradient",
+      "method": "SimSiam",
+      "title": "Exploring simple siamese representation learning",
+      "chapter": 20,
+      "pages": [
+        8,
+        9
+      ],
+      "concepts": [
+        "simsiam-stop-gradient"
+      ]
+    },
+    {
+      "id": "ch20-din-local-activation",
+      "method": "DIN",
+      "title": "Deep interest network for click-through rate prediction",
+      "chapter": 20,
+      "pages": [
+        13,
+        15
+      ],
+      "concepts": [
+        "din-local-activation"
+      ]
+    },
+    {
+      "id": "ch20-dien-interest-evolution",
+      "method": "DIEN",
+      "title": "Deep interest evolution network for click-through rate prediction",
+      "chapter": 20,
+      "pages": [
+        15,
+        17
+      ],
+      "concepts": [
+        "dien-interest-evolution"
+      ]
+    },
+    {
+      "id": "ch20-dsin-session-interest",
+      "method": "DSIN",
+      "title": "Deep session interest network for click-through rate prediction",
+      "chapter": 20,
+      "pages": [
+        17,
+        19
+      ],
+      "concepts": [
+        "dsin-session-interest"
+      ]
+    },
+    {
+      "id": "ch20-bst-self-attention",
+      "method": "BST",
+      "title": "Behavior sequence transformer for e-commerce recommendation in alibaba",
+      "chapter": 20,
+      "pages": [
+        19,
+        21
+      ],
+      "concepts": [
+        "bst-self-attention"
+      ]
+    },
+    {
+      "id": "ch20-tin-temporal-correlation",
+      "method": "TIN",
+      "title": "Temporal interest network for user response prediction",
+      "chapter": 20,
+      "pages": [
+        21,
+        23
+      ],
+      "concepts": [
+        "tin-temporal-correlation"
+      ]
+    },
+    {
+      "id": "ch20-attention-polarization",
+      "method": "De-Anchor 注意力极化",
+      "title": "De-Anchor: Mitigating Attention Polarization for Lifelong User Behavior Modeling in Click-Through Rate Prediction",
+      "chapter": 20,
+      "pages": [
+        23,
+        24
+      ],
+      "concepts": [
+        "attention-polarization"
+      ]
+    },
+    {
+      "id": "ch20-mimn-user-memory",
+      "method": "MIMN",
+      "title": "Practice on long sequential user behavior modeling for click-through rate prediction",
+      "chapter": 20,
+      "pages": [
+        24,
+        28
+      ],
+      "concepts": [
+        "mimn-user-memory"
+      ]
+    },
+    {
+      "id": "ch20-lmn-shared-memory",
+      "method": "LMN",
+      "title": "Large memory network for recommendation",
+      "chapter": 20,
+      "pages": [
+        28,
+        31
+      ],
+      "concepts": [
+        "lmn-shared-memory"
+      ]
+    },
+    {
+      "id": "ch20-sim-two-stage-search",
+      "method": "SIM",
+      "title": "Search-based user interest modeling with lifelong sequential behavior data for click-through rate prediction",
+      "chapter": 20,
+      "pages": [
+        32,
+        35
+      ],
+      "concepts": [
+        "sim-two-stage-search"
+      ]
+    },
+    {
+      "id": "ch20-twin-search-consistency",
+      "method": "TWIN",
+      "title": "TWIN: TWo-stage interest network for lifelong user behavior modeling in CTR prediction at kuaishou",
+      "chapter": 20,
+      "pages": [
+        35,
+        38
+      ],
+      "concepts": [
+        "twin-search-consistency"
+      ]
+    },
+    {
+      "id": "ch20-twin-v2-lifetime-compression",
+      "method": "TWIN-V2",
+      "title": "Twin v2: Scaling ultra-long user behavior sequence modeling for enhanced ctr prediction at kuaishou",
+      "chapter": 20,
+      "pages": [
+        38,
+        41
+      ],
+      "concepts": [
+        "twin-v2-lifetime-compression"
+      ]
+    },
+    {
+      "id": "ch20-mirrn-multigranularity",
+      "method": "MIRRN",
+      "title": "Multi-granularity interest retrieval and refinement network for long-term user behavior modeling in ctr prediction",
+      "chapter": 20,
+      "pages": [
+        41,
+        45
+      ],
+      "concepts": [
+        "mirrn-multigranularity"
+      ]
+    },
+    {
+      "id": "ch20-fim-frequency-interest",
+      "method": "FIM",
+      "title": "FIM: Frequency-aware multi-view interest modeling for local-life service recommendation",
+      "chapter": 20,
+      "pages": [
+        45,
+        48
+      ],
+      "concepts": [
+        "fim-frequency-interest"
+      ]
+    },
+    {
+      "id": "ch20-lcn-cross-domain-lifetime",
+      "method": "LCN",
+      "title": "Cross-domain lifelong sequential modeling for online click-through rate prediction",
+      "chapter": 20,
+      "pages": [
+        48,
+        51
+      ],
+      "concepts": [
+        "lcn-cross-domain-lifetime"
+      ]
+    },
+    {
+      "id": "ch20-cain-context-aware-history",
+      "method": "CAIN",
+      "title": "Context-Aware Lifelong Sequential Modeling for Online Click-Through Rate Prediction",
+      "chapter": 20,
+      "pages": [
+        51,
+        54
+      ],
+      "concepts": [
+        "cain-context-aware-history"
+      ]
+    },
+    {
+      "id": "ch20-reformer-lsh-attention",
+      "method": "Reformer",
+      "title": "Reformer: The efficient transformer",
+      "chapter": 20,
+      "pages": [
+        56,
+        59
+      ],
+      "concepts": [
+        "reformer-lsh-attention"
+      ]
+    },
+    {
+      "id": "ch20-eta-simhash-retrieval",
+      "method": "ETA",
+      "title": "End-to-end user behavior retrieval in click-through rateprediction model",
+      "chapter": 20,
+      "pages": [
+        59,
+        62
+      ],
+      "concepts": [
+        "eta-simhash-retrieval"
+      ]
+    },
+    {
+      "id": "ch20-eta-net-serving",
+      "method": "ETA-Net",
+      "title": "Efficient long sequential user data modeling for click-through rate prediction",
+      "chapter": 20,
+      "pages": [
+        62,
+        64
+      ],
+      "concepts": [
+        "eta-net-serving"
+      ]
+    },
+    {
+      "id": "ch20-sdim-collision-aggregation",
+      "method": "SDIM",
+      "title": "Sampling is all you need on modeling long-term user behaviors for CTR prediction",
+      "chapter": 20,
+      "pages": [
+        64,
+        66
+      ],
+      "concepts": [
+        "sdim-collision-aggregation"
+      ]
+    },
+    {
+      "id": "ch20-psrq-semantic-codebooks",
+      "method": "PSRQ",
+      "title": "Progressive semantic residual quantization for multimodal-joint interest modeling in music recommendation",
+      "chapter": 20,
+      "pages": [
+        67,
+        71
+      ],
+      "concepts": [
+        "psrq-semantic-codebooks"
+      ]
+    },
+    {
+      "id": "ch20-miss-multimodal-tree",
+      "method": "MISS",
+      "title": "MISS: Multi-modal tree indexing and searching with lifelong sequential behavior for retrieval recommendation",
+      "chapter": 20,
+      "pages": [
+        71,
+        74
+      ],
+      "concepts": [
+        "miss-multimodal-tree"
+      ]
+    },
+    {
+      "id": "ch20-muse-stagewise-modality",
+      "method": "MUSE",
+      "title": "MUSE: A simple yet effective multimodal search-based framework for lifelong user interest modeling",
+      "chapter": 20,
+      "pages": [
+        74,
+        77
+      ],
+      "concepts": [
+        "muse-stagewise-modality"
+      ]
+    },
+    {
+      "id": "ch20-disenctr-dynamic-interest-graph",
+      "method": "DisenCTR",
+      "title": "DisenCTR: Dynamic graph-based disentangled representation for click-through rate prediction",
+      "chapter": 20,
+      "pages": [
+        78,
+        81
+      ],
+      "concepts": [
+        "disenctr-dynamic-interest-graph"
+      ]
+    },
+    {
+      "id": "ch20-cofars-context-prototype-search",
+      "method": "CoFARS",
+      "title": "Context-based fast recommendation strategy for long user behavior sequence in Meituan Waimai",
+      "chapter": 20,
+      "pages": [
+        81,
+        84
+      ],
+      "concepts": [
+        "cofars-context-prototype-search"
       ]
     }
   ]
