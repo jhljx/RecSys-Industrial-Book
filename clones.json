@@ -71,8 +71,12 @@
   "2026-11-07": {
    "count": 35,
    "uniques": 17
+  },
+  "2026-11-08": {
+   "count": 108,
+   "uniques": 35
   }
  },
- "total": 643,
- "uniques_sum": 283
+ "total": 751,
+ "uniques_sum": 318
 }
