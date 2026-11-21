@@ -115,8 +115,16 @@
   "2026-11-18": {
    "count": 19,
    "uniques": 7
+  },
+  "2026-11-19": {
+   "count": 11,
+   "uniques": 8
+  },
+  "2026-11-20": {
+   "count": 6,
+   "uniques": 6
   }
  },
- "total": 946,
- "uniques_sum": 430
+ "total": 963,
+ "uniques_sum": 444
 }
