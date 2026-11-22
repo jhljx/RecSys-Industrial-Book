@@ -123,8 +123,12 @@
   "2026-11-20": {
    "count": 6,
    "uniques": 6
+  },
+  "2026-11-21": {
+   "count": 17,
+   "uniques": 9
   }
  },
- "total": 963,
- "uniques_sum": 444
+ "total": 980,
+ "uniques_sum": 453
 }
