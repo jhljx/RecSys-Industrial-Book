@@ -224,7 +224,10 @@
       addAgentCommand(panel, c.title);
       const citationChapter = data.chapters.filter(chapter => c.source.includes(decodeURIComponent(chapter.pdf).split('/').at(-1)))
         .sort((a, b) => c.source.indexOf(decodeURIComponent(a.pdf).split('/').at(-1)) - c.source.indexOf(decodeURIComponent(b.pdf).split('/').at(-1)))[0];
-      if (citationChapter) add(actions, link('站内阅读所引 PDF ↗', `./reader.html#ch${citationChapter.number}`)); add(panel, actions);
+      if (citationChapter) add(actions, link('站内阅读所引 PDF ↗', `./reader.html#ch${citationChapter.number}`));
+      if (chapters.has(c.chapter) && citationChapter?.number !== c.chapter)
+        add(actions, link('本章 PDF ↗', `./reader.html#ch${c.chapter}`));
+      add(panel, actions);
       add(panel, el('h4', '', '相关代码讲解'));
       const examples = codeForConcept(c);
       if (examples.length) {

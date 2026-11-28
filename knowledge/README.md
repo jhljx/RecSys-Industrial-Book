@@ -182,7 +182,18 @@
 | tin-temporal-correlation | TIN 语义时间相关 | 20 | din-local-activation |
 | twin-search-consistency | TWIN 两阶段一致性 | 20 | sim-two-stage-search |
 | twin-v2-lifetime-compression | TWIN-V2 终身压缩 | 20 | twin-search-consistency |
+| asmol-all-scenario-learning | ASMOL 全场景目标与选择性蒸馏 | 22 | cascade-selection-bias |
+| cascade-rank-final-training | 粗排 Rank/Final 双目标训练 | 22 | cascade-selection-bias, pre-ranking-chain-consistency |
+| cascade-recall-serving | 级联召回的双塔复用与版本约束 | 22 | cascade-rank-final-training, vector-retrieval, version-consistency |
+| cascade-selection-bias | 级联粗排的样本选择偏差 | 22 | pre-ranking, sample-selection-bias |
 | consistency-modeling | 链路一致性建模 | 22 | version-consistency |
+| copr-chunk-rank-alignment | COPR 分块采样与排序对齐 | 22 | pre-ranking-chain-consistency |
+| cs3-online-capability-synergy | CS3 在线双塔能力协同 | 22 | pre-ranking-two-tower, version-consistency |
+| ecmm-entire-chain-domains | ECMM 全链路跨域建模 | 22 | cascade-selection-bias |
+| grace-topk-generalization | GRACE 多阈值一致性与长尾泛化 | 22 | pre-ranking-chain-consistency |
+| hccp-hybrid-stage-sampling | HCCP 跨阶段分层采样 | 22 | cascade-selection-bias, ranktower-cross-tower-interaction |
+| ranktower-cross-tower-interaction | RankTower 双向跨塔交互 | 22 | pre-ranking-two-tower, cascade-selection-bias |
+| unirec-cross-stage-preference | UniRec 跨阶段多任务偏好优化 | 22 | pre-ranking-chain-consistency, multi-objective |
 | cread-restoration | CREAD分类恢复时长 | 23 | duration-distribution |
 | d2co-noise | D2Co有偏噪声时长信号 | 23 | duration-distribution |
 | d2q-deconfounding | D2Q时长偏差解耦 | 23 | duration-distribution |
@@ -198,6 +209,21 @@
 | pepnet-gate-nu | PEPNet先验驱动的双层门控 | 24 | personalized-network-parameters, lhuc-hidden-unit-adaptation |
 | personalized-network-parameters | 个性化网络参数 | 24 | lhuc-hidden-unit-adaptation |
 | poso-submergence | POSO冷启动个性化模块 | 24 | cold-start, personalized-network-parameters |
+| contextual-fusion-weights | 上下文动态融合权重 | 25 | learnable-global-fusion |
+| dynamic-fusion-constraints | 动态权重的约束与训练 | 25 | contextual-fusion-weights |
+| emer-request-ranking | EMER 请求级多目标排序 | 25 | ltr-fusion-supervision |
+| fusion-bayesian-optimization | 融合参数的贝叶斯优化 | 25 | fusion-grid-random-search |
+| fusion-cross-entropy-search | 交叉熵方法搜索融合参数 | 25 | fusion-grid-random-search |
+| fusion-grid-random-search | 融合参数的网格与随机搜索 | 25 | value-fusion-compensation |
+| fusion-search-boundaries | 自动寻参的目标与约束边界 | 25 | fusion-bayesian-optimization, fusion-cross-entropy-search |
+| harmonrank-rank-consistency | HarmonRank 排序目标一致性 | 25 | ltr-fusion-supervision, dynamic-fusion-constraints |
+| hybrid-value-rank-fusion | 值序混合融合 | 25 | value-fusion-compensation, rank-fusion-robustness |
+| intel-intent-aware-ensemble | IntEL 意图感知物品级融合 | 25 | contextual-fusion-weights, ltr-fusion-supervision |
+| learnable-global-fusion | 全局融合参数的可学习化 | 25 | value-fusion-compensation |
+| ltr-fusion-supervision | LTR 融合的输入与监督 | 25 | hybrid-value-rank-fusion, ranking-ltr-choice |
+| rank-fusion-robustness | 排序位置融合的分布鲁棒性 | 25 | value-fusion-compensation |
+| umre-monotonic-ensemble | UMRE 单调变换与个性化融合 | 25 | contextual-fusion-weights, dynamic-fusion-constraints |
+| value-fusion-compensation | 预测值融合的补偿与协同 | 25 | ranking-formula |
 | exploration | 探索与利用 | 28 | cold-start |
 | rl-recsys | 强化学习推荐 | 28 | exploration |
 | safe-exploration | 安全探索 | 28 | exploration |

@@ -47,6 +47,14 @@
     "code": "",
     "summary": "两个分支前向仍能看到完整表示，掩码控制的是梯度；维度级划分更细但参数更多。全空间联合目标用CTR×CVR约束曝光到转化的概率，而非把未点击曝光当作CVR负例。"
   },
+  "asmol-all-scenario-learning": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/9959c1a4496c3062f780.html",
+    "summary": "粗排不必复制精排完整排序；全场景命中率与筛选职责更接近，教师信号只应在有意义的样本上使用。"
+  },
   "attention-polarization": {
     "chapter": 20,
     "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
@@ -111,6 +119,30 @@
     "code": "/knowledge-map/code/707eb6020f3b7fcf6e15.html",
     "summary": "动态参数带来较强表达力，也可能增加存储和查表压力。"
   },
+  "cascade-rank-final-training": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 30,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/92320c18ca9d0c7e26ca.html",
+    "summary": "过高训练 AUC 可能只说明负样本太容易；Hard Negative、共享层数、Focal Loss 和正例位置权重应协同设计。"
+  },
+  "cascade-recall-serving": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 35,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/d7bc9bab7b9de002c256.html",
+    "summary": "复用节约模型与服务成本，但召回阶段只能使用当时可得特征，用户塔与索引物品塔必须处于兼容版本。"
+  },
+  "cascade-selection-bias": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/d7bc9bab7b9de002c256.html",
+    "summary": "前序阶段既要识别用户反馈，也要保留下游可能偏好的物品；下游未选中不等于已观测到负反馈。"
+  },
   "cofars-context-prototype-search": {
     "chapter": 20,
     "pdf": "/ch20 用户兴趣与序列建模/第二十章-用户兴趣与序列建模.pdf",
@@ -151,6 +183,22 @@
     "code": "",
     "summary": "上下文偏好原型可把场景相关的历史子序列筛选移到候选无关阶段；转移图提供兴趣演化信息。"
   },
+  "contextual-fusion-weights": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 7,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "动态权重需要真实、可在服务时获得的条件特征；额外自由度只有在分群收益稳定时才值得增加。"
+  },
+  "copr-chunk-rank-alignment": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 9,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/d6535fdefa43fedb8ed8.html",
+    "summary": "直接全列表对齐既昂贵又受简单样本主导；分块和排序增益权重让训练集中在影响下游排序的物品对。"
+  },
   "cread-restoration": {
     "chapter": 23,
     "pdf": "/ch23 时长预估建模/第二十三章-时长预估建模.pdf",
@@ -166,6 +214,14 @@
     "chapter_map": "/knowledge/chapters/ch02.html",
     "code": "",
     "summary": "消费侧从用户找内容，作者侧则从内容找潜在受众；当供给侧成长和长尾曝光成为目标时，应显式设计作者侧候选与用户侧主链路的汇合规则，不能把作者曝光需求误当成单点相关性分数。"
+  },
+  "cs3-online-capability-synergy": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 23,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/21c126e8eae926603bdb.html",
+    "summary": "双塔的独立表示限制交互能力；引入在线同步和下游表示后，收益必须覆盖缓存更新、版本一致与尾延迟成本。"
   },
   "d2co-noise": {
     "chapter": 23,
@@ -311,6 +367,22 @@
     "code": "/knowledge-map/code/2790b5db86d99a3e652a.html",
     "summary": "把连续观看时长转成阈值分类可简化学习，但阈值定义改变了目标；绝对时长、内容长度比例与多阈值各自保留的信息不同。"
   },
+  "dynamic-fusion-constraints": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 8,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "过度自由的权重可能放大噪声、偏向单一目标或随输入漂移；约束形式应与融合公式和业务目标相符。"
+  },
+  "ecmm-entire-chain-domains": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/a47936cebb4416964bef.html",
+    "summary": "粗排训练不应只看到曝光物品；跨域目标和路由需体现不同阶段的候选分布及可观测标签边界。"
+  },
   "eges-side-information": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
@@ -326,6 +398,14 @@
     "chapter_map": "/knowledge/chapters/ch17.html",
     "code": "",
     "summary": "Embedding Server 将大规模稀疏参数或向量从模型计算中解耦，服务设计重点是版本、缓存和批量访问。"
+  },
+  "emer-request-ranking": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 20,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/4b245a32f54fc4cddd9b.html",
+    "summary": "请求级相对比较缓解统一满意度标签不足；优势评估器动态调整目标权重，IPUT 从单位时间互动效率补充传统物品级指标。"
   },
   "eta-net-serving": {
     "chapter": 20,
@@ -495,6 +575,38 @@
     "code": "/knowledge-map/code/a8dfd02006f25d9982e3.html",
     "summary": "没有传统向量码本查表，但量化级数和压缩维度一起限定可表示空间。"
   },
+  "fusion-bayesian-optimization": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "当每次离线或 A/B 评估成本较高时，利用收益预测和不确定性平衡探索与利用；公式形式仍然固定。"
+  },
+  "fusion-cross-entropy-search": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "该方法直接更新搜索分布，不需要代理模型；精英比例和采样方差决定探索是否过早收缩。"
+  },
+  "fusion-grid-random-search": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 4,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "网格适合少量离散参数，维度增加时组合数快速增长；随机搜索在固定预算内可覆盖更多不同参数区域。"
+  },
+  "fusion-search-boundaries": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 5,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "搜索算法无法弥补错误的评价目标或缺失的候选特征；单一综合分也可能掩盖某个目标的退化。"
+  },
   "gdcn-gated-cross": {
     "chapter": 15,
     "pdf": "/ch15 特征工程/第十五章-特征工程.pdf",
@@ -527,6 +639,14 @@
     "code": "/knowledge-map/code/7b651f51819289571f5c.html",
     "summary": "将用户行为和语义 ID 组织为模型输入后，自回归模型学习下一个 token 的条件分布；训练 token 预测能力不等同于生成合法物品及获得业务收益。"
   },
+  "grace-topk-generalization": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 12,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/6004e7692e6e4233f45f.html",
+    "summary": "单一截断阈值不足以刻画下游偏好；辅助对比目标要在真实可用的物品表示及正样本条件下评估。"
+  },
   "graph-recall": {
     "chapter": 10,
     "pdf": "/ch10 召回模型/第十章-召回模型.pdf",
@@ -550,6 +670,22 @@
     "chapter_map": "/knowledge/chapters/ch10.html",
     "code": "",
     "summary": "困难负样本提高模型区分相似候选的能力，但误标潜在正样本会损伤训练。"
+  },
+  "harmonrank-rank-consistency": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 24,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/595afe5a95da018b6fda.html",
+    "summary": "分类损失与最终排序指标可能不一致；关系感知注意力和关系无关门控分别保留共享及独有信息，线性路径提供基础表达。"
+  },
+  "hccp-hybrid-stage-sampling": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 18,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/93dde4315c6d1a079916.html",
+    "summary": "不同来源负样本难度和业务语义不同；局部监督只适用于有反馈的样本，不能把全池未曝光当成已观测负反馈。"
   },
   "hnsw-search-budget": {
     "chapter": 18,
@@ -575,6 +711,14 @@
     "code": "",
     "summary": "混合架构把不同信号或策略在候选、分数或列表层组合，以互补覆盖、精度和业务约束。"
   },
+  "hybrid-value-rank-fusion": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "Value 保留预测差距，Rank 保留相对次序；两者混合有意义的前提是二者带来互补信息。"
+  },
   "industrial-recsys-scope": {
     "chapter": 0,
     "pdf": "/ch00 前言/第0章-前言.pdf",
@@ -590,6 +734,14 @@
     "chapter_map": "/knowledge/chapters/ch20.html",
     "code": "",
     "summary": "InfoNCE把上下文与真实后继行为的匹配转为正负候选分类；互信息下界依赖负例从边缘分布采样，不能把任意高相似行为当作确定负例。"
+  },
+  "intel-intent-aware-ensemble": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 12,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/6563e250bc929676ce42.html",
+    "summary": "它优化异构基础模型的物品级排序集成，利用排序损失、模型差异项和意图监督；EA 分解有权重约束与误差边界，不能据此承诺任意融合都优于基模型。"
   },
   "inttower-interaction": {
     "chapter": 11,
@@ -638,6 +790,14 @@
     "chapter_map": "/knowledge/chapters/ch20.html",
     "code": "",
     "summary": "当源域和目标域物品不重叠，需先建立跨域表示桥梁，再从源域长期行为选择对目标有用的信息。"
+  },
+  "learnable-global-fusion": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 6,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "可学习权重减少手工搜索，不能表达用户、物品或场景间不同的目标偏好。"
   },
   "lfq-tokenizer": {
     "chapter": 9,
@@ -718,6 +878,14 @@
     "chapter_map": "/knowledge/chapters/ch18.html",
     "code": "/knowledge-map/code/a0c30f5c9e659a76e0f3.html",
     "summary": "LSH 的哈希族必须匹配相似度：集合相似度可考虑 MinHash，向量夹角可考虑随机超平面 SimHash；签名相似并不等于候选一定相似，分桶检索还有漏召与桶膨胀的取舍。"
+  },
+  "ltr-fusion-supervision": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 10,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/b90f6f61a6f4ec6976f3.html",
+    "summary": "上游 pxtr 是输入而非真实监督；Pointwise、Pairwise、Listwise 的选择取决于标签和请求分组质量。"
   },
   "mimn-user-memory": {
     "chapter": 20,
@@ -1143,6 +1311,14 @@
     "code": "/knowledge-map/code/ccbe158776d4078b8e1b.html",
     "summary": "Quota 与截断在算力预算内控制各通道或业务候选进入后级的数量，决定后续模型可见的候选分布。"
   },
+  "rank-fusion-robustness": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 3,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "当模型分数尺度变化而相对次序稳定时，Rank 融合可减轻绝对值漂移；它同时丢失相邻物品的分数间隔。"
+  },
   "ranking-evaluation-metrics": {
     "chapter": 3,
     "pdf": "/ch03 推荐系统评价体系/第三章-推荐系统评价体系.pdf",
@@ -1190,6 +1366,14 @@
     "chapter_map": "/knowledge/chapters/ch06.html",
     "code": "/knowledge-map/code/c71eba90f79aba140a36.html",
     "summary": "精排对较小候选集进行高成本个性化打分，是多目标效果建模的主要位置。"
+  },
+  "ranktower-cross-tower-interaction": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 14,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/92320c18ca9d0c7e26ca.html",
+    "summary": "跨塔注意力增加表达能力，但只有单侧表示可预计算；在线配对计算与粗排候选规模共同决定是否可部署。"
   },
   "recall-concurrency-isolation": {
     "chapter": 4,
@@ -1527,6 +1711,22 @@
     "code": "/knowledge-map/code/77eef1cbff00cb8ce25f.html",
     "summary": "双塔将用户与物品编码到同一向量空间，使物品向量可离线计算并通过 ANN 在线检索。"
   },
+  "umre-monotonic-ensemble": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 16,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/0d9b8aae373ddda51128.html",
+    "summary": "单调变换用于调整目标间分数尺度，同时保留单目标分数的相对顺序；它不能消除不同目标之间的偏好冲突。"
+  },
+  "unirec-cross-stage-preference": {
+    "chapter": 22,
+    "pdf": "/ch22 链路一致性建模/第二十二章-链路一致性建模.pdf",
+    "page": 25,
+    "chapter_map": "/knowledge/chapters/ch22.html",
+    "code": "/knowledge-map/code/e69298cd38108e80d6d6.html",
+    "summary": "只蒸馏下游分数无法直接协调两阶段融合能力；偏好对、任务权重与属性组奖励共同决定跨阶段对齐方向。"
+  },
   "unisid-joint-embedding": {
     "chapter": 9,
     "pdf": "/ch09 生成式推荐模块/第九章-生成式推荐模块.pdf",
@@ -1542,6 +1742,14 @@
     "chapter_map": "/knowledge/chapters/ch19.html",
     "code": "",
     "summary": "活跃用户提供更多训练行为，整体指标改善可能掩盖新用户和低活跃用户体验下降；此问题区别于展示位置导致的点击差异。"
+  },
+  "value-fusion-compensation": {
+    "chapter": 25,
+    "pdf": "/ch25 多任务融合/第二十五章-多任务融合.pdf",
+    "page": 2,
+    "chapter_map": "/knowledge/chapters/ch25.html",
+    "code": "/knowledge-map/code/1df9a3bfc1e3b5410449.html",
+    "summary": "选择公式前应先定义业务上允许的目标替代关系。乘法并不自动保证多目标均衡，偏置和指数同样决定排序形状。"
   },
   "vector-retrieval": {
     "chapter": 18,

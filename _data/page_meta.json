@@ -1,0 +1,1138 @@
+{
+  "README.md": {
+    "title": "RecSys-Industrial-Book｜推荐系统：工业架构与核心算法",
+    "description": "《推荐系统：工业架构与核心算法》开源书稿与本地 AI 学习工作台。浏览已发布章节 PDF、概念知识地图、教学代码和课程，按 PDF 页码核对书中依据。"
+  },
+  "cases/ann-release-checklist.md": {
+    "title": "向量索引换代：教学验证案例｜推荐系统：工业架构与核心算法",
+    "description": "向量索引换代：教学验证案例：此案例使用仓库合成向量和 MOCK 查询，演示发布契约与故障拒绝；不包含真实训练、ANN 构建或线上流量。适用于「模型收益已确认，索引切换时如何避免版本混用」的工程讨论。"
+  },
+  "cases/multi-recall-tail-latency.md": {
+    "title": "多路召回延迟突增案例｜推荐系统：工业架构与核心算法",
+    "description": "多路召回延迟突增案例：浏览推荐系统工业架构与核心算法的公开导航、教学示例和实践说明，具体书籍论断以已发布 PDF 为准。"
+  },
+  "cases/embedding-version-mismatch.md": {
+    "title": "模型与 Embedding 版本错配案例｜推荐系统：工业架构与核心算法",
+    "description": "模型与 Embedding 版本错配案例：浏览推荐系统工业架构与核心算法的公开导航、教学示例和实践说明，具体书籍论断以已发布 PDF 为准。"
+  },
+  "cases/README.md": {
+    "title": "社区案例贡献指南｜推荐系统：工业架构与核心算法",
+    "description": "社区案例贡献指南：案例必须是独立撰写且已匿名化的工程事实，不得包含公司、用户、内部系统、域名、截图、真实流量、私有代码或未公开事故细节。"
+  },
+  "docs/ai-native-validation-report.md": {
+    "title": "AI-native 改造验证报告（历史快照）｜推荐系统：工业架构与核心算法",
+    "description": "AI-native 改造验证报告（历史快照）：本次验证依据 docs/agent-guide.md 第 8 节和 evals/usability.md 执行。"
+  },
+  "docs/learning-agent-guide.md": {
+    "title": "如何用好推荐系统学习 Agent｜推荐系统：工业架构与核心算法",
+    "description": "如何用好推荐系统学习 Agent：本指南面向 Claude Code、Codex 等仓库 Agent 用户。目标不是让 Agent 替你总结 PDF，而是让它管理“阅读证据 → 推导 → 实践 → 验收 → 反馈 → 复习”的闭环。"
+  },
+  "docs/local-preview.md": {
+    "title": "本地站点预览｜推荐系统：工业架构与核心算法",
+    "description": "本地站点预览：直接打开 knowledge-map/index.html 可离线使用知识地图、章节阅读器与代码目录；页面中的文档链接会指向原始 Markdown。若想检查和 GitHub Pages 相近的文档排版与目录 U"
+  },
+  "docs/agent-guide.md": {
+    "title": "Agent 使用指南｜推荐系统：工业架构与核心算法",
+    "description": "Agent 使用指南：本仓库把发布 PDF 作为权威正文，把 knowledge/ 作为导航层，把命令行工具和 Skills 作为工作流层。无需 MCP、数据库或云端知识库。"
+  },
+  "docs/discoverability.md": {
+    "title": "可引用的公开入口与搜索收录｜推荐系统：工业架构与核心算法",
+    "description": "可引用的公开入口与搜索收录：本仓库发布的是中文书稿《推荐系统：工业架构与核心算法》。PDF 是正文权威；概念卡、代码页和 Agent 工具用于导航、练习和工程参考，不是英文版正文或生产级实现。"
+  },
+  "knowledge/chapter-code-testing.md": {
+    "title": "章节代码：轻量冒烟与依赖分层｜推荐系统：工业架构与核心算法",
+    "description": "章节代码：轻量冒烟与依赖分层：本页只提供测试入口与依赖选择，不是章节内容转写。仓库中的章节代码是教学演示，不代表已完成生产数据接入、模型训练或性能验证；PDF 才是权威正文。"
+  },
+  "knowledge/README.md": {
+    "title": "核心知识卡目录｜推荐系统：工业架构与核心算法",
+    "description": "核心知识卡目录：本目录是独立撰写的导航层，不替代发布版 PDF。每张卡必须区分 本书依据 与 扩展说明，并以 PDF 页码作为公开引用坐标。"
+  },
+  "knowledge/chapters/ch05.md": {
+    "title": "粗排模块｜推荐系统：工业架构与核心算法",
+    "description": "粗排模块：粗排在有限算力下保留精排需要的候选：模型精度、链路一致性、多目标融合、Quota 调控和集合优化共同决定上限。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch15.md": {
+    "title": "特征工程｜推荐系统：工业架构与核心算法",
+    "description": "特征工程：从特征体系、表示、生产时效、交互建模到治理闭环；任何特征收益都必须扣除计算、存储、传输、新鲜度和泄露风险。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch01.md": {
+    "title": "推荐系统概述｜推荐系统：工业架构与核心算法",
+    "description": "推荐系统概述：从推荐系统的定义与演进出发，把用户、平台、内容生态三类价值连接到可观测目标，再识别规模、实时、多目标和冷启动约束。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch25.md": {
+    "title": "多任务融合｜推荐系统：工业架构与核心算法",
+    "description": "多任务融合：从固定公式与全局寻参出发，逐步转向上下文权重、排序学习和面向多目标冲突的融合模型。多任务预测提供各目标的估计值；本章关注如何把这些估计值转为统一的排序决策。"
+  },
+  "knowledge/chapters/ch11.md": {
+    "title": "粗排模型｜推荐系统：工业架构与核心算法",
+    "description": "粗排模型：围绕“精排效果逼近度 / 在线成本”选择双塔、多塔、蒸馏或轻量 DNN，并处理延迟反馈、交叉特征和多兴趣。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch00.md": {
+    "title": "前言｜推荐系统：工业架构与核心算法",
+    "description": "前言：画出“业务目标—数据—召回—排序—服务—反馈”的闭环，并标注自己最陌生的三处。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch24.md": {
+    "title": "个性化网络参数｜推荐系统：工业架构与核心算法",
+    "description": "个性化网络参数：从少数用户群体的训练信号被共享模型淹没出发，比较四条在共享主干上引入个性化的路线：POSO按冷启动阶段选择模块，APG按样本生成低秩参数，PEPNet以先验信息调制Embedding与任务塔，APPNet学习特"
+  },
+  "knowledge/chapters/ch10.md": {
+    "title": "召回模型｜推荐系统：工业架构与核心算法",
+    "description": "召回模型：按可用信号和服务约束选择召回范式，而不是堆叠模型名；比较召回质量时同时观察覆盖、新鲜度、成本和增量价值。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch04.md": {
+    "title": "召回与过滤模块｜推荐系统：工业架构与核心算法",
+    "description": "召回与过滤模块：在有限延迟内扩大有价值候选覆盖，经过去重、配额、截断和兜底形成稳定候选集，再用过滤与限流执行合规和体验约束。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch20.md": {
+    "title": "用户兴趣与序列建模｜推荐系统：工业架构与核心算法",
+    "description": "用户兴趣与序列建模：从反馈表示、目标注意力和兴趣演化出发，逐步讨论长历史的记忆、检索、哈希压缩，以及多模态语义和上下文时序图。各路线需在候选规模、行为新鲜度与在线预算下比较。此地图仅作独立导航。"
+  },
+  "knowledge/chapters/README.md": {
+    "title": "章节知识地图｜推荐系统：工业架构与核心算法",
+    "description": "章节知识地图：这里按发布的 24 章 PDF 提供细粒度导航。每页包含章节主线、节级页码、关键问题、工程检查点和学习产出；它们不是正文转录，也不能替代 PDF。"
+  },
+  "knowledge/chapters/ch03.md": {
+    "title": "推荐系统评价体系｜推荐系统：工业架构与核心算法",
+    "description": "推荐系统评价体系：离线指标用于快速筛选，在线指标回答真实业务增益，A/B 实验建立因果比较，监控体系保障结论可信且系统可运行。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch07.md": {
+    "title": "重排模块｜推荐系统：工业架构与核心算法",
+    "description": "重排模块：从“逐物品最高分”转向“整个列表最优”：生成候选序列、评估序列价值、执行多样性打散并完成后处理。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch17.md": {
+    "title": "推荐系统在线服务｜推荐系统：工业架构与核心算法",
+    "description": "推荐系统在线服务：把推荐请求拆成有预算、有版本、有降级、有监控的依赖图；模型精度只有在容量、尾延迟和一致性约束内才有价值。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch23.md": {
+    "title": "时长预估建模｜推荐系统：工业架构与核心算法",
+    "description": "时长预估建模：时长是长尾、截断且受内容长度影响的目标；先定义标签与业务效用，再比较阈值化、加权分类、分桶、经典专用模型和生成式分布建模。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch06.md": {
+    "title": "精排模块｜推荐系统：工业架构与核心算法",
+    "description": "精排模块：精排连接预估任务与最终业务排序：不仅比较模型，还要处理稀疏反馈、多目标公式、流量调控和强约束策略。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch16.md": {
+    "title": "推荐系统离线服务｜推荐系统：工业架构与核心算法",
+    "description": "推荐系统离线服务：把日志转成时间语义正确的样本、特征、内容向量和索引，再可靠地训练、评估和交付模型；重点是事件时间、幂等、版本和回滚。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch22.md": {
+    "title": "链路一致性建模｜推荐系统：工业架构与核心算法",
+    "description": "链路一致性建模：级联链路的前序阶段面对更大候选集，若只用最终曝光训练，会遗漏下游筛选前的样本并形成阶段间偏好偏移。本章从样本与目标、排序对齐、跨阶段协同三条路线讨论八种模型，再落到粗排 Rank/Final 训练及级联召回部署"
+  },
+  "knowledge/chapters/ch02.md": {
+    "title": "推荐系统架构｜推荐系统：工业架构与核心算法",
+    "description": "推荐系统架构：选择混合与级联架构，连接离线生产和在线请求链路，并把降级、作者侧系统、日志数据纳入同一闭环。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch12.md": {
+    "title": "精排模型｜推荐系统：工业架构与核心算法",
+    "description": "精排模型：从精排模型的发展历程、核心问题与传统模型出发，比较深度架构中的特征交互、多任务学习和统一模型，再将 Pointwise、Pairwise、Listwise 目标放回排序指标、样本组织与线上服务成本中评估。"
+  },
+  "knowledge/chapters/ch09.md": {
+    "title": "生成式推荐模块｜推荐系统：工业架构与核心算法",
+    "description": "生成式推荐模块：把物品离散为语义 ID，用序列模型生成 ID，再处理检索、对齐、训练和工业落地问题；重点判断它何时优于传统级联链路。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch19.md": {
+    "title": "推荐系统偏差问题｜推荐系统：工业架构与核心算法",
+    "description": "推荐系统偏差问题：偏差来自“观测数据并非目标总体”；先识别数据生成机制，再决定采样、加权、建模、实验或产品治理手段，不能把所有偏差都当成模型问题。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch28.md": {
+    "title": "强化学习推荐场景｜推荐系统：工业架构与核心算法",
+    "description": "强化学习推荐场景：先判断问题是否真的具有状态转移、延迟回报和序列决策，再把 RL 用于流量、融合、Session、层次决策、序列生成或探索；离线评估和安全约束是上线前提。"
+  },
+  "knowledge/chapters/ch08.md": {
+    "title": "混排模块｜推荐系统：工业架构与核心算法",
+    "description": "混排模块：不同业务的分数不可直接比较；混排先校准与归一化，再在约束下生成、排序和评估序列，最后用控制策略调节流量。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/chapters/ch18.md": {
+    "title": "向量检索系统｜推荐系统：工业架构与核心算法",
+    "description": "向量检索系统：ANN 用近似换吞吐、延迟和内存；算法选择必须与向量分布、更新方式、过滤需求、召回率和服务容量联合评估。 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+  },
+  "knowledge/concepts/poso-submergence.md": {
+    "title": "POSO冷启动个性化模块｜第 24 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "POSO冷启动个性化模块：新用户冷启动不只是行为历史不足，还可能是群体样本少、统一参数忽略新用户标记；用户累计观看数分桶和物品年龄/曝光编码可调节中间层计算，而不必复制整网。 阅读第 24 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/diversity-reranking.md": {
+    "title": "MMR、DPP 与 SSD 多样性算法选型｜第 7 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MMR、DPP 与 SSD 多样性算法选型：目标与相似度已定时，再比较算法：MMR 逐步平衡相关性与冗余，DPP 考虑集合层面排斥，SSD 用向量正交化思路打散；选择由候选规模、可解释性和计算预算共同决定。本卡不重复定义多样性指标。 阅读第 7 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用"
+  },
+  "knowledge/concepts/d2q-deconfounding.md": {
+    "title": "D2Q时长偏差解耦｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "D2Q时长偏差解耦：若不按视频长度分桶评估，整体误差变小仍可能掩盖对长短视频的不公平排序。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/gdcn-gated-cross.md": {
+    "title": "GDCN门控深层交叉｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "GDCN门控深层交叉：更深的交叉层不一定更好，门控是否防止无效高阶项需要分层证据。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/cascade-rank-final-training.md": {
+    "title": "粗排 Rank/Final 双目标训练｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排 Rank/Final 双目标训练：过高训练 AUC 可能只说明负样本太容易；Hard Negative、共享层数、Focal Loss 和正例位置权重应协同设计。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pinsage-neighbor-sampling.md": {
+    "title": "PinSage重要邻居采样｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "PinSage重要邻居采样：邻居预算是规模与召回质量的共同旋钮，热门节点过度进入邻域会吞噬长尾信号。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/tdssm-temporal-tower.md": {
+    "title": "TDSSM长短期双塔兴趣｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "TDSSM长短期双塔兴趣：短期兴趣更新频率决定增益，也改变用户向量缓存与检索索引的新鲜度要求。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pre-ranking-chain-consistency.md": {
+    "title": "粗排与精排链路一致性｜第 5 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排与精排链路一致性：粗排应尽量保留精排偏好的优质候选，但一味拟合精排会使粗排成为后级的复制品；选模型时需在保真、增量信息与单位请求算力间取舍。 阅读第 5 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/model-distillation.md": {
+    "title": "粗排模型蒸馏｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排模型蒸馏：粗排蒸馏用高容量教师的分数或表征监督低成本学生，在在线预算内逼近后级模型的排序能力。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/position-bias.md": {
+    "title": "位置偏差｜第 19 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "位置偏差：高位置获得更多注意，观察到的点击混合了相关性和展示位置影响。 阅读第 19 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/generated-item-lookup.md": {
+    "title": "生成语义 ID 到可服务物品检索｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "生成语义 ID 到可服务物品检索：生成 token 序列不是最终可展示物品；必须将有效语义 ID 映射回在库物品，并处理多对一重复与查不到物品等异常，才能与传统召回比较。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/flashattention-io.md": {
+    "title": "FlashAttention访存优化｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "FlashAttention访存优化：只有序列长度和硬件条件使访存成为瓶颈时，其吞吐优势才能兑现。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/diger-differentiable-id.md": {
+    "title": "DIGER 可微语义 ID｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "DIGER 可微语义 ID：一阶段可缓解冻结 tokenizer 与推荐目标错配，但离散采样近似可能带来训练方差和码本不稳定。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/multi-objective.md": {
+    "title": "多目标建模｜第 6 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "多目标建模：多目标建模同时预测点击、时长、互动等目标，融合策略决定最终业务取舍。 阅读第 6 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ranking-traffic-control.md": {
+    "title": "精排流量调控与强约束｜第 6 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "精排流量调控与强约束：融合分数并不自动满足新内容、商业或供给侧目标；精排流量调控需把保量与强插的收益、用户损失和约束优先级单独评估，区别于混排跨业务 Load／PID 闭环。 阅读第 6 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sequence-attention-overview.md": {
+    "title": "目标注意力与兴趣演化建模｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "目标注意力与兴趣演化建模：DIN、DIEN、DSIN、BST 与 TIN 的历史组织和时间建模不同，长序列场景要同时核算候选量与复杂度。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/two-tower.md": {
+    "title": "双塔召回｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "双塔召回：双塔将用户与物品编码到同一向量空间，使物品向量可离线计算并通过 ANN 在线检索。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ranktower-cross-tower-interaction.md": {
+    "title": "RankTower 双向跨塔交互｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "RankTower 双向跨塔交互：跨塔注意力增加表达能力，但只有单侧表示可预计算；在线配对计算与粗排候选规模共同决定是否可部署。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/asmol-all-scenario-learning.md": {
+    "title": "ASMOL 全场景目标与选择性蒸馏｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "ASMOL 全场景目标与选择性蒸馏：粗排不必复制精排完整排序；全场景命中率与筛选职责更接近，教师信号只应在有意义的样本上使用。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/kd-tree-pruning.md": {
+    "title": "KD树空间剪枝｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "KD树空间剪枝：维度升高时剪枝会失效；只有维度和数据规模适合空间划分时，才优于朴素扫描。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/lcn-cross-domain-lifetime.md": {
+    "title": "LCN 跨域终身行为｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "LCN 跨域终身行为：当源域和目标域物品不重叠，需先建立跨域表示桥梁，再从源域长期行为选择对目标有用的信息。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/latency-budget.md": {
+    "title": "延迟预算｜第 17 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "延迟预算：端到端延迟预算必须分配给各阶段并预留网络、调度和组装余量，不能让子服务各自使用总预算。 阅读第 17 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/rocket-launching-training.md": {
+    "title": "Rocket Launching联合训练｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Rocket Launching联合训练：教师收益只有传递到最终学生且上线延迟可接受时才有意义，不能只报告教师指标。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ranking.md": {
+    "title": "精排｜第 6 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "精排：精排对较小候选集进行高成本个性化打分，是多目标效果建模的主要位置。 阅读第 6 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/model-release.md": {
+    "title": "模型原子发布｜第 16 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "模型原子发布：模型上线不是复制单个权重文件，而是把数据、代码、特征、模型、评估结果和依赖版本作为可追溯发布单元交付。 阅读第 16 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/reranking-sequence-evaluation.md": {
+    "title": "重排序列价值评估｜第 7 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "重排序列价值评估：候选序列生成后须以整体列表价值而非单个最高分挑选最终展示序列；单点高分之和若忽略位置与项间影响，无法体现重排增益。 阅读第 7 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/generative-token-objective.md": {
+    "title": "生成式推荐序列目标｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "生成式推荐序列目标：将用户行为和语义 ID 组织为模型输入后，自回归模型学习下一个 token 的条件分布；训练 token 预测能力不等同于生成合法物品及获得业务收益。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/fusion-cross-entropy-search.md": {
+    "title": "交叉熵方法搜索融合参数｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "交叉熵方法搜索融合参数：该方法直接更新搜索分布，不需要代理模型；精英比例和采样方差决定探索是否过早收缩。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/flowtime-personal-prior.md": {
+    "title": "FlowTime个性化流先验｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "FlowTime个性化流先验：分布灵活度提升需要靠校准和尾部概率验证，单点均方误差不足以说明价值。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pepnet-gate-nu.md": {
+    "title": "PEPNet先验驱动的双层门控｜第 24 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "PEPNet先验驱动的双层门控：Gate NU借鉴第15章LHUC的隐藏单元贡献调制，但针对推荐的多场景多任务设计；EPNet门控输入的停止梯度不等于冻结共享Embedding，PPNet与EPNet各司其职。 阅读第 24 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/feedback-loop.md": {
+    "title": "推荐反馈闭环｜第 1 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "推荐反馈闭环：推荐结果改变用户曝光与行为，新的行为又成为后续训练数据，因此系统优化面对的是持续演化的数据生成闭环。 阅读第 1 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/quota-truncation.md": {
+    "title": "Quota 与候选截断｜第 5 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Quota 与候选截断：Quota 与截断在算力预算内控制各通道或业务候选进入后级的数量，决定后续模型可见的候选分布。 阅读第 5 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ranking-ltr-choice.md": {
+    "title": "行为预估与 LTR 目标选型｜第 6 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "行为预估与 LTR 目标选型：精排行为预估学习可解释的点击、时长和互动概率，LTR 直接学习综合排序偏好；二者互补，不应把排序损失提升误作各目标预估准确。 阅读第 6 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/recall-route-selection.md": {
+    "title": "召回技术路线选择｜第 4 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "召回技术路线选择：协同过滤利用交互共现，内容与规则路兼顾可控供给，向量路捕捉表示空间中的兴趣，图路挖掘高阶关系；选择路由应看可用信号与新增候选价值，而非统一套用一种模型。 阅读第 4 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ann-index.md": {
+    "title": "ANN 索引选择｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "ANN 索引选择：索引选择是召回率、延迟、内存、构建速度和增量更新之间的多目标决策。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/cofars-context-prototype-search.md": {
+    "title": "CoFARS 上下文原型筛选｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "CoFARS 上下文原型筛选：CoFARS按目标场景匹配偏好原型，再筛选候选无关的历史子序列，适合多个候选共享上下文的请求。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sequence-memory-overview.md": {
+    "title": "长期兴趣记忆建模｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "长期兴趣记忆建模：MIMN 与 LMN 的记忆状态组织不同；状态复用收益要与更新延迟和个性化损失比较。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/appnet-feature-partition.md": {
+    "title": "APPNet自动特征划分与参数门控｜第 24 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "APPNet自动特征划分与参数门控：两个分支前向仍能看到完整表示，掩码控制的是梯度；维度级划分更细但参数更多。全空间联合目标用CTR×CVR约束曝光到转化的概率，而非把未点击曝光当作CVR负例。 阅读第 24 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/multimodal-sim-search.md": {
+    "title": "多模态 SIM 检索｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "多模态 SIM 检索：以内容向量替换纯 ID 检索表示，可帮助相似内容跨 ID 匹配；预训练模态向量质量决定初筛效果。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/feature-engineering.md": {
+    "title": "特征工程｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "特征工程：特征工程连接行为数据、模型和在线服务，价值取决于信息量、时效性与一致性。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ann-index-lifecycle.md": {
+    "title": "ANN 索引换代与一致性｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "ANN 索引换代与一致性：离线新索引构建完成不等于已可接管查询；模型、物品向量与索引若不属于同一可查询版本，切换期间会产生漏召，索引生命周期应与检索算法选型分开治理。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mimn-user-memory.md": {
+    "title": "MIMN 用户兴趣记忆｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MIMN 用户兴趣记忆：MIMN把长历史压入用户多通道记忆，并用独立兴趣更新中心解耦行为写入与在线请求。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/online-serving.md": {
+    "title": "推荐系统在线服务｜第 17 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "推荐系统在线服务：在线服务将召回、排序和策略组织成受端到端延迟约束的请求链路。 阅读第 17 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/multi-interest-recall.md": {
+    "title": "多兴趣召回｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "多兴趣召回：单一用户向量可能折叠不同兴趣，多兴趣召回以多个表征覆盖意图；收益应体现为独立候选增量，而不只是检索次数增加。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/umre-monotonic-ensemble.md": {
+    "title": "UMRE 单调变换与个性化融合｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "UMRE 单调变换与个性化融合：单调变换用于调整目标间分数尺度，同时保留单目标分数的相对顺序；它不能消除不同目标之间的偏好冲突。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/fusion-search-boundaries.md": {
+    "title": "自动寻参的目标与约束边界｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "自动寻参的目标与约束边界：搜索算法无法弥补错误的评价目标或缺失的候选特征；单一综合分也可能掩盖某个目标的退化。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sequence-contrast-overview.md": {
+    "title": "对比学习与反馈序列建模｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "对比学习与反馈序列建模：InfoNCE、SimCLR、MoCo、SimSiam 在负样本来源与梯度路径上不同；反馈增强须保持用户真实意图。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/reranking.md": {
+    "title": "重排｜第 7 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "重排：重排在精排分数基础上处理列表级约束、重复、多样性和业务规则。 阅读第 7 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/copr-chunk-rank-alignment.md": {
+    "title": "COPR 分块采样与排序对齐｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "COPR 分块采样与排序对齐：直接全列表对齐既昂贵又受简单样本主导；分块和排序增益权重让训练集中在影响下游排序的物品对。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pre-ranking-objective-fusion.md": {
+    "title": "粗排多目标值融合与序融合｜第 5 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排多目标值融合与序融合：按预测值融合保留收益量纲，却受目标分数尺度影响；按序关系融合弱化尺度差异，却丢失分值间距。粗排公式应依据候选保留目标选型，不能只看权重是否易调。 阅读第 5 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ecmm-entire-chain-domains.md": {
+    "title": "ECMM 全链路跨域建模｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "ECMM 全链路跨域建模：粗排训练不应只看到曝光物品；跨域目标和路由需体现不同阶段的候选分布及可观测标签边界。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/tdm-tree-search.md": {
+    "title": "TDM树状候选搜索｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "TDM树状候选搜索：树结构若与当前用户兴趣不匹配，早层剪枝会不可恢复地丢掉相关叶子。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/generative-recsys.md": {
+    "title": "生成式推荐｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "生成式推荐：生成式推荐以序列生成方式统一候选建模，但仍需满足服务延迟、约束和可回退要求。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/long-history-interest-modeling.md": {
+    "title": "长历史兴趣检索与压缩｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "长历史兴趣检索与压缩：SIM、TWIN、MIRRN、FIM、LCN 和 CAIN 属于不同的历史组织路线，不能全称为两阶段检索。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/duration-threshold-labels.md": {
+    "title": "时长阈值标签｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "时长阈值标签：把连续观看时长转成阈值分类可简化学习，但阈值定义改变了目标；绝对时长、内容长度比例与多阈值各自保留的信息不同。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/hnsw.md": {
+    "title": "HNSW｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "HNSW：HNSW 通过分层图导航取得较高检索质量，代价是额外内存和构建成本。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/feature-pruning.md": {
+    "title": "冗余特征分组剪枝｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "冗余特征分组剪枝：高度相关的特征不必全部保留，但单一特征的重要性低不等于可直接删除；应在现有特征集合上测量边际收益，成组评估冗余后再按效果与成本决定剪枝。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/point-in-time-join.md": {
+    "title": "Point-in-time Join｜第 16 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Point-in-time Join：样本关联特征时只能使用标签时刻已经可见的版本；事件发生时间晚于标签或当时尚未到达的数据都会造成穿越。 阅读第 16 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/multi-task-experts.md": {
+    "title": "多任务专家模型｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "多任务专家模型：MMoE 以任务独立门控组合共享专家；CGC/PLE 进一步区分共享专家与任务专属专家，并通过分层结构调节共享程度。这些结构都在共享收益与任务冲突之间取舍，并不保证任务数量或专家数量越多越好。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/rq-vae-quantization.md": {
+    "title": "RQ-VAE 残差量化｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "RQ-VAE 残差量化：逐层残差降低量化误差，但最近邻选码不可导，需要近似梯度；重构好并不自动意味着下游推荐目标更好。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mvke-interest-kernels.md": {
+    "title": "MVKE多兴趣虚拟核专家｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MVKE多兴趣虚拟核专家：专家分工若坍缩，多兴趣结构仅增加参数而不能改善不同目标的保留率。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/fscd-feature-cost.md": {
+    "title": "FSCD可学习特征选择｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "FSCD可学习特征选择：选择高预测力但极昂贵的特征可能损害整体吞吐；应以端到端时延约束评估。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/delayed-feedback-multitower.md": {
+    "title": "延迟反馈标签成熟窗口｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "延迟反馈标签成熟窗口：过早把未发生转化记为负例会系统性压低慢反馈目标的概率。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/structured-candidate-search.md": {
+    "title": "结构化候选搜索｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "结构化候选搜索：PDN利用路径表达高阶关系，TDM用树逐层筛选候选；结构不同，不宜归入双塔或普通图卷积模型。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pdn-path-matching.md": {
+    "title": "PDN路径匹配召回｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "PDN路径匹配召回：路径扩展带来更多关系但易被热门中介节点主导，须区分结构增量与共现重复。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/duration-distribution.md": {
+    "title": "时长分布建模｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "时长分布建模：时长目标长尾、截断且受内容长度影响；预测完整分布能表达点估计无法表示的不确定性和不同业务效用。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/duration-bucket-modeling.md": {
+    "title": "时长分桶建模｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "时长分桶建模：分桶目标在直接回归与二分类之间保留时长强度信息；桶边界、标签平滑和长尾样本共同决定校准与分辨率。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/multi-recall.md": {
+    "title": "多路召回｜第 4 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "多路召回：多路召回以不同兴趣信号和内容来源扩大候选覆盖，重点不只是路数，而是互补性。 阅读第 4 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/hybrid-value-rank-fusion.md": {
+    "title": "值序混合融合｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "值序混合融合：Value 保留预测差距，Rank 保留相对次序；两者混合有意义的前提是二者带来互补信息。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/diversity.md": {
+    "title": "列表多样性的目标与相似度口径｜第 7 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "列表多样性的目标与相似度口径：先决定列表要防止哪种重复：主题、作者、内容表征或相邻位置的相似；没有明确相似度与展示窗口，任何打散算法都难以对应具体体验问题。本卡定义多样性目标，不负责 MMR、DPP、SSD 的算法选型。 阅读第 7 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取"
+  },
+  "knowledge/concepts/fallback.md": {
+    "title": "降级与兜底｜第 17 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "降级与兜底：降级以部分个性化损失换取可用性；兜底必须快速、非空、可解释且独立于故障依赖。 阅读第 17 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ab-experiment.md": {
+    "title": "A/B 实验｜第 3 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "A/B 实验：A/B 实验通过随机化建立策略与业务指标变化之间的因果比较，是推荐系统在线评价的核心证据。 阅读第 3 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/lhuc-hidden-unit-adaptation.md": {
+    "title": "LHUC隐藏单元贡献自适应｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "LHUC隐藏单元贡献自适应：隐藏单元的贡献可以在共享主干之上单独调节；这为推荐模型按用户、场景调制中间表示提供了结构启发，但LHUC原始目标是声学模型自适应，不能直接当作推荐场景的实测收益。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/unisid-joint-embedding.md": {
+    "title": "UniSID 语义 ID 与内容表示联合生成｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "UniSID 语义 ID 与内容表示联合生成：以 argmax 生成离散 ID 不需要 RQ-VAE 最近邻码本；但不同层级的语义区分度和推荐目标仍需联合验收。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/unirec-cross-stage-preference.md": {
+    "title": "UniRec 跨阶段多任务偏好优化｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "UniRec 跨阶段多任务偏好优化：只蒸馏下游分数无法直接协调两阶段融合能力；偏好对、任务权重与属性组奖励共同决定跨阶段对齐方向。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/rl-recsys.md": {
+    "title": "强化学习推荐｜第 28 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "强化学习推荐：强化学习推荐优化序列决策和长期回报，但受状态表达、反馈延迟与离线评估困难约束。 阅读第 28 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/learnable-global-fusion.md": {
+    "title": "全局融合参数的可学习化｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "全局融合参数的可学习化：可学习权重减少手工搜索，不能表达用户、物品或场景间不同的目标偏好。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ivfadc-residual-code.md": {
+    "title": "IVFADC残差量化｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "IVFADC残差量化：只扩大倒排桶探测数未必能补偿粗量化误差，编码误差与探测范围要联合调参。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/intel-intent-aware-ensemble.md": {
+    "title": "IntEL 意图感知物品级融合｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "IntEL 意图感知物品级融合：它优化异构基础模型的物品级排序集成，利用排序损失、模型差异项和意图监督；EA 分解有权重约束与误差边界，不能据此承诺任意融合都优于基模型。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pre-ranking-two-tower.md": {
+    "title": "粗排双塔与交互取舍｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排双塔与交互取舍：粗排双塔通过分别编码用户和候选控制推理成本，但交互受限；应在固定服务预算下判断它能否保留精排偏好的优质候选。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/minhash-jaccard.md": {
+    "title": "MinHash集合相似检索｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MinHash集合相似检索：集合交集是否是业务真正的相似性定义应先确认；把连续语义向量直接套入集合哈希会改变问题。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/multi-tower-pre-ranking.md": {
+    "title": "粗排多塔建模｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排多塔建模：多塔模型把不同信号或交互路径拆分建模；增加塔应对应可验证的表达缺口，而不是单纯增加容量。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/swing-common-user-penalty.md": {
+    "title": "Swing共同用户去噪｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Swing共同用户去噪：当热门物品共同用户很多而兴趣区分度差时，比较Swing与ItemCF的长尾覆盖；惩罚过强可能削弱真实热门兴趣。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/attention-polarization.md": {
+    "title": "De-Anchor 注意力极化｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "De-Anchor 注意力极化：终身序列的目标注意力可能过度集中在少数行为，压缩了其他兴趣的贡献；注意力稀疏也可能是有效选择，需诊断而非一律平滑。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/graph-walk-bias.md": {
+    "title": "图随机游走采样｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "图随机游走采样：游走的局部和远距离探索比例决定学到同质邻居还是结构角色，不能仅看整体离线相似度。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/xdeepfm-cin.md": {
+    "title": "xDeepFM显式高阶交互｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "xDeepFM显式高阶交互：高阶交互并非层数越多越好；在固定计算预算下比较CIN和DNN各自贡献。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ranking-formula.md": {
+    "title": "多目标排序公式｜第 6 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "多目标排序公式：多目标排序公式把多个预估任务映射为最终排序分数；乘法、序变换和权重寻优会改变尺度敏感性、单调性与目标间取舍。 阅读第 6 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/augmented-behavior-contrast.md": {
+    "title": "增广行为序列对比｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "增广行为序列对比：正向序列的 Shuffle 视图可作为辅助正例，短播和主动不喜欢序列提供不同强度的负例；增广不应打乱单条行为的关联字段。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/reranking-sequence-generation.md": {
+    "title": "重排候选序列生成｜第 7 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "重排候选序列生成：序列搜索空间随位置和候选量迅速扩大；选择权重扰动、逐位置构造或 Beam Search 时，要以生成足够不同且可比较的序列为目标，而非盲目增加搜索宽度。 阅读第 7 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/autoint-field-attention.md": {
+    "title": "AutoInt特征域注意力｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "AutoInt特征域注意力：注意力权重易受高频域主导，域交互可解释性也不能直接等同于因果重要性。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/can-coaction.md": {
+    "title": "CAN特征协同作用｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "CAN特征协同作用：动态参数带来较强表达力，也可能增加存储和查表压力。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/infonce-density-ratio.md": {
+    "title": "InfoNCE 与密度比｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "InfoNCE 与密度比：InfoNCE把上下文与真实后继行为的匹配转为正负候选分类；互信息下界依赖负例从边缘分布采样，不能把任意高相似行为当作确定负例。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/multi-interest-pre-ranking.md": {
+    "title": "粗排多兴趣表示与候选匹配｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排多兴趣表示与候选匹配：用户兴趣跨内容或行为目标明显分化时，单一用户向量容易压缩掉与当前候选相关的意图；粗排可用多兴趣表示，并依据目标物品或标签选择相关兴趣，而不是无条件增加表示数量。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/cascade-selection-bias.md": {
+    "title": "级联粗排的样本选择偏差｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "级联粗排的样本选择偏差：前序阶段既要识别用户反馈，也要保留下游可能偏好的物品；下游未选中不等于已观测到负反馈。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sim-two-stage-search.md": {
+    "title": "SIM 两阶段行为检索｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "SIM 两阶段行为检索：SIM先用通用检索单元缩小终身历史，再用精细单元执行目标感知建模；首阶段召回决定后续模型上限。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/privileged-feature-distillation.md": {
+    "title": "PFD特权特征蒸馏｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "PFD特权特征蒸馏：教师使用线上不可用信号是蒸馏目的，但学生推理路径不能泄露这些特征。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mixed-value-evaluation.md": {
+    "title": "混排用户平台生态价值评估｜第 8 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "混排用户平台生态价值评估：跨业务的内容消费与变现分不同口径，短期收益不能单独定义最优序列；价值评估应显式区分用户体验、平台收益与生态目标，再决定各自的约束和权重。 阅读第 8 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/negative-sampling.md": {
+    "title": "负采样｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "负采样：负采样决定模型学到的判别边界；采样分布与线上候选分布不一致会引入偏差。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/cascade-recall-serving.md": {
+    "title": "级联召回的双塔复用与版本约束｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "级联召回的双塔复用与版本约束：复用节约模型与服务成本，但召回阶段只能使用当时可得特征，用户塔与索引物品塔必须处于兼容版本。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/load-pid-control.md": {
+    "title": "混排 Load 与 PID 流量调控｜第 8 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "混排 Load 与 PID 流量调控：当混排目标流量随请求波动、静态比例无法稳定满足时，可先用 Load 统计观测偏差，再用窗口反馈的 PID 调节流量；它控制目标负载而不替代候选序列的价值排序，也不承担强插／保量的硬规则决策。 阅读第 8 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件"
+  },
+  "knowledge/concepts/semantic-id.md": {
+    "title": "语义 ID｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "语义 ID：语义 ID 将物品表示为离散 Token 序列，使生成模型能够直接生成候选物品标识，同时把量化误差和 ID 合法性带入链路。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/twin-v2-lifetime-compression.md": {
+    "title": "TWIN-V2 终身压缩｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "TWIN-V2 终身压缩：TWIN-V2通过离线层次聚类压缩生命周期行为，再在线检索；压缩质量和更新滞后会影响长期小众兴趣。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/position-debiasing.md": {
+    "title": "位置偏差校正｜第 19 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "位置偏差校正：观测反馈同时受物品相关性和曝光位置影响；位置偏差校正试图从日志中分离展示机制，避免模型把“排得靠前”误学为“更相关”。 阅读第 19 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/target-attention-ranking.md": {
+    "title": "精排目标注意力｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "精排目标注意力：目标注意力按当前候选从用户行为中提取相关兴趣，而自注意力刻画行为间依赖；两者解决的问题不同，不能只以模型层数比较。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/graph-recall.md": {
+    "title": "图结构召回｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "图结构召回：图召回将用户、物品及其连接关系用于表征学习；只有结构信号提供超出协同过滤与向量基线的增量时，建图和训练复杂度才值得承担。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pnn-product-interaction.md": {
+    "title": "PNN显式乘积交互｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "PNN显式乘积交互：域数增大时乘积组合迅速增长，应先验证关键交叉是否足以解释收益。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sequence-hash-aggregation.md": {
+    "title": "序列哈希检索与聚合｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "序列哈希检索与聚合：哈希使目标相关行为检索或聚合更便宜，但哈希碰撞会改变兴趣分桶与相关行为覆盖。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/collaborative-filtering-recall.md": {
+    "title": "协同过滤召回｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "协同过滤召回：协同过滤利用用户—物品交互邻域建立候选，适合作为可解释、易迭代的强基线；交互稀疏、热门偏置和更新频率决定采用 ItemCF、UserCF 还是更复杂的变体。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/forward-inverted-index-update.md": {
+    "title": "正排与倒排索引协同更新｜第 16 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "正排与倒排索引协同更新：正排回答物品属性，倒排回答条件下的候选集合；仅更新其中一侧会造成召回命中后取不到物品或使用过期状态。全量重建与实时变更应共享输入版本和可见性边界。 阅读第 16 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/reformer-lsh-attention.md": {
+    "title": "Reformer LSH 注意力｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Reformer LSH 注意力：LSH把全量两两注意力限制在相似哈希桶内，并配合可逆结构节省内存；不是直接的 CTR 模型。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mirrn-multigranularity.md": {
+    "title": "MIRRN 多粒度检索｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MIRRN 多粒度检索：目标、近期和全局兴趣的检索 Query 能互补，单一目标检索可能忽略稳定与局部偏好。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/rank-fusion-robustness.md": {
+    "title": "排序位置融合的分布鲁棒性｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "排序位置融合的分布鲁棒性：当模型分数尺度变化而相对次序稳定时，Rank 融合可减轻绝对值漂移；它同时丢失相邻物品的分数间隔。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sequential-recall.md": {
+    "title": "序列召回｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "序列召回：序列召回利用行为顺序刻画短期意图；当近期行为改变候选偏好时，比仅聚合长期兴趣更有价值，但历史截断和推理成本不可忽略。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/recall-concurrency-isolation.md": {
+    "title": "并行召回的超时与空路隔离｜第 4 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "并行召回的超时与空路隔离：多路召回并行能压缩整体等待时间，但慢路不应拖垮候选形成；要在前处理、异步执行和后处理之间明确超时与空路的责任边界。 阅读第 4 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pre-ranking-set-optimization.md": {
+    "title": "粗排候选集集合优化｜第 5 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排候选集集合优化：即使每个候选的粗排分数都合理，简单取前 K 仍可能得到冗余集合；当后级对覆盖和组合质量敏感时，要把候选集视作优化对象，而不仅是单点排序的截断结果。 阅读第 5 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/offline-pipeline.md": {
+    "title": "推荐系统离线链路｜第 16 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "推荐系统离线链路：离线链路将日志转化为样本、特征、模型和发布产物，版本与时间语义必须贯穿全程。 阅读第 16 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/feature-governance.md": {
+    "title": "特征治理｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "特征治理：特征工程不仅是构造表达，还要治理定义、时间语义、血缘、版本、复用和离在线一致性，否则局部收益无法稳定交付。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/dlrm-dot-interaction.md": {
+    "title": "DLRM点积交互｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "DLRM点积交互：Embedding查表常比交互层本身更影响线上成本，应同时评估内存访问与模型计算。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/dcn-v2-cross.md": {
+    "title": "DCN-V2显式交叉矩阵｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "DCN-V2显式交叉矩阵：交叉层增益应与额外参数和特征维度一起衡量，不能用离线AUC单项决定。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/duration-modeling.md": {
+    "title": "时长预估｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "时长预估：时长目标具有长尾、截断和内容时长依赖，不能直接按普通回归问题处理；阈值二分类、Weighted LR 与离散分桶是不同标签/损失路径，不应把加权二分类当成阈值或分桶的后续步骤。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ltr-fusion-supervision.md": {
+    "title": "LTR 融合的输入与监督｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "LTR 融合的输入与监督：上游 pxtr 是输入而非真实监督；Pointwise、Pairwise、Listwise 的选择取决于标签和请求分组质量。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/psrq-semantic-codebooks.md": {
+    "title": "PSRQ 语义残差量化｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "PSRQ 语义残差量化：多模态内容可编码为模态专属和联合语义 ID，再经跨码本注意力建模兴趣；码本不能只按重建误差评估。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/hccp-hybrid-stage-sampling.md": {
+    "title": "HCCP 跨阶段分层采样｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "HCCP 跨阶段分层采样：不同来源负样本难度和业务语义不同；局部监督只适用于有反馈的样本，不能把全池未曝光当成已观测负反馈。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/bert4rec-masked-items.md": {
+    "title": "BERT4Rec双向掩码建模｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "BERT4Rec双向掩码建模：预训练时可看后文，线上预测时只能看已发生行为，必须明确训练任务与服务输入差异。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/creator-side-recommendation.md": {
+    "title": "作者侧推荐与供给曝光｜第 2 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "作者侧推荐与供给曝光：消费侧从用户找内容，作者侧则从内容找潜在受众；当供给侧成长和长尾曝光成为目标时，应显式设计作者侧候选与用户侧主链路的汇合规则，不能把作者曝光需求误当成单点相关性分数。 阅读第 2 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/behavior-feedback-contrast.md": {
+    "title": "行为反馈对比目标｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "行为反馈对比目标：点击与长播不能自动视为同义正反馈；短播和主动负反馈也需区分。对比目标应保持行为语义和目标标签一致。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/cold-start.md": {
+    "title": "冷启动｜第 1 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "冷启动：冷启动是交互证据不足时的决策问题，需要结合内容、先验、探索和热门兜底。 阅读第 1 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/industrial-recsys-scope.md": {
+    "title": "工业推荐系统全链路｜第 0 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "工业推荐系统全链路：工业推荐系统不是模型清单，而是业务目标、数据、算法、服务与反馈共同组成的闭环；局部模型收益必须放回全链路约束中判断。 阅读第 0 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/multimodal-interest-modeling.md": {
+    "title": "多模态兴趣与语义融合｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "多模态兴趣与语义融合：PSRQ 的语义码本、MISS 的树检索与 MUSE 的阶段性模态融合解决不同问题，不宜统称多模态 SIM。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/lsh-retrieval.md": {
+    "title": "局部敏感哈希检索｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "局部敏感哈希检索：LSH 的哈希族必须匹配相似度：集合相似度可考虑 MinHash，向量夹角可考虑随机超平面 SimHash；签名相似并不等于候选一定相似，分桶检索还有漏召与桶膨胀的取舍。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/dat-dual-augmentation.md": {
+    "title": "DAT双重增强双塔｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "DAT双重增强双塔：双塔侧的交互增强受预计算边界约束，收益要与线上重复计算的成本一起衡量。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/late-feedback-labels.md": {
+    "title": "迟到反馈的 Label 合并与样本等待｜第 16 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "迟到反馈的 Label 合并与样本等待：请求与反馈异步到达时，立即产出样本会把尚未到达的正反馈误当负例；等待窗口又不能无限延长。按反馈类型设定合并规则和有界等待，并保证重投递不会覆盖更完整的结果。 阅读第 16 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/recsys-funnel.md": {
+    "title": "推荐漏斗｜第 2 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "推荐漏斗：推荐漏斗用逐级缩小候选集换取效果与延迟平衡；越靠后模型越重、候选越少。 阅读第 2 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/semantic-item-embedding.md": {
+    "title": "预训练语义向量召回｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "预训练语义向量召回：语义相近不等于消费偏好相近，编码器选择必须和点击或观看目标一起验收。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/lfq-tokenizer.md": {
+    "title": "LFQ 无查找表量化｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "LFQ 无查找表量化：大词表无需大规模码本向量查找，但二值组合利用率与训练目标仍需额外约束。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sequence-contrast-augmentation.md": {
+    "title": "序列对比视图增强｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "序列对比视图增强：裁剪或重排若改变了原始意图，正样本就会误导模型，增强强度应服从行为语义。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/din-local-activation.md": {
+    "title": "DIN 目标局部激活｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "DIN 目标局部激活：DIN依据目标物品动态加权历史行为，区别于将所有行为做相同 Pooling；它仍需为每个候选读取相关历史。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/simhash-hamming.md": {
+    "title": "SimHash汉明近邻｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "SimHash汉明近邻：哈希碰撞既降低计算，也会丢失细粒度排序；应把候选召回与后续精确重排分开评估。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ranking-evaluation-metrics.md": {
+    "title": "全局区分与列表头部评价｜第 3 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "全局区分与列表头部评价：全局 AUC 与请求内头部排序衡量不同质量；离线准入应按召回、排序和校准职责分别选指标，而不是以一个总分替代整条漏斗。 阅读第 3 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/moco-queue.md": {
+    "title": "MoCo 动量队列｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MoCo 动量队列：动量编码器让跨 Batch 队列中的负例表示相对一致，扩充负样本集合时需承担历史表征滞后。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/grace-topk-generalization.md": {
+    "title": "GRACE 多阈值一致性与长尾泛化｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "GRACE 多阈值一致性与长尾泛化：单一截断阈值不足以刻画下游偏好；辅助对比目标要在真实可用的物品表示及正样本条件下评估。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/dien-interest-evolution.md": {
+    "title": "DIEN 兴趣演化｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "DIEN 兴趣演化：DIEN先提取逐步兴趣状态，再让目标引导兴趣演化；时序状态与目标相关加权承担不同作用。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/bst-self-attention.md": {
+    "title": "BST 行为自注意力｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "BST 行为自注意力：BST用行为间自注意力构造上下文化序列表示，和目标对历史的单向权重不同；长序列的两两交互成本需单独计量。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pq-semantic-tokenizer.md": {
+    "title": "PQ 分组向量量化｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "PQ 分组向量量化：分组编码易并行且可控，但独立子空间可能丢失跨组相关性；与残差量化不应混为一类。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mixed-ranking.md": {
+    "title": "混排｜第 8 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "混排：混排在多个业务或内容类型之间分配展示位置，需统一价值尺度并约束体验。 阅读第 8 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/twin-search-consistency.md": {
+    "title": "TWIN 两阶段一致性｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "TWIN 两阶段一致性：TWIN让粗检索与精细注意力尽量沿用一致的目标相关度，减少两阶段目标不一致造成的漏检。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/harmonrank-rank-consistency.md": {
+    "title": "HarmonRank 排序目标一致性｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "HarmonRank 排序目标一致性：分类损失与最终排序指标可能不一致；关系感知注意力和关系无关门控分别保留共享及独有信息，线性路径提供基础表达。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/feature-interaction-models.md": {
+    "title": "特征交互模型选型｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "特征交互模型选型：DCN、AutoInt、FiBiNet、AFN 等方法解决的交互形态不同；应结合域数、稀疏度和在线预算比较。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/long-sequence-retrieval.md": {
+    "title": "长行为序列的目标检索｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "长行为序列的目标检索：先从长历史检索与候选相关的行为，再执行精细聚合，能够控制每个候选的计算量；筛选损失可能抵消长历史收益。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sdim-collision-aggregation.md": {
+    "title": "SDIM 碰撞聚合｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "SDIM 碰撞聚合：SDIM用多轮哈希碰撞近似目标关注权重，并可把行为编码移到独立服务；不再对命中行为逐一运行标准 Target Attention。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/user-group-bias.md": {
+    "title": "用户群体偏差｜第 19 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "用户群体偏差：活跃用户提供更多训练行为，整体指标改善可能掩盖新用户和低活跃用户体验下降；此问题区别于展示位置导致的点击差异。 阅读第 19 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mind-dynamic-routing.md": {
+    "title": "MIND动态路由兴趣胶囊｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MIND动态路由兴趣胶囊：兴趣向量数过少漏掉次要兴趣，过多则增加检索量及相似意图的重复候选。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sample-selection-bias.md": {
+    "title": "样本选择偏差与级联漏样｜第 19 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "样本选择偏差与级联漏样：入样并非一次性的曝光筛选：召回、粗排、精排逐层缩小候选，前级漏掉的物品不能给后级提供训练反馈；仅修正最终展示位置无法补足缺失的候选支持。 阅读第 19 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/feature-freshness.md": {
+    "title": "特征时效性｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "特征时效性：特征新鲜度是事件发生到在线可见的总延迟，过期特征会使模型响应滞后。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/hybrid-architecture.md": {
+    "title": "混合推荐架构｜第 2 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "混合推荐架构：混合架构把不同信号或策略在候选、分数或列表层组合，以互补覆盖、精度和业务约束。 阅读第 2 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/hnsw-search-budget.md": {
+    "title": "HNSW分层图搜索预算｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "HNSW分层图搜索预算：efSearch提高通常改善召回也增加距离计算，索引构图质量与搜索预算必须一起验收。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ranking-loss-selection.md": {
+    "title": "精排损失与概率校准｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "精排损失与概率校准：Pointwise 直接学习目标概率，Pairwise 优化同请求候选顺序，Listwise 面向整个列表；需要概率可解释性时不能只追求排序指标。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/overload-control.md": {
+    "title": "过载控制｜第 17 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "过载控制：限流和熔断用于阻止过载与故障扩散，触发条件必须早于资源完全耗尽。 阅读第 17 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/contextual-fusion-weights.md": {
+    "title": "上下文动态融合权重｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "上下文动态融合权重：动态权重需要真实、可在服务时获得的条件特征；额外自由度只有在分群收益稳定时才值得增加。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/exposure-bias.md": {
+    "title": "曝光偏差｜第 19 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "曝光偏差：训练数据来自历史策略选择后的曝光，未曝光物品缺少反事实反馈，模型会延续旧策略偏好。 阅读第 19 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/tpm-progressive-regression.md": {
+    "title": "TPM树状渐进回归｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "TPM树状渐进回归：前层错误会传播到后层；比较不同长度视频的早期分支错误率。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/dynamic-fusion-constraints.md": {
+    "title": "动态权重的约束与训练｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "动态权重的约束与训练：过度自由的权重可能放大噪声、偏向单一目标或随输入漂移；约束形式应与融合公式和业务目标相符。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/lmn-shared-memory.md": {
+    "title": "LMN 跨用户共享记忆｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "LMN 跨用户共享记忆：LMN以全局共享记忆槽存储可复用知识，和每用户独立维护状态的方案具有不同的容量与更新边界。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/observability.md": {
+    "title": "推荐可观测性｜第 17 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "推荐可观测性：推荐可观测性必须覆盖业务漏斗、模型分布和服务健康，才能区分供给、策略、模型与系统故障。 阅读第 17 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/feature-crossing-deep-ranking.md": {
+    "title": "精排特征交叉与深层表征融合｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "精排特征交叉与深层表征融合：精排模型需要同时利用有明确业务语义的低阶特征组合与深层网络学习的非线性关系。Wide & Deep 并行融合人工交叉与 DNN；DeepFM 利用 FM 学习二阶交互并与 DNN 共享特征嵌入；DLRM 则显式计算嵌入间交互后交由顶部网络组合。它们的交互位置、参数共享方式和成本不同"
+  },
+  "knowledge/concepts/hard-negative.md": {
+    "title": "困难负样本｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "困难负样本：困难负样本提高模型区分相似候选的能力，但误标潜在正样本会损伤训练。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/muse-stagewise-modality.md": {
+    "title": "MUSE 分阶段模态融合｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MUSE 分阶段模态融合：GSU 的多模态相似度检索和 ESU 的细粒度模态融合承担不同任务；复杂融合应放在有实际收益的阶段。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/etegrec-end-to-end-token.md": {
+    "title": "ETEGRec 端到端物品 Token｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "ETEGRec 端到端物品 Token：联合训练目标有助于对齐，但物品编码更新会影响历史行为 Token 与物品反查映射。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/rq-kmeans-tokenizer.md": {
+    "title": "RQ-KMeans 残差聚类编码｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "RQ-KMeans 残差聚类编码：省去 Encoder 和 Decoder 的联合训练及 STE 近似，但码本质量仍依赖输入 Embedding 和聚类初始化。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/d2co-noise.md": {
+    "title": "D2Co有偏噪声时长信号｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "D2Co有偏噪声时长信号：短播可能源于偶发中断，长播也可能来自自动播放，原始秒数不是无噪声兴趣标签。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/pre-ranking.md": {
+    "title": "粗排｜第 5 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "粗排：粗排在大候选量和有限延迟下逼近精排偏好，目标是保留优质候选而非独立追求最终排序最优。 阅读第 5 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/lightgcn-propagation.md": {
+    "title": "LightGCN邻居传播｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "LightGCN邻居传播：层数越深越可能把不同兴趣混在一起，应检查各层贡献而非盲目堆叠。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/safe-exploration.md": {
+    "title": "安全探索｜第 28 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "安全探索：推荐探索必须在收益、体验和风险护栏内获取新信息；无约束随机探索会把学习成本直接转嫁给用户和生态。 阅读第 28 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/context-temporal-prototypes.md": {
+    "title": "上下文时序图与兴趣原型｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "上下文时序图与兴趣原型：上下文偏好原型可把场景相关的历史子序列筛选移到候选无关阶段；转移图提供兴趣演化信息。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sasrec-causal-attention.md": {
+    "title": "SASRec因果序列注意力｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "SASRec因果序列注意力：兴趣变化快且历史混杂时注意力有益；序列变长也会提高计算和噪声成本。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/tin-temporal-correlation.md": {
+    "title": "TIN 语义时间相关｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "TIN 语义时间相关：目标与历史的语义相近和时间接近需要联合刻画；只加入时间特征不等于建模二者交互。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/weighted-lr-duration.md": {
+    "title": "Weighted LR 时长反解｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Weighted LR 时长反解：Weighted LR 是时长目标的一条独立路线，与阈值二分类和离散分桶并列：它对观看样本按时长加权训练二分类，再由预测概率的 Odds 反解时长；该概率不能直接解释为普通点击率或观看率。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工"
+  },
+  "knowledge/concepts/eta-simhash-retrieval.md": {
+    "title": "ETA SimHash 行为检索｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "ETA SimHash 行为检索：ETA用目标与行为的哈希距离筛选历史，再做精确注意力；近似检索的漏检应计入整体排序指标。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/eges-side-information.md": {
+    "title": "EGES侧信息融合｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "EGES侧信息融合：新物品缺少交互时侧信息有价值；侧信息质量差时可能将不同商品错误拉近。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/afn-adaptive-order.md": {
+    "title": "AFN自适应交互阶数｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "AFN自适应交互阶数：交互阶数可学习并不消除输入特征质量问题，高阶项仍可能放大噪声。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/recommendation-log-contract.md": {
+    "title": "推荐请求日志与反馈数据契约｜第 2 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "推荐请求日志与反馈数据契约：只有将请求、曝光、交互与实验信息按可关联的时间和标识落盘，才能把在线决策可靠地回收到训练与评估；聚合报表不能替代请求级事实。 阅读第 2 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/consistency-modeling.md": {
+    "title": "链路一致性建模｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "链路一致性建模：链路一致性建模让上游阶段学习下游偏好或最终目标，减少阶段目标错位造成的优质候选损失。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/reranking-postprocessing.md": {
+    "title": "重排末端硬约束后处理｜第 7 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "重排末端硬约束后处理：末端后处理适合执行必须满足的曝光或合规约束；若把软目标全部延后到此阶段，将破坏已优化的序列分数，应尽量在搜索阶段考虑可预知的约束。 阅读第 7 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/fim-frequency-interest.md": {
+    "title": "FIM 频域多视角兴趣｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "FIM 频域多视角兴趣：本地生活偏好同时包含属性视角与周期频率；频域信息应验证是否提供时域模型之外的增量。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/offline-online-evaluation.md": {
+    "title": "离线与在线评价｜第 3 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "离线与在线评价：离线指标用于低成本筛选候选方案，在线指标检验真实业务增益；二者衡量对象和数据分布不同，不能相互替代。 阅读第 3 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/vector-retrieval.md": {
+    "title": "向量检索｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "向量检索：向量检索以近似邻居搜索换取大规模候选发现效率，必须联合评估召回率、延迟和内存。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/sdm-long-short-interest.md": {
+    "title": "SDM长短期兴趣融合｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "SDM长短期兴趣融合：近期噪声较多时短期信号会误导召回，融合权重需按活跃度与兴趣漂移评估。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/offline-online-architecture.md": {
+    "title": "离线生产与在线请求的交付边界｜第 2 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "离线生产与在线请求的交付边界：离线侧产出训练样本、特征、模型和索引，在线侧按请求获取最新可用的用户及物品信息；选定交付频率时须先划分哪些信号必须实时更新、哪些可以周期性发布。 阅读第 2 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/fibinet-bilinear.md": {
+    "title": "FiBiNet双线性交互｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "FiBiNet双线性交互：域重要性与域对交互是两种不同信号，分别消融才能判断收益来源。LHUC调节隐藏单元贡献，FiBiNet的SE分支调节特征域贡献，二者属于第15章从动态贡献走向特征重加权的相关思想，不能视为相同结构。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工"
+  },
+  "knowledge/concepts/cread-restoration.md": {
+    "title": "CREAD分类恢复时长｜第 23 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "CREAD分类恢复时长：分桶分类改善长尾训练，但桶内恢复若过粗会损失精确度。 阅读第 23 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/personalized-network-parameters.md": {
+    "title": "个性化网络参数｜第 24 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "个性化网络参数：提供个性化输入特征不保证共享网络会用好少数群体信号；POSO强调冷启动群体门控，APG生成条件参数，PEPNet使用先验调制Embedding和任务塔，APPNet学习个性化分支与主预测分支的梯度归属。第15章LHUC的隐藏单元贡献调制为门控路线提供先前概念。 阅读第 24 章关联概念卡，按所"
+  },
+  "knowledge/concepts/fusion-grid-random-search.md": {
+    "title": "融合参数的网格与随机搜索｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "融合参数的网格与随机搜索：网格适合少量离散参数，维度增加时组合数快速增长；随机搜索在固定预算内可覆盖更多不同参数区域。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/lightweight-dnn-pre-ranking.md": {
+    "title": "轻量 DNN 粗排的特征与计算预算｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "轻量 DNN 粗排的特征与计算预算：双塔内积无法表达必要的用户—物品交互时，可用轻量 DNN 在粗排阶段引入交叉特征；是否采用取决于交互增益能否覆盖逐候选推理及特征读取成本，而非只比较模型参数量。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/simsiam-stop-gradient.md": {
+    "title": "SimSiam 停止梯度｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "SimSiam 停止梯度：仅靠两个视图的正对也可训练表示，但预测头与停止梯度是避免退化的重要机制；不能直接删除负样本并沿用原损失。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mixed-sequence-ranking.md": {
+    "title": "混排候选序列排序｜第 8 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "混排候选序列排序：跨业务序列生成只确定可行解，序列排序还须按统一口径比较整体价值；单纯累加 item 分数会受长度和位置影响，不能等同用户、平台、生态的共同收益。 阅读第 8 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/listwise-ranking-loss.md": {
+    "title": "Listwise 排序损失｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Listwise 排序损失：Listwise 损失把同一请求的候选列表作为联合优化对象，利用列表内标签与分数构造相对分布；它改善的是请求内排序监督，并不天然给出可直接用于多任务融合的绝对点击概率。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/quantization.md": {
+    "title": "向量量化｜第 18 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "向量量化：向量量化用精度损失换取内存和距离计算效率，误差可能改变近邻顺序。 阅读第 18 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/exploration.md": {
+    "title": "探索与利用｜第 28 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "探索与利用：探索牺牲部分已知收益以获取新信息，利用选择当前估计最优内容；两者需受风险预算约束。 阅读第 28 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/ple-progressive-separation.md": {
+    "title": "PLE渐进共享与专属专家｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "PLE渐进共享与专属专家：任务专属容量过低无法缓解冲突，容量过高则损失迁移并增加服务成本。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/one-stage-generative-alignment.md": {
+    "title": "一阶段生成中编码与推荐目标对齐｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "一阶段生成中编码与推荐目标对齐：先量化物品再训练生成器可能出现编码目标与推荐目标不一致；一阶段方法尝试联合或交替优化离散表示与生成学习，选型应看对齐收益是否覆盖训练和服务复杂度。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/apg-conditional-parameters.md": {
+    "title": "APG条件参数生成｜第 24 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "APG条件参数生成：直接生成完整矩阵随输入和输出维度增长；低秩仅减少参数表示，若仍重构完整矩阵便失去前向计算收益。共享两侧矩阵、仅生成较小中间矩阵是更高效的实现。 阅读第 24 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/filtering.md": {
+    "title": "过滤｜第 4 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "过滤：过滤同时承担合规、体验和去重职责；不可恢复的硬过滤应早于昂贵排序。 阅读第 4 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/emer-request-ranking.md": {
+    "title": "EMER 请求级多目标排序｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "EMER 请求级多目标排序：请求级相对比较缓解统一满意度标签不足；优势评估器动态调整目标权重，IPUT 从单位时间互动效率补充传统物品级指标。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/version-consistency.md": {
+    "title": "模型与数据版本一致性｜第 17 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "模型与数据版本一致性：模型、特征、Embedding 和索引必须来自兼容发布集合；单独更新任一组件可能产生静默错误。 阅读第 17 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/embedding-server.md": {
+    "title": "Embedding Server｜第 17 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Embedding Server：Embedding Server 将大规模稀疏参数或向量从模型计算中解耦，服务设计重点是版本、缓存和批量访问。 阅读第 17 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/cain-context-aware-history.md": {
+    "title": "CAIN 邻域上下文兴趣｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "CAIN 邻域上下文兴趣：历史行为的邻近上下文能提示兴趣转移；仅依据单点行为与目标相似度可能误判其价值。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/simclr-views.md": {
+    "title": "SimCLR 增广视图｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "SimCLR 增广视图：同一样本的两次增强形成正对，Batch 内其他样本形成负对；推荐行为增广必须保留对目标有用的语义。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mmoe-task-gates.md": {
+    "title": "MMoE任务门控专家｜第 12 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MMoE任务门控专家：任务间相关性不同，固定共享底层可能造成负迁移；门控有效性需按目标分别判断。 阅读第 12 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/positive-negative-sequence.md": {
+    "title": "正负反馈序列分离｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "正负反馈序列分离：把近期正反馈与短播等负反馈分别编码，能给排序模型提供不同方向的兴趣信号；短播不能在所有场景下等同于厌恶。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/inttower-interaction.md": {
+    "title": "IntTower塔间交互效率｜第 11 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "IntTower塔间交互效率：交互越丰富越难复用候选侧预计算，需要明确实际粗排阶段的可缓存部分。 阅读第 11 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/fusion-bayesian-optimization.md": {
+    "title": "融合参数的贝叶斯优化｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "融合参数的贝叶斯优化：当每次离线或 A/B 评估成本较高时，利用收益预测和不确定性平衡探索与利用；公式形式仍然固定。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/eta-net-serving.md": {
+    "title": "ETA-Net 长序列部署｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "ETA-Net 长序列部署：ETA-Net将哈希行为检索与 CTR 主干结合，真正收益取决于行为特征存储及在线计算链路。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/disenctr-dynamic-interest-graph.md": {
+    "title": "DisenCTR 动态兴趣图｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "DisenCTR 动态兴趣图：动态用户物品图中的高阶协同与多兴趣解耦可以补充单用户序列，时间影响需与图传播共同评估。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/value-fusion-compensation.md": {
+    "title": "预测值融合的补偿与协同｜第 25 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "预测值融合的补偿与协同：选择公式前应先定义业务上允许的目标替代关系。乘法并不自动保证多目标均衡，偏置和指数同样决定排序形状。 阅读第 25 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/data-leakage.md": {
+    "title": "样本穿越｜第 15 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "样本穿越：样本穿越指训练特征使用了预测时点之后的信息，会制造无法在线复现的离线收益。 阅读第 15 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/fsq-tokenizer.md": {
+    "title": "FSQ 有限标量量化｜第 9 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "FSQ 有限标量量化：没有传统向量码本查表，但量化级数和压缩维度一起限定可表示空间。 阅读第 9 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/score-calibration.md": {
+    "title": "分数校准｜第 8 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "分数校准：不同业务或模型的原始分数通常不可直接比较；校准把分数映射到具有一致解释的空间，为混排提供可比基础。 阅读第 8 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/miss-multimodal-tree.md": {
+    "title": "MISS 多模态树检索｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "MISS 多模态树检索：MISS在召回层结合多模态索引树与长期行为检索，树节点与用户兴趣交互会影响候选覆盖和层级搜索成本。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/cs3-online-capability-synergy.md": {
+    "title": "CS3 在线双塔能力协同｜第 22 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "CS3 在线双塔能力协同：双塔的独立表示限制交互能力；引入在线同步和下游表示后，收益必须覆盖缓存更新、版本一致与尾延迟成本。 阅读第 22 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/dsin-session-interest.md": {
+    "title": "DSIN Session 兴趣｜第 20 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "DSIN Session 兴趣：Session 内行为关联与 Session 间兴趣转移是两个尺度；固定窗口截断可能破坏会话边界。 阅读第 20 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/neural-cf-interaction.md": {
+    "title": "Neural CF非线性交互｜第 10 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "Neural CF非线性交互：若简单矩阵分解已经充分拟合稀疏交互，增加MLP未必改善冷启动与尾部召回。 阅读第 10 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/recall-fusion.md": {
+    "title": "召回融合｜第 4 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "召回融合：召回融合负责去重、配额和来源平衡，防止高产召回路挤占其他信号。 阅读第 4 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "knowledge/concepts/mixed-sequence-generation.md": {
+    "title": "跨业务混排序列生成｜第 8 章概念与 PDF 依据 · 推荐系统工业实践",
+    "description": "跨业务混排序列生成：跨业务候选组合受位置与供给规则约束；预竞价先压缩参选空间，全竞价让更多候选参与竞争，选型须同时衡量全局收益损失与在线计算成本。 阅读第 8 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+  },
+  "learning-paths/graduate.md": {
+    "title": "研究生建模与可信实验路线｜推荐系统：工业架构与核心算法",
+    "description": "研究生建模与可信实验路线：这是一门 12 周研究课程，不是论文题目清单。权威正文仍是发布 PDF；完整机器可读课程、阅读页、研究产物、问题和验收条件在 courses.json 的 graduate 中。"
+  },
+  "learning-paths/new-engineer.md": {
+    "title": "推荐算法工程师全链路学习路线｜推荐系统：工业架构与核心算法",
+    "description": "推荐算法工程师全链路学习路线：这是一门 12 周课程，不是章节摘录。权威正文仍是发布 PDF；完整机器可读课程、阅读页、提交物、问题和验收条件在 courses.json 的 new-engineer 中。"
+  },
+  "templates/README.md": {
+    "title": "可运行教学项目｜推荐系统：工业架构与核心算法",
+    "description": "可运行教学项目：四个项目使用小规模合成数据与 MOCK 依赖，供本地练习；不包含生产集成或真实性能承诺。 参照公开示例检查适用条件、运行路径与实现边界。"
+  },
+  "templates/recommendation-pipeline/README.md": {
+    "title": "Recommendation request pipeline template｜推荐系统：工业架构与核心算法",
+    "description": "Recommendation request pipeline template：A minimal runnable template for Agent-assisted architecture work. It demonstrates explicit request budget"
+  },
+  "templates/feature-consistency/README.md": {
+    "title": "特征与样本一致性项目｜推荐系统：工业架构与核心算法",
+    "description": "特征与样本一致性项目：验收：所有 featuretime <= labeltime；注入穿越后门禁失败。生产替换需加入水位线、迟到数据、回填版本、快照审计与离在线特征对账。"
+  },
+  "templates/two-tower-ann/README.md": {
+    "title": "向量检索版本契约教学项目｜推荐系统：工业架构与核心算法",
+    "description": "向量检索版本契约教学项目：验收：正样本排在检索前列；负样本不含正样本；模型／索引或请求／索引版本不匹配时拒绝。生产替换需加入真实训练、批量导出、ANN 基准、原子灰度切换、指标和回滚。"
+  },
+  "templates/serving-reliability/README.md": {
+    "title": "在线服务稳定性项目｜推荐系统：工业架构与核心算法",
+    "description": "在线服务稳定性项目：验收：nonempty == requests；超容量和超时请求进入 fallback；输出 P99 与降级率。生产替换需使用真实压测器、并发模型、依赖隔离、告警、灰度和回滚。"
+  },
+  "ch03 推荐系统评价体系/code/README.md": {
+    "title": "ch03 推荐系统评价体系 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch03 推荐系统评价体系 — 代码示例：本目录对应教材第 3 章，覆盖离线指标、在线指标、A/B 实验体系与监控体系的 Python 实现，共 14 个可运行脚本。目录编号与正文节次一一对应，均可直接 python3 <文件>.py 运行。本章全部脚"
+  },
+  "ch16 推荐系统离线服务/code/README.md": {
+    "title": "ch16 推荐系统离线服务 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch16 推荐系统离线服务 — 代码示例：本目录包含书中每个章节涉及的完整可运行代码。每个子目录对应章节中的一种数据流或服务。"
+  },
+  "ch16 推荐系统离线服务/code/ch07_graph_storage/README.md": {
+    "title": "ch07 图存储 C++ 实现｜推荐系统：工业架构与核心算法",
+    "description": "ch07 图存储 C++ 实现：查看已发布章节的教学代码说明、源码入口和运行前提；书中依据以公开 PDF 页码为准。 参照公开示例检查适用条件、运行路径与实现边界。"
+  },
+  "ch12 精排模型/code/README.md": {
+    "title": "ch12 精排模型 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch12 精排模型 — 代码示例：本目录对应教材第 12 章，覆盖精排阶段主流模型的 Python 实现，共 16 个可运行脚本。目录编号与正文节次一一对应，均可直接 python3 <文件>.py 运行。全部脚本仅依赖 PyTorch（pip"
+  },
+  "ch09 生成式推荐模块/code/README.md": {
+    "title": "ch09 生成式推荐模块 - 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch09 生成式推荐模块 - 代码示例：本目录对应教材第 9 章「生成式推荐模块」，用 Python 复刻生成式推荐的核心链路（语义ID生成 → 生成式推荐模型 → 物品ID检索 → 一阶段联合训练 → 落地问题与讨论），共 18 个可运行脚本。目录"
+  },
+  "ch07 重排模块/code/README.md": {
+    "title": "ch07 重排模块 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch07 重排模块 — 代码示例：本目录对应教材第 7 章，覆盖重排模块的完整链路：为什么需要重排、重排架构、序列生成（Actor）、序列评估与选序（Critic）、多样性打散（MMR / DPP / SSD）、重排后处理，共 14 个可运行脚"
+  },
+  "ch25 多任务融合/code/README.md": {
+    "title": "ch25 多任务融合 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch25 多任务融合 — 代码示例：本目录对应教材第 25 章，按方法演进组织 7 组可运行示例：人工公式、自动寻参、学习式融合与排序学习，以及 IntEL、UMRE、EMER、HarmonRank 四篇论文的方法模块。代码使用 PyTorch "
+  },
+  "ch11 粗排模型/code/README.md": {
+    "title": "ch11 粗排模型 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch11 粗排模型 — 代码示例：本目录对应教材第 11 章，覆盖粗排阶段主流模型的 Python 实现，共 16 个可运行脚本。目录编号与正文节次一一对应，均可直接 python3 <文件>.py 运行。除纯统计的 delayedfeedba"
+  },
+  "ch10 召回模型/code/README.md": {
+    "title": "ch10 召回模型 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch10 召回模型 — 代码示例：本目录对应教材第 10 章，覆盖召回阶段主流模型的 Python 实现，共 38 个可运行脚本。目录编号与正文节次一一对应，均可直接 python3 <文件>.py 运行。神经网络类脚本（含图网络、向量召回、序"
+  },
+  "ch05 粗排模块/code/README.md": {
+    "title": "ch05 粗排模块 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch05 粗排模块 — 代码示例：本目录对应教材第 5 章，覆盖粗排模块的完整链路与核心策略算法，共 15 个可运行脚本。目录编号与正文节次一一对应，均可直接 python3 <文件>.py 运行。除 ch02prerankmodel/twot"
+  },
+  "ch22 链路一致性建模/code/README.md": {
+    "title": "ch22 链路一致性建模 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch22 链路一致性建模 — 代码示例：本目录按第 22 章的方法与工业实践组织，包含 8 个论文方法脚本、1 个工业实践脚本和统一训练/验证入口。各模型采用小型 PyTorch 计算图和结构化合成级联日志，展示正文强调的机制；MOCK 表示日志、教"
+  },
+  "ch06 精排模块/code/README.md": {
+    "title": "ch06 精排模块 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch06 精排模块 — 代码示例：本目录用纯 Python(标准库 + torch + numpy)复刻第 6 章正文的精排链路、预估任务、 多目标融合公式与流量调控策略:每个脚本独立可跑、只打印数值表格,把正文里的公式、 伪代码与结论都变成可"
+  },
+  "ch18 向量检索系统/code/README.md": {
+    "title": "ch18 向量检索系统 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch18 向量检索系统 — 代码示例：本目录对应教材第 18 章，按正文六节组织：ANN 成本直觉、树结构（KD / 球树 / 随机投影树）、局部敏感哈希（MinHash / SimHash / Banding）、乘积量化（PQ / IVFADC）"
+  },
+  "ch23 时长预估建模/code/README.md": {
+    "title": "ch23 时长预估建模 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch23 时长预估建模 — 代码示例：本目录对应教材第 23 章，覆盖时长 Label 设计、加权二分类、离散化建模、经典时长预估方法、生成式时长预估与工业实践六个部分，共 14 个可运行脚本加 1 个公共模块。目录编号与正文节次对应，均可直接 p"
+  },
+  "ch15 特征工程/code/README.md": {
+    "title": "ch15 特征工程 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch15 特征工程 — 代码示例：本目录对应教材第 15 章，覆盖特征体系、特征表示、行为与实时特征、特征交互、特征筛选与治理五个部分，共 26 个可运行脚本（另含 3 个公共模块）。目录编号与正文节次对应，均可直接 python3 <文件>."
+  },
+  "ch08 混排模块/code/README.md": {
+    "title": "ch08 混排模块 - 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch08 混排模块 - 代码示例：本目录对应教材第 8 章「混排模块」，用 Python 复刻正文的混排链路（前处理 → 序列生成 → 序列排序 → 价值评估 → 后处理与流量调控），共 13 个可运行脚本。目录编号与正文节次一一对应，每个脚本"
+  },
+  "ch04 召回与过滤模块/code/README.md": {
+    "title": "ch04 召回与过滤模块 — 代码示例｜推荐系统：工业架构与核心算法",
+    "description": "ch04 召回与过滤模块 — 代码示例：本目录对应教材第 4 章，覆盖召回模块的工程链路与过滤限流模块的策略体系，共 13 个可运行脚本。目录编号与正文节次一一对应，均可直接 python3 <文件>.py 运行。本章定位是「链路与策略」，模型只做能"
+  }
+}

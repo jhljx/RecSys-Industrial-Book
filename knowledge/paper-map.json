@@ -1641,6 +1641,162 @@
       "concepts": [
         "appnet-feature-partition"
       ]
+    },
+    {
+      "id": "ch25-intel",
+      "method": "IntEL",
+      "title": "Intent-aware Ranking Ensemble for Personalized Recommendation",
+      "chapter": 25,
+      "pages": [
+        12,
+        16
+      ],
+      "concepts": [
+        "intel-intent-aware-ensemble"
+      ]
+    },
+    {
+      "id": "ch25-umre",
+      "method": "UMRE",
+      "title": "UMRE: A Unified Monotonic Transformation for Ranking Ensemble in Recommender Systems",
+      "chapter": 25,
+      "pages": [
+        16,
+        20
+      ],
+      "concepts": [
+        "umre-monotonic-ensemble"
+      ]
+    },
+    {
+      "id": "ch25-emer",
+      "method": "EMER",
+      "title": "An End-to-End Multi-objective Ensemble Ranking Framework for Video Recommendation",
+      "chapter": 25,
+      "pages": [
+        20,
+        24
+      ],
+      "concepts": [
+        "emer-request-ranking"
+      ]
+    },
+    {
+      "id": "ch25-harmonrank",
+      "method": "HarmonRank",
+      "title": "Rethinking Multi-objective Ranking Ensemble in Recommender System: From Score Fusion to Rank Consistency",
+      "chapter": 25,
+      "pages": [
+        24,
+        29
+      ],
+      "concepts": [
+        "harmonrank-rank-consistency"
+      ]
+    },
+    {
+      "id": "ch22-ecmm",
+      "method": "ECMM",
+      "title": "Rethinking Large-scale Pre-ranking System: Entire-chain Cross-domain Models",
+      "chapter": 22,
+      "pages": [
+        3,
+        5
+      ],
+      "concepts": [
+        "ecmm-entire-chain-domains"
+      ]
+    },
+    {
+      "id": "ch22-asmol",
+      "method": "ASMOL",
+      "title": "Rethinking the Role of Pre-ranking in Large-scale E-Commerce Searching System",
+      "chapter": 22,
+      "pages": [
+        5,
+        8
+      ],
+      "concepts": [
+        "asmol-all-scenario-learning"
+      ]
+    },
+    {
+      "id": "ch22-copr",
+      "method": "COPR",
+      "title": "COPR: Consistency-Oriented Pre-Ranking for Online Advertising",
+      "chapter": 22,
+      "pages": [
+        9,
+        12
+      ],
+      "concepts": [
+        "copr-chunk-rank-alignment"
+      ]
+    },
+    {
+      "id": "ch22-grace",
+      "method": "GRACE",
+      "title": "Optimizing E-commerce Search: Toward a Generalizable and Rank-Consistent Pre-Ranking Model",
+      "chapter": 22,
+      "pages": [
+        12,
+        14
+      ],
+      "concepts": [
+        "grace-topk-generalization"
+      ]
+    },
+    {
+      "id": "ch22-ranktower",
+      "method": "RankTower",
+      "title": "RankTower: A Synergistic Framework for Enhancing Two-Tower Pre-Ranking Model",
+      "chapter": 22,
+      "pages": [
+        14,
+        18
+      ],
+      "concepts": [
+        "ranktower-cross-tower-interaction"
+      ]
+    },
+    {
+      "id": "ch22-hccp",
+      "method": "HCCP",
+      "title": "A Hybrid Cross-Stage Coordination Pre-ranking Model for Online Recommendation Systems",
+      "chapter": 22,
+      "pages": [
+        18,
+        22
+      ],
+      "concepts": [
+        "hccp-hybrid-stage-sampling"
+      ]
+    },
+    {
+      "id": "ch22-cs3",
+      "method": "CS3",
+      "title": "CS3: Efficient Online Capability Synergy for Two-Tower Recommendation",
+      "chapter": 22,
+      "pages": [
+        23,
+        25
+      ],
+      "concepts": [
+        "cs3-online-capability-synergy"
+      ]
+    },
+    {
+      "id": "ch22-unirec",
+      "method": "UniRec",
+      "title": "UniRec: Cross-stage Multi-Task Fusion with Preference Optimization for Cascaded Recommender Systems",
+      "chapter": 22,
+      "pages": [
+        25,
+        30
+      ],
+      "concepts": [
+        "unirec-cross-stage-preference"
+      ]
     }
   ]
 }

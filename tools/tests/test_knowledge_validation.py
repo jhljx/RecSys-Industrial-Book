@@ -32,7 +32,7 @@ class KnowledgeValidationTest(unittest.TestCase):
 
     def test_unreleased_concept_must_cite_released_pdf(self) -> None:
         path = ROOT / "knowledge/concepts/consistency-modeling.md"
-        changed = path.read_text(encoding="utf-8").replace("第五章-粗排模块.pdf", "第二十二章-链路一致性建模.pdf")
+        changed = path.read_text(encoding="utf-8").replace("第五章-粗排模块.pdf", "第二十六章-长期价值建模.pdf")
         self.assertIn("unreleased PDF citation", self.run_with(path, changed))
 
     def test_concept_citation_must_stay_within_released_pages(self) -> None:

@@ -121,7 +121,9 @@
             11,
             12,
             20,
-            24
+            22,
+            24,
+            25
           ],
           "concepts": [
             "pre-ranking",
@@ -202,22 +204,52 @@
             "appnet-feature-partition",
             "pepnet-gate-nu",
             "personalized-network-parameters",
-            "poso-submergence"
+            "poso-submergence",
+            "contextual-fusion-weights",
+            "dynamic-fusion-constraints",
+            "emer-request-ranking",
+            "fusion-bayesian-optimization",
+            "fusion-cross-entropy-search",
+            "fusion-grid-random-search",
+            "fusion-search-boundaries",
+            "harmonrank-rank-consistency",
+            "hybrid-value-rank-fusion",
+            "intel-intent-aware-ensemble",
+            "learnable-global-fusion",
+            "ltr-fusion-supervision",
+            "rank-fusion-robustness",
+            "umre-monotonic-ensemble",
+            "value-fusion-compensation",
+            "asmol-all-scenario-learning",
+            "cascade-rank-final-training",
+            "cascade-recall-serving",
+            "cascade-selection-bias",
+            "copr-chunk-rank-alignment",
+            "cs3-online-capability-synergy",
+            "ecmm-entire-chain-domains",
+            "grace-topk-generalization",
+            "hccp-hybrid-stage-sampling",
+            "ranktower-cross-tower-interaction",
+            "unirec-cross-stage-preference"
           ],
-          "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）；ch24 PDF 1-18（重点1-6、7-9、10-12、14-17）",
-          "deliverable": "效果-成本 Pareto 表、特征交叉消融、多任务结构与排序损失方案；长序列兴趣检索与目标注意力的效果-成本对照；POSO/APG/PEPNet/APPNet在冷启动分群、参数开销与在线延迟下的结构选型对照",
+          "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）；ch24 PDF 1-18（重点1-6、7-9、10-12、14-17）；ch25 PDF 1–32（重点 2–11、12–28、29–31）；ch22 PDF 1-38（重点 2-8、9-30、30-37）",
+          "deliverable": "效果-成本 Pareto 表、特征交叉消融、多任务结构与排序损失方案；长序列兴趣检索与目标注意力的效果-成本对照；POSO/APG/PEPNet/APPNet在冷启动分群、参数开销与在线延迟下的结构选型对照；多任务融合的 Value/Rank/Hybrid 基线与自动寻参对照，说明标签和线上护栏；级联请求样本表、Rank/Final 标签和召回双塔版本切换方案",
           "acceptance": [
             "固定服务预算比较候选保留率、特征交叉消融与排序指标",
             "检查多任务冲突、列表分组、公式单调性和线上成本",
             "在固定候选规模与延迟预算下检查长序列召回、兴趣表示和回退效果",
-            "固定训练窗口和服务预算，对照新老用户、不同场景的分群校准与P99，并核验门控条件可用性"
+            "固定训练窗口和服务预算，对照新老用户、不同场景的分群校准与P99，并核验门控条件可用性",
+            "在相同请求、候选和评估窗口下比较值、序、寻参与动态权重的分目标收益和P99",
+            "用同一请求的各阶段候选核对样本来源、Top-K保留、Hard Negative、在线预算与索引版本"
           ],
           "questions": [
             "显式交叉分支的增量如何通过消融验证？",
             "多专家结构如何验证任务共享收益？",
             "Listwise 训练的数据分组错误会造成什么问题？",
             "检索截断与目标注意力的增益如何在同一预算下验证？",
-            "POSO缓解冷启动群体信号淹没与PEPNet的LHUC式隐藏单元调制有什么结构联系？"
+            "POSO缓解冷启动群体信号淹没与PEPNet的LHUC式隐藏单元调制有什么结构联系？",
+            "预测模型分数尺度变化时，Value与Rank融合会分别如何变化？",
+            "为什么仅用最终曝光样本训练粗排会遗漏有价值的上游候选？"
           ]
         },
         {
@@ -479,8 +511,10 @@
             18,
             19,
             20,
+            22,
             23,
             24,
+            25,
             28
           ],
           "concepts": [
@@ -625,7 +659,9 @@
             11,
             12,
             20,
-            24
+            22,
+            24,
+            25
           ],
           "concepts": [
             "pre-ranking",
@@ -706,22 +742,52 @@
             "appnet-feature-partition",
             "pepnet-gate-nu",
             "personalized-network-parameters",
-            "poso-submergence"
+            "poso-submergence",
+            "contextual-fusion-weights",
+            "dynamic-fusion-constraints",
+            "emer-request-ranking",
+            "fusion-bayesian-optimization",
+            "fusion-cross-entropy-search",
+            "fusion-grid-random-search",
+            "fusion-search-boundaries",
+            "harmonrank-rank-consistency",
+            "hybrid-value-rank-fusion",
+            "intel-intent-aware-ensemble",
+            "learnable-global-fusion",
+            "ltr-fusion-supervision",
+            "rank-fusion-robustness",
+            "umre-monotonic-ensemble",
+            "value-fusion-compensation",
+            "asmol-all-scenario-learning",
+            "cascade-rank-final-training",
+            "cascade-recall-serving",
+            "cascade-selection-bias",
+            "copr-chunk-rank-alignment",
+            "cs3-online-capability-synergy",
+            "ecmm-entire-chain-domains",
+            "grace-topk-generalization",
+            "hccp-hybrid-stage-sampling",
+            "ranktower-cross-tower-interaction",
+            "unirec-cross-stage-preference"
           ],
-          "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）；ch24 PDF 1-18（重点1-6、7-9、10-12、14-17）",
-          "deliverable": "固定预算的特征交叉、教师-学生、多专家和 Listwise 消融；长序列兴趣检索与目标注意力的效果-成本对照；POSO/APG/PEPNet/APPNet在冷启动分群、参数开销与在线延迟下的结构选型对照",
+          "reading": "ch05 PDF 1-16；ch06 PDF 1-18；ch11 PDF 1-49（按薄弱项选读）；ch12 PDF 1-68（必读 8-10、30-36、55-59、64-67，其余选读）；ch20 PDF 1-85（重点 13-23、31-65、78-83）；ch24 PDF 1-18（重点1-6、7-9、10-12、14-17）；ch25 PDF 1–32（重点 2–11、12–28、29–31）；ch22 PDF 1-38（重点 2-8、9-30、30-37）",
+          "deliverable": "固定预算的特征交叉、教师-学生、多专家和 Listwise 消融；长序列兴趣检索与目标注意力的效果-成本对照；POSO/APG/PEPNet/APPNet在冷启动分群、参数开销与在线延迟下的结构选型对照；IntEL、UMRE、EMER和HarmonRank的监督、结构与排序目标消融方案；八种链路一致性方法的样本、监督、结构与在线成本对照，以及级联召回部署设计",
           "acceptance": [
             "报告 Pareto 前沿、分任务收益和列表指标",
             "控制参数量、延迟、训练数据与请求分组语义",
             "在固定候选规模与延迟预算下检查长序列召回、兴趣表示和回退效果",
-            "固定训练窗口和服务预算，对照新老用户、不同场景的分群校准与P99，并核验门控条件可用性"
+            "固定训练窗口和服务预算，对照新老用户、不同场景的分群校准与P99，并核验门控条件可用性",
+            "核对四种模型各自的意图监督、单调性、请求级标签与可微排序，并报告分目标收益及计算开销",
+            "逐方法核对跨阶段监督与梯度边界，并报告分来源保留率、长尾覆盖、P99与回滚条件"
           ],
           "questions": [
             "如何排除特征交叉收益只是参数量增长的结果？",
             "多任务收益如何排除参数量增长的影响？",
             "Listwise 目标在什么数据条件下可能劣于 Pointwise？",
             "检索截断与目标注意力的增益如何在同一预算下验证？",
-            "POSO缓解冷启动群体信号淹没与PEPNet的LHUC式隐藏单元调制有什么结构联系？"
+            "POSO缓解冷启动群体信号淹没与PEPNet的LHUC式隐藏单元调制有什么结构联系？",
+            "请求级多目标监督与AUC代理目标分别解决哪一种目标不一致？",
+            "在跨阶段一致性已经较高时，如何判断继续对齐是否损害候选探索？"
           ]
         },
         {
@@ -971,8 +1037,10 @@
             18,
             19,
             20,
+            22,
             23,
             24,
+            25,
             28
           ],
           "concepts": [

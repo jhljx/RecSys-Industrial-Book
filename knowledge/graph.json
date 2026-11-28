@@ -179,7 +179,18 @@
     "tin-temporal-correlation",
     "twin-search-consistency",
     "twin-v2-lifetime-compression",
+    "asmol-all-scenario-learning",
+    "cascade-rank-final-training",
+    "cascade-recall-serving",
+    "cascade-selection-bias",
     "consistency-modeling",
+    "copr-chunk-rank-alignment",
+    "cs3-online-capability-synergy",
+    "ecmm-entire-chain-domains",
+    "grace-topk-generalization",
+    "hccp-hybrid-stage-sampling",
+    "ranktower-cross-tower-interaction",
+    "unirec-cross-stage-preference",
     "cread-restoration",
     "d2co-noise",
     "d2q-deconfounding",
@@ -195,6 +206,21 @@
     "pepnet-gate-nu",
     "personalized-network-parameters",
     "poso-submergence",
+    "contextual-fusion-weights",
+    "dynamic-fusion-constraints",
+    "emer-request-ranking",
+    "fusion-bayesian-optimization",
+    "fusion-cross-entropy-search",
+    "fusion-grid-random-search",
+    "fusion-search-boundaries",
+    "harmonrank-rank-consistency",
+    "hybrid-value-rank-fusion",
+    "intel-intent-aware-ensemble",
+    "learnable-global-fusion",
+    "ltr-fusion-supervision",
+    "rank-fusion-robustness",
+    "umre-monotonic-ensemble",
+    "value-fusion-compensation",
     "exploration",
     "rl-recsys",
     "safe-exploration"
@@ -945,8 +971,84 @@
       "twin-v2-lifetime-compression"
     ],
     [
+      "cascade-selection-bias",
+      "asmol-all-scenario-learning"
+    ],
+    [
+      "cascade-selection-bias",
+      "cascade-rank-final-training"
+    ],
+    [
+      "pre-ranking-chain-consistency",
+      "cascade-rank-final-training"
+    ],
+    [
+      "cascade-rank-final-training",
+      "cascade-recall-serving"
+    ],
+    [
+      "vector-retrieval",
+      "cascade-recall-serving"
+    ],
+    [
+      "version-consistency",
+      "cascade-recall-serving"
+    ],
+    [
+      "pre-ranking",
+      "cascade-selection-bias"
+    ],
+    [
+      "sample-selection-bias",
+      "cascade-selection-bias"
+    ],
+    [
       "version-consistency",
       "consistency-modeling"
+    ],
+    [
+      "pre-ranking-chain-consistency",
+      "copr-chunk-rank-alignment"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "cs3-online-capability-synergy"
+    ],
+    [
+      "version-consistency",
+      "cs3-online-capability-synergy"
+    ],
+    [
+      "cascade-selection-bias",
+      "ecmm-entire-chain-domains"
+    ],
+    [
+      "pre-ranking-chain-consistency",
+      "grace-topk-generalization"
+    ],
+    [
+      "cascade-selection-bias",
+      "hccp-hybrid-stage-sampling"
+    ],
+    [
+      "ranktower-cross-tower-interaction",
+      "hccp-hybrid-stage-sampling"
+    ],
+    [
+      "pre-ranking-two-tower",
+      "ranktower-cross-tower-interaction"
+    ],
+    [
+      "cascade-selection-bias",
+      "ranktower-cross-tower-interaction"
+    ],
+    [
+      "pre-ranking-chain-consistency",
+      "unirec-cross-stage-preference"
+    ],
+    [
+      "multi-objective",
+      "unirec-cross-stage-preference"
     ],
     [
       "duration-distribution",
@@ -1023,6 +1125,90 @@
     [
       "personalized-network-parameters",
       "poso-submergence"
+    ],
+    [
+      "learnable-global-fusion",
+      "contextual-fusion-weights"
+    ],
+    [
+      "contextual-fusion-weights",
+      "dynamic-fusion-constraints"
+    ],
+    [
+      "ltr-fusion-supervision",
+      "emer-request-ranking"
+    ],
+    [
+      "fusion-grid-random-search",
+      "fusion-bayesian-optimization"
+    ],
+    [
+      "fusion-grid-random-search",
+      "fusion-cross-entropy-search"
+    ],
+    [
+      "value-fusion-compensation",
+      "fusion-grid-random-search"
+    ],
+    [
+      "fusion-bayesian-optimization",
+      "fusion-search-boundaries"
+    ],
+    [
+      "fusion-cross-entropy-search",
+      "fusion-search-boundaries"
+    ],
+    [
+      "ltr-fusion-supervision",
+      "harmonrank-rank-consistency"
+    ],
+    [
+      "dynamic-fusion-constraints",
+      "harmonrank-rank-consistency"
+    ],
+    [
+      "value-fusion-compensation",
+      "hybrid-value-rank-fusion"
+    ],
+    [
+      "rank-fusion-robustness",
+      "hybrid-value-rank-fusion"
+    ],
+    [
+      "contextual-fusion-weights",
+      "intel-intent-aware-ensemble"
+    ],
+    [
+      "ltr-fusion-supervision",
+      "intel-intent-aware-ensemble"
+    ],
+    [
+      "value-fusion-compensation",
+      "learnable-global-fusion"
+    ],
+    [
+      "hybrid-value-rank-fusion",
+      "ltr-fusion-supervision"
+    ],
+    [
+      "ranking-ltr-choice",
+      "ltr-fusion-supervision"
+    ],
+    [
+      "value-fusion-compensation",
+      "rank-fusion-robustness"
+    ],
+    [
+      "contextual-fusion-weights",
+      "umre-monotonic-ensemble"
+    ],
+    [
+      "dynamic-fusion-constraints",
+      "umre-monotonic-ensemble"
+    ],
+    [
+      "ranking-formula",
+      "value-fusion-compensation"
     ],
     [
       "cold-start",

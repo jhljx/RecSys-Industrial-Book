@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 import json
+import re
 from collections import defaultdict
 from html import escape
 from pathlib import Path
@@ -79,7 +80,7 @@ def render(root: Path = ROOT) -> str:
     return f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>章节与概念静态索引 · 推荐系统：工业架构与核心算法</title>
-<meta name="description" content="浏览已发布推荐系统章节 PDF、章节阅读地图、概念卡和代码目录；每个概念关联可核查的 PDF 页码。">
+<meta name="description" content="按章节浏览《推荐系统：工业架构与核心算法》已发布 PDF、阅读地图、概念卡及教学代码目录。概念入口标明可核查的 PDF 页码，便于查找书中依据和继续阅读。">
 <link rel="canonical" href="{BASE}knowledge-map/catalog.html">
 <link rel="stylesheet" href="./style.css"><link rel="stylesheet" href="./document.css"><script src="./site-links.js" defer></script></head>
 <body><a class="skip" href="#main">跳到正文</a>
@@ -133,6 +134,55 @@ def concept_links(root: Path = ROOT) -> dict[str, dict]:
     return entries
 
 
+def document_metadata(root: Path = ROOT) -> dict[str, dict[str, str]]:
+    """Use only independently written public Markdown for page-specific search snippets."""
+    concepts = {row["id"]: row for row in build(root)["concepts"]}
+    paths = [root / "README.md", *(
+        path for directory in ("cases", "docs", "knowledge", "learning-paths", "templates")
+        for path in (root / directory).rglob("*.md")
+    )]
+    paths.extend(root.glob("ch[0-9][0-9] */code/**/README.md"))
+    result = {}
+    for path in paths:
+        if not path.is_file() or any(part.startswith(".") for part in path.relative_to(root).parts):
+            continue
+        source = path.read_text(encoding="utf-8")
+        frontmatter_title = re.search(r"(?m)^title:\s*(.+?)\s*$", source.split("---", 2)[1]) if source.startswith("---\n") else None
+        body = re.sub(r"\A---\n.*?\n---\n", "", source, count=1, flags=re.S)
+        heading = re.search(r"(?m)^#\s+(.+?)\s*$", body)
+        title = (frontmatter_title.group(1).strip(' "') if frontmatter_title else
+                 re.sub(r"[`*_]", "", heading.group(1)).strip() if heading else path.parent.name)
+        relative = path.relative_to(root).as_posix()
+        if relative.startswith("knowledge/concepts/"):
+            ident = path.stem
+            if ident not in concepts:
+                raise ValueError(f"concept lacks public metadata: {relative}")
+            summary = concepts[ident]["summary"]
+            chapter = concepts[ident]["chapter"]
+            description = f"{title}：{summary} 阅读第 {chapter} 章关联概念卡，按所引已发布 PDF 页码核对本书依据，并查看适用条件与工程取舍。"
+            title = f"{title}｜第 {chapter} 章概念与 PDF 依据 · 推荐系统工业实践"
+        else:
+            paragraphs = re.split(r"\n\s*\n", body)
+            prose = next((part.strip() for part in paragraphs
+                          if part.strip() and not part.lstrip().startswith(("#", "|", "-", "*", ">", "```"))
+                         ), "")
+            prose = re.sub(r"\[([^]]+)\]\([^)]+\)", r"\1", prose)
+            prose = re.sub(r"[`*_\[\]#]", "", prose)
+            prose = re.sub(r"\s+", " ", prose).strip()
+            if ".tex" in prose:
+                prose = "查看已发布章节的教学代码说明、源码入口和运行前提；书中依据以公开 PDF 页码为准。"
+            description = f"{title}：{prose[:105]}" if prose else f"{title}：浏览推荐系统工业架构与核心算法的公开导航、教学示例和实践说明，具体书籍论断以已发布 PDF 为准。"
+            if relative.startswith("knowledge/chapters/") and len(description) < 75:
+                description += " 本页提供章节主题导航与已发布 PDF 依据，便于按页阅读和核查。"
+            elif len(description) < 60:
+                description += " 参照公开示例检查适用条件、运行路径与实现边界。"
+            if relative == "README.md":
+                description = "《推荐系统：工业架构与核心算法》开源书稿与本地 AI 学习工作台。浏览已发布章节 PDF、概念知识地图、教学代码和课程，按 PDF 页码核对书中依据。"
+            title = f"{title}｜推荐系统：工业架构与核心算法"
+        result[relative] = {"title": title, "description": description[:155]}
+    return result
+
+
 def sitemap(root: Path = ROOT) -> str:
     data = build(root)
     ns = "http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -157,6 +207,7 @@ def sitemap(root: Path = ROOT) -> str:
 def main() -> None:
     (ROOT / "knowledge-map/catalog.html").write_text(render(), encoding="utf-8")
     (ROOT / "_data/concept_links.json").write_text(json.dumps(concept_links(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    (ROOT / "_data/page_meta.json").write_text(json.dumps(document_metadata(), ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     (ROOT / "sitemap.xml").write_text(sitemap(), encoding="utf-8")
     print(f"static catalog and sitemap: {len(sitemap_paths(ROOT, build(ROOT)))} URLs")
 

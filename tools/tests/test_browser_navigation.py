@@ -68,12 +68,12 @@ window.addEventListener('load', () => {
     const map = [...document.querySelectorAll('#detail .detail-links a')].find(a => a.textContent.includes('章节阅读地图')).href;
     check('chapter map URL', map.includes(root) && /knowledge\/chapters\/ch\d+\.(md|html)$/.test(map), map);
     document.querySelector('[data-kind="concepts"]').click();
-    const item = [...document.querySelectorAll('#items .item')].find(button => button.textContent.includes('链路一致性建模'));
+    const item = [...document.querySelectorAll('#items .item')].find(button => button.querySelector('small')?.textContent === 'consistency-modeling');
     item.click();
     const conceptLinks = [...document.querySelectorAll('#detail .detail-links a')];
     const cited = conceptLinks.find(a => a.textContent.includes('站内阅读所引 PDF'));
-    check('unpublished concept cites released PDF', cited && /reader\.html#ch5$/.test(cited.href) &&
-      !conceptLinks.some(a => /reader\.html#ch22$/.test(a.href)), conceptLinks.map(a => a.href).join(' | '));
+    check('released consistency concept links chapter 22', cited && /reader\.html#ch5$/.test(cited.href) &&
+      conceptLinks.some(a => /reader\.html#ch22$/.test(a.href)), conceptLinks.map(a => a.href).join(' | '));
     const negative = [...document.querySelectorAll('#items .item')].find(button => button.textContent.includes('负采样'));
     negative.click();
     const codeLink = [...document.querySelectorAll('#detail a')].find(a => a.textContent.includes('two_tower_debias.py'));

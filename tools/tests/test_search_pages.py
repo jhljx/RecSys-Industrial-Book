@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import sys
+import json
 import unittest
 from pathlib import Path
 from html.parser import HTMLParser
@@ -23,6 +24,16 @@ class Links(HTMLParser):
 
 
 class SearchPagesTest(unittest.TestCase):
+    def test_document_metadata_is_distinct_and_uses_curated_concept_titles(self):
+        generated = build_search_pages.document_metadata()
+        stored = json.loads((ROOT / "_data/page_meta.json").read_text(encoding="utf-8"))
+        self.assertEqual(generated, stored)
+        descriptions = [row["description"] for row in generated.values()]
+        self.assertEqual(len(descriptions), len(set(descriptions)))
+        self.assertIn("双塔召回", generated["knowledge/concepts/two-tower.md"]["title"])
+        self.assertNotIn("concepts｜", generated["knowledge/concepts/two-tower.md"]["title"])
+        self.assertNotIn("GitHub issues", generated["README.md"]["description"])
+
     def test_static_catalog_has_real_links_and_pdf_evidence(self):
         generated = build_search_pages.render()
         self.assertEqual(generated, (ROOT / "knowledge-map/catalog.html").read_text(encoding="utf-8"))

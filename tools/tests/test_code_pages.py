@@ -2,6 +2,8 @@
 from __future__ import annotations
 
 import json
+import re
+import html
 import sys
 import tempfile
 import unittest
@@ -35,6 +37,9 @@ class CodePageTests(unittest.TestCase):
             text = page.read_text(encoding="utf-8")
             self.assertIn('id="source-code"', text)
             self.assertIn('href="../../' + quote(item["path"].split("/")[0], safe=""), text)
+            description = html.unescape(re.search(r'<meta name="description" content="([^"]+)"', text).group(1))
+            self.assertIn(Path(item["path"]).name, description)
+            self.assertNotRegex(description, r"[│├└]")
 
     def test_escaped_source_and_line_anchors(self):
         with tempfile.TemporaryDirectory() as temporary:

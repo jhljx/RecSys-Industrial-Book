@@ -256,6 +256,16 @@
         ]
       }
     ],
+    "22": [
+      {"concept": "ecmm-entire-chain-domains", "papers": ["ch22-ecmm"]},
+      {"concept": "asmol-all-scenario-learning", "papers": ["ch22-asmol"]},
+      {"concept": "copr-chunk-rank-alignment", "papers": ["ch22-copr"]},
+      {"concept": "grace-topk-generalization", "papers": ["ch22-grace"]},
+      {"concept": "ranktower-cross-tower-interaction", "papers": ["ch22-ranktower"]},
+      {"concept": "hccp-hybrid-stage-sampling", "papers": ["ch22-hccp"]},
+      {"concept": "cs3-online-capability-synergy", "papers": ["ch22-cs3"]},
+      {"concept": "unirec-cross-stage-preference", "papers": ["ch22-unirec"]}
+    ],
     "23": [
       {
         "concept": "duration-modeling",
@@ -306,6 +316,12 @@
           "ch24-appnet"
         ]
       }
+    ],
+    "25": [
+      {"concept": "intel-intent-aware-ensemble", "papers": ["ch25-intel"]},
+      {"concept": "umre-monotonic-ensemble", "papers": ["ch25-umre"]},
+      {"concept": "emer-request-ranking", "papers": ["ch25-emer"]},
+      {"concept": "harmonrank-rank-consistency", "papers": ["ch25-harmonrank"]}
     ]
   }
 }

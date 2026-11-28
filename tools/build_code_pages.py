@@ -40,6 +40,24 @@ def overview(path: Path, text: str) -> tuple[str, list[dict[str, object]]]:
     return "", []
 
 
+def search_metadata(path: Path, chapter: int, label: str, summary: str, root: Path = ROOT) -> tuple[str, str]:
+    """Keep README directory glyphs out of crawlable metadata."""
+    chapter_name = path.relative_to(root).parts[0]
+    chapter_name = re.sub(r"^ch\d+\s*", "", chapter_name)
+    topic = label.strip()
+    topic = re.sub(r"^[│├└─\s]+", "", topic)
+    topic = re.sub(r"^`?" + re.escape(path.name) + r"`?\s*", "", topic)
+    topic = re.sub(r"^[#|:：—–-]+\s*", "", topic).strip()
+    topic = re.sub(r"\s+", " ", topic)
+    if not topic:
+        topic = re.sub(r"\s+", " ", summary).strip().split("。", 1)[0][:85]
+    if not topic:
+        topic = "源码结构、输入输出与关键实现"
+    title = f"{path.stem} 源码讲解｜第 {chapter} 章{chapter_name} · 推荐系统工业实践"
+    description = f"阅读第 {chapter} 章{chapter_name}的教学源码 {path.name}：{topic[:85]}。页面展示源码、结构入口与章节说明；书中论断请核对已发布 PDF。"
+    return title, description[:155]
+
+
 def build(root: Path = ROOT) -> list[dict[str, object]]:
     output = root / "knowledge-map/code"
     entries = []
@@ -68,10 +86,11 @@ def build(root: Path = ROOT) -> list[dict[str, object]]:
         pdf_link = f'{relative}reader.html#ch{chapter}'
         readme_link = "../../" + quote(str(row["readme"]), safe="/")
         source_link = "../../" + quote(str(row["path"]), safe="/")
+        seo_title, seo_description = search_metadata(path, chapter, str(row["description"]), summary, root)
         target.write_text(f'''<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>{html.escape(path.name)} · 第 {chapter} 章代码讲解</title>
-<meta name="description" content="第 {chapter} 章教学源码 {html.escape(path.name, quote=True)}：{html.escape(str(row['description'])[:115], quote=True)}">
+<title>{html.escape(seo_title)}</title>
+<meta name="description" content="{html.escape(seo_description, quote=True)}">
 <link rel="canonical" href="https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/code/{url}">
 <link rel="stylesheet" href="{relative}style.css"><link rel="stylesheet" href="{relative}code.css">
 <script src="{relative}code.js" defer></script></head><body>

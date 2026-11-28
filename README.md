@@ -41,7 +41,7 @@
 |---|---|---|
 | 直接问书与继续追问 | 针对发布 PDF 生成简明回答、页码依据和适用边界；会话保存在本机 | `ask --session`、`navigate` |
 | 学习陪练 | 对单元提交物给出具体追问、实践建议与下一步任务，不冒充自动评分 | `coach` |
-| 查书与可靠引用 | 检索 22 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
+| 查书与可靠引用 | 检索 24 章发布 PDF，读取命中页并引用 PDF 页码 | `search`、`page`、`eval` |
 | 12 周学习课程 | 新人全链路或研究生可信实验路线，按反馈和时间预算生成今日任务 | `course start/today/feedback/status` |
 | 证据化掌握 | 用提交物、实际命令输出、主路径、失败路径和测验分数验收；不接受口头“学会了” | `course submit`、`complete` |
 | 自适应复习 | 前置满足后推荐下一主题，低分补救，七天后安排回忆、纠错和迁移 | `next`、`course review` |
@@ -96,7 +96,7 @@ python3 tools/install_skills.py --client claude
 
 论文导图的人工归属写在 [`knowledge/paper-hierarchy.json`](knowledge/paper-hierarchy.json)：每篇论文在本章只出现一次，归入一个汇总概念；专属方法卡收在论文详情里。新增章节尚未策划层级时，构建器按论文的第一个本章概念生成临时归属，后续应审阅并补入该文件。论文关联的概念卡及 PDF 页码仍以 [`knowledge/paper-map.json`](knowledge/paper-map.json) 为准。
 
-[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 22 章、197 张概念卡、209 条前置依赖，并以独立图谱展示 122 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
+[`knowledge-map/index.html`](knowledge-map/index.html) 是可直接本地打开的静态知识蓝图：五个知识板块汇总 24 章、223 张概念卡、249 条前置依赖，并以独立图谱展示 134 个代表论文方法，连接两条 12 周课程路线。页面只使用仓库公开导航元数据，不发布 PDF 提取文本或个人学习记录。GitHub Pages 当前从 `main` 根目录发布，合并到 `main` 后可访问 [`/RecSys-Industrial-Book/knowledge-map/`](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/)；未合并前请使用本地文件入口。
 
 [`knowledge-map/reader.html`](knowledge-map/reader.html) 是无需构建工具的站内章节 PDF 阅读器，可本地以 `file://` 打开，也可通过 [GitHub Pages](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html) 使用；左侧选择已发布章节、上一章/下一章和 PDF 页码跳转均保持在阅读器内。链接如 `reader.html#ch10&page=60` 可直达第 10 章 PDF 第 60 页。阅读器会向浏览器 PDF 查看器请求默认“适应宽度”（`view=FitH`），并让阅读区域铺满可用列；查看器是否采纳缩放参数取决于浏览器。若浏览器禁用内嵌 PDF 或本地文件预览，可使用页面底部的直接打开/下载链接。
 
@@ -141,8 +141,10 @@ python3 tools/install_skills.py --client claude
 | **第 18 章** | 向量检索系统 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch18&page=1) |
 | **第 19 章** | 推荐系统偏差问题 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch19&page=1) |
 | **第 20 章** | 用户兴趣与序列建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch20&page=1) |
+| **第 22 章** | 链路一致性建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch22&page=1) |
 | **第 23 章** | 时长预估建模 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch23&page=1) |
 | **第 24 章** | 个性化网络参数 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch24&page=1) |
+| **第 25 章** | 多任务融合 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch25&page=1) |
 | **第 28 章** | 强化学习推荐场景 | [阅读本章](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch28&page=1) |
 
 ---
@@ -163,23 +165,25 @@ python3 tools/install_skills.py --client claude
 | **第 13 ~ 14 章** | Learning to Rank模型、重排/混排模型 | 🚧 **写作中** |
 | **第 15 ~ 18 章** | 上册其余部分（特征工程、推荐系统离线服务、推荐系统在线服务、向量检索系统） | ✅ **已完成** |
 | **第 19 章** | 推荐系统偏差问题（样本选择偏差、用户群体偏差、混淆偏差、曝光位置偏差、Duration偏差等） | ✅ **已完成** |
+| **第 21 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
+| **第 22 章** | 链路一致性建模 | ✅ **已完成** |
 | **第 23 章** | 时长预估建模（基于加权二分类的时长建模、基于离散化分桶的时长建模、经典时长预估建模方法、生成式时长建模） | ✅ **已完成** |
-| **第 21 ~ 22 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
 | **第 24 章** | 个性化网络参数 | ✅ **已完成** |
-| **第 25 ~ 27 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
+| **第 25 章** | 多任务融合 | ✅ **已完成** |
+| **第 26 ~ 27 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
 | **第 28 章** | 强化学习推荐场景 | ✅ **已发布** |
 | **第 29 ~ 38 章** | 尚未发布独立章节 PDF | 📋 **未发布** |
 
 <!-- released-status:start -->
-**公开发布快照**：22 份章节 PDF（含前言），共 897 个 PDF 页。已发布章节编号：0–12、15–20、23–24、28。这里仅统计仓库公开 PDF，不推断未发布章节的写作进度。
+**公开发布快照**：24 份章节 PDF（含前言），共 967 个 PDF 页。已发布章节编号：0–12、15–20、22–25、28。这里仅统计仓库公开 PDF，不推断未发布章节的写作进度。
 <!-- released-status:end -->
 
 
 ## 全书章节目录
 
-以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、25–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。已发布章节入口见上方表格。
+以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21、26–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。已发布章节入口见上方表格。
 
-以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21–22、25–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。
+以下保留全书规划目录，最终卷册划分和章节标题以正式发布为准。第 13、14、21、26–27、29–38 章尚无公开的独立章节 PDF；第 23、28 章已有公开 PDF。
 
 - **第一部分 推荐系统基础**  
     - [**第 1 章 推荐系统概述**](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch1&page=1)
@@ -746,12 +750,25 @@ python3 tools/install_skills.py --client claude
             - 21.5.2 CAGrad
             - 21.5.3 GradNorm
         - 21.6 本章小结
-    - **第 22 章 链路一致性建模**
+    - [**第 22 章 链路一致性建模**](ch22%20链路一致性建模/第二十二章-链路一致性建模.pdf)
         - 22.1 粗排链路一致性模型
-        - 22.2 召回链路一致性模型
-        - 22.3 HCCP
-        - 22.4 链路一致性建模讨论
-        - 22.5 本章小结
+            - 22.1.1 粗排模型中的样本选择偏差
+            - 22.1.2 粗排目标重构与跨阶段样本建模
+                - 22.1.2.1 ECMM 模型
+                - 22.1.2.2 ASMOL 模型
+            - 22.1.3 面向下游排序的偏好一致性优化
+                - 22.1.3.1 COPR 模型
+                - 22.1.3.2 GRACE 模型
+            - 22.1.4 跨阶段模型与样本协同
+                - 22.1.4.1 RankTower 模型
+                - 22.1.4.2 HCCP 模型
+            - 22.1.5 在线能力协同与多阶段联合优化
+                - 22.1.5.1 CS3 模型
+                - 22.1.5.2 UniRec 模型
+        - 22.2 粗排链路一致性模型工业实践
+        - 22.3 召回链路一致性模型工业实践
+        - 22.4 本章小结
+        - 22.5 参考文献
     - [**第 23 章 时长预估建模**](https://jhljx.github.io/RecSys-Industrial-Book/knowledge-map/reader.html#ch23&page=1)
         - 23.1 基于阈值化定义的时长建模  
             - 23.1.1 Duration-aware的时长阈值定义  
@@ -811,13 +828,31 @@ python3 tools/install_skills.py --client claude
             - 24.4.3 全空间多任务学习目标
         - 24.5 本章小结
         - 24.6 参考文献
-    - **第 25 章 多任务融合**
+    - [**第 25 章 多任务融合**](ch25%20多任务融合/第二十五章-多任务融合.pdf)
         - 25.1 多任务融合概述
-        - 25.2 模型化寻参
-        - 25.3 Learn to Rank 模型融合
-        - 25.4 端到端多目标融合模型
-        - 25.5 本章小结
-        - 25.6 参考文献
+        - 25.2 人工设计的融合方法
+            - 25.2.1 基于预测值的加权融合
+            - 25.2.2 基于排序位置的融合
+            - 25.2.3 值序混合融合
+        - 25.3 自动化参数寻优
+            - 25.3.1 网格搜索与随机搜索
+            - 25.3.2 基于代理模型的贝叶斯优化
+            - 25.3.3 基于采样分布更新的交叉熵方法
+            - 25.3.4 自动化寻优的适用范围与局限
+        - 25.4 学习式融合权重建模
+            - 25.4.1 全局融合参数的可学习化
+            - 25.4.2 基于上下文的动态权重生成
+            - 25.4.3 动态权重的约束与训练策略
+        - 25.5 Learn to Rank 模型融合
+            - 25.5.1 融合模型的输入与监督信号构造
+        - 25.6 端到端多目标融合模型
+            - 25.6.1 IntEL 模型
+            - 25.6.2 UMRE 模型
+            - 25.6.3 EMER 模型
+            - 25.6.4 HarmonRank 模型
+        - 25.7 多任务融合的工业实践与发展方向
+        - 25.8 本章小结
+        - 25.9 参考文献
     - **第 26 章 长期价值建模**
         - 26.1 长期价值定义
         - 26.1.1 Delayed Reward

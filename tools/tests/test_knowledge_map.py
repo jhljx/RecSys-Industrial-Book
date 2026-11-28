@@ -119,7 +119,7 @@ class KnowledgeMapTest(unittest.TestCase):
         self.assertEqual(sorted(int(path.stem[2:]) for path in (ROOT / "knowledge/chapters").glob("ch[0-9][0-9].md")),
                          [chapter["number"] for chapter in data["chapters"]])
         unpublished = [c for c in data["concepts"] if c["chapter"] not in {x["number"] for x in data["chapters"]}]
-        self.assertEqual(["consistency-modeling"], [c["id"] for c in unpublished])
+        self.assertEqual([], [c["id"] for c in unpublished])
 
     def test_reader_facing_counts_match_catalogs(self) -> None:
         data = build_knowledge_map.build()
@@ -135,7 +135,7 @@ class KnowledgeMapTest(unittest.TestCase):
         chapter12 = [paper for paper in data["papers"] if paper["chapter"] == 12]
         self.assertTrue({"wide-and-deep", "pnn", "deepfm", "xdeepfm", "mmoe", "ple", "deepseekmoe"}
                         <= {paper["id"] for paper in chapter12})
-        self.assertEqual({7, 9, 10, 11, 12, 15, 20, 23, 24}, {paper["chapter"] for paper in data["papers"]})
+        self.assertEqual({7, 9, 10, 11, 12, 15, 20, 22, 23, 24, 25}, {paper["chapter"] for paper in data["papers"]})
         self.assertEqual(len(data["papers"]), len({paper["id"] for paper in data["papers"]}))
         self.assertTrue(all(paper["pages"][0] >= 1 for paper in data["papers"]))
         self.assertTrue(all(set(paper["concepts"]) <= {concept["id"] for concept in data["concepts"]}
@@ -145,7 +145,7 @@ class KnowledgeMapTest(unittest.TestCase):
         data = build_knowledge_map.build()
         original = json.loads((ROOT / "knowledge/paper-map.json").read_text(encoding="utf-8"))
         changes = [
-            ({"chapter": 25}, "unknown paper chapter"),
+            ({"chapter": 99}, "unknown paper chapter"),
             ({"pages": [1, 70]}, "paper pages exceed PDF bounds"),
             ({"pages": [10, 9]}, "invalid paper pages"),
             ({"concepts": ["not-a-concept"]}, "paper concepts"),
