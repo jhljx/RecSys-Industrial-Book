@@ -5,3 +5,5 @@
 {"query":"混排中的归一化不能代替校准","expected_chapters":[8],"expected_pages":{"8":[[5,7]]}}
 {"query":"离线分类评价 Precision Recall F1 取舍","expected_chapters":[3],"expected_pages":{"3":[[1,2]]}}
 {"query":"LSH MinHash SimHash Banding","expected_chapters":[18],"expected_pages":{"18":[[19,25],[30,31]]}}
+{"query":"新物品冷启动","expected_chapters":[1,24],"expected_pages":{"1":[[11,11]],"24":[[6,6]]}}
+{"query":"LHUC如何通过隐藏单元贡献实现个性化，并与PEPNet有什么关联？","expected_chapters":[15,24],"expected_pages":{"15":[[33,33]],"24":[[10,10]]}}
