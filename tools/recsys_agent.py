@@ -139,9 +139,18 @@ def concept_chapter_hints(root: Path, query: str) -> set[int]:
     canonical: dict[str, list[str]] = {}
     for kind, family, terms_in_family in families:
         if kind == "concept":
-            canonical.setdefault(terms_in_family[0], []).append(family)
-    return {chapters[canonical[family][0]] for kind, family in recognized
-            if kind == "alias" and len(canonical.get(family, [])) == 1}
+            canonical.setdefault(terms_in_family[0].casefold(), []).append(family)
+    hints: set[int] = set()
+    for kind, family in recognized:
+        if kind != "alias":
+            continue
+        concepts = {concept for term in [family, *aliases[family]]
+                    for concept in canonical.get(term.casefold(), [])}
+        # An alias may name the concept through an English synonym. Only use
+        # unambiguous mappings, so a shared alias cannot force one chapter.
+        if len(concepts) == 1:
+            hints.add(chapters[next(iter(concepts))])
+    return hints
 
 
 def split_blocks(text: str, target: int = 1500) -> list[str]:

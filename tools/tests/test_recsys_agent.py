@@ -75,6 +75,8 @@ class RecSysAgentTest(unittest.TestCase):
         self.assertTrue(recsys_agent.requests_unreleased_pdf(root, "第26章已发布PDF第1页"))
         self.assertFalse(recsys_agent.requests_unreleased_pdf(root, "第十二章已发布PDF第1页"))
         self.assertFalse(recsys_agent.requests_unreleased_pdf(root, "第22章已发布PDF第1页"))
+        self.assertFalse(recsys_agent.requests_unreleased_pdf(root, "第二十二章链路一致性建模已发布 PDF 的第 1 页"))
+        self.assertTrue(recsys_agent.requests_unreleased_pdf(root, "第二十一章已发布 PDF 的第 1 页"))
         self.assertFalse(recsys_agent.requests_unreleased_pdf(root, "第26章尚未发布，第5章如何解释链路一致性？"))
 
     def test_eval_allows_configured_top1_misses_but_not_recall_failures(self) -> None:
@@ -141,6 +143,29 @@ class RecSysAgentTest(unittest.TestCase):
         aliases = {"过滤": ["filtering"], "协同过滤": ["ItemCF"]}
         self.assertEqual(["协同过滤"], recsys_agent.matched_alias_families(aliases, "协同过滤"))
         self.assertEqual(["过滤", "协同过滤"], recsys_agent.matched_alias_families(aliases, "协同过滤再做过滤"))
+
+    def test_funnel_and_embedding_queries_keep_their_chapter_intent(self) -> None:
+        root = TOOLS.parent
+        for query, expected in (
+            ("召回粗排精排重排链路", 2),
+            ("召回、粗排、精排、重排的候选收缩", 2),
+            ("召回→粗排→精排→重排", 2),
+            ("嵌入服务模型在线服务", 17),
+            ("embedding service 的批量查询", 17),
+        ):
+            with self.subTest(query=query):
+                self.assertEqual({expected}, recsys_agent.concept_chapter_hints(root, query))
+                self.assertEqual(expected, recsys_agent.rank(root, query)[0][1].chapter)
+
+    def test_alias_synonym_chapter_hint_requires_unique_concept(self) -> None:
+        cards = self.root / "knowledge/concepts"
+        cards.mkdir(parents=True)
+        (cards / "embedding.md").write_text("title: Embedding Server\nchapter: 17\n", encoding="utf-8")
+        (self.root / "knowledge/aliases.json").write_text(
+            json.dumps({"嵌入服务": ["embedding server", "vector store"]}, ensure_ascii=False), encoding="utf-8")
+        self.assertEqual({17}, recsys_agent.concept_chapter_hints(self.root, "嵌入服务"))
+        (cards / "vector.md").write_text("title: Vector Store\nchapter: 18\n", encoding="utf-8")
+        self.assertEqual(set(), recsys_agent.concept_chapter_hints(self.root, "嵌入服务"))
 
     def test_itemcf_query_has_no_filtering_chapter_hint(self) -> None:
         root = TOOLS.parent

@@ -1,5 +1,6 @@
 import json
 import re
+import subprocess
 from pathlib import Path
 
 
@@ -22,11 +23,13 @@ def citation_pointers(source_text: str) -> list[tuple[str, int, int]]:
 
 
 def pdf_page_count(path: Path) -> int:
-    data = path.read_bytes()
-    counts = [int(value) for value in re.findall(rb"/Count\s+(\d+)", data)]
-    if not counts:
+    # /Count also appears in bookmark trees and obsolete incremental objects.
+    # Poppler resolves the active page tree instead of counting those values.
+    info = subprocess.run(["pdfinfo", str(path)], check=True, capture_output=True, text=True, timeout=30)
+    match = re.search(r"^Pages:\s+(\d+)\s*$", info.stdout, re.MULTILINE)
+    if not match or int(match.group(1)) < 1:
         raise ValueError(f"cannot determine PDF page count: {path}")
-    return max(counts)
+    return int(match.group(1))
 
 
 def validate_references(root: Path, cards: dict[str, tuple[Path, str, str]],

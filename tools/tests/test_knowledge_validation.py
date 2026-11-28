@@ -16,6 +16,29 @@ import check_knowledge  # noqa: E402
 
 
 class KnowledgeValidationTest(unittest.TestCase):
+    def test_pdf_page_count_ignores_bookmark_count(self) -> None:
+        objects = [
+            b"<< /Type /Catalog /Pages 2 0 R /Outlines 5 0 R >>",
+            b"<< /Type /Pages /Count 1 /Kids [3 0 R] >>",
+            b"<< /Type /Page /Parent 2 0 R /MediaBox [0 0 100 100] /Resources <<>> /Contents 4 0 R >>",
+            b"<< /Length 0 >>\nstream\n\nendstream",
+            b"<< /Type /Outlines /Count 99 >>",
+        ]
+        data = bytearray(b"%PDF-1.4\n")
+        offsets = [0]
+        for number, obj in enumerate(objects, 1):
+            offsets.append(len(data))
+            data.extend(f"{number} 0 obj\n".encode() + obj + b"\nendobj\n")
+        start = len(data)
+        data.extend(f"xref\n0 {len(offsets)}\n0000000000 65535 f \n".encode())
+        for offset in offsets[1:]:
+            data.extend(f"{offset:010d} 00000 n \n".encode())
+        data.extend(f"trailer\n<< /Size {len(offsets)} /Root 1 0 R >>\nstartxref\n{start}\n%%EOF\n".encode())
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "book.pdf"
+            path.write_bytes(data)
+            self.assertEqual(1, check_knowledge.pdf_page_count(path))
+
     def run_with(self, original: Path, modified: str) -> str:
         original_read = Path.read_text
         with tempfile.TemporaryDirectory() as directory:
